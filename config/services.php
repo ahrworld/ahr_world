@@ -1,0 +1,48 @@
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Third Party Services
+    |--------------------------------------------------------------------------
+    |
+    | This file is for storing the credentials for third party services such
+    | as Stripe, Mailgun, Mandrill, and others. This file provides a sane
+    | default location for this type of information, allowing packages
+    | to have a conventional place to find your various credentials.
+    |
+    */
+
+    'mailgun' => [
+        'domain' => env('MAILGUN_DOMAIN'),
+        'secret' => env('MAILGUN_SECRET'),
+    ],
+
+    'mandrill' => [
+        'secret' => env('MANDRILL_SECRET'),
+    ],
+
+    'ses' => [
+        'key'    => env('SES_KEY'),
+        'secret' => env('SES_SECRET'),
+        'region' => 'us-east-1',
+    ],
+
+    'stripe' => [
+        'model'  => App\User::class,
+        'key'    => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+    ],
+    'facebook' => [
+        'client_id' => '726106114168165',
+        'client_secret' => '4896d5b0416895584b0e090a0300483f',
+        'redirect' => 'http://localhost:8000/auth/fb/callback',
+    ],
+    'google' => [
+        'client_id' =>'157797399403-cvplcoi6rckef391tpdqa9fsqu5pp430.apps.googleusercontent.com',
+        'client_secret' =>'VI6QqSKhdtHa5Kd4Ev_Qr0rK',
+        'redirect' => 'http://localhost:8000/auth/google/callback',
+    ],
+
+];
