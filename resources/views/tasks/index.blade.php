@@ -37,12 +37,16 @@
     $prev_date = date('Y-m-d', strtotime($date .' -1 week'));
 
     $next_date = date('Y-m-d', strtotime($date .' +1 week'));
-    for($i=0;$i<=5;$i++){
+    for($i=1;$i<=5;$i++){
         $date = date('Y-m-d', strtotime($date .'+1 day'));
         echo $date;
+        for ($j=1; $j<=5 ; $j++) {
+            echo "<button class='test$i$j' type='button'>X</button>";
+        }
         echo '<br>';
+
     }
- 
+
     ?>
   <a href="?date=<?=$prev_date;?>">Previous</a>
   <a href="?date=<?=$next_date;?>">Next</a>
@@ -132,7 +136,7 @@
                                 // data: {body:$('#task-name').val(),_token:token},
                                 success: function (data) {
                                     console.log(data);
-                                  
+
                                     $('.date').html(data);
                                 },
                                 error: function (data) {
