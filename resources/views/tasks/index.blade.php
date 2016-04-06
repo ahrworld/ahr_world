@@ -32,6 +32,20 @@
             </div>
         </form>
     </div>
+    <?php
+    $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+    $prev_date = date('Y-m-d', strtotime($date .' -1 week'));
+
+    $next_date = date('Y-m-d', strtotime($date .' +1 week'));
+    for($i=0;$i<=5;$i++){
+        $date = date('Y-m-d', strtotime($date .'+1 day'));
+        echo $date;
+        echo '<br>';
+    }
+ 
+    ?>
+  <a href="?date=<?=$prev_date;?>">Previous</a>
+  <a href="?date=<?=$next_date;?>">Next</a>
     <div class="date"></div>
      <!-- Current Tasks -->
             @if (count($tasks) > 0)
