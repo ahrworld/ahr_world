@@ -12,18 +12,14 @@
     <link rel="stylesheet" href="assets/css/ahr.css">
     <script src="ahr/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </head>
-<style>
 
-</style>
 <body>
 		<!-- header -->
         <header>
-	    	<nav class="navbar  nav-ahr">
-	    	  <div class="container-fluid">
+	    	<nav class="navbar nav-ahr">
+	    	  <div class="container">
 	    	    <div class="navbar-header">
-	    	   	   <div style="margin-left:100px;">
 		    	      <img src="assets/img/logo.png" height="40">
-	    	 	   </div>
 	    	    </div>
 	    	  </div>
 	    	</nav>
@@ -31,9 +27,9 @@
 		<!-- main -->
         <main>
 
-			 <div class="container" style="background:#FFF; height:100vh;">
-			 	<div style="text-align:right; width:500px; margin:20px auto;"><h5><a href="#" style="font-weight:bold; text-decoration:underline; ">新規登錄の方はこちら</a></h5></div>
-				<div class="panel panel-default" style="width:500px; background:#ACDDF7 !Important; margin:auto; padding-bottom:40px; padding-top:30px;">
+			 <div class="container" style="background:#FFF; height:100vh; margin-top:60px;">
+			 	<div style="text-align:right; width:400px; margin:20px auto;"><h5><a href="{{url('signin')}}" style="font-weight:bold; text-decoration:underline; ">新規登錄の方はこちら</a></h5></div>
+				<div class="panel panel-default" style="width:400px; background:#ACDDF7 !Important; margin:auto; padding-bottom:40px; padding-top:30px;">
 				  <div class="panel-body">
 				  		<div class="row" style="text-align:center;">
 				  		  <div class="col-md-4"></div>
@@ -42,7 +38,7 @@
 				  			<img src="assets/img/m-icon.png" height="100"  alt=""></div>
 				  		  <div class="col-md-4"></div>
 				  		</div>
-						<div class="row" style="width:500px;">
+						<div class="row" style="width:400px;">
 							    <a style="width:370px; margin:auto; margin-bottom:5px;" class="btn btn-block btn-social btn-facebook">
 							        <i class="fa fa-facebook"></i> Facebookアカウントでログイン
 							    </a>
@@ -50,7 +46,7 @@
 							        <i class="fa fa-google-plus"></i> Googleアカウントでログイン
 							    </a>
 						</div>
-					    <form style="width:80%; margin:auto;" role="form" method="POST" action="{{ url('/login') }}">
+					    <form style="width:95%; margin:auto;" role="form" method="POST" action="{{ url('/login') }}">
 					      {!! csrf_field() !!}
 					      <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 					        <label for="exampleInputEmail1">Email</label>

@@ -32,6 +32,15 @@ trait RegistersUsers
 
         return view('auth.register');
     }
+    public function showRegistrationForm_bs()
+    {
+        if (property_exists($this, 'registerView')) {
+            return view($this->registerView);
+        }
+
+        return view('auth.bs_signin');
+    }
+
 
     /**
      * Handle a registration request for the application.
@@ -50,6 +59,7 @@ trait RegistersUsers
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // 求職者
     public function register(Request $request)
     {
         $validator = $this->validator($request->all());
@@ -64,6 +74,22 @@ trait RegistersUsers
 
         return redirect($this->redirectPath());
     }
+    // 企業側
+    public function register_bs(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        Auth::guard($this->getGuard())->login($this->create_bs($request->all()));
+
+        return view('auth/bs_signin-end');
+    }
+
 
     /**
      * Get the guard to be used during registration.

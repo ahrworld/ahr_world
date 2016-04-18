@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>ahr</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
@@ -30,6 +31,29 @@
 	    	    <div class="navbar-header">
 		    	      <img src="assets/img/logo.png" height="40">
 	    	    </div>
+	    	    <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                    @if (Auth::guest())
+
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->email }}<span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                       <!--  @if(Auth::user()->status==0)
+                            <span>User</span>
+                        @else
+                            <span>businese</span>
+                        @endif -->
+                    @endif
+
+                </ul>
 	    	  </div>
 	    	</nav>
         </header>

@@ -18,12 +18,8 @@ Route::get('/bs_setting', function(){
 Route::get('/bs_login', function(){
 	return view('auth/bs_login');
 });
-Route::get('/bs_signin', function(){
-	return view('auth/bs_signin');
-});
-Route::get('/bs_end', function(){
-	return view('auth/bs_signin-end');
-});
+
+
 Route::get('/bs_pw', function(){
 	return view('auth/bs_pw');
 });
@@ -43,9 +39,7 @@ Route::get('/profile', function(){
 Route::get('/mail-box', function(){
 	return view('mail-box');
 });
-Route::get('/bs_info', function(){
-	return view('bs_info');
-});
+
 Route::get('/view', function(){
 	return view('view');
 });
@@ -124,6 +118,12 @@ Route::group(['middleware' => 'web'], function () {
 	// });
 	Route::delete('/task/{task}', 'TaskController@destroy');
     Route::get('/home', 'HomeController@index');
+
+    Route::get('/bs_info', 'BusinessController@bs_info');
+    Route::post('/business_a', 'BusinessController@business_a');
+	Route::get('/bs_end', function(){
+	return view('auth/bs_signin-end');
+	});
 });
 
 

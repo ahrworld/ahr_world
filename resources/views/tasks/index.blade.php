@@ -32,6 +32,14 @@
             </div>
         </form>
     </div>
+    <script>
+    $( document ).ready(function() {
+     $('.change').click(function(){
+         $(this).html('O');
+     });
+  
+    });
+    </script>
     <?php
     $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
     $prev_date = date('Y-m-d', strtotime($date .' -1 week'));
@@ -41,15 +49,17 @@
         $date = date('Y-m-d', strtotime($date .'+1 day'));
         echo $date;
         for ($j=1; $j<=5 ; $j++) {
-            echo "<button class='test$i$j' type='button'>X</button>";
+            echo "<button class='test$i$j change' type='button'>X</button>";
         }
         echo '<br>';
 
     }
 
     ?>
+
   <a href="?date=<?=$prev_date;?>">Previous</a>
   <a href="?date=<?=$next_date;?>">Next</a>
+
     <div class="date"></div>
      <!-- Current Tasks -->
             @if (count($tasks) > 0)

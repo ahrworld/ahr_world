@@ -9,7 +9,7 @@
 					      <h5 style="color:#888889; text-align:center; font-size:16px; font-family:'微軟正黑體';">パスワードの変更が完了しました！</h5>
 					      <div class="form-group">
 					      <div style="text-align:center; margin:auto; padding-top:10px; width:100%;">
-					     	 <button type="button" class="btn btn-info btn-lg ahr-button-lg">企業情報編集Pageへ移動</button>
+					     	 <a href="{{ url('bs_info') }}"  class="btn btn-info btn-lg ahr-button-lg">企業情報編集Pageへ移動</button>
 					      </div>
 					    </form>
 				</div>

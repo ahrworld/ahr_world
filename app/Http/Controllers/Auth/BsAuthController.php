@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class AuthController extends Controller
+class BsAuthController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
-    protected $loginPath = '/bs_end';
+
 
     /**
      * Create a new authentication controller instance.
@@ -48,14 +48,15 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'status' => 0])) {
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'status' => 1])) {
             // 認證通過...
-            return redirect()->intended('home');
+            return redirect()->intended('bs_info');
         }
         else
         {
             return $this->sendFailedLoginResponse($request);
         }
+
     }
     /**
      * Get a validator for an incoming registration request.
@@ -79,23 +80,21 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    // 求職者
-    protected function create(array $data)
+   
+    // 企業側
+    protected function create_bs(array $data)
     {
-
         $users = User::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'status' => 0,
+            'status' => 1,
         ]);
         Role_user::create([
-            'role_id' => 1,
+            'role_id' => 2,
             'user_id' => $users->id,
         ]);
         return $users;
-
     }
- 
 
 
 }

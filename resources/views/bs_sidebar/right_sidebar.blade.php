@@ -34,24 +34,9 @@
   }
 
 </style>
-<div class="col-sm-2 col-md-2 sidebar">
+<div class="" style="width:200px; float:left; margin-left:15px;">
        <div class="panel panel-profile">
-                <ul class="list-group">
-                    <li class="list-group-item color_1">
-                        おすすめ応募者
-                    </li>
-                    <li class="list-group-item color_2">
-                        不足情報のお知らせ
-                    </li>
-                    <li class="list-group-item color_3">
-                        向上アンケート
-                    </li>
-                   <!--  <li class="list-group-item">
-                        <span class="badge badge-success">3</span>
-                        <i class="fa fa-folder-open-o"></i>
-                        Vestibulum at eros
-                    </li> -->
-                </ul>
-            </div>
+               <img src="ahr/assets/img/rikuesuto.png" height="50"  alt="">
+       </div>
 
 </div>

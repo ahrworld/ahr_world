@@ -12,6 +12,7 @@ class HomeController extends Controller
      *
      * @return void
      */
+    protected $loginPath = '/login_bs';
     public function __construct()
     {
         $this->middleware('auth');
@@ -26,4 +27,5 @@ class HomeController extends Controller
     {
         return view('home');
     }
+  
 }

@@ -2,6 +2,7 @@
 
 namespace App;
 use App\Task;
+use App\BSinformations;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -28,6 +29,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
+   /** 
+    * insert business date
+    */
+    public function BSinformation()
+    {
+        return $this->hasMany(BSinformations::class);
+    }
+
+
     public function owns($related)
     {
         return $this->id == $related->user_id;

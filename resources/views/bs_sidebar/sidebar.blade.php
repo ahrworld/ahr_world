@@ -71,8 +71,8 @@ $(document).ready(function() {
 <body data-ng-app="app" id="app" data-custom-background data-off-canvas-nav>
 		<!-- header -->
 		<section id="header" class="top-header" style="box-shadow: 0px 6px 10px -3px #9B9B9B;">
-	        <header class="clearfix">
-				<div class="container">
+	        <header class="clearfix" style="width:1500px; margin:auto; padding-left:20px;">
+				
 
 	            <!-- Logo -->
 	            <div class="logo">
@@ -176,31 +176,16 @@ $(document).ready(function() {
 
 	                </ul>
 	            </div>
-	            </div> <!-- end contanier -->
+	         
 	        </header>
 		</section>
 		<!-- main -->
-<style>
-	body{
-		/*overflow-x: hidden;
-    	overflow-y: hidden;*/
-	}
-	.scorl{
-		/*overflow-y:scroll;
-		height: 90vh;*/
-	}
-	.ahr-panel{
 
-	}
-</style>
-        <main style="margin-top:80px;">
-	        <div class="container">
-				<div class="row">
+        <main style="width:1500px; margin:50px auto;">
+        		  @include('bs_sidebar/line_menu')
 				  @include('bs_sidebar/left_sidebar')
 				  @yield('content')
 	          	  @include('bs_sidebar/right_sidebar')
-				</div><!-- row end -->
-	        </div>
         </main>
 
 <footer style="height:100px;">

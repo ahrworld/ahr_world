@@ -37,12 +37,12 @@
     width:40px;
   }
   #nav li .smile{
-    padding: 10px 60px !important;
+    padding: 2px 60px !important;
     height: 30px;
     border-bottom: 0px !important;
   }
 </style>
-<div class="col-sm-3 col-md-3 sidebar">
+<div class="sidebar" style="width:200px; float:left; margin-left:30px; ">
       <div id="nav-wrapper">
           <ul id="nav">
               <li><a href="#" class="icon"><img src="ahr/assets/img/b_sidebar1.jpg" height="40">プロフィール編集</a></li>
@@ -53,5 +53,4 @@
               <li><a href="#" class="smile">面接管理</a></li>
           </ul>
       </div>
-
 </div>

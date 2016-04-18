@@ -3,8 +3,8 @@
 @section('main')
 		<!-- main -->
         <main>
-			 <div class="container" style="background:#FFF; height:100vh;">
-			 	<div style="text-align:right; width:400px; margin:20px auto;"><h5><a href="#" style="font-weight:bold; text-decoration:underline; ">新規登錄の方はこちら</a></h5></div>
+			 <div class="container" style="background:#FFF; height:100vh; margin-top:60px;">
+			 	<div style="text-align:right; width:400px; margin:20px auto;"><h5><a href="{{url('signin_bs')}}" style="font-weight:bold; text-decoration:underline; ">新規登錄の方はこちら</a></h5></div>
 				<div class="panel panel-default" style="width:400px; background:#ACDDF7 !Important; margin:auto; padding-bottom:40px; padding-top:30px;">
 				  <div class="panel-body">
 				  		<div class="row" style="text-align:center;">
@@ -15,18 +15,47 @@
 				  		  <div class="col-md-4"></div>
 				  		</div>
 
+					    <form style="width:95%; margin:auto;" class="form-horizontal" role="form" method="POST" action="{{ url('/login_bs') }}">
+                        {!! csrf_field() !!}
+                          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                              <label class="col-md-12">E-Mail</label>
 
-					    <form style="width:95%; margin:auto;">
-					      <div class="form-group">
-					        <label for="exampleInputEmail1">Email</label>
-					        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-					      </div>
-					      <div class="form-group">
-					        <label for="exampleInputPassword1">Password</label>
-					        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-					      </div>
+                              <div class="col-md-12">
+                                  <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+
+                                  @if ($errors->has('email'))
+                                      <span class="help-block">
+                                          <strong>{{ $errors->first('email') }}</strong>
+                                      </span>
+                                  @endif
+                              </div>
+                          </div>
+                          <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label class="col-md-12">Password</label>
+
+                            <div class="col-md-12">
+                                <input type="password" class="form-control" name="password">
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                              <div class="col-md-6 col-md-offset-4">
+                                  <div class="checkbox">
+                                      <label>
+                                         <input type="checkbox" name="remember"> Remember Me
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>
+					     
 					      <div style="text-align:center;">
-					     	 <button type="button" class="btn btn-lg ahr-button-lg">Login in</button>
+					     	 <button type="submit" class="btn btn-lg ahr-button-lg">Login in</button>
 					     	 <div style="margin-top:15px;"><a href="#" style="font-size:16px; text-decoration: underline;">Passwordをお忘れの方はこちら</a></div>
 					      </div>
 					      <div>
