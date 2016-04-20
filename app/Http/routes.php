@@ -12,23 +12,13 @@
 */
 
 // bs
-Route::get('/bs_setting', function(){
-	return view('bs_setting');
-});
-Route::get('/bs_login', function(){
-	return view('auth/bs_login');
-});
 
 
-Route::get('/bs_pw', function(){
-	return view('auth/bs_pw');
-});
-Route::get('/bs_pw_ck', function(){
-	return view('auth/bs_pwd_ck');
-});
-Route::get('/bs_pw_end', function(){
+
+Route::get('/password_end', function(){
 	return view('auth/bs_pwd_end');
 });
+
 Route::get('/news', function(){
 	return view('news');
 });
@@ -53,9 +43,7 @@ Route::get('/filys', function(){
 // Route::get('/login', function(){
 // 	return view('auth/m_login');
 // });
-Route::get('/signin', function(){
-	return view('auth/m_signin');
-});
+
 Route::get('/step', function(){
 	return view('step');
 });
@@ -123,6 +111,13 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/business_a', 'BusinessController@business_a');
 	Route::get('/bs_end', function(){
 	return view('auth/bs_signin-end');
+	});
+	Route::get('/bs_setting', function(){
+		return view('bs_setting');
+	});
+	//m
+	Route::get('/register', function(){
+		return view('auth/register');
 	});
 });
 

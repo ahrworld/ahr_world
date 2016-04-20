@@ -27,8 +27,8 @@
 		<!-- main -->
         <main>
 
-			 <div class="container" style="background:#FFF; height:100vh; margin-top:60px;">
-			 	<div style="text-align:right; width:400px; margin:20px auto;"><h5><a href="{{url('signin')}}" style="font-weight:bold; text-decoration:underline; ">新規登錄の方はこちら</a></h5></div>
+			 <div class="container" style="background:#FFF; height:100vh; margin-top:50px;">
+			 	<div style="text-align:right; width:400px; margin:20px auto;"><h5><a href="{{url('register')}}" style="font-weight:bold; text-decoration:underline; ">新規登錄の方はこちら</a></h5></div>
 				<div class="panel panel-default" style="width:400px; background:#ACDDF7 !Important; margin:auto; padding-bottom:40px; padding-top:30px;">
 				  <div class="panel-body">
 				  		<div class="row" style="text-align:center;">
@@ -71,7 +71,7 @@
 
 					      <div style="margin:auto; padding-top:20px; width:70%; text-align: center;">
 					     	 <button type="submit" class="btn btn-info btn-lg"  style="background:#00A6EA; border-radius:0px; width:100%; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);">ログイン</button>
-					     	 <div style="margin-top:15px;"><a href="#" style="text-align:center; font-size:16px; text-decoration: underline;">Passwordをお忘れの方</a></div>
+					     	 <div style="margin-top:15px;"><a href="{{url('password/reset')}}" style="text-align:center; font-size:16px; text-decoration: underline;">Passwordをお忘れの方</a></div>
 					      </div>
 					      <div>
 					      </div>

@@ -42,8 +42,11 @@ $(document).ready(function() {
 			$(this).find('i').toggleClass('active');
 		});
 		// bs_info button
-		$('.ahr-button_2').click(function(){
-			$(this).addClass('active').siblings('.active').removeClass('active');
+		// $('.ahr-button_2').click(function(){
+		// 	$(this).addClass('active').siblings('.active').removeClass('active');
+		// });
+		$('.employ').click(function(){
+			$(this).toggleClass('active');
 		});
 		$('.ahr-button_3').click(function(){
 			$(this).addClass('active').siblings('.active').removeClass('active');
@@ -56,6 +59,21 @@ $(document).ready(function() {
 		});
 		$('.ahr-button_6').click(function(){
 			$(this).addClass('active').siblings('.active').removeClass('active');
+		});
+
+		$('.m_signinBtn').click(function(){
+			if ($('input.Mck').is(':checked')) {
+				$('.m_signin').submit();
+			}else{
+			    return alert('請勾選');
+			}
+		});
+		$('.m_signinBtn').click(function(){
+			if ($('input.Mck').is(':checked')) {
+				$('.m_signin').submit();
+			}else{
+			    return alert('請勾選');
+			}
 		});
 });
 

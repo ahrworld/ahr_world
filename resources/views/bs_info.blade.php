@@ -198,10 +198,10 @@
 										      		     <p>（複数選択可）</p>
 								      		     </th>
 								      		     <td style="padding-top:15px;">
-								      		     	<button type="button" class="btn ahr-button_2">日本人</button>
-								      		     	<button type="button" class="btn ahr-button_2">台灣人</button>
-								      		     	<button type="button" class="btn ahr-button_2">ベトナム人</button>
-								      		     	<button type="button" class="btn ahr-button_2">囯籍問わず</button>
+								      		     	<input type="button" class="btn ahr-button_2 employ" value="日本人">
+								      		     	<input type="button" class="btn ahr-button_2 employ" value="台灣人">
+								      		     	<input type="button" class="btn ahr-button_2 employ" value="ベトナム人">
+								      		     	<input type="button" class="btn ahr-button_2 employ" value="囯籍問わず">
 								      		     </td>
 							      		     </tr>
 							      		     <tr>
@@ -464,6 +464,12 @@
 					             <div class="push_all" style="margin-top:30px;"></div>
 						    </div><!-- tab2 end -->
 						    <script>
+						    $.ajaxSetup({
+						        headers: {
+						            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						        }
+						    });
+						    var token = '{{ Session::token() }}';
 						    $(document).ready(function() {
 						    	$(".select11").select2({
 						    	  closeOnSelect: true
@@ -481,8 +487,49 @@
 						    		$('.push_all').append('<div class="row"> <div class="col-md-12"> <form action="#"> <div class="panel panel-default"> <table class="table table-bordered"> <tbody> <tr> <th scope="row" align="right" width="20%">募集職種<span class="color-red">※</span></th> <td> <select class="select11" style="width:100%;" > <optgroup label="Mountain Time Zone"> <option value="AZ">Arizona</option> <option value="CO">Colorado</option> <option value="ID">Idaho</option> <option value="MT">Montana</option> </optgroup> <optgroup label="Central Time Zone"> <option value="AL">Alabama</option> <option value="AR">Arkansas</option> <option value="IL">Illinois</option> <option value="IA">Iowa</option> <option value="KS">Kansas</option> </optgroup> </select> </td></tr><tr> <th scope="row" align="right" width="20%">職務内容<span class="color-red">※</span></th> <td> <input type="text" class="form-control ahr-input_1"> </td></tr><tr> <th scope="row" align="right" width="170px"> 雇用形態 <span class="color-red">※</span> <p>（複数選択可）</p></th> <td> <button type="button" class="btn ahr-button_3">正社員(外国人歓迎</button> <button type="button" class="btn ahr-button_3">インターンシップ生</button> <button type="button" class="btn ahr-button_3">アルバイト</button> <button type="button" class="btn ahr-button_3">正社員(新卒)</button> <button type="button" class="btn ahr-button_3">正社員(第二新卒)</button> <button type="button" class="btn ahr-button_3">正社員(中途採用)</button> </td></tr><tr> <th scope="row" align="right" width="170px"> 募集経歴 <span class="color-red">※</span> <p>（複数選択可）</p></th> <td style="padding-top:15px;"> <button type="button" class="btn ahr-button_2">大 学</button> <button type="button" class="btn ahr-button_2">短期大学</button> <button type="button" class="btn ahr-button_2">専門学校</button> <button type="button" class="btn ahr-button_2">大学院</button> <button type="button" class="btn ahr-button_2">高等学校</button> <button type="button" class="btn ahr-button_2">不問</button> </td></tr><tr> <th scope="row" align="right" width="20%">理想人物像</th> <td> <textarea class="form-control" rows="3"></textarea> </td></tr><tr> <th scope="row" align="right" width="20%">募集学科<span class="color-red">※</span></th> <td> <select class="select22" style="width:100%;" multiple="multiple" > <optgroup label="Mountain Time Zone"> <option value="AZ">Arizona</option> <option value="CO">Colorado</option> <option value="ID">Idaho</option> <option value="MT">Montana</option> </optgroup> <optgroup label="Central Time Zone"> <option value="AL">Alabama</option> <option value="AR">Arkansas</option> <option value="IL">Illinois</option> <option value="IA">Iowa</option> <option value="KS">Kansas</option> </optgroup> </select> </td></tr><tr> <th scope="row" align="right" width="20%">語学・母語レベル</th> <td class="language"> <div style="width:100%;"> <select class="form-control" style="width:100px; float:left; margin-right:5px;"> <option value="AZ">日本語</option> <option value="CO">中囯語</option> <option value="ID">英語</option> <option value="ID">ベトナム語</option> </select> <select class="form-control" style="width:100px; float:left; margin-right:5px;"> <option value="AZ">ビジネス</option> <option value="CO">日常会話</option> <option value="ID">母語</option> </select> </div><div style="width:100%; height: 40px;"> <label class="add" style="top:7px !important;"></label> </div><div class="append"></div></td></tr><tr> <th scope="row" align="right" width="20%">必須技能・資格</th> <td> <input name="tags" id="singleFieldTags1" value="PHP, JAVA"> </td></tr><tr> <th scope="row" align="right" width="20%">あれば嬉しい技能・資格</th> <td><input name="tags" id="singleFieldTags2" value="ORACLE"> </td></tr><tr> <th scope="row" align="right" width="20%">その他の技能・資格</th> <td> <input name="tags" id="singleFieldTags3" value="文書管理"> </td></tr></table> </div><h3 style="color: #585656; font-weight:bold; font-family:"微軟正黑體"; margin-top:50px;">雇用基本条件</h3> <div class="panel panel-default"> <table class="table table-bordered"> <tbody> <tr> <th scope="row" align="right" width="20%">勤務地（複数記入可）</th> <td> <input type="text" class="form-control ahr-input_1"> </td></tr><tr> <th scope="row" align="right" width="20%">年收</th> <td> <input type="text" class="form-control ahr-input_1" style="width:200px; float:left; margin-right:10px;"> <select class="form-control" style="width:100px; float:left; margin-right:20px;"> <option value="AZ">円</option> <option value="CO">元</option> <option value="ID">米ドル</option> </select> <div style="width:50px; float:left;">月收</div><input type="text" class="form-control ahr-input_1" style="width:200px; float:left; margin-right:10px;"> <select class="form-control" style="width:100px; float:left; margin-right:20px;"> <option value="AZ">円</option> <option value="CO">元</option> <option value="ID">米ドル</option> </select> </td></tr><tr> <th scope="row" align="right" width="20%">勤務時間</th> <td> <input type="text" class="form-control ahr-input_1" style="width:85%; float:left;"><button type="button" class="btn btn-default" style="border-radius:0px !important;">時間</button> </td></tr><tr> <th scope="row" align="right" width="20%">ボーナス</th> <td> <input type="text" class="form-control ahr-input_1"> </td></tr><tr> <th scope="row" align="right" width="20%">休日休暇</th> <td> <input type="text" class="form-control ahr-input_1" style="width:85%; float:left;"><button type="button" class="btn btn-default" style="border-radius:0px !important;">日</button> </td></tr><tr> <th scope="row" align="right" width="20%">福利厚生</th> <td> <label class="radio-inline"> <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> あり </label> <label class="radio-inline"> <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> なし </label> </td></tr><tr> <th scope="row" align="right" width="20%">諸手当</th> <td> <label class="radio-inline"> <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> あり </label> <label class="radio-inline"> <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> なし </label> </td></tr><tr> <th scope="row" align="right" width="20%">教育制度</th> <td> <label class="radio-inline"> <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> あり </label> <label class="radio-inline"> <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> なし </label> </td></tr></table> </div></form> </div></div>');
 						    	});
 								$(".finish_sumbit").click(function(){
-									$('.form_a').submit();
+									 // var a =[];
+								
+									 // for (var i = 0; i < $('.employ.active').length; i++) {
+									 // 	var test = $('.employ.active').val();
+									 // 	console.log(test[i]);
+									 // };
+									 var rows = $('.employ.active');
+									 var result = "";
+									 var rowss = $('.employ.active').val();
+									 var data = {'employ':rowss,'emploo':'1'};
+									 var moreArray = new Array();
+									 var a = $('.employ.active').val();
+									 for(var i = 0; i < rows.length; i++)
+									 {
+
+									    
+									     var data = {'employ':rows,'emploo':'1'};
+									     console.log(data);
+									     // var b = $('.employ.active').val();
+									     // result += '&data[' +i+ '][employ]= ' + row.b;
+									   
+
+									 }
+
+									
+									
+									$.ajax({
+									    type: "POST",
+									    url: "business_a",
+									  	async:false,
+									    data: {bruce:data,_token:token},
+									    success: function (data) {
+									   	    // alert(JSON.stringify(data));
+
+									    },
+									    error: function (data) {
+									        console.log('Error:', data);
+									        alert('error');
+									    }
+									});
+
 								});
+
 						    });
 						    </script>
 						    <style>
@@ -496,7 +543,7 @@
 							<ul class="pager wizard">
 								<!-- <li class="previous"><a href="#">Previous</a></li> -->
 							  	<li class="next"><a href="#">完了して次に進む</a></li>
-							  	<li class="next finish" ><a class="finish_sumbit" href="javascript:;">完了</a></li>
+							  	<li class="next finish" ><a href="#" class="finish_sumbit">完了</a></li>
 							</ul>
 						</div>
 					</div><!--rootwizard end-->

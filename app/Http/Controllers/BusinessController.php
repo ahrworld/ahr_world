@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 use Gate;
 use App\User;
 use App\Language;
-use APP\BSinformations;
+use App\BSinformations;
+use App\PluralAdd\Employ;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -34,16 +35,32 @@ class BusinessController extends Controller
         return view('bs_info', ['Languages' => $Languages]);
      
     }
-
+    
     public function business_a(Request $request)
     {
-       
-        $request->user()->BSinformation()->create([
-                'company_name' => $request->company_name,
-                'name' => $request->name,
-        ]);
+        
+        // $a = $request->user()->BSinformation()->create([
+        //         'company_name' => $request->company_name,
+        //         'name' => $request->name,
 
-        return redirect('/home');
+        // ]);
+
+        // $employ = new Employ;
+        // $b = $employ::create([
+        //         'employ' => $request->company_name,
+        //         'BSinformations_id' => $a->id,
+        // ]);
+
+        // $BSinformations = new BSinformations;
+        // $BSinformations::where('id', $a->id)
+        //   ->update(['employ_id' => $b->id]);
+     
+        return response()->json([
+            "data" => $request->all(),
+        ]);
+       
+        // return $request->all();
+
     }
     
 }

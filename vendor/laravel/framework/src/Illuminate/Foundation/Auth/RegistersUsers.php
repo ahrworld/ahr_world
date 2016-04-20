@@ -30,7 +30,7 @@ trait RegistersUsers
             return view($this->registerView);
         }
 
-        return view('auth.register');
+        return view('auth.m_signin');
     }
     public function showRegistrationForm_bs()
     {

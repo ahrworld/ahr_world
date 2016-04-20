@@ -3,7 +3,7 @@
 @section('main')
 		<!-- main -->
         <main>
-			 <div class="container" style="background:#FFF; height:100vh; margin-top:60px;">
+			 <div class="container" style="background:#FFF; height:100vh; margin-top:50px;">
 			 	<div style="text-align:right; width:400px; margin:20px auto;"><h5><a href="{{url('signin_bs')}}" style="font-weight:bold; text-decoration:underline; ">新規登錄の方はこちら</a></h5></div>
 				<div class="panel panel-default" style="width:400px; background:#ACDDF7 !Important; margin:auto; padding-bottom:40px; padding-top:30px;">
 				  <div class="panel-body">
@@ -44,19 +44,11 @@
                             </div>
                           </div>
 
-                          <div class="form-group">
-                              <div class="col-md-6 col-md-offset-4">
-                                  <div class="checkbox">
-                                      <label>
-                                         <input type="checkbox" name="remember"> Remember Me
-                                      </label>
-                                  </div>
-                              </div>
-                          </div>
+                         
 					     
 					      <div style="text-align:center;">
 					     	 <button type="submit" class="btn btn-lg ahr-button-lg">Login in</button>
-					     	 <div style="margin-top:15px;"><a href="#" style="font-size:16px; text-decoration: underline;">Passwordをお忘れの方はこちら</a></div>
+					     	 <div style="margin-top:15px;"><a href="{{url('password/reset')}}" style="font-size:16px; text-decoration: underline;">Passwordをお忘れの方はこちら</a></div>
 					      </div>
 					      <div>
 					      </div>

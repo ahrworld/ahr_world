@@ -37,7 +37,7 @@ class User extends Authenticatable
         return $this->hasMany(BSinformations::class);
     }
 
-
+   
     public function owns($related)
     {
         return $this->id == $related->user_id;

@@ -12,7 +12,7 @@
 </style>
 		<!-- main -->
         <main>
-			 <div class="container" style="background:#FFF; height:100vh; margin-top:60px;">
+			 <div class="container" style="background:#FFF; height:100vh; margin-top:50px;">
 			    <div style="text-align:right; width:400px; margin:20px auto;"><h5><a href="{{url('login_bs')}}" class="bs_login_bt">ログイン</a></h5></div>
 				<div class="panel panel-default" style="width:400px; background:#ACDDF7 !Important; margin:auto; padding-bottom:40px;">
 				  <div class="panel-body">
