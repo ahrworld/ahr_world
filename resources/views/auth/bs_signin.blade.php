@@ -14,7 +14,7 @@
         <main>
 			 <div class="container" style="background:#FFF; height:100vh; margin-top:50px;">
 			    <div style="text-align:right; width:400px; margin:20px auto;"><h5><a href="{{url('login_bs')}}" class="bs_login_bt">ログイン</a></h5></div>
-				<div class="panel panel-default" style="width:400px; background:#ACDDF7 !Important; margin:auto; padding-bottom:40px;">
+				<div class="panel panel-default" style="width:400px; background:#ACDDF7 !Important; margin:auto; padding-bottom:20px;">
 				  <div class="panel-body">
 				  		<div class="row" style="text-align:center;">
 				  		  <div class="col-md-4"></div>
@@ -25,7 +25,7 @@
 				  		</div>
 
 
-					    <form style="width:95%; margin:auto;" class="form-horizontal" role="form" method="POST" action="{{ url('/signin_bs') }}">
+					    <form style="width:95%; margin:auto;" class="b_signin form-horizontal" role="form" method="POST" action="{{ url('/signin_bs') }}">
                          {!! csrf_field() !!}
 					      <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 					          <label class="col-md-12">E-Mail</label>
@@ -69,11 +69,11 @@
                         </div>
 					    <div class="checkbox">
 					          <label>
-					            <input type="checkbox" style="width:15px; height:15px;"><a href="#">個人情報保護方針</a>，<a href="#">利用規約</a> に同意する
+					            <input class="Bck" type="checkbox" style="width:15px; height:15px;"><a href="#">個人情報保護方針</a>，<a href="#">利用規約</a> に同意する
 					          </label>
 					    </div>
 					    <div style="text-align:center;">
-					     	 <button type="submit" class="btn btn-info btn-lg ahr-button-lg">アカウント</button>
+					     	 <button type="button" class="b_signinBtn btn btn-info btn-lg ahr-button-lg">アカウント</button>
 					    </div>
 					    </form>
 				  </div>

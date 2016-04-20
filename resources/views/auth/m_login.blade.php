@@ -29,7 +29,7 @@
 
 			 <div class="container" style="background:#FFF; height:100vh; margin-top:50px;">
 			 	<div style="text-align:right; width:400px; margin:20px auto;"><h5><a href="{{url('register')}}" style="font-weight:bold; text-decoration:underline; ">新規登錄の方はこちら</a></h5></div>
-				<div class="panel panel-default" style="width:400px; background:#ACDDF7 !Important; margin:auto; padding-bottom:40px; padding-top:30px;">
+				<div class="panel panel-default" style="width:400px; background:#ACDDF7 !Important; margin:auto; padding-bottom:40px; padding-top:20px;">
 				  <div class="panel-body">
 				  		<div class="row" style="text-align:center;">
 				  		  <div class="col-md-4"></div>

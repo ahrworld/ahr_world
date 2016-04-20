@@ -48,6 +48,7 @@ $(document).ready(function() {
 		$('.employ').click(function(){
 			$(this).toggleClass('active');
 		});
+		
 		$('.ahr-button_3').click(function(){
 			$(this).addClass('active').siblings('.active').removeClass('active');
 		});
@@ -65,14 +66,26 @@ $(document).ready(function() {
 			if ($('input.Mck').is(':checked')) {
 				$('.m_signin').submit();
 			}else{
-			    return alert('請勾選');
+			    return swal({
+			      title: "請確認同意條款",
+			      text: "請勾選同意條款!",
+			      type: "warning",
+			      confirmButtonClass: "btn-danger",
+			      closeOnConfirm: false
+			    })
 			}
 		});
-		$('.m_signinBtn').click(function(){
-			if ($('input.Mck').is(':checked')) {
-				$('.m_signin').submit();
+		$('.b_signinBtn').click(function(){
+			if ($('input.Bck').is(':checked')) {
+				$('.b_signin').submit();
 			}else{
-			    return alert('請勾選');
+			    return swal({
+			      title: "請確認同意條款",
+			      text: "請勾選同意條款!",
+			      type: "warning",
+			      confirmButtonClass: "btn-danger",
+			      closeOnConfirm: false
+			    })
 			}
 		});
 });

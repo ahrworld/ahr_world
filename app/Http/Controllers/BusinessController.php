@@ -57,6 +57,7 @@ class BusinessController extends Controller
      
         return response()->json([
             "data" => $request->all(),
+            'test' => $request->bruce[1]['employ'],
         ]);
        
         // return $request->all();

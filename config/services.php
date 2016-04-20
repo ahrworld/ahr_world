@@ -37,12 +37,12 @@ return [
     'facebook' => [
         'client_id' => '726106114168165',
         'client_secret' => '4896d5b0416895584b0e090a0300483f',
-        'redirect' => 'http://localhost:8000/auth/fb/callback',
+        'redirect' => 'http://ahr.world/auth/fb/callback',
     ],
     'google' => [
         'client_id' =>'157797399403-cvplcoi6rckef391tpdqa9fsqu5pp430.apps.googleusercontent.com',
         'client_secret' =>'VI6QqSKhdtHa5Kd4Ev_Qr0rK',
-        'redirect' => 'http://localhost:8000/auth/google/callback',
+        'redirect' => 'http://ahr.world/auth/google/callback',
     ],
 
 ];

@@ -15,6 +15,9 @@
 	<!-- select2 -->
 	<link href="{{ asset('ahr/assets/select2/css/select2.css')}}" rel="stylesheet" />
 	<script src="{{ asset('ahr/assets/select2/js/select2.js')}}"></script>
+    <!-- bootstrap-sweetalert -->
+    <script src="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.css')}}">
     <!-- bootstrap -->
     <link rel="stylesheet" href="{{ asset('ahr/bower_components/bootstrap/dist/css/bootstrap.css')}}" media="screen,projection" />
     <link rel="stylesheet" href="{{ asset('assets/css/ahr.css')}}">
