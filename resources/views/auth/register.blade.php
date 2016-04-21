@@ -42,10 +42,10 @@
                           <div class="col-md-4"></div>
                         </div>
                         <div class="row" style="width:400px;">
-                                <a style="width:370px; margin:auto; margin-bottom:10px;" class="btn btn-block btn-social btn-facebook">
+                                <a href="{{ url('auth/fb')}}" style="width:370px; margin:auto; margin-bottom:10px;" class="btn btn-block btn-social btn-facebook">
                                     <i class="fa fa-facebook"></i> FacebookアカウントでSign in
                                 </a>
-                                <a style="width:370px; margin:auto; margin-bottom:10px;" class=" btn btn-block btn-social btn-google">
+                                <a href="{{ url('auth/google')}}" style="width:370px; margin:auto; margin-bottom:10px;" class=" btn btn-block btn-social btn-google">
                                     <i class="fa fa-google-plus"></i> GoogleアカウントでSign in
                                 </a>
                                 <a href="{{ url('signin')}}" style="width:370px; margin:auto; margin-bottom:10px;" class=" btn btn-block btn-social btn-default">

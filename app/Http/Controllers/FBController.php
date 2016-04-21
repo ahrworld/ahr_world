@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
+use App\Permission;
+use App\Role_user;
 use Illuminate\Support\Facades\Auth;
 use Socialite;
 use App\Http\Requests;
@@ -35,7 +38,12 @@ class FBController extends Controller
             $user->facebook_id = $facebook_user_id;
             $user->name = $fbname;
             $user->email = $fbemail;
+            $user->status = 0;
             $user->save();
+            Role_user::create([
+                'role_id' => 1,
+                'user_id' => $user->id,
+            ]);
         }
         Auth::loginUsingId($user->id);
         return redirect('/home');

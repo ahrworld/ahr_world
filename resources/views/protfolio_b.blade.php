@@ -203,7 +203,7 @@ $(document).ready(function() {
 									  	<div>&nbsp;</div>
 									  	<p>XXX<span>○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</span></p>
 									    <button class="btn btn-default">作品情報有り</button>
-									    <button class="btn btn-default">作品情報無り</button>
+									    <button class="btn btn-default">作品情報無し</button>
 									    <div>&nbsp;</div>
 									    <p><span class="red-color">※3か月以内に撮影した写真(〇正装、✕学生服、✕野外写真)のアップロードをお願いします。</span></p>
 									</div>

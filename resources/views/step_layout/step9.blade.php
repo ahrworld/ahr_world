@@ -1,6 +1,6 @@
 <div class="tab-pane" id="tab9">
   <div>
-    <label class="ahr-label-default">STEP9</label>
+    <label style="margin-right:7px;" class="ahr-label-default">STEP9</label>
   </div>
   <div>
     <p style="font-size:12px; color:#0094E5;">
