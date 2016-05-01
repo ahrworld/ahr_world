@@ -45,22 +45,21 @@ class BusinessController extends Controller
 
         // ]);
 
-        // $employ = new Employ;
-        // $b = $employ::create([
-        //         'employ' => $request->company_name,
-        //         'BSinformations_id' => $a->id,
-        // ]);
+        $employ = new Employ;
+        $b = $employ::create([
+                'employ' => $request->get('bruce')
+        ]);
 
         // $BSinformations = new BSinformations;
         // $BSinformations::where('id', $a->id)
         //   ->update(['employ_id' => $b->id]);
      
-        return response()->json([
-            "data" => $request->all(),
-            'test' => $request->bruce[1]['employ'],
-        ]);
-       
-        // return $request->all();
+        // return response()->json([
+        //     "data" => $request->all(),
+        //     'test' => $request->bruce[1]['employ'],
+        // ]);
+      
+         return $request->all();
 
     }
     

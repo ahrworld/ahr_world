@@ -34,10 +34,14 @@
     </div>
     <script>
     $( document ).ready(function() {
-     $('.change').click(function(){
-         $(this).html('O');
+     // $('.change').click(function(){
+     //     $(this).html('O');
+     // });
+     $( ".change" ).toggle(function() {
+       $(this).html('O');
+     }, function() {
+       $(this).html('X');
      });
-  
     });
     </script>
     <?php
