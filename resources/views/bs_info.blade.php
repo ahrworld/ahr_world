@@ -357,15 +357,19 @@
 										      		     <p>（複数選択可）</p>
 								      		     </th>
 					       		      		     <td class="sex_radio">
-					       		      		     	<input type="checkbox" class="radio" name="employment[]" value="正社員(外国人歓迎)">正社員(外国人歓迎)
-					       		      		     	<input type="radio" name="radio" id="radio1" class="ahr-button_boy radio"/>
+					       		      		     	<input type="checkbox" name="radio" id="radio1" class="ahr-button_boy radio"/>
 			    									<label for="radio1">正社員(外国人歓迎)</label>
-								      		     	<input type="checkbox" class="radio" name="employment[]" value="インターンシップ生">インターンシップ生
-								      		     	<input type="checkbox" class="radio" name="employment[]" value="アルバイト">アルバイト
-								      		     	<input type="checkbox" class="radio" name="employment[]" value="正社員(新卒)">正社員(新卒)
-								      		     	<input type="checkbox" class="radio" name="employment[]" value="正社員(第二新卒)">正社員(第二新卒)
-								      		     	<br>
-								      		     	<input type="checkbox" class="radio" name="employment[]" value="正社員(中途採用)">正社員(中途採用)
+			    									<input type="checkbox" name="radio" id="radio1" class="ahr-button_boy radio"/>
+			    									<label for="radio1">インターンシップ生</label>
+			    									<input type="checkbox" name="radio" id="radio1" class="ahr-button_boy radio"/>
+			    									<label for="radio1">アルバイト</label>
+			    									<input type="checkbox" name="radio" id="radio1" class="ahr-button_boy radio"/>
+			    									<label for="radio1">正社員(新卒)</label>
+			    									<input type="checkbox" name="radio" id="radio1" class="ahr-button_boy radio"/>
+			    									<label for="radio1">正社員(第二新卒)</label>
+			    									<input type="checkbox" name="radio" id="radio1" class="ahr-button_boy radio"/>
+			    									<label for="radio1">正社員(中途採用)</label>
+								      		     	
 					       		      		     </td>
 					       	      		     </tr>
 					       	      		     <tr>
