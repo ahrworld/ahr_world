@@ -81,20 +81,12 @@
 	                <ul class="nav navbar-nav navbar-right">
 	                    <!-- Authentication Links -->
 	                    @if (Auth::guest())
-	                        <li><button type="button" class="btn btn_1"><a href="{{ url('/login') }}">sign in</a></button></li>
-	                        <li><button type="button" class="btn btn_1"><a href="{{ url('/login_bs') }}">login in</a></button></li>
+	                        <li><button type="button" class="btn btn_1"><a href="{{ url('/signin') }}">sign in</a></button></li>
+	                        <li><button type="button" class="btn btn_1"><a href="{{ url('/login') }}">login in</a></button></li>
 	                        <li><button type="button" class="btn btn_2"><a href="{{ url('/login_bs') }}">お問い合わせ</a></button></li>
 	                    @else
-	                        <li class="dropdown">
-	                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-	                                {{ Auth::user()->email }}<span class="caret"></span>
-	                            </a>
-
-	                            <ul class="dropdown-menu" role="menu">
-	                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-	                            </ul>
-	                        </li>
-	                      
+	                        <li><button type="button" class="btn btn_1"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></button></li>
+	                        <li><button type="button" class="btn btn_2"><a href="{{ url('/login_bs') }}">お問い合わせ</a></button></li>
 	                    @endif
 
 	                </ul>
@@ -150,6 +142,8 @@
             		<button type="button" class="btn btn-default">人材確保</button>
             		<h1>グローバル採用は、最適な人材と自動マッチングで！</h1>
             		<h1>ワンクリックで世界中の人材を管理！</h1>
+
+             
             	</div>
             	<div class="right">
             		

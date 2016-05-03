@@ -32,22 +32,7 @@
 	  );
 	  return $state;
 	};
-	var showCartList = function() {
-	    // var tabList = new Array();
-	    // var obj = new Object;
-	    // var arr = [];
-	    // var a = 0;
-
-	    // list = obj;
-	    // $('.push').each(function(a) {
-	    // 	a++;
-	    //     tabList.push('<div class="cart" id="'+ a +'">');
-	    //     tabList.push('<button type="button" class="btn ahr-button_2">日本語</button>');
-	    //     tabList.push('<label class="add"></label>');
-	    //     tabList.push('</div>')
-	    // });
-	    // $('.push').html(tabList.join(""));
-    };
+	
 	$(document).ready(function() {
 		// step6
 		var count = 0;
@@ -135,12 +120,22 @@
 		<!-- header -->
         <header>
 	    	<nav class="navbar  nav-ahr">
-	    	  <div class="container-fluid">
+
+	    	  <div class="container">
 	    	    <div class="navbar-header">
-	    	   	   <div style="margin-left:100px;">
 		    	      <img src="assets/img/logo.png" height="40">
-	    	 	   </div>
 	    	    </div>
+	    	    <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                    @if (Auth::guest())
+
+                    @else
+                        <li class="dropdown">
+                            <a href="{{ url('/logout') }}" style="color:#FFF; font-size: 16px;"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+                        </li>
+                    @endif
+
+               	 </ul>
 	    	  </div>
 	    	</nav>
         </header>
@@ -175,7 +170,7 @@
 		#rootwizard .tab-content .tab-pane{
 		}
 		#rootwizard .tab-content .tab-pane .container-fluid{
-			border: 2px solid #0094E5;
+			/*border: 2px solid #0094E5;*/
 			padding: 20px;
 		}
 		#rootwizard .tab-content label.error{
@@ -226,7 +221,7 @@
 		}
 
 		</style>
-			 <div class="container" style="background:#FFF; height:100%;">
+			 <div class="container" style="background:#FFF; height:100%; margin-top:50px;">
 				<div class="wrapper">
 
 				<form id="commentForm">
@@ -237,26 +232,23 @@
 									  	<li class="done"><a href="#tab1" data-toggle="tab"></a></li>
 										<li><a href="#tab2" data-toggle="tab"></a></li>
 										<li><a href="#tab3" data-toggle="tab"></a></li>
-										<li><a href="#tab4" data-toggle="tab"></a></li>
 										<li><a href="#tab5" data-toggle="tab"></a></li>
 										<li><a href="#tab6" data-toggle="tab"></a></li>
 										<li><a href="#tab7" data-toggle="tab"></a></li>
-										<li><a href="#tab8" data-toggle="tab"></a></li>
 										<li><a href="#tab9" data-toggle="tab"></a></li>
 										<!-- <p class="bar" style="padding-top:25px;">%</p> -->
 									</ul>
 						  </div>
 						</div><!-- end navbar -->
 
-						<div class="tab-content">
+						<div class="tab-content" >
 							@include('step_layout/step1')
 						    @include('step_layout/step2')
 							@include('step_layout/step3')
-							@include('step_layout/step4')
 							@include('step_layout/step5')
 							@include('step_layout/step6')
 							@include('step_layout/step7')
-							@include('step_layout/step8')
+						
 							@include('step_layout/step9')
 
 							<ul class="pager wizard">

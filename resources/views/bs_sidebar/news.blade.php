@@ -1,6 +1,9 @@
 
-@extends('bs_sidebar/sidebar')
 
+@extends('bs_sidebar/sidebar')
+@section('line_menu')
+@include('bs_sidebar/line_menu')
+@endsection
 @section('content')
 
 <div class="scorl" style="width:1000px; float:left; margin-left:15px;">

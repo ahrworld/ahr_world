@@ -44,9 +44,7 @@ Route::get('/filys', function(){
 // 	return view('auth/m_login');
 // });
 
-Route::get('/step', function(){
-	return view('step');
-});
+
 Route::get('/portfolio', function(){
 	return view('portfolio');
 });
@@ -58,9 +56,7 @@ Route::get('/m_profile', function(){
 	return view('m_profile');
 });
 
-Route::get('/proflie_b2', function(){
-	return view('bs_sidebar/profile');
-});
+
 Route::get('news_b2', function(){
 	return view('bs_sidebar/news');
 });
@@ -109,6 +105,12 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/bs_info', 'BusinessController@bs_info');
     Route::post('/business_a', 'BusinessController@business_a');
+    Route::post('/business_b', 'BusinessController@business_b');
+
+    Route::get('/profile_b2','BusinessController@profile');
+    Route::post('/business/update', 'BusinessController@update');
+
+    Route::get('/step', 'UserController@step');
 	Route::get('/bs_end', function(){
 	return view('auth/bs_signin-end');
 	});
@@ -119,7 +121,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/register', function(){
 		return view('auth/register');
 	});
-	
+
 });
 
 

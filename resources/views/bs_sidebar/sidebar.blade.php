@@ -2,6 +2,7 @@
 <html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>ahr</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- bootstrap -->
@@ -25,38 +26,7 @@
 </head>
 <script>
 $(document).ready(function() {
-	 var ctx = $("#canvas").get(0).getContext("2d");
-
-     var radarChartData = {
-    		  	labels: ["特定專門", "生活樣式", "挑戰客服", "奉仕貢獻", "創意創業", "安全安定", "自由自立", "縂合管理"],
-    		  	datasets: [
-    		  		{
-    		  			label: "My First dataset",
-    		  			fillColor: "rgba(220,220,220,0.2)",
-    		  			strokeColor: "rgba(220,220,220,1)",
-    		  			pointColor: "rgba(220,220,220,1)",
-    		  			pointStrokeColor: "#fff",
-    		  			pointHighlightFill: "#fff",
-    		  			pointHighlightStroke: "rgba(220,220,220,1)",
-    		  			data: [65,59,90,81,56,55,40,40]
-    		  		},
-    		  		{
-    		  			label: "My Second dataset",
-    		  			fillColor: "rgba(151,187,205,0.2)",
-    		  			strokeColor: "rgba(151,187,205,1)",
-    		  			pointColor: "rgba(151,187,205,1)",
-    		  			pointStrokeColor: "#fff",
-    		  			pointHighlightFill: "#fff",
-    		  			pointHighlightStroke: "rgba(151,187,205,1)",
-    		  			data: [28,48,40,19,96,27,100,100]
-    		  		}
-    		  	]
-    		  };
-
-     var myRadarChart = new Chart(ctx).Radar(radarChartData, {
-         pointDot: false
-     });
-
+	
     $('#myTabs a:last').click(function () {
 		 myRadarChart();
 	});
@@ -182,14 +152,37 @@ $(document).ready(function() {
 		<!-- main -->
 
         <main style="width:1500px; margin:50px auto;">
-        		  @include('bs_sidebar/line_menu')
+        		  @yield('line_menu')
 				  @include('bs_sidebar/left_sidebar')
 				  @yield('content')
 	          	  @include('bs_sidebar/right_sidebar')
         </main>
-
-<footer style="height:100px;">
-
-</footer>
+		<style>
+	    footer .line{
+	   		width: 1000px;
+	   	    margin:auto;
+	   	    margin-top: 50px;
+	   	    border-bottom: 3px solid #CCC;
+	    }
+	    footer ul{
+			width: 1000px;
+			margin: auto;
+	    }
+	    footer li{
+	    	float: left;
+	    	list-style: none;
+	    	padding: 30px 65px;
+	    }
+		</style>
+		<footer style="width:100%; float:left; margin:auto;">
+		    <div class="line"></div>
+		    <ul>
+		    	<li>OOOOOO</li>
+		    	<li>OOOOOO</li>
+		    	<li>OOOOOO</li>
+		    	<li>OOOOOO</li>
+		    	<li>OOOOOO</li>
+		    </ul>
+		</footer>
 
 @include('layouts.footer')

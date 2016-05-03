@@ -41,19 +41,8 @@
 
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->email }}<span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
+                            <a href="{{ url('/logout') }}" style="color:#FFF; font-size: 16px;"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
                         </li>
-                       <!--  @if(Auth::user()->status==0)
-                            <span>User</span>
-                        @else
-                            <span>businese</span>
-                        @endif -->
                     @endif
 
                 </ul>

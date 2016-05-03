@@ -1,9 +1,46 @@
 
 @extends('bs_sidebar/sidebar')
-
+@section('line_menu')
+<div style="height:20px;"></div>
+@endsection
 @section('content')
+<style>
+  .close_bt ,.update_bt , .update_bt1,.update_bt2{
+    font-size:25px; color:#1c7ebb;
+  }
+  .close_bt:hover ,.update_bt:hover ,.update_bt1:hover,.update_bt2:hover{
+    color:#1C46BB;
+  }
+  
+  .update_content{
+    margin-left: 0px !important;
+  }
+</style>
+<script>
+  $(document).ready(function() {
+    $('.update-panel1').hover(function(){
+      $('.update_bt1').toggleClass('none');
+    });
+    $('.update_bt1').click(function(){
+      $('.default_content').addClass('none');
+      $('.update_content').removeClass('none');
+    });
 
-<div class="col-sm-7 scorl">
+    $('.default_summary').hover(function(){
+      $('.default_summary .update_bt').toggleClass('none');
+    });
+    $('.default_summary .update_bt').click(function(){
+      $('.default_summary').addClass('none');
+      $('.update_summary').removeClass('none');
+    });
+    $('.update_summary .close_bt').click(function(){
+      $('.update_summary').addClass('none');
+      $('.default_summary').removeClass('none');
+    });
+  });
+
+</script>
+<div class="scorl" style="width:1000px; float:left; margin-left:15px;">
                  <!-- Nav tabs -->
                  <ul class="nav nav-tabs" role="tablist">
                    <li role="presentation" class="active"><a href="#a1" aria-controls="a1" role="tab" data-toggle="tab">企業情報編集</a></li>
@@ -30,193 +67,269 @@
                          </div>
                          <!-- 2 -->
                          <div class="panel panel-default">
-                           <div class="panel-body" style="padding-top: 0px !important;">
+                           <div class="panel-body update-panel1" style="padding-top: 0px !important;">
                                    <div class="row">
                                    <!-- logo left -->
                                         <div class="col-md-12">
-                                        <h6>■どんな仕事をする会社？</h6>
-                                     <div class="panel-content">
+                                        <a href="#" class="float-right update_bt1 none">
+                                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </a>
+                                        <h6>■会社のミッションと理念？</h6>
+
+                                          <div class="panel-content default_content">
+                                          @foreach ($tasks as $task)
                                              <label style="font-size:13px;">国名:<span>○○○○○</span></label>
-                                             <label style="font-size:13px;">会社名:<span>○○○○○</span></label>
-                                             <p>○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
-                                             <p>○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
-                                             <p>○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
-                                             <p>○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
+                                             <label style="font-size:13px;">会社名:<span>{{$task->company_name}}</span></label>
+                                          @endforeach
+
+                                          </div>
+                                          <div class="panel-content update_content none col-md-12">
+                                            <form action="">
+                                            {{ csrf_field() }}
+                                               <table class="table table-bordered">
+                                                 <tbody>
+                                                 @foreach ($tasks as $task)
+                                                     <tr>
+                                                       <th scope="row" align="right" width="20%">title</th>
+                                                       <td>
+                                                       <input type="text" name="work_time" class="form-control ahr-input_1" >
+                                                       </td>
+                                                     </tr>
+                                                     <tr>
+                                                       <th scope="row" align="right" width="20%">会社のミッションと理念</th>
+                                                       <td>
+                                                       <textarea name="ideal" class="form-control" rows="3"></textarea>
+                                                       </td>
+                                                     </tr>
+                                                 @endforeach
+                                                 </tbody>
+                                               </table>
+                                               <button type="submit" class="btn btn-primary float-right">編集完了</button>
+                                            </form>
                                           </div>
                                         </div>
-                                     </div>
+                                  </div>
                            </div>
                          </div>
-                         <!-- 3 -->
-                         <div class="panel panel-default">
-                           <div class="panel-body" style="padding-top: 0px !important;">
-                                   <div class="row">
-                                   <!-- logo left -->
-                                        <div class="col-md-12">
-                                        <h6>■会社のコンセプト・仕事の流れは？</h6>
-                                     <div class="panel-content">
-                                       <p>○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
-                                            <p>○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
-                                             <p>○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
-                                            <p>○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
-                                            <p>○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
-                                            <p>○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○</p>
-                                          </div>
-                                        </div>
-                                   </div>
-                           </div>
-                         </div>
+                         
                          <!-- 4 -->
-                         <h6>■会社概要<span class="red-color">※マークは必須項目です。</span></h6>
-                         <table class="table table-bordered ahr-table">
-                              <tbody>
-                                   <tr>
-                                   <th scope="row" width="20%">本社所在地<span class="red-color">※</span></th>
-                                   <td></td>
-                                   </tr>
-                                   <tr>
-                                   <th scope="row" width="20%">企業URL<span class="red-color">※</span></th>
-                                   <td></td>
-                                   </tr>
-                                   <tr>
-                                   <th scope="row" width="20%">社員国籍<span class="red-color">※</span></th>
-                                   <td></td>
-                                   </tr>
-                                   <tr>
-                                   <th scope="row" width="20%">創業・設立</th>
-                                   <td></td>
-                                   </tr>
-                                   <tr>
-                                   <th scope="row" width="20%">総従業員数</th>
-                                   <td></td>
-                                   </tr>
-                                   <tr>
-                                   <th scope="row" width="20%">資本金</th>
-                                   <td></td>
-                                   </tr>
-                                   <tr>
-                                   <th scope="row" width="20%">売上高</th>
-                                   <td></td>
-                                   </tr>
-                              </tbody>
-                         </table>
-                         <!-- 5 -->
-                         <h6>■雇用条件<span class="red-color">※マークは必須項目です。（正社員）</span></h6>
-                         <table class="table table-bordered ahr-table">
-                              <tbody>
-                                   <tr>
-                                   <th scope="row" width="20%">勤務地<span class="red-color">※</span></th>
-                                   <td></td>
-                                   </tr>
-                                   <tr>
-                                   <th scope="row" width="20%">勤務時間<span class="red-color">※</span></th>
-                                   <td></td>
-                                   </tr>
-                                   <tr>
-                                   <th scope="row" width="20%">給与<span class="red-color">※</span></th>
-                                   <td></td>
-                                   </tr>
-                                   <tr>
-                                   <th scope="row" width="20%">福利厚生<span class="red-color">※</span></th>
-                                   <td></td>
-                                   </tr>
-                                   <tr>
-                                   <th scope="row" width="20%">休日休暇<span class="red-color">※</span></th>
-                                   <td></td>
-                                   </tr>
-                                   <tr>
-                                   <th scope="row" width="20%">諸手当<span class="red-color">※</span></th>
-                                   <td></td>
-                                   </tr>
-                                   <tr>
-                                   <th scope="row" width="20%">教育制度</th>
-                                   <td></td>
-                                   </tr>
-                              </tbody>
-                         </table>
+                         <div class="default_summary">
+                           <a href="#" class="float-right update_bt none">
+                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                           </a>
+                           <h6>■会社概要</h6>
+                           <table class="table table-bordered ahr-table">
+                                <tbody>
+                                 @foreach ($tasks as $task)
+                                     <tr>
+                                     <th scope="row" width="20%">担当者氏名</th>
+                                     <td>{{ $task->name }}</td>
+                                     </tr>
+                                     <tr>
+                                     <th scope="row" width="20%">本社所在地</th>
+                                     <td>{{ $task->address }}</td>
+                                     </tr>
+
+                                     <tr>
+                                     <th scope="row" width="20%">企業URL</th>
+                                     <td>{{ $task->web_url }}</td>
+                                     </tr>
+                                     <tr>
+                                     <th scope="row" width="20%">創業・設立</th>
+                                     <td>{{ $task->set_up }}</td>
+                                     </tr>
+                                     <tr>
+                                     <th scope="row" width="20%">社員国籍</th>
+                                     <td>{{ $task->nationality_members }}</td>
+                                     </tr>
+                                     <tr>
+                                     <th scope="row" width="20%">総従業員数</th>
+                                     <td>{{ $task->member_count }}</td>
+                                     </tr>
+                                     <tr>
+                                     <th scope="row" width="20%">資本金</th>
+                                     <td>{{ $task->capital }}</td>
+                                     </tr>
+                                     <tr>
+                                     <th scope="row" width="20%">売上高</th>
+                                     <td>{{ $task->amount_of_sales }}</td>
+                                     </tr>
+                                @endforeach
+                                </tbody>
+                           </table>
+                         </div>
+                         <!-- update_summary -->
+                         <div class="update_summary none">
+                           <a href="#" class="float-right close_bt">
+                             <i class="fa fa-times-circle" aria-hidden="true"></i>
+                           </a>
+                           <h6>■会社概要<span class="red-color">※マークは必須項目です。</span></h6>
+                           <form action="{{url('/business/update')}}" method="POST" style="padding-bottom:40px;">
+                           {{ csrf_field() }}
+                           <table class="table table-bordered ahr-table">
+                                <tbody>
+                                 @foreach ($tasks as $task)
+                                     <tr>
+                                     <th scope="row" width="20%">担当者氏名<span class="red-color">※</span></th>
+                                     <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $task->name }}"></td>
+                                     </tr>
+                                     <tr>
+                                     <th scope="row" width="20%">本社所在地<span class="red-color">※</span></th>
+                                     <td><input type="text" name="address" class="form-control ahr-input_1" value="{{ $task->address }}"></td>
+                                     </tr>
+                                     <tr>
+                                     <th scope="row" width="20%">企業URL</th>
+                                     <td><input type="text" name="web_url" class="form-control ahr-input_1" value="{{ $task->web_url }}"></td>
+                                     </tr>
+                                     <tr>
+                                     <th scope="row" width="20%">創業・設立</th>
+                                     <td><input type="text" name="set_up" class="form-control ahr-input_1" value="{{ $task->set_up }}"></td>
+                                     </tr>
+                                    
+                                     <tr>
+                                     <th scope="row" width="20%">社員国籍</th>
+                                     <td><input type="text" name="nationality_members" class="form-control ahr-input_1" value="{{ $task->nationality_members }}"></td>
+                                     </tr>
+                                     <th scope="row" width="20%">総従業員数</th>
+                                     <td><input type="text" name="member_count" class="form-control ahr-input_1" value="{{ $task->member_count }}"></td>
+                                     </tr>
+                                     <tr>
+                                     <th scope="row" width="20%">資本金</th>
+                                     <td><input type="text" name="capital" class="form-control ahr-input_1" value="{{ $task->capital }}"></td>
+                                     </tr>
+                                     <tr>
+                                     <th scope="row" width="20%">売上高</th>
+                                     <td><input type="text" name="amount_of_sales" class="form-control ahr-input_1" value="{{ $task->amount_of_sales }}"></td>
+                                     </tr>
+                                @endforeach
+                                </tbody>
+                           </table>
+                           <button type="submit" class="btn btn-primary float-right">編集完了</button>
+                           </form>
+                         </div>
                     </div><!-- wrapper end -->
                    </div><!-- 企業情報編集 tab-panel end -->
                     <!-- 採用情報編集 Tab panes -->
                    <div role="tabpanel" class="tab-pane ahr-panel" id="a2">
                     <div class="wrapper">
                         <div class="row">
-                                  <div class="col-md-12">
-                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                          <div class="col-md-12">
+                             <div class="panel-group" id="accordion" role="tablist" >
+                              @foreach ($recruitments as $key => $recruitment)
                                <div class="panel panel-default">
-                                 <div class="panel-heading" role="tab" id="headingOne">
+                                 <div class="panel-heading" role="tab" id="heading{{ $key }}">
                                    <h4 class="panel-title">
-                                     <span>1</span>
-                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                       Webクリエイター
+                                     <span>{{ $key+1 }}</span>
+                                     <a role="button" data-toggle="collapse" data-parent="#accordion{{ $key }}" href="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}" >
+                                       {{ $recruitment->name }}
                                      </a>
-                                     <i class="fa fa-caret-up float-right"></i>
+                                     <i class="fa fa-caret-down float-right"></i>
                                    </h4>
                                  </div>
-                                 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                 <div id="collapse{{ $key }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ $key }}">
                                    <div class="panel-body">
                                    <table class="table table-bordered ahr-table">
                                         <tbody>
                                              <tr>
-                                             <th scope="row" width="30%">募集職種</th>
-                                             <td></td>
+                                             <th scope="row" width="20%">募集職種</th>
+                                             <td>{{ $recruitment->name }}</td>
                                              </tr>
                                              <tr>
-                                             <th scope="row" width="30%">職務内容</th>
-                                             <td></td>
+                                             <th scope="row" width="20%">職務内容</th>
+                                             <td>{{ $recruitment->content }}</td>
                                              </tr>
                                              <tr>
-                                             <th scope="row" width="30%">雇用形態<br><span style="font-size:12px;">（複数選択可）</span></th>
-                                             <td></td>
+                                            
+                                             <th scope="row" width="20%">雇用形態</th>
+                                             <td>
+                                             @foreach ($employments as $key => $value)
+                                             @if ($recruitment->id == $value->recruitments_id)
+                                             {{ $value->employment_name }}<br>
+                                             @endif
+                                             @endforeach
+                                             </td>
+                                             
                                              </tr>
                                              <tr>
-                                             <th scope="row" width="30%">募集経歴<br><span style="font-size:12px;">（複数選択可）</span></th>
-                                             <td></td>
+                                             <th scope="row" width="20%">募集経歴</th>
+                                             <td>
+                                             @foreach ($experiences as $key => $value)
+                                             @if ($recruitment->id == $value->recruitments_id)
+                                                 {{$value->experiences_name}}<br>
+                                             @endif
+                                             @endforeach
+                                             </td>
                                              </tr>
                                              <tr>
-                                             <th scope="row" width="30%">募集学科</th>
-                                             <td></td>
+                                             <th scope="row" width="20%">募集学科</th>
+                                             <td>{{ $recruitment->subject }}</td>
                                              </tr>
                                              <tr>
-                                             <th scope="row" width="30%">必須技能・資格</th>
-                                             <td></td>
+                                             <th scope="row" width="20%">語学・母語レベル</th>
+                                             <td>
+                                             @foreach ($languagelvs as $key => $value)
+                                             @if ($recruitment->id == $value->recruitments_id)
+                                             {{ $value->languagelv_name }}<br>
+                                             @endif
+                                             @endforeach
+                                             </td>
+                                             </tr>
+                                             <tr>
+                                             <th scope="row" width="20%">必須技能・資格</th>
+                                             <td>{{ $recruitment->need_skill }}</td>
+                                             </tr>
+                                             <tr>
+                                             <th scope="row" width="20%">あれば嬉しい技能・資格</th>
+                                             <td>{{ $recruitment->if_skill }}</td>
+                                             </tr>
+                                             <tr>
+                                             <th scope="row" width="20%">その他の技能・資格</th>
+                                             <td>{{ $recruitment->other_skill }}</td>
+                                             </tr>
+                                        </tbody>
+                                   </table>
+                                   <h6>■雇用条件</h6>
+                                   <table class="table table-bordered ahr-table">
+                                        <tbody>
+                                             <tr>
+                                             <th scope="row" width="20%">勤務地</th>
+                                             <td>{{ $recruitment->work_site }}</td>
+                                             </tr>
+                                             <tr>
+                                             <th scope="row" width="20%">勤務時間</th>
+                                             <td>{{ $recruitment->work_time }}</td>
+                                             </tr>
+                                             <tr>
+                                             <th scope="row" width="20%">給与</th>
+                                             <td>月收 {{ $recruitment->annual_income }} 円 <br>年收 {{ $recruitment->monthly_income }} 円</td>
+                                             </tr>
+                                             <tr>
+                                             <th scope="row" width="20%">ボーナス</th>
+                                             <td>{{ $recruitment->bonus }}</td>
+                                             </tr>
+                                             <tr>
+                                             <th scope="row" width="20%">福利厚生</th>
+                                             <td>{{ $recruitment->holiday }}</td>
+                                             </tr>
+                                             <tr>
+                                             <th scope="row" width="20%">休日休暇</th>
+                                             <td>{{ $recruitment->welfare }}</td>
+                                             </tr>
+                                             <tr>
+                                             <th scope="row" width="20%">諸手当</th>
+                                             <td>{{ $recruitment->allowances }}</td>
+                                             </tr>
+                                             <tr>
+                                             <th scope="row" width="20%">教育制度</th>
+                                             <td>{{ $recruitment->education }}</td>
                                              </tr>
                                         </tbody>
                                    </table>
                                    </div>
                                  </div>
                                </div>
-                               <div class="panel panel-default">
-                                 <div class="panel-heading" role="tab" id="headingTwo">
-                                   <h4 class="panel-title">
-                                     <span>2</span>
-                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
-                                       プログラマー
-                                     </a>
-                                     <i class="fa fa-caret-down float-right"></i>
-                                   </h4>
-                                 </div>
-                                 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                   <div class="panel-body">
-                                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                   </div>
-                                 </div>
-                               </div>
-                               <div class="panel panel-default">
-                                 <div class="panel-heading" role="tab" id="headingThree">
-                                   <h4 class="panel-title">
-                                     <span>3</span>
-                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
-                                       ディレクター
-                                     </a>
-                                     <i class="fa fa-caret-down float-right"></i>
-                                   </h4>
-                                 </div>
-                                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                   <div class="panel-body">
-                                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                   </div>
-                                 </div>
-                               </div>
+                               @endforeach
+                             
                              </div>
                            </div>
                        </div><!-- row end -->
