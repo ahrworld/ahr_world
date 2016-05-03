@@ -42,10 +42,10 @@ class BusinessController extends Controller
     public function business_a(Request $request)
     {
         $BSinformation = new BSinformations;
-        $user_id = $request->user()->id;
-        if ($BSinformation::where('user_id',$user_id)->first() == true) {
-             return '已經填寫過了';
-        }
+        // $user_id = $request->user()->id;
+        // if ($BSinformation::where('user_id',$user_id)->first() == true) {
+        //      return '已經填寫過了';
+        // }
 
         $a = $request->user()->BSinformation()->create([
             'company_name' => $request->company_name,
