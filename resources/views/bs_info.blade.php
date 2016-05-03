@@ -125,65 +125,6 @@
 			width: 16px;
 			height: 16px;
 		}
-		.sex_radio label {
-		  width: 200px;
-		  border-radius: 3px;
-		  border: 1px solid #D1D3D4
-		}
-
-		/* hide input */
-		input.radio:empty {
-			margin-left: -999px;
-		}
-
-		/* style label */
-		input.radio:empty ~ label {
-			position: relative;
-			float: left;
-			line-height: 2.5em;
-			text-indent: 3.25em;
-
-			cursor: pointer;
-			-webkit-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
-		}
-
-		input.radio:empty ~ label:before {
-			position: absolute;
-			display: block;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			content: '';
-			width: 2.5em;
-			background: #D1D3D4;
-			border-radius: 3px 0 0 3px;
-		}
-
-		/* toggle hover */
-		input.radio:hover:not(:checked) ~ label:before {
-			content:'\2714';
-			text-indent: .9em;
-			color: #C2C2C2;
-		}
-
-		input.radio:hover:not(:checked) ~ label {
-			color: #888;
-		}
-
-		/* toggle on */
-		input.radio:checked ~ label:before {
-			content:'\2714';
-			text-indent: .9em;
-			color: #9CE2AE;
-			background-color: #4DCB6D;
-		}
-
-		input.radio:checked ~ label {
-			color: #777;
-		}
 		</style>
 		<!-- main -->
         <main style="margin-top:50px;">
@@ -266,18 +207,18 @@
 										      		     <p>（複数選択可）</p>
 								      		     </th>
 								      		     <td style="padding-top:15px;">
-								      		     	<input type="checkbox" class="radio" name="employ[]" value="日本人">日本人
-								      		     	<input type="checkbox" class="radio" name="employ[]" value="台灣人">台灣人
-								      		     	<input type="checkbox" class="radio" name="employ[]" value="ベトナム人">ベトナム人
-								      		     	<input type="checkbox" class="radio" name="employ[]" value="囯籍問わず">囯籍問わず
+								      		     	<input type="checkbox"  name="employ[]" value="日本人">日本人
+								      		     	<input type="checkbox"  name="employ[]" value="台灣人">台灣人
+								      		     	<input type="checkbox"  name="employ[]" value="ベトナム人">ベトナム人
+								      		     	<input type="checkbox"  name="employ[]" value="囯籍問わず">囯籍問わず
 								      		     </td>
 							      		     </tr>
 							      		     <tr>
 								      		     <th scope="row" align="right" width="170px">面接方法<span class="color-red">※</span></th>
 								      		     <td>
-								      		     	<input type="radio" class="radio" name="interview" value="Skype面接">Skype面接
-								      		     	<input type="radio" class="radio" name="interview" value="現地面接">現地面接
-								      		     	<input type="radio" class="radio" name="interview" value="採用囯面接">採用囯面接
+								      		     	<input type="radio" name="interview" value="Skype面接">Skype面接
+								      		     	<input type="radio" name="interview" value="現地面接">現地面接
+								      		     	<input type="radio" name="interview" value="採用囯面接">採用囯面接
 								      		     </td>
 							      		     </tr>
 							      		     <tr>
@@ -313,14 +254,14 @@
 							      		   </table>
 							      		</div>
 						      	</div>
-
+						      	
 						      </div><!-- row end -->
 						    </div><!-- tab1 end -->
-
+							
 						    <div class="tab-pane" id="tab2">
 					             <div class="row">
 					             	<div class="col-md-12">
-
+					       	        
 					       	      		<div class="panel panel-default">
 					       	      		   <table class="table table-bordered">
 					       	      		     <tbody>
@@ -356,20 +297,14 @@
 										      		     <span class="color-red">※</span>
 										      		     <p>（複数選択可）</p>
 								      		     </th>
-					       		      		     <td class="sex_radio">
-					       		      		     	<input type="radio" name="radio" id="radio1" class="ahr-button_boy radio"/>
-			    									<label for="radio1">正社員(外国人歓迎)</label>
-			    									<input type="radio" name="radio" id="radio1" class="ahr-button_boy radio"/>
-			    									<label for="radio1">インターンシップ生</label>
-			    									<input type="radio" name="radio" id="radio1" class="ahr-button_boy radio"/>
-			    									<label for="radio1">アルバイト</label>
-			    									<input type="radio" name="radio" id="radio1" class="ahr-button_boy radio"/>
-			    									<label for="radio1">正社員(新卒)</label>
-			    									<input type="radio" name="radio" id="radio1" class="ahr-button_boy radio"/>
-			    									<label for="radio1">正社員(第二新卒)</label>
-			    									<input type="radio" name="radio" id="radio1" class="ahr-button_boy radio"/>
-			    									<label for="radio1">正社員(中途採用)</label>
-
+					       		      		     <td>
+					       		      		     	<input type="checkbox" name="employment[]" value="正社員(外国人歓迎)">正社員(外国人歓迎)
+								      		     	<input type="checkbox" name="employment[]" value="インターンシップ生">インターンシップ生
+								      		     	<input type="checkbox" name="employment[]" value="アルバイト">アルバイト
+								      		     	<input type="checkbox" name="employment[]" value="正社員(新卒)">正社員(新卒)
+								      		     	<input type="checkbox" name="employment[]" value="正社員(第二新卒)">正社員(第二新卒)
+								      		     	<br>
+								      		     	<input type="checkbox" name="employment[]" value="正社員(中途採用)">正社員(中途採用)
 					       		      		     </td>
 					       	      		     </tr>
 					       	      		     <tr>
@@ -413,7 +348,7 @@
 					       		      		       </select>
 					       		      		     </td>
 					       	      		     </tr>
-
+					       	      		     
 					       	      		     <tr>
 					       		      		     <th scope="row" align="right" width="20%">語学・母語レベル</th>
 					       		      		     <td class="language">
@@ -508,25 +443,25 @@
 					       		      		     <th scope="row" align="right" width="20%">福利厚生</th>
 					       		      		     <td>
 												   <input type="radio" name="welfare" id="inlineRadio1" value="1"> あり
-
+												 
 												   <input type="radio" name="welfare" id="inlineRadio2" value="0"> なし
 					       		      		     </td>
 					       	      		     </tr>
 					       	      		     <tr>
 					       		      		     <th scope="row" align="right" width="20%">諸手当</th>
 					       		      		     <td>
-
+					       		      		     
 												   <input type="radio" name="allowances" id="inlineRadio1" value="1"> あり
-
+												 
 												   <input type="radio" name="allowances" id="inlineRadio2" value="0"> なし
 					       		      		     </td>
 					       	      		     </tr>
 					       	      		     <tr>
 					       		      		     <th scope="row" align="right" width="20%">教育制度</th>
 					       		      		     <td>
-
+					       		      		     
 												   <input type="radio" name="education" id="inlineRadio1" value="1"> あり
-
+												 
 												   <input type="radio" name="education" id="inlineRadio2" value="0"> なし
 					       		      		     </td>
 					       	      		     </tr>
@@ -539,7 +474,7 @@
 					             </div><!-- row end -->
 					             <div class="push_all" style="margin-top:30px;"></div>
 
-
+					            
 						    </div><!-- tab2 end -->
 						    <script>
 						    $.ajaxSetup({
@@ -575,7 +510,7 @@
 									//       'employ': this.value
 									//     }
 									//   }).get();
-
+									  
 									//   console.log(JSON.stringify(data));
 									//   // $('pre').text(JSON.stringify(data, null, 2));
 									//  var ss = JSON.stringify(data);
@@ -591,7 +526,7 @@
 									//     },
 									//     error: function (data) {
 									//         console.log('Error:', data);
-
+									    
 									//     }
 									// });
 
