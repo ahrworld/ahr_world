@@ -35,9 +35,9 @@ class BusinessController extends Controller
     {
         //定義資料庫
         $Languages = Language::all();
-    
+
         return view('bs_info', ['Languages' => $Languages]);
-     
+
     }
     public function business_a(Request $request)
     {
@@ -46,7 +46,7 @@ class BusinessController extends Controller
         if ($BSinformation::where('user_id',$user_id)->first() == true) {
              return '已經填寫過了';
         }
-        create BSinformations
+
         $a = $request->user()->BSinformation()->create([
             'company_name' => $request->company_name,
             'name' => $request->name,
@@ -58,9 +58,9 @@ class BusinessController extends Controller
             'test_process2' => $request->test_process2,
             'test_process3' => $request->test_process3,
         ]);
-        
+
         // create employ
-    
+
         $employ = new Employ;
         foreach ($request->employ as $key) {
             $b = $employ::create([
@@ -70,10 +70,10 @@ class BusinessController extends Controller
         }
         $BSinformation::where('id', $a->id)
           ->update(['employ_id' => $b->id]);
-      
-        
+
+
         // update BSinformations employ
-       
+
         // Recruitment tabel
         $c = $request->user()->Recruitment()->create([
             'name' => $request->recruitment_name,
@@ -124,7 +124,7 @@ class BusinessController extends Controller
                     'experience_id' => $e->id,
                     'languageLv_id' => $f->id,
             ]);
-      
+
         // return response()->json([
         //     "data" => $request->all(),
         //     'test' => $request->bruce[1]['employ'],
@@ -173,6 +173,6 @@ class BusinessController extends Controller
         return redirect('/profile_b2');
 
     }
-  
-    
+
+
 }
