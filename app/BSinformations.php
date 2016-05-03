@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BSinformations extends Model
 {
-	protected $table = 'BSinformations';
+	protected $table = 'bsinformations';
 
     protected $fillable = [
         'company_name', 'name', 'user_language_id', 'web_url',
