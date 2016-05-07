@@ -32,33 +32,38 @@
 	  );
 	  return $state;
 	};
-	
+	function del(id) {
+	  $("#div"+id).remove();
+	}
 	$(document).ready(function() {
-		// step6
-		var count = 0;
-		$('.language_lo .add').click(function(){
-			count++;
-			$('.push').append('<div id=" b '+ count +'"class="language_lo"><button type="button" class="btn ahr-button_2">日本語</button> <button type="button" class="btn ahr-button_2">英語</button> <button type="button" class="btn ahr-button_2">中囯語</button> <button type="button" class="btn ahr-button_2">ベトナム語</button> <button type="button" class="btn ahr-button_2 other">その他</button> <input class="other_c none" type="text" style="padding:5px 0px" name="name" > <label class="add"></label> </div>');
-		});
-		$('.language_lo .other').click(function(){
-			$('.language_lo .other_c').removeClass('none');
-		});
-		$('.language_lo button:not(".other")').click(function(){
-			$('.language_lo .other_c').addClass('none');
-		});
-		// step5
+		
+	
+		// step4
 		$('.school_ct .other').click(function(){
+			$(".school_ct input[type='radio']").attr("checked", false);
 			$('.school_ct .other_c').removeClass('none');
 		});
-		$('.school_ct button:not(".other")').click(function(){
+		$(".school_ct input[type='radio']").click(function(){
+			$(".school_ct .other_c").val(''); 
 			$('.school_ct .other_c').addClass('none');
 		});
+		// step 5
+		var id = 1;
+		$('#tab5 .language_append .add').click(function(){
+			$('.language_append').append($('<div class="form-inline" id="div'+ id +'"> <div class="form-group" style="margin-right:3px;"> <input type="text" class="form-control" name="language[]" placeholder="language"> </div><div class="form-group" style="margin-right:3px;"> <select class="form-control" name="languagelv[]"> <option value="3">母語</option> <option value="2">ビジネス</option> <option value="1">日常会話</option> <option value="0">初級</option> </select> </div><div class="form-group" ><a href="#" class="float-right" style="font-size:25px;" onclick="del('+id+')"> <i class="fa fa-times-circle" aria-hidden="true"></i> </a> </div></div>'));
+			id++;
+		});
+		
 		// step3 sex
 		$('.ahr-button_boy').click(function(){
 			$('.army').removeClass('none');
 		});
 		$('.army .check').click(function(){
 			$('.army .datetime').removeClass('none');
+		});
+		//
+    	$(".finish_sumbit").click(function(){
+    	     $('.pl_form').submit();
 		});
 		// select2
 		$(".js-example").select2({
@@ -113,6 +118,14 @@
 		var $percent = ($current/$total) * 100;
 
 		$('#rootwizard').find('.bar').html($percent + '%');
+		if($current >= $total) {
+			$('#rootwizard').find('.pager .next').hide();
+			$('#rootwizard').find('.pager .finish').show();
+			$('#rootwizard').find('.pager .finish').removeClass('disabled');
+		} else {
+			$('#rootwizard').find('.pager .next').show();
+			$('#rootwizard').find('.pager .finish').hide();
+		}
 	}});
 	});
 </script>
@@ -130,8 +143,11 @@
                     @if (Auth::guest())
 
                     @else
-                        <li class="dropdown">
-                            <a href="{{ url('/logout') }}" style="color:#FFF; font-size: 16px;"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+                    	<li>
+                        	<h5 href="#" style="color:#FFF;padding-top: 6px; font-size: 16px;"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{ Auth::user()->email }}</h5>
+                        </li>
+                        <li>
+                            <a href="{{ url('/logout') }}" style="color:#FFF; font-size: 16px; margin-left:5px;"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
                         </li>
                     @endif
 
@@ -224,7 +240,8 @@
 			 <div class="container" style="background:#FFF; height:100%; margin-top:50px;">
 				<div class="wrapper">
 
-				<form id="commentForm">
+				<form id="commentForm" class="pl_form" action="{{url('/personnel_in')}}" method="POST">
+				{{ csrf_field() }}
 					<div id="rootwizard" >
 						<div class="navbar">
 						  <div class="navbar-tab">
@@ -232,10 +249,10 @@
 									  	<li class="done"><a href="#tab1" data-toggle="tab"></a></li>
 										<li><a href="#tab2" data-toggle="tab"></a></li>
 										<li><a href="#tab3" data-toggle="tab"></a></li>
+										<li><a href="#tab4" data-toggle="tab"></a></li>
 										<li><a href="#tab5" data-toggle="tab"></a></li>
-										<li><a href="#tab6" data-toggle="tab"></a></li>
-										<li><a href="#tab7" data-toggle="tab"></a></li>
-										<li><a href="#tab9" data-toggle="tab"></a></li>
+										<!-- <li><a href="#tab6" data-toggle="tab"></a></li>
+										<li><a href="#tab7" data-toggle="tab"></a></li> -->
 										<!-- <p class="bar" style="padding-top:25px;">%</p> -->
 									</ul>
 						  </div>
@@ -245,19 +262,17 @@
 							@include('step_layout/step1')
 						    @include('step_layout/step2')
 							@include('step_layout/step3')
+							@include('step_layout/step4')
 							@include('step_layout/step5')
-							@include('step_layout/step6')
-							@include('step_layout/step7')
-						
-							@include('step_layout/step9')
 
-							<ul class="pager wizard">
+							<ul class="pager wizard" style="height: 0px;">
 								<li class="previous first" style="display:none;"><a href="#">First</a></li>
 								<li class="previous"></li>
-								<li class="next last" style="display:none;"><a href="#">Last</a></li>
 							  	<li class="next"></li>
+							  	<li class="next finish finish_sumbit" style="display:none;"></li>
 							</ul>
 						</div><!-- end tab-content -->
+
 					</div><!-- end rootwizard -->
 				  </div><!-- end wrapper -->
 				</form>

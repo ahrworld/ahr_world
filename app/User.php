@@ -3,6 +3,7 @@
 namespace App;
 use App\Task;
 use App\BSinformations;
+use App\Personnel;
 use App\Recruitment;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -36,6 +37,10 @@ class User extends Authenticatable
     public function BSinformation()
     {
         return $this->hasOne(BSinformations::class);
+    }
+    public function Personnel()
+    {
+        return $this->hasOne(Personnel::class);
     }
     public function Recruitment()
     {

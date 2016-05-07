@@ -87,6 +87,8 @@
 	                    @else
 	                        <li><button type="button" class="btn btn_1"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></button></li>
 	                        <li><button type="button" class="btn btn_2"><a href="{{ url('/login_bs') }}">お問い合わせ</a></button></li>
+	                        <a href="{{ url('/step', $email)}}">dsa</a>
+	                      
 	                    @endif
 
 	                </ul>

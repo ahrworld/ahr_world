@@ -8,7 +8,7 @@ class Languagelv extends Model
 {
 	protected $table = 'languagelvs';
 	protected $fillable = [
-        'languagelv_name', 'lv', 'recruitments_id',
+        'languagelv_name', 'lv', 'recruitments_id','personnels_id',
     ];
     public function recruitment()
     {

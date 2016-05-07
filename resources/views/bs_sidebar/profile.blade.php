@@ -18,6 +18,14 @@
 </style>
 <script>
   $(document).ready(function() {
+    $('.default_photo').hover(function(){
+      $('.default_photo .update_bt').toggleClass('none');
+    });
+    $('.default_photo .update_bt').click(function(){
+      $('.default_photo').addClass('none');
+      $('.update_photo').removeClass('none');
+    });
+
     $('.update-panel1').hover(function(){
       $('.update_bt1').toggleClass('none');
     });
@@ -25,10 +33,8 @@
       $('.default_content').addClass('none');
       $('.update_content').removeClass('none');
     });
+   
 
-    $('.default_summary').hover(function(){
-      $('.default_summary .update_bt').toggleClass('none');
-    });
     $('.default_summary .update_bt').click(function(){
       $('.default_summary').addClass('none');
       $('.update_summary').removeClass('none');
@@ -37,9 +43,16 @@
       $('.update_summary').addClass('none');
       $('.default_summary').removeClass('none');
     });
+
+    $('.default_summary').hover(function(){
+      $('.default_summary .update_bt').toggleClass('none');
+    });
   });
 
 </script>
+<style>
+  
+</style>
 <div class="scorl" style="width:1000px; float:left; margin-left:15px;">
                  <!-- Nav tabs -->
                  <ul class="nav nav-tabs" role="tablist">
@@ -54,14 +67,55 @@
                     <div class="wrapper">
                         <!-- 1 -->
                          <div class="panel panel-default">
-                           <div class="panel-body">
+                           <div class="panel-body default_photo">
                                    <div class="row">
                                    <!-- logo left -->
                                         <!-- video -->
                                         <div class="col-md-12">
-                                             <span class="img-thumbnail" style="width:100%; height:150px;"></span>
-                                             <span class="img-thumbnail" style="width:100%; height:100px; position: absolute; width:100px; top: 60px; left: 35px;"></span>
+                                        <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 933px;">
+                                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </a>
+                                         @foreach ($tasks as $task)
+                                             <div class="img-thumbnail" style=" background-image:url('ahr/busineses_img/big{{$task->user_id}}.jpg'); 
+                                             background-position: center;  background-size: cover;
+                                             width:100%; height:150px;">
+                                             </div>
+                                             <div class="img-thumbnail" 
+                                             style=" background-image:url('ahr/busineses_img/small{{$task->user_id}}.png'); 
+                                             background-position: center;  background-size: cover;
+                                             height:100px; position: absolute; width:100px; top: 60px; left: 35px;">
+                                             </div>
+                                         @endforeach
                                         </div>
+
+                                   </div>
+                           </div>
+
+                           <div class="panel-body update_photo none">
+                                   <div class="row">
+                                   <!-- logo left -->
+                                        <!-- video -->
+                                        <div class="col-md-12">
+                                        <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 933px;">
+                                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </a>
+                                           <form action="{{url('/business/image')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                                            {{ csrf_field() }}
+                                             <div class="form-group">
+                                             
+                                               <input type="file" name="image_big"  multiple>
+                                               <p class="help-block">Example block-level help text here.</p>
+                                             </div>
+                                             <div class="form-group">
+                                               <label for="exampleInputFile2">File inputs</label>
+                                               <input name="image_small" type="file" id="exampleInputFile2">
+                                               <p class="help-block">Example block-level help text here.</p>
+                                             </div>
+                                            
+                                             <button type="submit" class="btn btn-default">Submit</button>
+                                           </form>
+                                        </div>
+                                        
                                    </div>
                            </div>
                          </div>
@@ -84,7 +138,7 @@
 
                                           </div>
                                           <div class="panel-content update_content none col-md-12">
-                                            <form action="">
+                                            <form action="" method="POST">
                                             {{ csrf_field() }}
                                                <table class="table table-bordered">
                                                  <tbody>
@@ -114,7 +168,7 @@
                          
                          <!-- 4 -->
                          <div class="default_summary">
-                           <a href="#" class="float-right update_bt none">
+                           <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 953px;">
                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                            </a>
                            <h6>■会社概要</h6>
@@ -218,13 +272,15 @@
                               @foreach ($recruitments as $key => $recruitment)
                                <div class="panel panel-default">
                                  <div class="panel-heading" role="tab" id="heading{{ $key }}">
-                                   <h4 class="panel-title">
-                                     <span>{{ $key+1 }}</span>
-                                     <a role="button" data-toggle="collapse" data-parent="#accordion{{ $key }}" href="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}" >
-                                       {{ $recruitment->name }}
-                                     </a>
-                                     <i class="fa fa-caret-down float-right"></i>
-                                   </h4>
+                                   <a style="float:left; height:30px;" role="button" data-toggle="collapse" data-parent="#accordion{{ $key }}" href="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}" >
+                                     <h4 class="panel-title" style="height:18px;">
+                                       <span>{{ $key+1 }}</span>
+                                       <a style="float:left; width:90%; height: 27px;" role="button" data-toggle="collapse" data-parent="#accordion{{ $key }}" href="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}" >
+                                         {{ $recruitment->name }}
+                                       </a>
+                                       <i class="fa fa-caret-down float-right"></i>
+                                     </h4>
+                                   </a>
                                  </div>
                                  <div id="collapse{{ $key }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ $key }}">
                                    <div class="panel-body">
@@ -329,7 +385,8 @@
                                  </div>
                                </div>
                                @endforeach
-                             
+
+                               <div style="text-align:right;"><label class="add add_all" style="width:30px; height:30px;"></label></div>
                              </div>
                            </div>
                        </div><!-- row end -->

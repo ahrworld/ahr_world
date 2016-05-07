@@ -4,52 +4,91 @@
   </div>
   <div>
     <p style="font-size:12px; color:#0094E5;">
-    	<span style="color:red;">※必須項目です</span><br>住所・連絡先を入力してください。
+    	<span class="color-red">※必須項目です</span><br>最終学歴を入力してください。
     </p>
   </div>
   <!-- content -->
   <div class="container-fluid">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-12">
 			  <div class="form-group">
-			    <label for="">国名<span style="color:red;">※</span></label>
-			    <input type="text" name="name" class="form-control" placeholder="">
+			    <label for="">学歴<span class="color-red">※</span></label>
+			    <div style="font-size:16px;">
+				    <input type="radio" value="0" name="educational_status">卒業済
+				    <input type="radio" value="1" name="educational_status">在学中
+			    </div>
 			  </div>
 			</div>
-			<div class="col-md-3">
+			<style>
+			#tab4 input[type='radio']{
+				height: 15px;
+				width: 20px;
+			}
+			</style>
+			<div class="col-md-12">
 			  <div class="form-group">
-			    <label for="">郵便番号<span style="color:red;">※</span></label>
-			    <input type="text" class="form-control"  placeholder="">
-			  </div>
-		    </div>
-			<div class="col-md-3">
-			  <div class="form-group">
-			    <label for="">市町村<span style="color:red;">※</span></label>
-			    <input type="text" name="name" class="form-control" placeholder="">
-			  </div>
-			</div>
-			<div class="col-md-3">
-			  <div class="form-group">
-			    <label for="exampleInputName">番地<span style="color:red;">※</span></label>
-			    <input type="text" class="form-control" id="exampleInputName" placeholder="">
-			  </div>
-		    </div>
-		    <div>&nbsp;</div>
-
-		    <div class="col-md-3">
-			  <div class="form-group">
-			    <label for="">電話番号<span style="color:red;">※</span></label>
-			    <input type="text" class="form-control" id="exampleInputName" placeholder="例：0112223333">
+			    <label for="">機関名<span class="color-red">※</span></label>
+			    <div class="school_ct" style="font-size:16px;">
+				    <input type="radio" value="大 学" name="educational">大 学
+				    <input type="radio" value="短期大学" name="educational">短期大学
+				    <input type="radio" value="専門学校" name="educational">専門学校
+				    <input type="radio" value="大学院" name="educational">大学院
+				    <input type="radio" value="高等学校" name="educational">高等学校
+				    <button type="button" class="btn ahr-button_2 other">その他</button>
+				    <input class="other_c none" type="text" name="educationals" >
+			    </div>
 			  </div>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-6">
 			  <div class="form-group">
-			    <label for="">Line ID</label>
-			    <input type="text" class="form-control" id="exampleInputName" >
+			    <label for="">学校名<span class="color-red">※</span></label>
+			    <input type="text" name="school" class="form-control" placeholder="">
 			  </div>
 			</div>
-		    <div>&nbsp;</div>
-
+			<div class="col-md-6">
+			  <div class="form-group">
+			    <label for="">囯名<span class="color-red">※</span></label>
+			    <input type="text" name="school_country" class="form-control" placeholder="">
+			  </div>
+			</div>
+			<div class="col-md-12">
+			  <div class="form-group">
+			    <label for="">学科<span class="color-red">※</span></label>
+			    <div class="subject_ct">
+				    <select name="subject" class="js-example-templating3 js-states" style="width: 100%">
+			    		<option value="情報學科">情報學科</option>
+			    		<option value="電子學科">電子學科</option>
+			    		<option value="資訊學科">資訊學科</option>
+			    		<option value="財經學科">財經學科</option>
+			    		<option value="企管學科">企管學科</option>
+			    		<option value="餐旅學科">餐旅學科</option>
+			    		<option value="觀餐學科">觀餐學科</option>
+			    	</select>
+			    </div>
+			  </div>
+			</div>
+			<div class="col-md-6">
+			  <div class="form-group">
+			    <label for="">入学年度<span class="color-red">※</span></label>
+			    <div>
+			    <input type="text" name="start_year" class="form-control" id="exampleInputName" placeholder="" style="width:100px; display: inline;">
+			    <span>年</span>
+			    <input type="text" name="start_month" class="form-control" id="exampleInputName" placeholder="" style="width:100px; display: inline;">
+			    <span>月</span>
+			    </div>
+			  </div>
+			</div>
+			<div class="col-md-6">
+			  <div class="form-group">
+			    <label for="">卒業年度<span class="color-red">※</span></label>
+			    <div>
+			    <input type="text" name="end_year" class="form-control" id="exampleInputName" placeholder="" style="width:100px; display: inline;">
+			    <span>年</span>
+			    <input type="text" name="end_month" class="form-control" id="exampleInputName" placeholder="" style="width:100px; display: inline;">
+			    <span>月</span>
+			    </div>
+			  </div>
+			</div>
 		</div>
   </div>
-</div><!-- end tab4 -->
+</div><!-- end tab5 -->

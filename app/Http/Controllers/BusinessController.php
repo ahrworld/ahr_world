@@ -8,6 +8,7 @@ use App\BSinformations;
 use App\ModelBranch\Employment;
 use App\ModelBranch\Experience;
 use App\ModelBranch\Languagelv;
+use App\ModelBranch\Bs_image;
 use App\Recruitment;
 use App\PluralAdd\Employ;
 use App\Http\Requests;
@@ -35,9 +36,9 @@ class BusinessController extends Controller
     {
         //定義資料庫
         $Languages = Language::all();
-
+    
         return view('bs_info', ['Languages' => $Languages]);
-
+     
     }
     public function business_a(Request $request)
     {
@@ -46,7 +47,7 @@ class BusinessController extends Controller
         // if ($BSinformation::where('user_id',$user_id)->first() == true) {
         //      return '已經填寫過了';
         // }
-
+        return $request->all();
         $a = $request->user()->BSinformation()->create([
             'company_name' => $request->company_name,
             'name' => $request->name,
@@ -58,9 +59,9 @@ class BusinessController extends Controller
             'test_process2' => $request->test_process2,
             'test_process3' => $request->test_process3,
         ]);
-
+        
         // create employ
-
+    
         $employ = new Employ;
         foreach ($request->employ as $key) {
             $b = $employ::create([
@@ -70,10 +71,10 @@ class BusinessController extends Controller
         }
         $BSinformation::where('id', $a->id)
           ->update(['employ_id' => $b->id]);
-
-
+      
+        
         // update BSinformations employ
-
+       
         // Recruitment tabel
         $c = $request->user()->Recruitment()->create([
             'name' => $request->recruitment_name,
@@ -118,13 +119,13 @@ class BusinessController extends Controller
         }
         // return $request->language;
 
-        $Recruitment = new Recruitment;
-        $Recruitment::where('id', $c->id)
-          ->update(['employment_id' => $d->id,
-                    'experience_id' => $e->id,
-                    'languageLv_id' => $f->id,
-            ]);
-
+        // $Recruitment = new Recruitment;
+        // $Recruitment::where('id', $c->id)
+        //   ->update(['employment_id' => $d->id,
+        //             'experience_id' => $e->id,
+        //             'languageLv_id' => $f->id,
+        //     ]);
+      
         // return response()->json([
         //     "data" => $request->all(),
         //     'test' => $request->bruce[1]['employ'],
@@ -133,6 +134,7 @@ class BusinessController extends Controller
         // return $request->all();
 
     }
+
     public function profile(Request $request){
         $BSinformation = new BSinformations;
         $tasks = $BSinformation::where('user_id', $request->user()->id)->get();
@@ -156,6 +158,43 @@ class BusinessController extends Controller
             'languagelvs' => $languagelvs,
         ]);
     }
+    public function image(Request $request){
+        $bs_image = New Bs_image;
+       
+        if ($request->hasFile('image_big') && $request->hasFile('image_small'))
+        {
+            // big
+            $photo_b = $request->file('image_big')->getClientOriginalExtension();
+            $photoname_b = 'big'.$request->user()->id.'.'.$photo_b;
+            $photo_upload = $request->file('image_big')->move(public_path().'/ahr/busineses_img',$photoname_b);
+            $bs_image->image_big  = $photoname_b;
+            // small
+            $photo_m = $request->file('image_small')->getClientOriginalExtension();
+            $photoname_m = 'small'.$request->user()->id.'.'.$photo_m;
+            $photo_upload = $request->file('image_small')->move(public_path().'/ahr/busineses_img',$photoname_m);
+            $bs_image->image_small  = $photoname_m;
+        }
+        //small
+        else if($request->hasFile('image_small'))
+        {
+          $photo_m = $request->file('image_small')->getClientOriginalExtension();
+          $photoname_m = 'small'.$request->user()->id.'.'.$photo_m;
+          $photo_upload = $request->file('image_small')->move(public_path().'/ahr/busineses_img',$photoname_m);
+          $bs_image->image_big  = $photoname_m;
+        }
+        //big
+        else if($request->hasFile('image_big'))
+        {
+          $photo_b = $request->file('image_big')->getClientOriginalExtension();
+          $photoname_b = 'big'.$request->user()->id.'.'.$photo_b;
+          $photo_upload = $request->file('image_big')->move(public_path().'/ahr/busineses_img',$photoname_b);
+          $bs_image->image_big  = $photoname_b;
+        }
+        $bs_image->bsinformations_id = $request->user()->id;
+        $bs_image->save();
+        return redirect('/profile_b2');
+
+    }
     public function update(Request $request){
         $BSinformation = new BSinformations;
 
@@ -173,6 +212,6 @@ class BusinessController extends Controller
         return redirect('/profile_b2');
 
     }
-
-
+  
+    
 }

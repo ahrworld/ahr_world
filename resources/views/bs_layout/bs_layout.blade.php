@@ -5,6 +5,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>ahr</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="{{ asset('ahr/bower_components/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js')}}"></script>
 	<script src="{{ asset('ahr/assets/js/ahr.js')}}"></script>
@@ -40,8 +41,11 @@
                     @if (Auth::guest())
 
                     @else
-                        <li class="dropdown">
-                            <a href="{{ url('/logout') }}" style="color:#FFF; font-size: 16px;"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+                        <li>
+                        	<h5 href="#" style="color:#FFF;padding-top: 6px; font-size: 16px;"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{ Auth::user()->email }}</h5>
+                        </li>
+                        <li>
+                            <a href="{{ url('/logout') }}" style="color:#FFF; font-size: 16px; margin-left:5px;"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
                         </li>
                     @endif
 

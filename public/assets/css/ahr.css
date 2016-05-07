@@ -462,7 +462,7 @@ td,tr,th,p,h1,h2,h3,h4,h5,h6,span,a,div,button,label,li,ul,table tbody tr th,tab
 	height: 20px;
 	width: 20px;
 	position: relative;
-	top: 10px;
+	top: 5px;
 	cursor: pointer;
 }
 .add:hover{

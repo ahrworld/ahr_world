@@ -1,4 +1,4 @@
-<div class="tab-pane" id="tab3">
+<div class="tab-pane" id="tab3" >
   <div>
     <label style="margin-right:7px;" class="ahr-label-default">STEP3</label>
   </div>
@@ -80,12 +80,12 @@
   <div class="container-fluid" style="padding: 0px !important;">
 		<div class="row sex_radio">
 			<div class="col-md-6">
-			    <input type="radio" name="radio" id="radio1" class="ahr-button_boy radio"/>
+			    <input type="radio" name="sex" id="radio1" value="1" class="ahr-button_boy radio"/>
 			    <label for="radio1">男性</label>
 			    <!-- <button type="button" class="btn ahr-button_boy"><img height="50" src="ahr/assets/img/boy.png" alt=""></button> -->
 			</div>
 			<div class="col-md-6">
-			    <input type="radio" name="radio" id="radio2" class="radio"/>
+			    <input type="radio" name="sex" id="radio2" value="0" class="radio"/>
 			    <label for="radio2">女性</label>
 			    <!-- <button type="button" class="btn ahr-button_boy"><img height="50" src="ahr/assets/img/girl.png" alt=""></button> -->
 		    </div>
@@ -94,16 +94,16 @@
 			      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 			      <h5>兵役経験について選択してください。</h5>
 			      <p>
-			      	  <input type="radio" name="b" class="btn btn-default" style="width:16px; height:16px; margin:10px;">無
-			          <input type="radio" name="b" class="btn btn-info check" style="width:16px; height:16px; margin:10px;">済
-			          <input type="radio" name="b" class="btn btn-default" style="width:16px; height:16px; margin:10px;">未
+			      	  <input type="radio" name="military" value="0" class="btn btn-default" style="width:16px; height:16px; margin:10px;">無
+			          <input type="radio" name="military" value="1" class="btn btn-info check" style="width:16px; height:16px; margin:10px;">済
+			          <input type="radio" name="military" value="2" class="btn btn-default" style="width:16px; height:16px; margin:10px;">未
 			      </p>
 			      <div>&nbsp;</div>
 			      <div class="datetime none">
-				      <label>終了予定時間</label>
-				      <input type="text" class="form-control" style="width:100px; display: inline;">
+				      <h5>終了予定時間</h5>
+				      <input type="text" name="military_end_year" class="form-control" style="width:100px; display: inline;">
 				      <span>年</span>
-				      <input type="text" class="form-control" style="width:100px; display: inline;">
+				      <input type="text" name="military_end_month" class="form-control" style="width:100px; display: inline;">
 				      <span>月</span>
 			      </div>
 			  </div>

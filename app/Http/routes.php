@@ -104,13 +104,19 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index');
 
     Route::get('/bs_info', 'BusinessController@bs_info');
+    Route::get('/test', 'BusinessController@test');
     Route::post('/business_a', 'BusinessController@business_a');
     Route::post('/business_b', 'BusinessController@business_b');
 
     Route::get('/profile_b2','BusinessController@profile');
     Route::post('/business/update', 'BusinessController@update');
+    Route::post('/business/image', 'BusinessController@image');
 
-    Route::get('/step', 'UserController@step');
+    Route::get('step', 'UserController@step');
+    Route::post('personnel_in', 'UserController@personnel_in');
+    
+    Route::get('/profile','UserController@profile');
+
 	Route::get('/bs_end', function(){
 	return view('auth/bs_signin-end');
 	});
