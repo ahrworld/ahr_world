@@ -251,6 +251,7 @@
 										<li><a href="#tab3" data-toggle="tab"></a></li>
 										<li><a href="#tab4" data-toggle="tab"></a></li>
 										<li><a href="#tab5" data-toggle="tab"></a></li>
+										<li><a href="#tab7" data-toggle="tab"></a></li>
 										<!-- <li><a href="#tab6" data-toggle="tab"></a></li>
 										<li><a href="#tab7" data-toggle="tab"></a></li> -->
 										<!-- <p class="bar" style="padding-top:25px;">%</p> -->
@@ -264,7 +265,7 @@
 							@include('step_layout/step3')
 							@include('step_layout/step4')
 							@include('step_layout/step5')
-
+							@include('step_layout/step7')
 							<ul class="pager wizard" style="height: 0px;">
 								<li class="previous first" style="display:none;"><a href="#">First</a></li>
 								<li class="previous"></li>

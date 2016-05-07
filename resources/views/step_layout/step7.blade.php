@@ -24,7 +24,7 @@
 		<div class="row">
 			<div class="col-md-12">
 			  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-			   <!--  @foreach($skill_titles as $skill_title)
+			    @foreach($skill_titles as $skill_title)
 			    <div class="panel panel-default">
 			      <div class="panel-heading" role="tab" id="headingOne" style="color:#FFF; background:#9ED8F6;">
 			         <h4 class="panel-title">
@@ -71,7 +71,7 @@
 			        </div>
 			      </div>
 			    </div>
-			    @endforeach -->
+			    @endforeach
 			  
 			   
 			  </div>
