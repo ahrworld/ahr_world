@@ -26,7 +26,7 @@
 </head>
 <body id="app-layout">
     <nav class="navbar">
-           
+
 	            <div class="navbar-header">
 
 	                <!-- Collapsed Hamburger -->
@@ -39,13 +39,13 @@
 
 	                <!-- Branding Image -->
 	                <a class="navbar-brand" href="{{ url('/') }}">
-	                    <img src="{{asset('ahr/assets/img/bs_lp.jpg')}}" height="65"> 
+	                    <img src="{{asset('ahr/assets/img/bs_lp.jpg')}}" height="65">
 	                </a>
 	            </div>
 
 	            <div class="collapse navbar-collapse" >
 	                <!-- Left Side Of Navbar -->
-	              
+
 					<style>
 					.navbar-right{
 						margin-right: 0px !important;
@@ -88,15 +88,15 @@
 	                        <li><button type="button" class="btn btn_1"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></button></li>
 	                        <li><button type="button" class="btn btn_2"><a href="{{ url('/login_bs') }}">お問い合わせ</a></button></li>
 	                        <a href="{{ url('/step', $email)}}">dsa</a>
-	                      
+
 	                    @endif
 
 	                </ul>
 	            </div>
        		<style>
 			.banner{
-				background:#00A6EA; 
-				width:100%; 
+				background:#00A6EA;
+				width:100%;
 				height:380px;
 				padding:20px;
 				min-width: 1350px;
@@ -119,7 +119,7 @@
 				height: 360px;
 				width: 380px;
 				min-width: 380px;
-				cursor: pointer; 
+				cursor: pointer;
 			}
 			.banner .right:hover{
 				background-image: url('ahr/assets/img/hover.png');
@@ -136,6 +136,14 @@
 				height: 30px;
 				background-color: #EAF6FD;
 			}
+			.background1{
+				background-image: url('ahr/assets/img/background1.jpg');
+				background-position: center;
+				background-size: cover;
+				width: 1200px;
+				height: 2000px;
+				margin: 0 auto;
+			}
        		</style>
             <div class="banner">
             	<div class="left">
@@ -145,22 +153,22 @@
             		<h1>グローバル採用は、最適な人材と自動マッチングで！</h1>
             		<h1>ワンクリックで世界中の人材を管理！</h1>
 
-             
+
             	</div>
             	<div class="right">
-            		
+
             	</div>
 
             </div>
             <div class="base"></div>
     </nav>
 
-    <main>
-    	
+    <main >
+		<div class="background1"></div>
     </main>
 
     <footer>
-    	
+
     </footer>
 
     <!-- JavaScripts -->

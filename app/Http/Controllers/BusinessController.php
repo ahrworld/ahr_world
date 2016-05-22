@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Gate;
+use Auth;
 use App\User;
 use App\Language;
 use App\BSinformations;
@@ -9,6 +10,9 @@ use App\ModelBranch\Employment;
 use App\ModelBranch\Experience;
 use App\ModelBranch\Languagelv;
 use App\ModelBranch\Bs_image;
+use App\PersonnelBranch\skill_category;
+use App\PersonnelBranch\skill_name;
+use App\PersonnelBranch\skill_title;
 use App\Recruitment;
 use App\PluralAdd\Employ;
 use App\Http\Requests;
@@ -32,13 +36,22 @@ class BusinessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function bs_info()
+    public function bs_info(Request $request)
     {
-        //定義資料庫
+        // if (Auth::attempt([
+        //     'email' => $request['email'],
+        //     'password' => $request['password'],
+        //     'status' => 1,
+        //     'data_status' =>1,
+        //     ])){
+        //     return redirect('profile_b2');
+        // }
+
         $Languages = Language::all();
-    
-        return view('bs_info', ['Languages' => $Languages]);
-     
+        $skill_data = skill_name::all();
+        return view('bs_info', ['Languages' => $Languages , 'skill_data' => $skill_data]);
+
+
     }
     public function business_a(Request $request)
     {
@@ -47,7 +60,7 @@ class BusinessController extends Controller
         // if ($BSinformation::where('user_id',$user_id)->first() == true) {
         //      return '已經填寫過了';
         // }
-        return $request->all();
+
         $a = $request->user()->BSinformation()->create([
             'company_name' => $request->company_name,
             'name' => $request->name,
@@ -59,9 +72,9 @@ class BusinessController extends Controller
             'test_process2' => $request->test_process2,
             'test_process3' => $request->test_process3,
         ]);
-        
+
         // create employ
-    
+
         $employ = new Employ;
         foreach ($request->employ as $key) {
             $b = $employ::create([
@@ -69,12 +82,9 @@ class BusinessController extends Controller
                     'BSinformations_id' => $a->id,
             ]);
         }
-        $BSinformation::where('id', $a->id)
-          ->update(['employ_id' => $b->id]);
-      
-        
+
         // update BSinformations employ
-       
+
         // Recruitment tabel
         $c = $request->user()->Recruitment()->create([
             'name' => $request->recruitment_name,
@@ -125,11 +135,14 @@ class BusinessController extends Controller
         //             'experience_id' => $e->id,
         //             'languageLv_id' => $f->id,
         //     ]);
-      
+
         // return response()->json([
         //     "data" => $request->all(),
         //     'test' => $request->bruce[1]['employ'],
         // ]);
+        $user = new User;
+        $user::where('id', $request->user()->id)
+          ->update(['data_status' =>  1,]);
         return redirect('/profile_b2');
         // return $request->all();
 
@@ -150,17 +163,19 @@ class BusinessController extends Controller
         $languagelvs = $Recruitment::where('user_id', $request->user()->id)
         ->join('languagelvs', 'recruitments.id', '=', 'languagelvs.recruitments_id')
         ->get();
+        $skill_data = skill_name::all();
         return view('bs_sidebar/profile', [
             'tasks' => $tasks,
             'recruitments' => $recruitments,
             'employments' => $employments,
             'experiences' => $experiences,
             'languagelvs' => $languagelvs,
+            'skill_data' => $skill_data,
         ]);
     }
     public function image(Request $request){
         $bs_image = New Bs_image;
-       
+
         if ($request->hasFile('image_big') && $request->hasFile('image_small'))
         {
             // big
@@ -196,8 +211,8 @@ class BusinessController extends Controller
 
     }
     public function update(Request $request){
-        $BSinformation = new BSinformations;
 
+        $BSinformation = new BSinformations;
         $BSinformation::where('user_id', $request->user()->id)
           ->update([
             'name' =>  $request->name,
@@ -209,9 +224,9 @@ class BusinessController extends Controller
             'capital' => $request->capital,
             'amount_of_sales' => $request->amount_of_sales,
             ]);
-        return redirect('/profile_b2');
+        return redirect('/profile_b2' );
 
     }
-  
-    
+
+
 }

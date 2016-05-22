@@ -5,11 +5,22 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>ahr</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
     <!-- bootstrap -->
     <script src="ahr/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- ahr -->
     <script src="ahr/assets/js/ahr.js"></script>
     <link rel="stylesheet" href="assets/css/ahr.css">
+    <!-- tag-it -->
+	<link rel="stylesheet" href="{{ asset('ahr/assets/tag_it/jquery.tagit.css')}}">
+	<link rel="stylesheet" href="{{ asset('ahr/assets/tag_it/tagit.ui-zendesk.css')}}">
+	<script src="{{ asset('ahr/assets/tag_it/tag-it.js')}}"></script>
+	<!-- select2 -->
+	<link href="{{ asset('ahr/assets/select2/css/select2.css')}}" rel="stylesheet" />
+	<script src="{{ asset('ahr/assets/select2/js/select2.js')}}"></script>
+    <!-- bootstrap-sweetalert -->
+    <script src="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.css')}}">
     <!-- animate.css -->
     <link rel="stylesheet" href="assets/css/animate.css">
     <!-- chart.js -->
@@ -26,12 +37,10 @@
 </head>
 <script>
 $(document).ready(function() {
-	
     $('#myTabs a:last').click(function () {
 		 myRadarChart();
 	});
 });
-
 </script>
 <style>
 	#header .clearfix .container{
@@ -42,7 +51,7 @@ $(document).ready(function() {
 		<!-- header -->
 		<section id="header" class="top-header" style="box-shadow: 0px 6px 10px -3px #9B9B9B;">
 	        <header class="clearfix" style="width:1500px; margin:auto; padding-left:20px;">
-				
+
 
 	            <!-- Logo -->
 	            <div class="logo">
@@ -146,7 +155,7 @@ $(document).ready(function() {
 
 	                </ul>
 	            </div>
-	         
+
 	        </header>
 		</section>
 		<!-- main -->
@@ -185,4 +194,6 @@ $(document).ready(function() {
 		    </ul>
 		</footer>
 
-@include('layouts.footer')
+
+</body>
+</html>

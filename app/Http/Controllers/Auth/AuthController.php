@@ -87,6 +87,7 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'status' => 0,
+            'data_status' => 0,
         ]);
         Role_user::create([
             'role_id' => 1,

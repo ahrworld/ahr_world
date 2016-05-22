@@ -48,9 +48,22 @@ class BsAuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'status' => 1])) {
+        if (Auth::attempt([
+            'email' => $request['email'],
+            'password' => $request['password'],
+            'status' => 1,
+            'data_status' =>0,
+            ])) {
             // 認證通過...
             return redirect()->intended('bs_info');
+        }
+        elseif (Auth::attempt([
+            'email' => $request['email'],
+            'password' => $request['password'],
+            'status' => 1,
+            'data_status' =>1,
+            ]))  {
+            return redirect()->intended('profile_b2');
         }
         else
         {
@@ -80,7 +93,7 @@ class BsAuthController extends Controller
      * @param  array  $data
      * @return User
      */
-   
+
     // 企業側
     protected function create_bs(array $data)
     {
@@ -88,6 +101,7 @@ class BsAuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'status' => 1,
+            'data_status' => 0,
         ]);
         Role_user::create([
             'role_id' => 2,

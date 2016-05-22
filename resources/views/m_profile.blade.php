@@ -162,7 +162,7 @@
 		          	    	  </div>
 		          	    	</div>
 		          	    	</div>
-		          	 
+
 
 	        <div class="container">
 	          	  <!-- Nav tabs -->
@@ -172,7 +172,7 @@
 	          	    <li role="presentation"><a href="#a3" aria-controls="a3" role="tab" data-toggle="tab">企業カラー</a></li>
 	          	    <li role="presentation"><a href="#a3" aria-controls="a3" role="tab" data-toggle="tab">面接日程</a></li>
 	          	  </ul>
-				  
+
 	          	  <!-- 企業情報編集 Tab panes -->
 	          	  <div class="tab-content">
 	          	    <div role="tabpanel" class="tab-pane ahr-panel active" id="a1">
@@ -186,7 +186,7 @@
 								padding: 3px;
 								width:70px;
 								text-align: center;
-								margin-right: 5px !important; 
+								margin-right: 5px !important;
 							}
 							.panel-content p{
 								margin-bottom: 5px !important;
@@ -195,7 +195,7 @@
 								height: 180px !important;
 							}
 	          	    	    </style>
-		          	    	
+
 		          	    	<div class="panel panel-default">
 		          	    	  <div class="panel-body">
 								<div class="row">
@@ -250,71 +250,71 @@
 		          	    	</div>
 		          	    	<!-- 4 -->
 		          	    	<h6>■会社概要<span class="red-color"></span></h6>
-		          	    	<table class="table table-bordered ahr-table"> 
-		          	    		<tbody> 
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">本社所在地<span class="red-color"></span></th> 
-		          	    			<td></td> 
-		          	    			</tr> 
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">企業URL<span class="red-color"></span></th> 
-		          	    			<td></td> 
-		          	    			</tr> 
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">社員国籍<span class="red-color"></span></th> 
+		          	    	<table class="table table-bordered ahr-table">
+		          	    		<tbody>
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">本社所在地<span class="red-color"></span></th>
 		          	    			<td></td>
 		          	    			</tr>
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">創業・設立</th> 
-		          	    			<td></td> 
-		          	    			</tr> 
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">総従業員数</th> 
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">企業URL<span class="red-color"></span></th>
 		          	    			<td></td>
-		          	    			</tr> 
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">資本金</th> 
+		          	    			</tr>
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">社員国籍<span class="red-color"></span></th>
 		          	    			<td></td>
-		          	    			</tr> 
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">売上高</th> 
+		          	    			</tr>
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">創業・設立</th>
 		          	    			<td></td>
-		          	    			</tr> 
-		          	    		</tbody> 
+		          	    			</tr>
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">総従業員数</th>
+		          	    			<td></td>
+		          	    			</tr>
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">資本金</th>
+		          	    			<td></td>
+		          	    			</tr>
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">売上高</th>
+		          	    			<td></td>
+		          	    			</tr>
+		          	    		</tbody>
 		          	    	</table>
 		          	    	<!-- 5 -->
 		          	    	<h6>■雇用条件<span class="red-color"></span></h6>
-		          	    	<table class="table table-bordered ahr-table"> 
-		          	    		<tbody> 
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">勤務地<span class="red-color"></span></th> 
-		          	    			<td></td> 
-		          	    			</tr> 
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">勤務時間<span class="red-color"></span></th> 
-		          	    			<td></td> 
-		          	    			</tr> 
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">給与<span class="red-color"></span></th> 
+		          	    	<table class="table table-bordered ahr-table">
+		          	    		<tbody>
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">勤務地<span class="red-color"></span></th>
 		          	    			<td></td>
 		          	    			</tr>
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">福利厚生<span class="red-color"></span></th> 
-		          	    			<td></td> 
-		          	    			</tr> 
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">休日休暇<span class="red-color"></span></th> 
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">勤務時間<span class="red-color"></span></th>
 		          	    			<td></td>
-		          	    			</tr> 
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">諸手当<span class="red-color"></span></th> 
+		          	    			</tr>
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">給与<span class="red-color"></span></th>
 		          	    			<td></td>
-		          	    			</tr> 
-		          	    			<tr> 
-		          	    			<th scope="row" width="30%">教育制度</th> 
+		          	    			</tr>
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">福利厚生<span class="red-color"></span></th>
 		          	    			<td></td>
-		          	    			</tr> 
-		          	    		</tbody> 
+		          	    			</tr>
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">休日休暇<span class="red-color"></span></th>
+		          	    			<td></td>
+		          	    			</tr>
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">諸手当<span class="red-color"></span></th>
+		          	    			<td></td>
+		          	    			</tr>
+		          	    			<tr>
+		          	    			<th scope="row" width="30%">教育制度</th>
+		          	    			<td></td>
+		          	    			</tr>
+		          	    		</tbody>
 		          	    	</table>
 	          	    	</div><!-- wrapper end -->
 	          	    </div><!-- 企業情報編集 tab-panel end -->
@@ -336,33 +336,33 @@
 	  	    	                       </div>
 	  	    	                       <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 	  	    	                         <div class="panel-body">
-	  	    	                         <table class="table table-bordered ahr-table"> 
-	  	    	                         	<tbody> 
-	  	    	                         		<tr> 
-	  	    	                         		<th scope="row" width="30%">募集職種</th> 
-	  	    	                         		<td></td> 
-	  	    	                         		</tr> 
-	  	    	                         		<tr> 
-	  	    	                         		<th scope="row" width="30%">職務内容</th> 
-	  	    	                         		<td></td> 
-	  	    	                         		</tr> 
-	  	    	                         		<tr> 
-	  	    	                         		<th scope="row" width="30%">雇用形態<br><span style="font-size:12px;">（複数選択可）</span></th> 
+	  	    	                         <table class="table table-bordered ahr-table">
+	  	    	                         	<tbody>
+	  	    	                         		<tr>
+	  	    	                         		<th scope="row" width="30%">募集職種</th>
 	  	    	                         		<td></td>
 	  	    	                         		</tr>
-	  	    	                         		<tr> 
-	  	    	                         		<th scope="row" width="30%">募集経歴<br><span style="font-size:12px;">（複数選択可）</span></th> 
-	  	    	                         		<td></td> 
-	  	    	                         		</tr> 
-	  	    	                         		<tr> 
-	  	    	                         		<th scope="row" width="30%">募集学科</th> 
+	  	    	                         		<tr>
+	  	    	                         		<th scope="row" width="30%">職務内容</th>
 	  	    	                         		<td></td>
-	  	    	                         		</tr> 
-	  	    	                         		<tr> 
-	  	    	                         		<th scope="row" width="30%">必須技能・資格</th> 
+	  	    	                         		</tr>
+	  	    	                         		<tr>
+	  	    	                         		<th scope="row" width="30%">雇用形態<br><span style="font-size:12px;">（複数選択可）</span></th>
 	  	    	                         		<td></td>
-	  	    	                         		</tr> 
-	  	    	                         	</tbody> 
+	  	    	                         		</tr>
+	  	    	                         		<tr>
+	  	    	                         		<th scope="row" width="30%">募集経歴<br><span style="font-size:12px;">（複数選択可）</span></th>
+	  	    	                         		<td></td>
+	  	    	                         		</tr>
+	  	    	                         		<tr>
+	  	    	                         		<th scope="row" width="30%">募集学科</th>
+	  	    	                         		<td></td>
+	  	    	                         		</tr>
+	  	    	                         		<tr>
+	  	    	                         		<th scope="row" width="30%">必須技能・資格</th>
+	  	    	                         		<td></td>
+	  	    	                         		</tr>
+	  	    	                         	</tbody>
 	  	    	                         </table>
 	  	    	                         </div>
 	  	    	                       </div>
@@ -407,7 +407,7 @@
 
 					<!-- 企業カラー Tab panes -->
 	          	    <div role="tabpanel" class="tab-pane ahr-panel" id="a3">
-	          	    	
+
 	          	    	<div class="wrapper">
 	          	    	    <!-- 1 -->
 		          	    	<div class="panel panel-default">
@@ -455,6 +455,6 @@
 	        </div>
         </main>
 <footer style="height:100px;">
-	
+
 </footer>
 @include('layouts.footer')

@@ -317,6 +317,7 @@ td,tr,th,p,h1,h2,h3,h4,h5,h6,span,a,div,button,label,li,ul,table tbody tr th,tab
 }
 .ahr-label-blue{
 	border: 1px solid #7ECEF4 !important;
+	background: #FFF;
 	color: #7ECEF4 !important;
 	border-radius: 3px;
 	padding: 2px 30px;
@@ -324,6 +325,25 @@ td,tr,th,p,h1,h2,h3,h4,h5,h6,span,a,div,button,label,li,ul,table tbody tr th,tab
 	font-weight: bold;
     border: 1px solid #CCC;
     outline: none !important;
+}
+.ahr-label-blue:hover{
+	background: #7ECEF4;
+	color:#FFF !important;
+}
+.ahr-label-yellow{
+	border: 1px solid #EEC712 !important;
+	background: #FFF;
+	color: #EEC712 !important;
+	border-radius: 3px;
+	padding: 2px 30px;
+	margin:3px auto;
+	font-weight: bold;
+    border: 1px solid #CCC;
+    outline: none !important;
+}
+.ahr-label-yellow:hover{
+	background: #EEC712;
+	color:#FFF !important;
 }
 .ahr-button_2:hover,
 .ahr-button_3:hover,
@@ -534,4 +554,17 @@ td,tr,th,p,h1,h2,h3,h4,h5,h6,span,a,div,button,label,li,ul,table tbody tr th,tab
 	color:#CBD343;
 }
 
+
+/* base */
+
+.close_bt ,.update_bt , .update_bt1,.update_bt2{
+  font-size:25px; color:#1c7ebb;
+}
+.close_bt:hover ,.update_bt:hover ,.update_bt1:hover,.update_bt2:hover{
+  color:#1C46BB;
+}
+
+.update_content{
+  margin-left: 0px !important;
+}
 

@@ -11,7 +11,7 @@
   .close_bt:hover ,.update_bt:hover ,.update_bt1:hover,.update_bt2:hover{
     color:#1C46BB;
   }
-  
+
   .update_content{
     margin-left: 0px !important;
   }
@@ -33,7 +33,7 @@
       $('.default_content').addClass('none');
       $('.update_content').removeClass('none');
     });
-   
+
 
     $('.default_summary .update_bt').click(function(){
       $('.default_summary').addClass('none');
@@ -51,7 +51,7 @@
 
 </script>
 <style>
-  
+
 </style>
 <div class="scorl" style="width:1000px; height:100%; float:left; margin-left:15px;">
                     <!-- プロフィール Tab panes -->
@@ -452,7 +452,7 @@
                           <!-- end -->
                         </div><!-- wrapper end -->
                       </div><!-- プロフィール tab-panel end -->
-              
+
                     </div><!-- tab-content end -->
 </div><!-- colmd9 end -->
 @endsection

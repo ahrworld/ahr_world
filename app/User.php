@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','status',
+        'name', 'email', 'password','status','data_status',
     ];
 
     /**
@@ -31,7 +31,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
-   /** 
+   /**
     * insert business date
     */
     public function BSinformation()
@@ -47,7 +47,7 @@ class User extends Authenticatable
         return $this->hasMany(Recruitment::class);
     }
 
-   
+
     public function owns($related)
     {
         return $this->id == $related->user_id;

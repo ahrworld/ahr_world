@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 use Gate;
 use App\User;
+use App\BSinformations;
+use App\ModelBranch\Employment;
+use App\ModelBranch\Experience;
 use App\ModelBranch\Languagelv;
+use App\ModelBranch\Bs_image;
+use App\Recruitment;
 use App\Personnel;
 use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
@@ -77,18 +82,33 @@ class UserController extends Controller
                     'personnels_id' => $a->id,
             ]);
         }
-      
+
         return redirect('/news_b2');
-    	
+
     }
     public function profile(Request $request)
-    {	
+    {
     	$personnel = new Personnel;
     	$personnels = $personnel::where('user_id', $request->user()->id)
                                     ->get();
     	return view('pl_sidebar/profile',[
     		'personnels' => $personnels,
     	]);
+    }
+    public function news(Request $request)
+    {
+        $BSinformation = BSinformations::all();
+        $Recruitment = Recruitment::all();
+        return view('pl_sidebar/news',[
+          'BSinformation' => $BSinformation,
+          'Recruitment' => $Recruitment,
+
+        ]);
+    }
+    public function ttt(Request $request)
+    {
+        
+        return $request->all();
     }
 
 }

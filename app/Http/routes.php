@@ -14,16 +14,12 @@
 // bs
 
 
-
 Route::get('/password_end', function(){
 	return view('auth/bs_pwd_end');
 });
 
 Route::get('/news', function(){
 	return view('news');
-});
-Route::get('/profile', function(){
-	return view('profile');
 });
 
 Route::get('/mail-box', function(){
@@ -57,9 +53,7 @@ Route::get('/m_profile', function(){
 });
 
 
-Route::get('news_b2', function(){
-	return view('bs_sidebar/news');
-});
+
 //m before
 Route::get('/portfolio_b', function(){
 	return view('protfolio_b');
@@ -112,11 +106,12 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/business/update', 'BusinessController@update');
     Route::post('/business/image', 'BusinessController@image');
 
-    Route::get('step', 'UserController@step');
+    Route::get('/step', 'UserController@step');
     Route::post('personnel_in', 'UserController@personnel_in');
-    
-    Route::get('/profile','UserController@profile');
 
+    Route::get('/profile','UserController@profile');
+    Route::get('/news','UserController@news');
+    Route::post('ttt','UserController@ttt');
 	Route::get('/bs_end', function(){
 	return view('auth/bs_signin-end');
 	});
