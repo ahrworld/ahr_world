@@ -46,6 +46,6 @@ class FBController extends Controller
             ]);
         }
         Auth::loginUsingId($user->id);
-        return redirect('/home');
+        return redirect('/');
     }
 }
