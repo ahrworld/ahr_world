@@ -1,4 +1,4 @@
-<div class="progress" style="width:980px; margin:auto;">
+<div class="progress" style="width:60%; margin:auto;">
     <div class="progress-bar progress-bar-primary" style="width: 37%; background:#613086 !important;"></div>
     <div class="progress-bar progress-bar-success" style="width: 25%; background:#4CAA54 !important"></div>
     <div class="progress-bar progress-bar-success" style="width: 38%; background:#D82F1C !important"></div>
@@ -24,7 +24,7 @@
     float: left;
     position: relative;
     list-style: none;
-    width: 121px;
+    width: 7.5%;
     left: 205px;
  }
  .line_menu ul li .circle_1{
@@ -35,7 +35,7 @@
     width: 30px;
     background: #FFF;
     border: 2px solid #613086;
-   
+
  }
  .line_menu ul li .circle_2{
     position: relative;

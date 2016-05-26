@@ -40,6 +40,7 @@
     padding: 2px 60px !important;
     height: 30px;
     border-bottom: 0px !important;
+    line-height: 25px;
   }
 </style>
 <div class="sidebar" style="width:200px; float:left; margin-left:30px; ">

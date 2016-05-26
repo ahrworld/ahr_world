@@ -46,20 +46,22 @@ class BusinessController extends Controller
         //     ])){
         //     return redirect('profile_b2');
         // }
-
+        if(Auth::user()->data_status == 1)
+        {
+            return redirect()->intended('profile_b2');
+        }
         $Languages = Language::all();
         $skill_data = skill_name::all();
         return view('bs_info', ['Languages' => $Languages , 'skill_data' => $skill_data]);
-
 
     }
     public function business_a(Request $request)
     {
         $BSinformation = new BSinformations;
-        // $user_id = $request->user()->id;
-        // if ($BSinformation::where('user_id',$user_id)->first() == true) {
-        //      return '已經填寫過了';
-        // }
+        $user_id = $request->user()->id;
+        if ($BSinformation::where('user_id',$user_id)->first() == true) {
+             return '已經填寫過了';
+        }
 
         $a = $request->user()->BSinformation()->create([
             'company_name' => $request->company_name,
@@ -211,7 +213,6 @@ class BusinessController extends Controller
 
     }
     public function update(Request $request){
-
         $BSinformation = new BSinformations;
         $BSinformation::where('user_id', $request->user()->id)
           ->update([
@@ -224,9 +225,26 @@ class BusinessController extends Controller
             'capital' => $request->capital,
             'amount_of_sales' => $request->amount_of_sales,
             ]);
-        return redirect('/profile_b2' );
+        return redirect('/profile_b2');
 
     }
-
+    public function news(Request $request){
+        // 新応募
+        $Recruitment = Recruitment::where('recruitments.user_id', $request->user()->id)
+                                    ->join('recruitments_status', 'recruitments.id', '=', 'recruitments_status.recruitments_id')
+                                    ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
+                                    ->where('recruitments_status.status', 1)
+                                    ->get();
+        // お気に入り登錄者
+        $Recruitment_like = Recruitment::where('recruitments.user_id', $request->user()->id)
+                                    ->join('recruitments_status', 'recruitments.id', '=', 'recruitments_status.recruitments_id')
+                                    ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
+                                    ->where('recruitments_status.status', 2)
+                                    ->get();
+        return view('/bs_sidebar/news',[
+                'Recruitment' => $Recruitment,
+                'Recruitment_like' => $Recruitment_like,
+            ]);
+    }
 
 }

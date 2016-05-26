@@ -9,6 +9,7 @@ use App\ModelBranch\Experience;
 use App\ModelBranch\Languagelv;
 use App\ModelBranch\Bs_image;
 use App\Recruitment;
+use App\Recruitments_status;
 use App\Personnel;
 use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
@@ -97,18 +98,40 @@ class UserController extends Controller
     }
     public function news(Request $request)
     {
+        // 標題
         $BSinformation = BSinformations::all();
-        $Recruitment = Recruitment::all();
+        // 応募default
+        $Recruitment = Recruitment::whereNotIn('id', function($q){
+                        $q->select('recruitments_id')
+                        ->from('recruitments_status');
+                      })->orWhere('user_id', $request->user()->id)->get();
+                   //orWhere作法不好，只有或，沒有和的條件，所以user id一旦錯了就全錯了
+        // 応募した
+        $Recruitment_ofa = Recruitments_status::where('recruitments_status.user_id', $request->user()->id)
+                            ->where('recruitments_status.status',1)
+                            ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                            ->get();
+        // お気に入り
+        $Recruitment_like = Recruitments_status::where('recruitments_status.user_id', $request->user()->id)
+                            ->where('recruitments_status.status',2)
+                            ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                            ->get();
         return view('pl_sidebar/news',[
           'BSinformation' => $BSinformation,
           'Recruitment' => $Recruitment,
-
+          'Recruitment_ofa' => $Recruitment_ofa,
+          'Recruitment_like' => $Recruitment_like,
         ]);
     }
     public function ttt(Request $request)
     {
-        
-        return $request->all();
+        $Recruitments_status = Recruitments_status::create([
+                    'status' => 1,
+                    'recruitments_id' => $request->id,
+                    'user_id' => $request->user()->id,
+        ]);
+
+        return 'ok';
     }
 
 }

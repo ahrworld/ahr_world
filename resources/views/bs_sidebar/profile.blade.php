@@ -137,7 +137,7 @@
     height: 16px;
   }
 </style>
-<div class="scorl" style="width:1000px; float:left; margin-left:15px;">
+<div class="scorl" style="width:60%; float:left; margin-left:15px;">
                  <!-- Nav tabs -->
                  <ul class="nav nav-tabs" role="tablist">
                    <li role="presentation" class="active"><a href="#a1" aria-controls="a1" role="tab" data-toggle="tab">企業情報編集</a></li>

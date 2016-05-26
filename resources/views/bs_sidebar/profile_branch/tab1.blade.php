@@ -6,7 +6,7 @@
                <!-- logo left -->
                     <!-- video -->
                     <div class="col-md-12">
-                    <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 933px;">
+                    <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>
                      @foreach ($tasks as $task)
@@ -29,7 +29,7 @@
                <!-- logo left -->
                     <!-- video -->
                     <div class="col-md-12">
-                    <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 933px;">
+                    <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>
                        <form action="{{url('/business/image')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
@@ -101,7 +101,7 @@
 
      <!-- 4 -->
      <div class="default_summary">
-       <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 953px;">
+       <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 57%;">
          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
        </a>
        <h6>■会社概要</h6>

@@ -10,6 +10,9 @@
     <!-- ahr -->
     <script src="ahr/assets/js/ahr.js"></script>
     <link rel="stylesheet" href="assets/css/ahr.css">
+    <!-- bootstrap-sweetalert -->
+    <script src="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.css')}}">
     <!-- animate.css -->
     <link rel="stylesheet" href="assets/css/animate.css">
     <!-- chart.js -->
@@ -40,8 +43,8 @@ $(document).ready(function() {
 </style>
 <body data-ng-app="app" id="app" data-custom-background data-off-canvas-nav>
 		<!-- header -->
-		<section id="header" class="top-header" style="position:fixed; top:0; box-shadow: 0px 6px 10px -3px #9B9B9B;">
-	        <header class="clearfix" style="width:1500px; margin:auto; padding-left:20px;">
+		<section id="header" class="top-header" style="width:100% margin:auto; box-shadow: 0px 6px 10px -3px #9B9B9B;">
+	        <header class="clearfix" style="margin:auto; padding-left:20px;">
 
 
 	            <!-- Logo -->
@@ -128,10 +131,10 @@ $(document).ready(function() {
 		    	            <a href="javascript:;" class="dropdown-toggle history-icon">
 		    	            </a>
 		    	        </li>
-	        		            <li class="dropdown" dropdown is-open="status.isopenLang" data-ng-controller="LangCtrl">
-		    	            <a href="javascript:;" class="dropdown-toggle setting-icon" dropdown-toggle ng-disabled="disabled">
+	        		    <li class="dropdown">
+		    	            <a href="javascript:;" class="dropdown-toggle setting-icon"  id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 		    	            </a>
-		    	            <ul class="dropdown-menu with-arrow pull-right list-langs" role="menu">
+		    	            <ul class="dropdown-menu with-arrow pull-right list-langs" aria-labelledby="dropdownMenu1">
 		    	            	<li><a href="javascript:;">プロフィールプレビュー</a></li>
 		    	            	<li class="divider"></li>
 		    	            	<li><a href="javascript:;">設定</a></li>
@@ -140,10 +143,9 @@ $(document).ready(function() {
 		    	            	<li class="divider"></li>
 		    	            	<li><a href="javascript:;">ヘルプ</a></li>
 		    	            	<li class="divider"></li>
-		    	            	<li><a href="javascript:;">ログアウト</a></li>
+		    	            	<li><a href="{{ url('/logout') }}">ログアウト</a></li>
 		    	            </ul>
 		    	        </li>
-
 	                </ul>
 	            </div>
 
@@ -174,7 +176,7 @@ $(document).ready(function() {
 	    	padding: 30px 65px;
 	    }
 		</style>
-		<footer style="width:1500px; float:left; margin:auto;">
+		<footer style="width:60%; float:left; margin:auto;">
 		    <div class="line"></div>
 		    <ul>
 		    	<li>OOOOOO</li>

@@ -18,10 +18,6 @@ Route::get('/password_end', function(){
 	return view('auth/bs_pwd_end');
 });
 
-Route::get('/news', function(){
-	return view('news');
-});
-
 Route::get('/mail-box', function(){
 	return view('mail-box');
 });
@@ -64,7 +60,10 @@ Route::get('/company', function(){
 //form
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+Route::get('/business', function () {
+    return view('business');
 });
 Route::resource('posts', 'PostsController');
 
@@ -105,6 +104,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/profile_b2','BusinessController@profile');
     Route::post('/business/update', 'BusinessController@update');
     Route::post('/business/image', 'BusinessController@image');
+    Route::get('/news_b2', 'BusinessController@news');
 
     Route::get('/step', 'UserController@step');
     Route::post('personnel_in', 'UserController@personnel_in');
@@ -112,6 +112,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/profile','UserController@profile');
     Route::get('/news','UserController@news');
     Route::post('ttt','UserController@ttt');
+
 	Route::get('/bs_end', function(){
 	return view('auth/bs_signin-end');
 	});
