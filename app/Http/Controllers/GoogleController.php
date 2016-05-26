@@ -39,6 +39,7 @@ class GoogleController extends Controller
             $user->google_id = $google_user_id;
             $user->name = $googleName;
             $user->google_email = $googleEmail;
+            $user->email = $googleName;
             $user->status = 0;
             $user->save();
             Role_user::create([
