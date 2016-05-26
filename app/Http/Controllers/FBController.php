@@ -38,7 +38,7 @@ class FBController extends Controller
             $user->facebook_id = $facebook_user_id;
             $user->name = $fbname;
             $user->fb_email = $fbemail;
-            $user->email = fb;
+            $user->email = 'fb';
             $user->status = 0;
             $user->save();
             Role_user::create([
