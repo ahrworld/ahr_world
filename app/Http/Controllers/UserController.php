@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Gate;
+use Auth;
 use App\User;
 use App\BSinformations;
 use App\ModelBranch\Employment;
@@ -28,6 +29,10 @@ class UserController extends Controller
     }
     public function step()
     {
+        if(Auth::user()->data_status == 1)
+        {
+            return redirect()->intended('profile');
+        }
     	$skill_title = new skill_title;
     	$skill_category = new skill_category;
     	$skill_name = new skill_name;
@@ -84,7 +89,7 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect('/news_b2');
+        return redirect('/profile');
 
     }
     public function profile(Request $request)
@@ -133,5 +138,14 @@ class UserController extends Controller
 
         return 'ok';
     }
+    public function like(Request $request)
+    {
+        $Recruitments_status = Recruitments_status::create([
+                    'status' => 2,
+                    'recruitments_id' => $request->id,
+                    'user_id' => $request->user()->id,
+        ]);
 
+        return 'ok';
+    }
 }

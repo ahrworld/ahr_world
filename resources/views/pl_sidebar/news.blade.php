@@ -22,7 +22,7 @@
     height: 180px !important;
 }
 </style>
-<div class="scorl" style="width:1000px; float:left; margin-left:15px;">
+<div class="scorl" style="width:60%; float:left; margin-left:15px;">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#a1" aria-controls="a1" role="tab" data-toggle="tab">企業検索</a></li>
@@ -39,24 +39,68 @@
     $(document).ready(function() {
         $('.bt_1').click(function() {
             var r_id = $('.bt_1').attr('attr');
-            $.ajax({
-                type: "POST",
-                url: "ttt",
-                async: false,
-                dataType: "json",
-                data: {
-                    id: r_id,
-                    _token: token
-                },
-                success: function(data) {
-                    console.log(JSON.stringify(data));
-                },
-                error: function(data) {
-                    console.log('Error:', data);
-
-                }
+            swal({
+              title: "応募しますか？",
+              showCancelButton: true,
+              confirmButtonClass: "btn-info",
+              confirmButtonText: "確認",
+              cancelButtonText: "キャンセル",
+              closeOnConfirm: false
+            },
+            function(){
+              $.ajax({
+                  type: "POST",
+                  url: "ttt",
+                  async: false,
+                  dataType: "json",
+                  data: {
+                      id: r_id,
+                      _token: token
+                  },
+                  success: function(data) {
+                      console.log(JSON.stringify(data));
+                  },
+                  error: function(data) {
+                      console.log('Error:', data);
+                  }
+              });
+              swal({
+                title: "成功",
+                type: "success",
+                timer:1000,
+                showConfirmButton: false
+              })
+              setTimeout("location.reload();", 1000);
             });
         });
+        $('.bt_2').click(function() {
+            var r_id = $('.bt_2').attr('attr');
+            $.ajax({
+                  type: "POST",
+                  url: "like",
+                  async: false,
+                  dataType: "json",
+                  data: {
+                      id: r_id,
+                      _token: token
+                  },
+                  success: function(data) {
+                      console.log(JSON.stringify(data));
+                  },
+                  error: function(data) {
+                      console.log('Error:', data);
+                  }
+            });
+            swal({
+                title: "お気に入り",
+                type: "success",
+                timer:1000,
+                showConfirmButton: false
+            })
+            setTimeout("location.reload();", 1000);
+
+        });
+
         // 応募者管理
         $('#a1 .s1_btn').click(function(){
             $('#a1 .s1').removeClass('none').addClass('animated fadeIn').siblings('.search').addClass('none');
@@ -103,20 +147,20 @@
                             @endforeach
                             <label>更新日時:<span>{{$value_r->updated_at}}</span></label>
                             <p>
-                                <label class="ahr-label">業種</label><span>{{$value_r->name}}</span></p>
+                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
                             <p>
-                                <label class="ahr-label">仕事内容</label><span>{{$value_r->content}}</span></p>
+                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
-                                <label class="ahr-label">応募条件</label><span></span></p>
+                                <label class="label-gray">応募条件</label><span></span></p>
                             <p>
-                                <label class="ahr-label">給与</label><span>000万円～000万円</span></p>
+                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
                             <p>
-                                <label class="ahr-label">勤務地</label><span></span></p>
+                                <label class="label-gray">勤務地</label><span></span></p>
                         </div>
                         <div class="img-right">
                             <div style="width:150px; float:left;">
-                                <a href="/news" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->id}}">応募する</a>
-                                <button class="btn ahr-label-yellow ahr-btn-lg">お気に入り</button>
+                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->id}}">応募する</a>
+                                <a href="#" class="btn ahr-label-yellow ahr-btn-lg bt_2" attr="{{$value_r->id}}">お気に入り</a>
                             </div>
                         </div>
                     </div>
@@ -141,19 +185,19 @@
                             @endforeach
                             <label>更新日時:<span>{{$value_r->updated_at}}</span></label>
                             <p>
-                                <label class="ahr-label">業種</label><span>{{$value_r->name}}</span></p>
+                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
                             <p>
-                                <label class="ahr-label">仕事内容</label><span>{{$value_r->content}}</span></p>
+                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
-                                <label class="ahr-label">応募条件</label><span></span></p>
+                                <label class="label-gray">応募条件</label><span></span></p>
                             <p>
-                                <label class="ahr-label">給与</label><span>000万円～000万円</span></p>
+                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
                             <p>
-                                <label class="ahr-label">勤務地</label><span></span></p>
+                                <label class="label-gray">勤務地</label><span></span></p>
                         </div>
                         <div class="img-right">
                             <div style="width:150px; float:left;">
-                                <a href="/news" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->id}}">応募する</a>
+                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->id}}">応募する</a>
                                 <button class="btn ahr-label-yellow ahr-btn-lg">お気に入り</button>
                             </div>
                         </div>
@@ -192,15 +236,15 @@
                             @endforeach
                             <label>更新日時:<span>{{$value_r->updated_at}}</span></label>
                             <p>
-                                <label class="ahr-label">業種</label><span>{{$value_r->name}}</span></p>
+                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
                             <p>
-                                <label class="ahr-label">仕事内容</label><span>{{$value_r->content}}</span></p>
+                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
-                                <label class="ahr-label">応募条件</label><span></span></p>
+                                <label class="label-gray">応募条件</label><span></span></p>
                             <p>
-                                <label class="ahr-label">給与</label><span>000万円～000万円</span></p>
+                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
                             <p>
-                                <label class="ahr-label">勤務地</label><span></span></p>
+                                <label class="label-gray">勤務地</label><span></span></p>
                         </div>
                         <div class="img-right">
                             <div style="width:150px; float:left;">
@@ -230,15 +274,15 @@
                             @endforeach
                             <label>更新日時:<span>{{$value_r->updated_at}}</span></label>
                             <p>
-                                <label class="ahr-label">業種</label><span>{{$value_r->name}}</span></p>
+                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
                             <p>
-                                <label class="ahr-label">仕事内容</label><span>{{$value_r->content}}</span></p>
+                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
-                                <label class="ahr-label">応募条件</label><span></span></p>
+                                <label class="label-gray">応募条件</label><span></span></p>
                             <p>
-                                <label class="ahr-label">給与</label><span>000万円～000万円</span></p>
+                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
                             <p>
-                                <label class="ahr-label">勤務地</label><span></span></p>
+                                <label class="label-gray">勤務地</label><span></span></p>
                         </div>
                         <div class="img-right">
                             <div style="width:150px; float:left;">
@@ -266,19 +310,19 @@
                             @endforeach
                             <label>更新日時:<span>2015/12/11</span></label>
                             <p>
-                                <label class="ahr-label">業種</label><span>{{$value_r->name}}</span></p>
+                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
                             <p>
-                                <label class="ahr-label">仕事内容</label><span>{{$value_r->content}}</span></p>
+                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
-                                <label class="ahr-label">応募条件</label><span></span></p>
+                                <label class="label-gray">応募条件</label><span></span></p>
                             <p>
-                                <label class="ahr-label">給与</label><span>000万円～000万円</span></p>
+                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
                             <p>
-                                <label class="ahr-label">勤務地</label><span></span></p>
+                                <label class="label-gray">勤務地</label><span></span></p>
                         </div>
                         <div class="img-right">
                             <div style="width:150px; float:left;">
-                                <button class="btn ahr-label-blue ahr-btn-lg">応募する</button>
+                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->id}}">応募する</a>
                             </div>
                         </div>
                     </div>
@@ -302,15 +346,15 @@
                             @endforeach
                             <label>更新日時:<span>{{$value_r->updated_at}}</span></label>
                             <p>
-                                <label class="ahr-label">業種</label><span>{{$value_r->name}}</span></p>
+                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
                             <p>
-                                <label class="ahr-label">仕事内容</label><span>{{$value_r->content}}</span></p>
+                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
-                                <label class="ahr-label">応募条件</label><span></span></p>
+                                <label class="label-gray">応募条件</label><span></span></p>
                             <p>
-                                <label class="ahr-label">給与</label><span>000万円～000万円</span></p>
+                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
                             <p>
-                                <label class="ahr-label">勤務地</label><span></span></p>
+                                <label class="label-gray">勤務地</label><span></span></p>
                         </div>
                         <div class="img-right">
                             <div style="width:150px; float:left;">

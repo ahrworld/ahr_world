@@ -32,8 +32,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
-    protected $loginPath = '/bs_end';
+    protected $redirectTo = '/';
 
     /**
      * Create a new authentication controller instance.
@@ -48,9 +47,22 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'status' => 0])) {
+        if (Auth::attempt([
+            'email' => $request['email'],
+            'password' => $request['password'],
+            'status' => 0,
+            'data_status' =>0,
+            ])) {
             // 認證通過...
-            return redirect()->intended('home');
+            return redirect()->intended('step');
+        }
+        elseif (Auth::attempt([
+            'email' => $request['email'],
+            'password' => $request['password'],
+            'status' => 0,
+            'data_status' =>1,
+            ]))  {
+            return redirect()->intended('profile');
         }
         else
         {

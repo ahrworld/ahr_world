@@ -41,9 +41,9 @@ $(document).ready(function() {
 		padding-left:0px !important;
 	}
 </style>
-<body data-ng-app="app" id="app" data-custom-background data-off-canvas-nav>
+<body style="min-width:1000px;">
 		<!-- header -->
-		<section id="header" class="top-header" style="width:100% margin:auto; box-shadow: 0px 6px 10px -3px #9B9B9B;">
+		<section id="header" class="top-header" style="position:fixed; top:0px; width:100% margin:auto; box-shadow: 0px 6px 10px -3px #9B9B9B;">
 	        <header class="clearfix" style="margin:auto; padding-left:20px;">
 
 
@@ -153,7 +153,7 @@ $(document).ready(function() {
 		</section>
 		<!-- main -->
 
-        <main style="width:1500px; margin:50px auto;">
+        <main style="width:100%; margin:50px auto;">
         		  @yield('line_menu')
 				  @include('pl_sidebar/left_sidebar')
 				  @yield('content')
@@ -176,15 +176,16 @@ $(document).ready(function() {
 	    	padding: 30px 65px;
 	    }
 		</style>
-		<footer style="width:60%; float:left; margin:auto;">
+			<footer style="width:100%; float:left; margin:auto;">
 		    <div class="line"></div>
 		    <ul>
 		    	<li>OOOOOO</li>
 		    	<li>OOOOOO</li>
-		    	<li>OOOOOO</li>
-		    	<li>OOOOOO</li>
-		    	<li>OOOOOO</li>
+
 		    </ul>
 		</footer>
 
-@include('layouts.footer')
+
+</body>
+</html>
+

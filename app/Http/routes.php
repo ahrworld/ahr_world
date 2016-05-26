@@ -59,12 +59,7 @@ Route::get('/company', function(){
 });
 //form
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/business', function () {
-    return view('business');
-});
+
 Route::resource('posts', 'PostsController');
 
 /*
@@ -80,6 +75,12 @@ Route::resource('posts', 'PostsController');
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
+    Route::get('/', function () {
+        return view('index');
+    });
+    Route::get('/business', function () {
+        return view('business');
+    });
     Route::get('auth/fb', 'FBController@redirectToProvider');
 	Route::get('auth/fb/callback', 'FBController@handleProviderCallback');
 
@@ -93,6 +94,7 @@ Route::group(['middleware' => 'web'], function () {
 	//    // return response()->json(['name' => 'Abigail', 'state' => 'CA']);
 	// 	return 'bruce';
 	// });
+
 	Route::delete('/task/{task}', 'TaskController@destroy');
     Route::get('/home', 'HomeController@index');
 
@@ -112,6 +114,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/profile','UserController@profile');
     Route::get('/news','UserController@news');
     Route::post('ttt','UserController@ttt');
+    Route::post('like','UserController@like');
 
 	Route::get('/bs_end', function(){
 	return view('auth/bs_signin-end');

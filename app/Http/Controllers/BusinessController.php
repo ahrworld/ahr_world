@@ -38,14 +38,6 @@ class BusinessController extends Controller
      */
     public function bs_info(Request $request)
     {
-        // if (Auth::attempt([
-        //     'email' => $request['email'],
-        //     'password' => $request['password'],
-        //     'status' => 1,
-        //     'data_status' =>1,
-        //     ])){
-        //     return redirect('profile_b2');
-        // }
         if(Auth::user()->data_status == 1)
         {
             return redirect()->intended('profile_b2');

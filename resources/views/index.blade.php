@@ -84,7 +84,7 @@
 	                        <li><button type="button" class="btn btn-default user_lp_btn1"><a href="{{ url('/login') }}">ログイン</a></button></li>
 	                        <li><button type="button" class="btn btn-default user_lp_btn1"><a href="{{ url('/register') }}">アカウント作成</a></button></li>
 	                    @else
-	                        <li><button type="button" class="btn btn_1"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></button></li>
+	                        <li><button type="button" class="btn btn-default user_lp_btn1"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></button></li>
 	                    @endif
 
 	                </ul>
@@ -101,7 +101,6 @@
 	}
 	.user_lp_main .label1{
 		margin-top: 30px;
-		background: #F9D3D4;
 		font-size: 30px;
 		font-weight: 100;
 		color: #000;

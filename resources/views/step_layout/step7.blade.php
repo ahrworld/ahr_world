@@ -40,12 +40,12 @@
 			            @foreach($skill_categorys as $skill_category)
 			        	@if ($value_title->id == $skill_category->skill_title_id)
 			        	<h5>{{ $skill_category->skill_category }}</h5>
-			        	
+
 			        	<table class="table table-bordered">
 			        	<thead>
 			        	<tr>
 			        	<th></th>
-			        	<th>経験なし</th>
+			        	<th>学習中</th>
 			        	<th>1年未満</th>
 			        	<th>1年～3年</th>
 			        	<th>3年～5年</th>
@@ -69,10 +69,12 @@
 			        	</table>
 			        	@endif
 			        	@endforeach
+
 			        </div>
 			      </div>
 			    </div>
 			    @endforeach
+			    <button type="button" class="btn btn-primary float-right">スキップ</button>
 			  </div>
 			</div>
 		</div>

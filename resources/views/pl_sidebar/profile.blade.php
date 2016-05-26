@@ -53,7 +53,7 @@
 <style>
 
 </style>
-<div class="scorl" style="width:1000px; height:100%; float:left; margin-left:15px;">
+<div class="scorl" style="width:60%;  float:left; margin-left:15px;">
     <!-- プロフィール Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane ahr-panel fade in active" id="a1">

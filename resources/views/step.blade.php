@@ -36,15 +36,15 @@
 	  $("#div"+id).remove();
 	}
 	$(document).ready(function() {
-		
-	
+
+
 		// step4
 		$('.school_ct .other').click(function(){
 			$(".school_ct input[type='radio']").attr("checked", false);
 			$('.school_ct .other_c').removeClass('none');
 		});
 		$(".school_ct input[type='radio']").click(function(){
-			$(".school_ct .other_c").val(''); 
+			$(".school_ct .other_c").val('');
 			$('.school_ct .other_c').addClass('none');
 		});
 		// step 5
@@ -53,7 +53,7 @@
 			$('.language_append').append($('<div class="form-inline" id="div'+ id +'"> <div class="form-group" style="margin-right:3px;"> <input type="text" class="form-control" name="language[]" placeholder="language"> </div><div class="form-group" style="margin-right:3px;"> <select class="form-control" name="languagelv[]"> <option value="3">母語</option> <option value="2">ビジネス</option> <option value="1">日常会話</option> <option value="0">初級</option> </select> </div><div class="form-group" ><a href="#" class="float-right" style="font-size:25px;" onclick="del('+id+')"> <i class="fa fa-times-circle" aria-hidden="true"></i> </a> </div></div>'));
 			id++;
 		});
-		
+
 		// step3 sex
 		$('.ahr-button_boy').click(function(){
 			$('.army').removeClass('none');
