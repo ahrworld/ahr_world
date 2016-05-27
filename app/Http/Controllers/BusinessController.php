@@ -10,6 +10,8 @@ use App\ModelBranch\Employment;
 use App\ModelBranch\Experience;
 use App\ModelBranch\Languagelv;
 use App\ModelBranch\Bs_image;
+use App\ModelBranch\Exp_job;
+use App\ModelBranch\Exp_job_category;
 use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
 use App\PersonnelBranch\skill_title;
@@ -42,9 +44,16 @@ class BusinessController extends Controller
         {
             return redirect()->intended('profile_b2');
         }
+        $exp_job = Exp_job::all();
+        $exp_job_category = Exp_job_category::all();
         $Languages = Language::all();
         $skill_data = skill_name::all();
-        return view('bs_info', ['Languages' => $Languages , 'skill_data' => $skill_data]);
+        return view('bs_info', [
+            'Languages' => $Languages ,
+            'skill_data' => $skill_data,
+            'exp_job' => $exp_job,
+            'exp_job_category' => $exp_job_category,
+            ]);
 
     }
     public function business_a(Request $request)
@@ -203,6 +212,52 @@ class BusinessController extends Controller
         $bs_image->save();
         return redirect('/profile_b2');
 
+    }
+    //Recruitment
+    public function recruitments_add(Request $request){
+        // Recruitment tabel
+        $c = $request->user()->Recruitment()->create([
+            'name' => $request->recruitment_name,
+            'content' => $request->content,
+            'ideal' => $request->ideal,
+            'subject' => $request->subject,
+            'need_skill' => $request->need_skill,
+            'if_skill' => $request->if_skill,
+            'other_skill' => $request->other_skill,
+            'site' => $request->site,
+            'annual_income' => $request->annual_income,
+            'monthly_income' => $request->monthly_income,
+            'work_time' => $request->work_time,
+            'bonus' => $request->bonus,
+            'holiday' => $request->holiday,
+            'welfare' => $request->welfare,
+            'allowances' => $request->allowances,
+            'education' => $request->education,
+        ]);
+
+        $employment = new Employment;
+        foreach ($request->employment as $key) {
+            $d = $employment::create([
+                    'employment_name' => $key,
+                    'recruitments_id' => $c->id,
+            ]);
+        }
+        $experience = new Experience;
+        foreach ($request->experience as $key) {
+            $e = $experience::create([
+                    'experiences_name' => $key,
+                    'recruitments_id' => $c->id,
+            ]);
+        }
+        $Languagelv = new Languagelv;
+        foreach ($request->language as $key => $value) {
+            $f = $Languagelv::create([
+                    'languagelv_name' => $value,
+                    'lv' => $request->languagelv[$key],
+                    'recruitments_id' => $c->id,
+            ]);
+        }
+        return redirect('/profile_b2');
     }
     public function update(Request $request){
         $BSinformation = new BSinformations;
