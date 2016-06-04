@@ -48,7 +48,7 @@ $(document).ready(function() {
 		$('.employ').click(function(){
 			$(this).toggleClass('active');
 		});
-		
+
 		$('.ahr-button_3').click(function(){
 			$(this).addClass('active').siblings('.active').removeClass('active');
 		});

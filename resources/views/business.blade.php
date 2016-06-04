@@ -101,23 +101,7 @@
         	height: 30px;
         	background-color: #EAF6FD;
         }
-        .background1{
-        	background-image: url('ahr/assets/img/bs_lp_bk1.png');
-        	background-position: center;
-        	background-size: cover;
-        	max-width: 100%;
-        	height: 600px;
-        	margin: 0 auto;
-        }
-        .background2{
-            background-image: url('ahr/assets/img/bs_lp_bk2.png');
-        	background-color:#00A6EA;
-        	background-position: center;
-        	background-size: cover;
-        	max-width: 100%;
-        	height: 400px;
-        	margin: 0 auto;
-        }
+
         .label-default{
         	background-color: #FFF;
         	color: #00A6EA;
@@ -184,9 +168,13 @@
     </nav>
 
     <main >
-		<div class="background1"></div>
+		<div class="background1">
+			<img src="ahr/assets/img/bs_lp_bk1.png" height="500" style="margin-top:20px;">
+		</div>
 		<div class="base"></div>
-		<div class="background2"></div>
+		<div class="background2">
+			<img src="ahr/assets/img/bs_lp_bk2.png" height="415">
+		</div>
 		<div class="base"></div>
 		<div class="background3">
 			<img src="ahr/assets/img/bs_lp_bk3.png" height="600" style="margin-top:20px;">

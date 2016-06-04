@@ -85,7 +85,7 @@
 			    <!-- <button type="button" class="btn ahr-button_boy"><img height="50" src="ahr/assets/img/boy.png" alt=""></button> -->
 			</div>
 			<div class="col-md-6">
-			    <input type="radio" name="sex" id="radio2" value="0" class="radio"/>
+			    <input type="radio" name="sex" id="radio2" value="0" class="ahr-button_girl radio"/>
 			    <label for="radio2">女性</label>
 			    <!-- <button type="button" class="btn ahr-button_boy"><img height="50" src="ahr/assets/img/girl.png" alt=""></button> -->
 		    </div>
@@ -94,9 +94,9 @@
 			      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 			      <h5>兵役経験について選択してください。</h5>
 			      <p>
-			      	  <input type="radio" name="military" value="0" class="btn btn-default" style="width:16px; height:16px; margin:10px;">無
+			      	  <input type="radio" name="military" value="0" class="btn btn-default no" style="width:16px; height:16px; margin:10px;">無
 			          <input type="radio" name="military" value="1" class="btn btn-info check" style="width:16px; height:16px; margin:10px;">済
-			          <input type="radio" name="military" value="2" class="btn btn-default" style="width:16px; height:16px; margin:10px;">未
+			          <input type="radio" name="military" value="2" class="btn btn-default not" style="width:16px; height:16px; margin:10px;">未
 			      </p>
 			      <div>&nbsp;</div>
 			      <div class="datetime none">

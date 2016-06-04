@@ -58,8 +58,14 @@
 		$('.ahr-button_boy').click(function(){
 			$('.army').removeClass('none');
 		});
+		$('.ahr-button_girl').click(function(){
+			$('.army').addClass('none');
+		});
 		$('.army .check').click(function(){
 			$('.army .datetime').removeClass('none');
+		});
+		$('.army .no,.army .not').click(function(){
+			$('.army .datetime').addClass('none');
 		});
 		//
     	$(".finish_sumbit").click(function(){

@@ -570,11 +570,11 @@ td,tr,th,p,h1,h2,h3,h4,h5,h6,span,a,div,button,label,li,ul,table tbody tr th,tab
 
 /* bs_lp */
 
-.background3 , .background5 , .background7{
+.background1 ,.background3 , .background5 , .background7{
 	text-align: center;
 	margin:0 auto;
 }
-.background4 , .background6 , .background8{
+.background2 ,.background4 , .background6 , .background8{
 	text-align: center;
 	margin:0 auto;
 	background-color:#00A6EA;

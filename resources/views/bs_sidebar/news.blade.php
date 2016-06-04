@@ -78,9 +78,9 @@ $(document).ready(function() {
                         </div>
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                            <label class="ahr-label_bs">応募職缺:<span>{{ $value->name }}</span></label>
                             <label class="ahr-label_bs">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
-                            <label class="ahr-label_bs">ID:<span>{{ $value->id }}</span></label>
+                            <label class="" style="border:1px solid #ccc; padding:5px;"><span>{{ $value->name }}</span></label>
+
                             <p><label class="label-gray">最終学歴</label><span>○○○○○○○○○○○○○○○○○○○○○○○○</span></p>
                             <p><label class="label-gray">学部</label><span>○○○○○○○○○○○○○○○○○○○○○○○○○</span></p>
                             <p><label class="label-gray">言語レベル</label><span>○○○○○○○○○○○○○○○○○○○</span></p>
@@ -108,9 +108,8 @@ $(document).ready(function() {
                         </div>
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                            <label class="ahr-label_bs">応募職缺:<span>{{ $value->name }}</span></label>
-                            <label class="ahr-label_bs">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
-                            <label class="ahr-label_bs">ID:<span>{{ $value->id }}</span></label>
+                            <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
+                            <label class="" style="border:1px solid #ccc; padding:2px 5px; font-weight:100;"><span>{{ $value->name }}</span></label>
                             <p><label class="label-gray">最終学歴</label><span>○○○○○○○○○○○○○○○○○○○○○○○○</span></p>
                             <p><label class="label-gray">学部</label><span>○○○○○○○○○○○○○○○○○○○○○○○○○</span></p>
                             <p><label class="label-gray">言語レベル</label><span>○○○○○○○○○○○○○○○○○○○</span></p>
