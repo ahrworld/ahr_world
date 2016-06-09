@@ -17,7 +17,7 @@ class RoleUser
     public function handle($request, Closure $next)
     {
         if (Gate::denies('user')) {
-            return redirect('home');
+            return redirect('/business');
         }
         return $next($request);
     }

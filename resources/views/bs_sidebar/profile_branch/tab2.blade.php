@@ -41,7 +41,7 @@
                <a style="float:left; height:30px;" role="button" data-toggle="collapse" data-parent="#accordion{{ $key }}" href="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}" >
                  <h4 class="panel-title" style="height:18px;">
                    <span>{{ $key+1 }}</span>
-                   <a style="float:left; width:90%; height: 27px;" role="button" data-toggle="collapse" data-parent="#accordion{{ $key }}" href="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}" >
+                   <a style="float:left; width:80%; height: 27px;" role="button" data-toggle="collapse" data-parent="#accordion{{ $key }}" href="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}" >
                      {{ $recruitment->name }}
                    </a>
                    <i class="fa fa-caret-down float-right"></i>

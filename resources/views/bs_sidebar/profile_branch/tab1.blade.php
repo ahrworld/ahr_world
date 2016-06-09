@@ -1,30 +1,137 @@
+<style>
+ .cropit-preview {
+   /* You can specify preview size in CSS */
+   width: 100%;
+   height: 100px;
+ }
+ .cropit-photo {
+   /* You can specify preview size in CSS */
+   width: 100%;
+   height: 100px;
+ }
+ /* this page only start */
+ .panel-default{
+  margin-bottom: 20px !important;
+ }
+ /* this page only end */
+ .panel-default .default_photo{
+   padding: 0px !important;
+ }
+ .default_photo .bs_background{
+   background-position: center;
+   background-size: cover;
+   width:100%;
+   height:150px;
+   display: block;
+ }
+ .default_photo .bs_background .update_bt{
+   position: absolute; bottom: 5px; right: 30px;
+ }
+ .default_photo .bs_photo{
+   display: block;
+   background-position: center;
+   background-size: cover;
+   height:100px; position: absolute; width:100px; bottom: -10px; left: 35px;
+ }
+ .default_photo .bs_photo .update_bt{
+   position: absolute; bottom: 5px; right: 10px;
+ }
+</style>
 <div class="wrapper">
     <!-- 1 -->
      <div class="panel panel-default">
        <div class="panel-body default_photo">
                <div class="row">
-               <!-- logo left -->
-                    <!-- video -->
                     <div class="col-md-12">
-                    <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    </a>
                      @foreach ($tasks as $task)
-                         <div class="img-thumbnail" style=" background-image:url('ahr/busineses_img/big{{$task->user_id}}.jpg');
-                         background-position: center;  background-size: cover;
-                         width:100%; height:150px;">
+                         <div class="img-thumbnail bs_background" style=" background-image:url('ahr/busineses_img/big{{$task->user_id}}.jpg');">
+                            <a href="#" class="float-right update_bt none" style="">
+                              <i class="fa fa-camera" aria-hidden="true"></i>
+                            </a>
                          </div>
-                         <div class="img-thumbnail"
-                         style=" background-image:url('ahr/busineses_img/small{{$task->user_id}}.png');
-                         background-position: center;  background-size: cover;
-                         height:100px; position: absolute; width:100px; top: 60px; left: 35px;">
+                         <div class="img-thumbnail bs_photo" style=" background-image:url('ahr/busineses_img/small{{$task->user_id}}.png');">
+                           <a href="#" class="float-right update_bt none">
+                             <i class="fa fa-camera" aria-hidden="true"></i>
+                           </a>
                          </div>
                      @endforeach
                     </div>
                </div>
        </div>
 
+       <script>
+       $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+       });
+       var token = '{{ Session::token() }}';
+        $(document).ready(function() {
+          // cropit
+          $('#image-cropper').cropit();
+          $('.download-btn').click(function() {
+            var imageData = $('#image-cropper').cropit('export');
+            $('.hidden_image_data').val(imageData);
+            $.ajax({
+                type: "POST",
+                url: "/business/image",
+                async: false,
+                dataType: "json",
+                data:  $('.test_form').serialize(),
+                success: function(data) {
+                    console.log(data);
+                    console.log(JSON.stringify(data));
+                },
+                error: function(data) {
+                    console.log('Error:', data);
+
+                }
+            });
+          });
+          // summary
+          $('.summary_type_next').click(function() {
+            var checked = $("input[name='summary_Type']:checked").val();
+            if (checked == 1) {
+              alert('A');
+            }
+            else if(checked == 2){
+              alert('B');
+            }
+            else if(checked == 3){
+              alert('B');
+            }
+          });
+        });
+       </script>
+
+     <!--   <div class="panel-body update_background">
+               <div class="row">
+                    <div class="col-md-12">
+                     @foreach ($tasks as $task)
+                         <div class="img-thumbnail bs_background" style=" background-image:url('ahr/busineses_img/big{{$task->user_id}}.jpg');">
+                            <a href="#" class="float-right update_bt none" style="">
+                              <i class="fa fa-camera" aria-hidden="true"></i>
+                            </a>
+                         </div>
+                     @endforeach
+                    </div>
+               </div>
+       </div>
+       <div class="panel-body update_photo">
+               <div class="row">
+                    <div class="col-md-12">
+                     @foreach ($tasks as $task)
+                         <div class="img-thumbnail bs_photo" style=" background-image:url('ahr/busineses_img/small{{$task->user_id}}.png');">
+                           <a href="#" class="float-right update_bt none">
+                             <i class="fa fa-camera" aria-hidden="true"></i>
+                           </a>
+                         </div>
+                     @endforeach
+                    </div>
+               </div>
+       </div> -->
        <div class="panel-body update_photo none">
+
                <div class="row">
                <!-- logo left -->
                     <!-- video -->
@@ -32,6 +139,17 @@
                     <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>
+
+                     <div id="image-cropper">
+                       <div class="cropit-preview"></div>
+                       <form class="test_form" action="{{url('/business/image')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                       <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                       <input type="range" class="cropit-image-zoom-input" />
+                       <input type="file" name="imageData" class="cropit-image-input" />
+                       <input type="hidden" name="image_data" class="hidden_image_data" />
+                       </form>
+                     </div>
+                     <button class="download-btn"></button>
                        <form action="{{url('/business/image')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                         {{ csrf_field() }}
                          <div class="form-group">
@@ -53,6 +171,19 @@
        </div>
      </div>
      <!-- 2 -->
+     @foreach ($tasks as $task)
+     @if($task->company_name)
+     <div style="margin:30px auto;">
+        <h4 style="font-weight:bold;">会社名:<span>{{$task->company_name}}</span></h4>
+     </div>
+     @endif
+     @endforeach
+
+
+     <div style="text-align:right;">
+        <label class="add add_recruitment"  data-toggle="modal" data-target="#bs_summary" style="width:30px; height:30px;"></label>
+     </div>
+     <!-- 3 -->
      <div class="panel panel-default">
        <div class="panel-body update-panel1" style="padding-top: 0px !important;">
                <div class="row">
@@ -64,10 +195,6 @@
                     <h6>■会社のミッションと理念？</h6>
 
                       <div class="panel-content default_content">
-                      @foreach ($tasks as $task)
-                         <label style="font-size:13px;">国名:<span>○○○○○</span></label>
-                         <label style="font-size:13px;">会社名:<span>{{$task->company_name}}</span></label>
-                      @endforeach
 
                       </div>
                       <div class="panel-content update_content none col-md-12">
@@ -98,7 +225,6 @@
               </div>
        </div>
      </div>
-
      <!-- 4 -->
      <div class="default_summary">
        <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 57%;">
@@ -195,3 +321,76 @@
        </form>
      </div>
 </div><!-- wrapper end -->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="bs_summary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">■会社のミッションと理念？</h4>
+      </div>
+
+      <div class="modal-body">
+        <!-- Type A -->
+        <input type="radio" value="1" name="summary_Type">Type A
+        <div class="panel panel-default">
+          <div class="panel-body update-panel1" style="padding-top: 0px !important;">
+              <div class="row">
+                  <!-- logo left -->
+                    <div class="col-md-12">
+                       <h6>top</h6>
+                         <div class="panel-content default_content">
+
+                         </div>
+                    </div>
+              </div>
+              <!-- row end -->
+          </div>
+        </div>
+        <!-- Type B -->
+        <input type="radio" value="2" name="summary_Type">Type B
+        <div class="panel panel-default">
+          <div class="panel-body update-panel1" style="padding-top: 0px !important;">
+              <div class="row">
+                  <!-- logo left -->
+                    <div class="col-md-12">
+                       <h6>top</h6>
+                         <div class="panel-content default_content">
+
+                         </div>
+                    </div>
+              </div>
+              <!-- row end -->
+          </div>
+        </div>
+        <!-- Type C -->
+        <input type="radio" value="3" name="summary_Type">Type C
+        <div class="panel panel-default">
+          <div class="panel-body update-panel1" style="padding-top: 0px !important;">
+              <div class="row">
+                  <!-- logo left -->
+                    <div class="col-md-12">
+                       <h6>top</h6>
+                         <div class="panel-content default_content">
+
+                         </div>
+                    </div>
+              </div>
+              <!-- row end -->
+          </div>
+        </div>
+
+      </div>
+      <!-- modal body end -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary summary_type_next">Save changes</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- modal end -->

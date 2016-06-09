@@ -17,7 +17,7 @@ class RoleBusiness
     public function handle($request, Closure $next)
     {
         if (Gate::denies('business')) {
-            return redirect('home');
+            return redirect('/');
         }
         return $next($request);
     }

@@ -26,8 +26,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $email = $request->user();
-        return view('welcome',$email);
+        return view('/',$email);
     }
 
-  
 }

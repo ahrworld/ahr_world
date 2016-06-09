@@ -558,10 +558,10 @@ td,tr,th,p,h1,h2,h3,h4,h5,h6,span,a,div,button,label,li,ul,table tbody tr th,tab
 /* base */
 
 .close_bt ,.update_bt , .update_bt1,.update_bt2{
-  font-size:25px; color:#1c7ebb;
+  font-size:25px; color:#7F7F7F;
 }
 .close_bt:hover ,.update_bt:hover ,.update_bt1:hover,.update_bt2:hover{
-  color:#1C46BB;
+  color:#1c7ebb;
 }
 
 .update_content{

@@ -7,14 +7,6 @@
 
 <script>
   $(document).ready(function() {
-    $('.default_photo').hover(function(){
-      $('.default_photo .update_bt').toggleClass('none');
-    });
-    $('.default_photo .update_bt').click(function(){
-      $('.default_photo').addClass('none');
-      $('.update_photo').removeClass('none');
-    });
-
     $('.update-panel1').hover(function(){
       $('.update_bt1').toggleClass('none');
     });

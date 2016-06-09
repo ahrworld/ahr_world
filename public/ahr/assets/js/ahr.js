@@ -1,4 +1,16 @@
 $(document).ready(function() {
+		// business profile tab1
+		$('.default_photo .bs_background').hover(function(){
+		  $('.default_photo .bs_background .update_bt').toggleClass('none');
+		});
+		$('.default_photo .bs_photo').hover(function(){
+		  $('.default_photo .bs_photo .update_bt').toggleClass('none');
+		});
+		$('.default_photo .update_bt').click(function(){
+		  $('.default_photo').addClass('none');
+		  $('.update_photo').removeClass('none');
+		});
+
 	    // list-inbox
 		$('.list-inbox').click(function(){
 			$('.label-status').addClass('none');

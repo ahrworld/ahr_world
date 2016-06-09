@@ -120,6 +120,9 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/bs_end', function(){
 	return view('auth/bs_signin-end');
 	});
+	Route::get('/upload_ts', function(){
+	return view('testupload');
+	});
 	Route::get('/bs_setting', function(){
 		return view('bs_setting');
 	});

@@ -12,6 +12,7 @@ use App\ModelBranch\Languagelv;
 use App\ModelBranch\Bs_image;
 use App\ModelBranch\Exp_job;
 use App\ModelBranch\Exp_job_category;
+use App\ModelBranch\Subject;
 use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
 use App\PersonnelBranch\skill_title;
@@ -40,10 +41,11 @@ class BusinessController extends Controller
      */
     public function bs_info(Request $request)
     {
-        if(Auth::user()->data_status == 1)
-        {
-            return redirect()->intended('profile_b2');
-        }
+        // if(Auth::user()->data_status == 1)
+        // {
+        //     return redirect()->intended('profile_b2');
+        // }
+        $subject = Subject::all();
         $exp_job = Exp_job::all();
         $exp_job_category = Exp_job_category::all();
         $Languages = Language::all();
@@ -53,6 +55,7 @@ class BusinessController extends Controller
             'skill_data' => $skill_data,
             'exp_job' => $exp_job,
             'exp_job_category' => $exp_job_category,
+            'subject' => $subject,
             ]);
 
     }
@@ -93,7 +96,7 @@ class BusinessController extends Controller
             'name' => $request->recruitment_name,
             'content' => $request->content,
             'ideal' => $request->ideal,
-            'subject' => $request->subject,
+            'subject_id' => $request->subject,
             'need_skill' => $request->need_skill,
             'if_skill' => $request->if_skill,
             'other_skill' => $request->other_skill,
@@ -156,6 +159,7 @@ class BusinessController extends Controller
         $tasks = $BSinformation::where('user_id', $request->user()->id)->get();
         $Recruitment = new Recruitment;
         $recruitments = $Recruitment::where('user_id', $request->user()->id)
+        ->join('subject', 'recruitments.subject_id', '=', 'subject.id')
                                     ->get();
         $employments = $Recruitment::where('user_id', $request->user()->id)
         ->join('employments', 'recruitments.id', '=', 'employments.recruitments_id')
@@ -178,7 +182,7 @@ class BusinessController extends Controller
     }
     public function image(Request $request){
         $bs_image = New Bs_image;
-
+        return $request->all();
         if ($request->hasFile('image_big') && $request->hasFile('image_small'))
         {
             // big

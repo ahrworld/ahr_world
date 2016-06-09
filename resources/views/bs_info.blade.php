@@ -267,13 +267,16 @@
 					       		      		     <th scope="row" align="right" width="20%">募集職種<span class="color-red">※</span></th>
 					       		      		     <td>
 						       		      		       <select class="select11" name="recruitment_name" style="width:100%;">
-
-	  		       			       		      		          <optgroup label="">
-
-	  		       			       		      		          @foreach($exp_job as $key_a => $value_a)
-	  		             		         							<option name="recruitment_name" value="{{ $value_a->name }}">{{ $value_a->name }}</option>
-	  		             		         					  @endforeach
+       														  <option value="">職種を選んでください</option>
+       														  @foreach($exp_job_category as $key_category => $value_category)
+	  		       			       		      		          <optgroup label="{{ $value_category->category }}" style="background: #ebebee; color: #888888; font-weight: normal; font-style: normal; ">
+		  		       			       		      		          @foreach($exp_job as $key => $value)
+			  		       			       		      		          @if ($value_category->id == $value->exp_job_category_id)
+			  		             		         							<option name="recruitment_name" value="{{ $value->id }}" style="background: #ffffff; color: #000000;">&nbsp;└&nbsp;{{ $value->name }}</option>
+			  		             		         					  @endif
+		  		             		         					  @endforeach
 	  		             		         					  </optgroup>
+	  		             		         					  @endforeach
 						       		      			   </select>
 					       		      		     </td>
 					       	      		     </tr>
@@ -323,20 +326,11 @@
 					       	      		     <tr>
 					       		      		     <th scope="row" align="right" width="20%">募集学科<span class="color-red">※</span></th>
 					       		      		     <td>
-					       		      		       <select  name="subject" class="select22" style="width:100%;" multiple="multiple" >
-					       		      		          <optgroup label="Mountain Time Zone">
-		      		         							    <option value="AZ">Arizona</option>
-		      		         							    <option value="CO">Colorado</option>
-		      		         							    <option value="ID">Idaho</option>
-		      		         							    <option value="MT">Montana</option>
-		      		         							  </optgroup>
-		      		         							  <optgroup label="Central Time Zone">
-		      		         							    <option value="AL">Alabama</option>
-		      		         							    <option value="AR">Arkansas</option>
-		      		         							    <option value="IL">Illinois</option>
-		      		         							    <option value="IA">Iowa</option>
-		      		         							    <option value="KS">Kansas</option>
-		      		         							  </optgroup>
+					       		      		       <select  name="subject" class="select22" style="width:100%;">
+					       		      		           <option value="">学科を選んでください</option>
+		      		         						   @foreach($subject as $value)
+		      		         						   <option value="{{$value->id}}" name="subject">{{$value->subject}}</option>
+		      		         						   @endforeach
 					       		      		       </select>
 					       		      		     </td>
 					       	      		     </tr>
