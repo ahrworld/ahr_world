@@ -56,13 +56,9 @@
 			    <label for="">学科<span class="color-red">※</span></label>
 			    <div class="subject_ct">
 				    <select name="subject" class="js-example-templating3 js-states" style="width: 100%">
-			    		<option value="情報學科">情報學科</option>
-			    		<option value="電子學科">電子學科</option>
-			    		<option value="資訊學科">資訊學科</option>
-			    		<option value="財經學科">財經學科</option>
-			    		<option value="企管學科">企管學科</option>
-			    		<option value="餐旅學科">餐旅學科</option>
-			    		<option value="觀餐學科">觀餐學科</option>
+			    		@foreach($subject as $value)
+			    		<option value="{{$value->id}}">{{$value->subject}}</option>
+			    		@endforeach
 			    	</select>
 			    </div>
 			  </div>

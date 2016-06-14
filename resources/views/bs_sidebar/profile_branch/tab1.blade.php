@@ -89,10 +89,11 @@
             });
           });
           // summary
-          $('.summary_type_next').click(function() {
+          $('#bs_summary .summary_type_next').click(function() {
             var checked = $("input[name='summary_Type']:checked").val();
             if (checked == 1) {
-              alert('A');
+              $('#bs_summary .summary_type_next,#bs_summary .select_type').addClass('none');
+              $('#bs_summary .summary_submit,#bs_summary .summary_A').removeClass('none');
             }
             else if(checked == 2){
               alert('B');
@@ -101,6 +102,10 @@
               alert('B');
             }
           });
+          $('#bs_summary .summary_submit').click(function(){
+              $('.summary_form').submit();
+          });
+
         });
        </script>
 
@@ -178,52 +183,50 @@
      </div>
      @endif
      @endforeach
+<style>
+  .summary_A .image{
+    width:130px; height:130px; border:1px solid #CCC; float:left;
+    background-position: center;
+    background-size: cover;
+  }
+  .summary_A .text{
+    width: 470px;
+    float: left;
+    margin-left: 20px;
+  }
+</style>
+    <!-- type_A -->
+     @foreach ($bs_summary_A as $value_summary)
+     @if($value_summary->summary_title)
+     <div class="panel panel-default summary_A">
+       <div class="panel-body update-panel1" style="padding-top: 0px !important;">
+           <div class="row">
+                   <div class="col-md-12">
+                        <div class="form-group" style="margin:20px auto;">
+                           <h4>■{{$value_summary->summary_title}}</h4>
+                        </div>
+                        <div class="panel-content default_content">
+                           <div class="form-group">
+                               <div class="image" style="background-image:url('ahr/busineses_img/{{$value_summary->image}}');
+                               ">
+                               </div>
 
+                               <div class="text">
+                                 <h5>{{$value_summary->summary}}</h5>
+                               </div>
+
+                           </div>
+                        </div>
+                   </div>
+           </div>
+           <!-- row end -->
+       </div>
+     </div>
+     @endif
+     @endforeach
 
      <div style="text-align:right;">
         <label class="add add_recruitment"  data-toggle="modal" data-target="#bs_summary" style="width:30px; height:30px;"></label>
-     </div>
-     <!-- 3 -->
-     <div class="panel panel-default">
-       <div class="panel-body update-panel1" style="padding-top: 0px !important;">
-               <div class="row">
-               <!-- logo left -->
-                    <div class="col-md-12">
-                    <a href="#" class="float-right update_bt1 none">
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    </a>
-                    <h6>■会社のミッションと理念？</h6>
-
-                      <div class="panel-content default_content">
-
-                      </div>
-                      <div class="panel-content update_content none col-md-12">
-                        <form action="" method="POST">
-                        {{ csrf_field() }}
-                           <table class="table table-bordered">
-                             <tbody>
-                             @foreach ($tasks as $task)
-                                 <tr>
-                                   <th scope="row" align="right" width="20%">title</th>
-                                   <td>
-                                   <input type="text" name="work_time" class="form-control ahr-input_1" >
-                                   </td>
-                                 </tr>
-                                 <tr>
-                                   <th scope="row" align="right" width="20%">会社のミッションと理念</th>
-                                   <td>
-                                   <textarea name="ideal" class="form-control" rows="3"></textarea>
-                                   </td>
-                                 </tr>
-                             @endforeach
-                             </tbody>
-                           </table>
-                           <button type="submit" class="btn btn-primary float-right">編集完了</button>
-                        </form>
-                      </div>
-                    </div>
-              </div>
-       </div>
      </div>
      <!-- 4 -->
      <div class="default_summary">
@@ -334,60 +337,129 @@
       </div>
 
       <div class="modal-body">
-        <!-- Type A -->
-        <input type="radio" value="1" name="summary_Type">Type A
-        <div class="panel panel-default">
-          <div class="panel-body update-panel1" style="padding-top: 0px !important;">
-              <div class="row">
-                  <!-- logo left -->
-                    <div class="col-md-12">
-                       <h6>top</h6>
-                         <div class="panel-content default_content">
-
-                         </div>
-                    </div>
+        <div class="select_type">
+            <!-- Type A -->
+            <input type="radio" value="1" name="summary_Type">Type A
+            <div class="panel panel-default">
+              <div class="panel-body update-panel1" style="padding-top: 0px !important;">
+                  <div class="row">
+                      <!-- logo left -->
+                        <div class="col-md-12">
+                           <h6>title</h6>
+                           <div class="panel-content default_content">
+                              <div class="image" style="width:20%; height:150px; margin-right:20px; border:1px solid #CCC; float:left;"></div>
+                              <div class="summary">
+                              <p>
+                              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                              </p>
+                              </div>
+                           </div>
+                        </div>
+                  </div>
+                  <!-- row end -->
               </div>
-              <!-- row end -->
-          </div>
-        </div>
-        <!-- Type B -->
-        <input type="radio" value="2" name="summary_Type">Type B
-        <div class="panel panel-default">
-          <div class="panel-body update-panel1" style="padding-top: 0px !important;">
-              <div class="row">
-                  <!-- logo left -->
-                    <div class="col-md-12">
-                       <h6>top</h6>
-                         <div class="panel-content default_content">
-
-                         </div>
-                    </div>
+            </div>
+            <!-- Type B -->
+            <input type="radio" value="2" name="summary_Type">Type B
+            <div class="panel panel-default">
+              <div class="panel-body update-panel1" style="padding-top: 0px !important;">
+                  <div class="row">
+                      <!-- logo left -->
+                        <div class="col-md-12">
+                           <h6>title</h6>
+                           <div class="panel-content default_content">
+                                <div class="summary">
+                                <p>
+                                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                </p>
+                                </div>
+                            </div>
+                        </div>
+                  </div>
+                  <!-- row end -->
               </div>
-              <!-- row end -->
-          </div>
-        </div>
-        <!-- Type C -->
-        <input type="radio" value="3" name="summary_Type">Type C
-        <div class="panel panel-default">
-          <div class="panel-body update-panel1" style="padding-top: 0px !important;">
-              <div class="row">
-                  <!-- logo left -->
-                    <div class="col-md-12">
-                       <h6>top</h6>
-                         <div class="panel-content default_content">
-
-                         </div>
-                    </div>
+            </div>
+            <!-- Type C -->
+            <input type="radio" value="3" name="summary_Type">Type C
+            <div class="panel panel-default">
+              <div class="panel-body update-panel1" style="padding-top: 0px !important;">
+                  <div class="row">
+                      <!-- logo left -->
+                        <div class="col-md-12">
+                           <h6>top</h6>
+                           <div class="panel-content default_content">
+                              <div>
+                                <div class="image" style="width:31%; height:150px; margin-bottom:20px; margin-right:2%; border:1px solid #CCC; float:left;"></div>
+                                <div class="image" style="width:31%; height:150px; margin-right:2%; border:1px solid #CCC; float:left;"></div>
+                                <div class="image" style="width:31%; height:150px; margin-right:2%; border:1px solid #CCC; float:left;"></div>
+                              </div>
+                              <div class="summary">
+                               <p>
+                                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                </p>
+                              </div>
+                           </div>
+                        </div>
+                  </div>
+                  <!-- row end -->
               </div>
-              <!-- row end -->
-          </div>
+            </div>
         </div>
+        <!-- summary_A -->
+        <div class="summary_A none">
+            <div class="panel panel-default">
+              <div class="panel-body update-panel1" style="padding-top: 0px !important;">
+                  <div class="row">
+                      <!-- logo left -->
+                       <form class="summary_form" action="{{url('/business/summary')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                       {{ csrf_field() }}
+                          <div class="col-md-12">
+                               <div class="form-group" style="margin:20px auto;">
+                                  <input type="text" name="summary_title" class="form-control" placeholder="title">
+                               </div>
+                               <div class="panel-content default_content">
+                                  <div class="form-group">
+                                      <div class="col-sm-2 image" style="height:130px;border:1px solid #CCC;">
+                                       <input type="file" name="summary_image"  multiple>
+                                      </div>
+                                      <div class="col-sm-10">
+                                        <textarea name="summary" class="form-control" rows="6"></textarea>
+                                      </div>
+                                  </div>
+                               </div>
+                          </div>
+                        </form>
+                  </div>
+                  <!-- row end -->
+              </div>
+            </div>
+          </div>
 
       </div>
       <!-- modal body end -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary summary_type_next">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+        <button type="button" class="btn btn-primary summary_type_next">完了して次へ</button>
+        <button type="submit" class="btn btn-primary none summary_submit">完了</button>
       </div>
 
     </div>

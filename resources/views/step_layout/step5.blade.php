@@ -34,14 +34,14 @@
 			     	 <div class="form-group" style="margin-top: 30px;">
 	  		      	    <label class="add"></label>
 	  		        </div>
-	  		        
+
 		        </div>
 
 
 			  </div>
 			</div>
-			
-			
+
+
 		</div>
   </div>
 </div><!-- end tab6 -->

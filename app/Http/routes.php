@@ -106,6 +106,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/profile_b2','BusinessController@profile');
     Route::post('/business/update', 'BusinessController@update');
     Route::post('/business/image', 'BusinessController@image');
+    Route::post('/business/summary', 'BusinessController@summary');
     Route::post('/business/recruitments_add', 'BusinessController@recruitments_add');
     Route::get('/news_b2', 'BusinessController@news');
 

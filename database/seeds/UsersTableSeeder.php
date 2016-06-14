@@ -11,10 +11,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        foreach (range(1,20) as $number) {
+            DB::table('users')->insert([
             'status' => 1,
-            'email' => str_random(10).'@gmail.com',
+            'email' => $number.str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
-        ]);
+            ]);
+        }
     }
 }

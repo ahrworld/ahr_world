@@ -101,35 +101,48 @@
                                     <table class="user-view_table">
                                         <tbody>
                                             <tr>
-                                                <th width="120px">氏名</th>
-                                                <td>：{{ $value->family_name + $value->surname}}</td>
+                                                <th width="80px">氏名</th>
+                                                <td>：{{ $value->family_name.$value->surname}}</td>
                                             </tr>
                                             <tr>
-                                                <th width="120px">英語名</th>
-                                                <td>：{{ $value->family_name_en + $value->surname_en }}</td>
+                                                <th width="80px">英語名</th>
+                                                <td>：{{ $value->family_name_en.$value->surname_en }}</td>
                                             </tr>
                                             <tr>
-                                                <th width="120px">国籍</th>
+                                                <th width="80px">国籍</th>
                                                 <td>：{{ $value->country }}</td>
                                             </tr>
                                             <tr>
-                                                <th width="120px">性別</th>
-                                                <td>：{{ $value->sex }}</td>
+                                                <th width="80px">性別</th>
+                                                @if($value->sex === 1)
+                                                <td>：男</td>
+                                                @endif
+                                                @if($value->sex === 0)
+                                                <td>：女</td>
+                                                @endif
                                             </tr>
                                             <tr>
-                                                <th width="120px">生年月日</th>
+                                                <th width="80px">生年月日</th>
                                                 <td>：{{ $value->birthday }}</td>
                                             </tr>
                                             <tr>
-                                                <th width="120px">現住所</th>
-                                                <td>：{{ $value->post + $value->city + $value->address}}</td>
+                                                <th width="80px">現住所*</th>
+                                                <td>：{{ $value->post.$value->city.$value->address}}</td>
                                             </tr>
                                             <tr>
-                                                <th width="120px">E-mail</th>
+                                                <th width="80px">E-mail*</th>
                                                 <td>：{{ Auth::user()->email }}</td>
                                             </tr>
                                             <tr>
-                                                <th width="120px">電話番号</th>
+                                                <th width="80px">Skype ID*</th>
+                                                <td>：{{ $value->skype_id }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th width="80px">Line ID*</th>
+                                                <td>：{{ $value->line_id }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th width="80px">電話番号*</th>
                                                 <td>：{{ $value->phone }}</td>
                                             </tr>
 
@@ -137,7 +150,7 @@
                                     </table>
                                 </div>
                             </div>
-                            @endforeach
+
                         </div>
                         <!-- row end -->
                     </div>
@@ -153,24 +166,20 @@
                                     <table class="user-view_table">
                                         <tbody>
                                             <tr>
-                                                <th width="120px">学位</th>
-                                                <td>：○○○○○○○</td>
+                                                <th width="100px">最終学歴</th>
+                                                <td>：{{ $value->school}}</td>
                                             </tr>
                                             <tr>
-                                                <th width="120px">最終学歴</th>
-                                                <td>：○○○○○○○</td>
+                                                <th width="100px">学歴囯名</th>
+                                                <td>：{{ $value->school_country}}</td>
                                             </tr>
                                             <tr>
-                                                <th width="120px">専攻</th>
-                                                <td>：○○○○○○○</td>
+                                                <th width="100px">専攻</th>
+                                                <td>：{{ $value->subject}}</td>
                                             </tr>
                                             <tr>
-                                                <th width="120px">卒業年度(予定)</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="120px">兵役経験（男性）</th>
-                                                <td>：○○○○○○○</td>
+                                                <th width="100px">卒業年度(予定)</th>
+                                                <td>：{{ $value->end_year}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -178,6 +187,7 @@
                             </div>
                         </div>
                         <!-- row end -->
+                        @endforeach
                     </div>
                 </div>
                 <!-- 5 -->
@@ -190,26 +200,40 @@
                                 <div class="panel-content">
                                     <table class="user-view_table">
                                         <tbody>
+                                            @foreach($languagelv as $value)
+                                            @if($value->lv == 3)
                                             <tr>
-                                                <th width="120px"><span style="color:#000;">・母語レベル</span>
-                                                    <br>【日本語】保持資格</th>
-                                                <td>：○○○○○○○</td>
+                                                <th width="100px"><span style="color:#000;">・母語レベル</span>
+                                                <td>：
+                                                {{ $value->languagelv_name }}
+                                                </td>
                                             </tr>
+                                            @endif
+                                            @if($value->lv == 2)
                                             <tr>
-                                                <th width="120px"><span style="color:#000;">・ビジネスレベル</span>
-                                                    <br>【日本語】保持資格</th>
-                                                <td>：○○○○○○○</td>
+                                                <th width="100px"><span style="color:#000;">・ビジネスレベル</span>
+                                                <td>：
+                                                {{ $value->languagelv_name }}
+                                                </td>
                                             </tr>
+                                            @endif
+                                            @if($value->lv == 1)
                                             <tr>
-                                                <th width="120px"><span style="color:#000;">・日常会話レベル</span>
-                                                    <br>【日本語】保持資格</th>
-                                                <td>：○○○○○○○</td>
+                                                <th width="100px"><span style="color:#000;">・日常会話レベル</span>
+                                                <td>：
+                                                {{ $value->languagelv_name }}
+                                                </td>
                                             </tr>
+                                            @endif
+                                            @if($value->lv == 0)
                                             <tr>
-                                                <th width="120px"><span style="color:#000;">・初級レベル</span>
-                                                    <br>【日本語】保持資格</th>
-                                                <td>：○○○○○○○</td>
+                                                <th width="100px"><span style="color:#000;">・初級レベル</span>
+                                                <td>：
+                                                {{ $value->languagelv_name }}
+                                                </td>
                                             </tr>
+                                            @endif
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -224,42 +248,32 @@
                         <div class="row">
                             <!-- logo left -->
                             <div class="col-md-12">
-                                <h6>■　IT/WEBスキル</h6>
+                                <h6>■　スキル</h6>
                                 <div class="panel-content">
                                     <table class="user-view_table">
                                         <tbody>
-                                            <tr>
-                                                <th width="120px" style="color:#000;">【プログラマー】</th>
+
+                                           <!--  <tr>
+                                                <th width="400px" style="color:#000;">{{ $value->skill_category }}</th>
                                                 <td></td>
-                                            </tr>
+                                            </tr> -->
+                                        @foreach($per_skill as $value)
                                             <tr>
-                                                <th width="250px">・実務レベル（３年以上の実務経験）</th>
-                                                <td>：C言語・C + +・Perl</td>
+                                                <th width="160px">・{{ $value->skill_name }}</th>
+                                                @if($value->year == 1)
+                                                <td>：1年未滿</td>
+                                                @endif
+                                                @if($value->year == 2)
+                                                <td>：1年～3年</td>
+                                                @endif
+                                                @if($value->year == 3)
+                                                <td>：3年～5年</td>
+                                                @endif
+                                                @if($value->year == 4)
+                                                <td>：5年以上</td>
+                                                @endif
                                             </tr>
-                                            <tr>
-                                                <th width="120px">・中級（１～３年の実務経験）</th>
-                                                <td>：C言語・C + +・Perl</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="120px">・学習中（実務経験なし）</th>
-                                                <td>：C言語・C + +・Perl</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="120px" style="color:#000;">【デザイナー】</th>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <th width="250px">・実務レベル（３年以上の実務経験）</th>
-                                                <td>：HTML・JavaScript・Photoshop</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="120px">・中級（１～３年の実務経験）</th>
-                                                <td>：HTML・JavaScript・Photoshop</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="120px">・学習中（実務経験なし）</th>
-                                                <td>：HTML・JavaScript・Photoshop</td>
-                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -279,61 +293,33 @@
                                     <table class="user-view_table">
                                         <tbody>
                                             <tr>
-                                                <th width="150px" style="color:#000;">【現職・最新】</th>
+                                                <th width="150px" style="color:#000;">【經歷】</th>
                                                 <td></td>
                                             </tr>
-                                            <tr>
+                                           <!--  <tr>
                                                 <th width="150px">会社名</th>
                                                 <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="150px">期間</th>
-                                                <td>：○○○○年　○○月　～　○○○○年　○○月</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="150px">勤務地</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <th width="150px">職種</th>
                                                 <td>：○○○○○○○</td>
                                             </tr>
                                             <tr>
-                                                <th width="150px">業務内容</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="150px">給料（NTD）/月</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="150px" style="color:#000;">【現職・最新】</th>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <th width="150px">会社名</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
                                                 <th width="150px">期間</th>
-                                                <td>：○○○○年　○○月　～　○○○○年　○○月</td>
+                                                <td>：</td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <th width="150px">勤務地</th>
                                                 <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="150px">職種</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
+                                            </tr> -->
+                                            <!-- <tr>
                                                 <th width="150px">業務内容</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
+                                                <td>：</td>
+                                            </tr> -->
+                                            <!-- <tr>
                                                 <th width="150px">給料（NTD）/月</th>
                                                 <td>：○○○○○○○</td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -384,79 +370,8 @@
                         <!-- row end -->
                     </div>
                 </div>
-                <!-- 9 -->
-                <div class="panel panel-default">
-                    <div class="panel-body" style="padding-top: 0px !important;">
-                        <div class="row">
-                            <!-- logo left -->
-                            <div class="col-md-12">
-                                <h6>■　自分の強み</h6>
-                                <div class="panel-content">
-                                    <table class="user-view_table">
-                                        <tbody>
-                                            <tr>
-                                                <th colspan="2" style="color:#000;">WEBデザイナー・ディレクターとしてディーラー向けキャンペーンサイトの作成や大手ECサイトのデザイン、化粧品会社のコーポレートサイトのリニューアル案件を経験。 企画 / 提案書作成 / サイト構成 / ワイヤーラフの作成や、WEBデザイン（一部コーディング）など、幅広い経験を積んできました。 直接取引の案件も多く、顧客担当としてクライアントの窓口となり、案件全体のコントロールも行いました。
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th width="170px">【スキル】使用ツール／環境</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="170px">【使用ソフト】</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="170px">【勤務先会社名】</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="150px">【雇用形態】</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="170px">【事業内容】</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="170px">【業務内容】</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="170px">【トピックス】</th>
-                                                <td>：○○○○○○○</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- row end -->
-                    </div>
-                </div>
-                <!-- 10 -->
-                <div class="panel panel-default">
-                    <div class="panel-body" style="padding-top: 0px !important;">
-                        <div class="row">
-                            <!-- logo left -->
-                            <div class="col-md-12">
-                                <h6>■　将来の夢・目標</h6>
-                                <div class="panel-content">
-                                    <table class="user-view_table">
-                                        <tbody>
-                                            <tr>
-                                                <th colspan="2" style="color:#000;">WEBデザイナー・ディレクターとしてディーラー向けキャンペーンサイトの作成や大手ECサイトのデザイン、化粧品会社のコーポレートサイトのリニューアル案件を経験。 企画 / 提案書作成 / サイト構成 / ワイヤーラフの作成や、WEBデザイン（一部コーディング）など、幅広い経験を積んできました。 直接取引の案件も多く、顧客担当としてクライアントの窓口となり、案件全体のコントロールも行いました。
-                                                </th>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- row end -->
-                    </div>
-                </div>
-                <!-- end -->
+
+
             </div>
             <!-- wrapper end -->
         </div>

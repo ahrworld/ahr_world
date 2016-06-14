@@ -9,12 +9,17 @@ use App\ModelBranch\Employment;
 use App\ModelBranch\Experience;
 use App\ModelBranch\Languagelv;
 use App\ModelBranch\Bs_image;
+use App\ModelBranch\Subject;
 use App\Recruitment;
 use App\Recruitments_status;
 use App\Personnel;
+use App\ModelBranch\Exp_job;
+use App\ModelBranch\Exp_job_category;
 use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
 use App\PersonnelBranch\skill_title;
+use App\PersonnelBranch\Experiences_job;
+use App\PersonnelBranch\Personnels_skill;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -39,10 +44,16 @@ class UserController extends Controller
     	$skill_datas = $skill_name::all();
         $skill_titles = $skill_title::all();
         $skill_categorys = $skill_category::all();
+        $subject = Subject::all();
+        $exp_job = Exp_job::all();
+        $exp_job_category = Exp_job_category::all();
     	return view('step',[
     		'skill_titles' => $skill_titles,
     		'skill_categorys' => $skill_categorys,
     		'skill_datas' => $skill_datas,
+            'exp_job' => $exp_job,
+            'exp_job_category' => $exp_job_category,
+            'subject' => $subject,
     	]);
     }
     public function personnel_in(Request $request)
@@ -68,10 +79,8 @@ class UserController extends Controller
             'military_end_month' => $request->military_end_month,
             'character' => $request->character,
             'educational_status' => $request->educational_status,
-
             'educational' => $request->educational,
             'educational' => $request->educationals,
-
             'school' => $request->school,
             'school_country' => $request->school_country,
             'subject_id' => $request->subject,
@@ -86,9 +95,33 @@ class UserController extends Controller
                     'languagelv_name' => $value,
                     'lv' => $request->languagelv[$key],
                     'personnels_id' => $a->id,
+                    'user_id' => $request->user()->id,
             ]);
         }
 
+        $per_skill = new Personnels_skill;
+        foreach ($request->skill_value as $key => $value) {
+            if ($value !== 'no') {
+                $c = $per_skill::create([
+                    'personnel_skill' => $request->per_skill[$key],
+                    'year' => $value,
+                    'personnels_id' => $a->id,
+                    'user_id' => $request->user()->id,
+                ]);
+            }
+        }
+        $exp_job = new Experiences_job;
+        foreach ($request->experience as $key => $value) {
+            $d = $exp_job::create([
+                    'experience' => $value,
+                    'year' => $request->year[$key],
+                    'personnels_id' => $a->id,
+                    'user_id' => $request->user()->id,
+            ]);
+        }
+        $user = new User;
+        $user::where('id', $request->user()->id)
+          ->update(['data_status' =>  1,]);
         return redirect('/profile');
 
     }
@@ -96,9 +129,25 @@ class UserController extends Controller
     {
     	$personnel = new Personnel;
     	$personnels = $personnel::where('user_id', $request->user()->id)
-                                    ->get();
+                      ->join('subject', 'personnels.subject_id', '=', 'subject.id')
+                      ->get();
+
+        $per_skill = Personnels_skill::where('user_id', $request->user()->id)
+                    ->join('skill_name', 'personnels_skill.personnel_skill', '=', 'skill_name.id')
+                    ->join('skill_category', 'skill_name.skill_category_id', '=', 'skill_category.id')
+                    ->get();
+        // 語言
+        $languagelv = Languagelv::where('user_id', $request->user()->id)->get();
+        // 職務經歷
+        $exp_job = Experiences_job::where('user_id', $request->user()->id)
+                   ->join('exp_job', 'Experiences_job.experience', '=', 'exp_job.id')
+                   ->get();
     	return view('pl_sidebar/profile',[
     		'personnels' => $personnels,
+            'per_skill' => $per_skill,
+            'languagelv' => $languagelv,
+            'exp_job' => $name,
+
     	]);
     }
     public function news(Request $request)

@@ -25,18 +25,19 @@
 
 		    <div>&nbsp;</div>
 
-		    <div class="col-md-6">
-			  <div class="form-group">
-			    <label for="exampleInputName">Surname</label>
-			    <input type="text"  name="surname_en" class="form-control" placeholder="">
-			  </div>
-			</div>
+
 			<div class="col-md-6">
 			  <div class="form-group">
 			    <label for="exampleInputName">Family Name</label>
 			    <input type="text" name="family_name_en" class="form-control" placeholder="">
 			  </div>
 		    </div>
+			<div class="col-md-6">
+			  <div class="form-group">
+			    <label for="exampleInputName">Surname</label>
+			    <input type="text"  name="surname_en" class="form-control" placeholder="">
+			  </div>
+			</div>
 
 		    <div>&nbsp;</div>
 

@@ -10,6 +10,8 @@ use App\ModelBranch\Employment;
 use App\ModelBranch\Experience;
 use App\ModelBranch\Languagelv;
 use App\ModelBranch\Bs_image;
+use App\ModelBranch\Bs_summary;
+use App\ModelBranch\Bs_summary_image;
 use App\ModelBranch\Exp_job;
 use App\ModelBranch\Exp_job_category;
 use App\ModelBranch\Subject;
@@ -171,6 +173,11 @@ class BusinessController extends Controller
         ->join('languagelvs', 'recruitments.id', '=', 'languagelvs.recruitments_id')
         ->get();
         $skill_data = skill_name::all();
+
+        $bs_summary_A = Bs_summary::where('user_id', $request->user()->id)
+        ->join('bs_summary_image', 'bs_summary.id', '=', 'bs_summary_image.bs_summary_id')
+        ->get();
+
         return view('bs_sidebar/profile', [
             'tasks' => $tasks,
             'recruitments' => $recruitments,
@@ -178,6 +185,7 @@ class BusinessController extends Controller
             'experiences' => $experiences,
             'languagelvs' => $languagelvs,
             'skill_data' => $skill_data,
+            'bs_summary_A' => $bs_summary_A,
         ]);
     }
     public function image(Request $request){
@@ -216,6 +224,27 @@ class BusinessController extends Controller
         $bs_image->save();
         return redirect('/profile_b2');
 
+    }
+    public function summary(Request $request){
+       // summary create
+       $bs_summary = New Bs_summary;
+       $bs_summary_image = New Bs_summary_image;
+       $a = $bs_summary::create([
+                    'user_id' => $request->user()->id,
+                    'summary_title' => $request->summary_title,
+                    'summary' => $request->summary,
+       ]);
+
+       // if image
+       if ($request->hasFile('summary_image'))
+       {
+           $photoname_b = date("ymdhis").$request->user()->id.'.'.'png';
+           $photo_upload = $request->file('summary_image')->move(public_path().'/ahr/busineses_img',$photoname_b);
+           $bs_summary_image->image = $photoname_b;
+           $bs_summary_image->bs_summary_id = $a->id;
+           $bs_summary_image->save();
+       }
+       return redirect('/profile_b2');
     }
     //Recruitment
     public function recruitments_add(Request $request){

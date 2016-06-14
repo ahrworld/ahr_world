@@ -28,7 +28,7 @@
     function formatState (state) {
 	  if (!state.id) { return state.text; }
 	  var $state = $(
-	    '<span><img height="30" src="ahr/assets/flag/' + state.element.value.toLowerCase() + '.svg" class="img-flag" /> ' + state.text + '</span>'
+	    '<span><img height="30" src="/ahr/assets/flag/' + state.element.value.toLowerCase() + '.svg" class="img-flag" /> ' + state.text + '</span>'
 	  );
 	  return $state;
 	};
@@ -53,7 +53,60 @@
 			$('.language_append').append($('<div class="form-inline" id="div'+ id +'"> <div class="form-group" style="margin-right:3px;"> <input type="text" class="form-control" name="language[]" placeholder="language"> </div><div class="form-group" style="margin-right:3px;"> <select class="form-control" name="languagelv[]"> <option value="3">母語</option> <option value="2">ビジネス</option> <option value="1">日常会話</option> <option value="0">初級</option> </select> </div><div class="form-group" ><a href="#" class="float-right" style="font-size:25px;" onclick="del('+id+')"> <i class="fa fa-times-circle" aria-hidden="true"></i> </a> </div></div>'));
 			id++;
 		});
+		// step 6
 
+		$('.number').keyup(function(){
+			var moreArray = new Array();
+			if ($('.number').val() == 1) {
+				for (var i = 1; i <= 1; i++) {
+					moreArray.push('<div class="col-md-7"> <div class="form-group number_exp_job"> <label for="namefield">経験職種</label> <select class="js-example_add'+ i +' js-states" name="experience[]" style="width: 100%"> @foreach($exp_job_category as $key_category=> $value_category) <optgroup label="{{$value_category->category}}" style="background: #ebebee; color: #888888; font-weight: normal; font-style: normal; "> @foreach($exp_job as $key=> $value) @if ($value_category->id==$value->exp_job_category_id) <option value="{{$value->id}}" style="background: #ffffff; color: #000000;">&nbsp;└&nbsp;{{$value->name}}</option> @endif @endforeach </optgroup> @endforeach </select> </div></div><div class="col-md-5"> <div class="form-group"> <label for="namefield">年数</label> <select class="js-example_year'+ i +' js-states" name="year[]" style="width: 100%"> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> </select> </div></div><div>&nbsp;</div>');
+					$('.exp_job_wrapper').html(moreArray.join(""));
+
+				};
+			}else if ($('.number').val() == 2) {
+				for (var i = 1; i <= 2; i++) {
+					moreArray.push('<div class="col-md-7"> <div class="form-group number_exp_job"> <label for="namefield">経験職種</label> <select class="js-example_add'+ i +' js-states" name="experience[]" style="width: 100%"> @foreach($exp_job_category as $key_category=> $value_category) <optgroup label="{{$value_category->category}}" style="background: #ebebee; color: #888888; font-weight: normal; font-style: normal; "> @foreach($exp_job as $key=> $value) @if ($value_category->id==$value->exp_job_category_id) <option value="{{$value->id}}" style="background: #ffffff; color: #000000;">&nbsp;└&nbsp;{{$value->name}}</option> @endif @endforeach </optgroup> @endforeach </select> </div></div><div class="col-md-5"> <div class="form-group"> <label for="namefield">年数</label> <select class="js-example_year'+ i +' js-states" name="year[]" style="width: 100%"> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> </select> </div></div><div>&nbsp;</div>');
+					$('.exp_job_wrapper').html(moreArray.join(""));
+
+				};
+			}else if($('.number').val() == 3){
+				for (var i = 1; i <= 3; i++) {
+					moreArray.push('<div class="col-md-7"> <div class="form-group number_exp_job"> <label for="namefield">経験職種</label> <select class="js-example_add'+ i +' js-states" name="experience[]" style="width: 100%"> @foreach($exp_job_category as $key_category=> $value_category) <optgroup label="{{$value_category->category}}" style="background: #ebebee; color: #888888; font-weight: normal; font-style: normal; "> @foreach($exp_job as $key=> $value) @if ($value_category->id==$value->exp_job_category_id) <option value="{{$value->id}}" style="background: #ffffff; color: #000000;">&nbsp;└&nbsp;{{$value->name}}</option> @endif @endforeach </optgroup> @endforeach </select> </div></div><div class="col-md-5"> <div class="form-group"> <label for="namefield">年数</label> <select class="js-example_year'+ i +' js-states" name="year[]" style="width: 100%"> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> </select> </div></div><div>&nbsp;</div>');
+					$('.exp_job_wrapper').html(moreArray.join(""));
+
+				};
+			};
+
+			$(".js-example_add1").select2({
+			   placeholder: "職種を選択してください。",
+			   allowClear: true
+			});
+			$(".js-example_year1").select2({
+			   placeholder: "年数",
+			   allowClear: true
+			});
+			$(".js-example_add2").select2({
+			   placeholder: "職種を選択してください。",
+			   allowClear: true
+			});
+			$(".js-example_year2").select2({
+			   placeholder: "年数",
+			   allowClear: true
+			});
+			$(".js-example_add3").select2({
+			   placeholder: "職種を選択してください。",
+			   allowClear: true
+			});
+			$(".js-example_year3").select2({
+			   placeholder: "年数",
+			   allowClear: true
+			});
+		});
+		// step7
+		$('.in').click(function(){
+			var value = $(this).val();
+			$(this).parents().siblings('.in_value').val(value);
+		});
 		// step3 sex
 		$('.ahr-button_boy').click(function(){
 			$('.army').removeClass('none');
@@ -72,7 +125,7 @@
     	     $('.pl_form').submit();
 		});
 		// select2
-		$(".js-example").select2({
+		$(".js-example1").select2({
 		   placeholder: "職種を選択してください。",
 		   allowClear: true
 		});
@@ -80,6 +133,7 @@
 		   placeholder: "年数",
 		   allowClear: true
 		});
+
 		$(".js-example-templating").select2({
 		  templateResult: formatState
 		});

@@ -14,7 +14,7 @@ class Personnel extends Model
         'country','want_country','sex','military','military_end_year',
         'country','want_country','sex','military','military_end_year',
         'military_end_month','character','educational_status','educational','school',
-        'school_country','subject_id','start_year','start_month','end_year','end_month',
+        'school_country','subject_id','start_year','start_month','end_year','end_month','skype_id',
 
     ];
 }

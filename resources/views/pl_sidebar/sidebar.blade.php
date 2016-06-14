@@ -41,7 +41,7 @@ $(document).ready(function() {
 		padding-left:0px !important;
 	}
 </style>
-<body style="min-width:1000px;">
+<body style="min-width:1260px;">
 		<!-- header -->
 		<section id="header" class="top-header" style="position:fixed; top:0px; width:100% margin:auto; box-shadow: 0px 6px 10px -3px #9B9B9B;">
 	        <header class="clearfix" style="margin:auto; padding-left:20px;">

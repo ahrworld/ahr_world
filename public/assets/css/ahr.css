@@ -406,7 +406,7 @@ td,tr,th,p,h1,h2,h3,h4,h5,h6,span,a,div,button,label,li,ul,table tbody tr th,tab
 	float: left;
 }
 .none{
-	display: none;
+	display: none !important;
 }
 .color-red{
 	color:#D70101;

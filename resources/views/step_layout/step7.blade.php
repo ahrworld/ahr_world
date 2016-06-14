@@ -56,12 +56,14 @@
 			        	@foreach($skill_datas as $key => $value)
 			        	@if ($skill_category->id == $value->skill_category_id)
 			        	<tr>
-			        	<th width="30%" scope="row">{{ $value->skill_name }}</th>
-			        	<td align="center"><input type="radio" name="value_{{ $key+1 }}" checked="checked"></td>
-			        	<td align="center"><input type="radio" name="value_{{ $key+1 }}"></td>
-			        	<td align="center"><input type="radio" name="value_{{ $key+1 }}"></td>
-			        	<td align="center"><input type="radio" name="value_{{ $key+1 }}"></td>
-			        	<td align="center"><input type="radio" name="value_{{ $key+1 }}"></td>
+			        	<th width="30%" scope="row"><input type="hidden" name="per_skill[]" value="{{ $value->id }}">{{ $value->skill_name }}</th>
+
+			        	<td align="center" class="in_value"><input type="radio" class="in" name="value_{{ $key+1 }}" value="no" checked="checked"></td>
+			        	<td align="center"><input type="radio" class="in" name="value_{{ $key+1 }}" value="1"></td>
+			        	<td align="center"><input type="radio" class="in" name="value_{{ $key+1 }}" value="2"></td>
+			        	<td align="center"><input type="radio" class="in" name="value_{{ $key+1 }}" value="3"></td>
+			        	<td align="center"><input type="radio" class="in" name="value_{{ $key+1 }}" value="4"></td>
+			        	<input type="hidden" name="skill_value[]" class="in_value" value="no">
 			        	</tr>
 			        	@endif
 			        	@endforeach
@@ -74,7 +76,7 @@
 			      </div>
 			    </div>
 			    @endforeach
-			    <button type="button" class="btn btn-primary float-right">スキップ</button>
+			    <!-- <button type="button" class="btn btn-primary float-right">スキップ</button> -->
 			  </div>
 			</div>
 		</div>
