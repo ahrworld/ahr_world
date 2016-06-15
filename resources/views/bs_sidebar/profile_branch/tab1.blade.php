@@ -10,9 +10,9 @@
    height: 100px;
  }
  /* this page only start */
- .panel-default{
+/* .panel-default{
   margin-bottom: 20px !important;
- }
+ }*/
  /* this page only end */
  .panel-default .default_photo{
    padding: 0px !important;
@@ -49,7 +49,7 @@ background-image:url('ahr/busineses_img/{{$value->image_small}}');
 @endforeach
 <div class="wrapper">
     <!-- 1 -->
-     <div class="panel panel-default">
+     <div class="panel-default">
        <div class="panel-body default_photo">
                <div class="row">
                     <div class="col-md-12">

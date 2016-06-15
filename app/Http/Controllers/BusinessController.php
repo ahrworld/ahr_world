@@ -12,6 +12,7 @@ use App\ModelBranch\Languagelv;
 use App\ModelBranch\Bs_image;
 use App\ModelBranch\Bs_summary;
 use App\ModelBranch\Bs_summary_image;
+use App\ModelBranch\Bs_blog;
 use App\ModelBranch\Exp_job;
 use App\ModelBranch\Exp_job_category;
 use App\ModelBranch\Subject;
@@ -184,6 +185,8 @@ class BusinessController extends Controller
 
         // bs_image
         $bs_image = Bs_image::where('user_id', $request->user()->id)->get();
+        // bs_blog
+        $bs_blog = Bs_blog::where('user_id' ,$request->user()->id)->get();
 
         return view('bs_sidebar/profile', [
             'tasks' => $tasks,
@@ -197,12 +200,13 @@ class BusinessController extends Controller
             'exp_job_category' => $exp_job_category,
             'subject' => $subject,
             'bs_image' => $bs_image,
+            'bs_blog' => $bs_blog,
         ]);
     }
     // upload image
     public function image(Request $request){
         $bs_image = New Bs_image;
-        $date = '2016060';
+        $date = date('ymdhis');
 
         $where = $bs_image::where('user_id',$request->user()->id)->first();
         if (is_null($where)) {
@@ -332,6 +336,23 @@ class BusinessController extends Controller
             ]);
         return redirect('/profile_b2');
 
+    }
+    public function blog(Request $request){
+       $date = date('ymdhis');
+       if($request->hasFile('image'))
+       {
+         $photoname_m = $date.$request->user()->id.'.'.'png';
+         $photo_upload = $request->file('image')->move(public_path().'/ahr/business_blog',$photoname_m);
+         Bs_blog::create([
+            'title' => $request->title,
+            'sub_title' => $request->sub_title,
+            'blog_content' => $request->blog_content,
+            'blog_image' => $photoname_m,
+            'user_id' => $request->user()->id,
+         ]);
+       }
+
+       return redirect('/profile_b2');
     }
     public function news(Request $request){
         // 新応募
