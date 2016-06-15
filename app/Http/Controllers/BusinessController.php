@@ -203,6 +203,7 @@ class BusinessController extends Controller
     public function image(Request $request){
         $bs_image = New Bs_image;
         $date = date("Ymdhis");
+        return $date;
         $where = $bs_image::where('user_id',$request->user()->id)->first();
         if (is_null($where)) {
             //small

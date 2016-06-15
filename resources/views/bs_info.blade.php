@@ -452,7 +452,7 @@
 					       	      		     </tbody>
 					       	      		   </table>
 					       	      		</div>
-										<div style="text-align:right;"><label class="add add_all" style="width:30px; height:30px;"></label></div><!-- add button -->
+										<!-- <div style="text-align:right;"><label class="add add_all" style="width:30px; height:30px;"></label></div><!-- add button --> -->
 					             	</div>
 					             </div><!-- row end -->
 					             <div class="push_all" style="margin-top:30px;"></div>

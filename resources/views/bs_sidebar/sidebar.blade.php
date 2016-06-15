@@ -186,8 +186,7 @@ $(document).ready(function() {
 		<footer style="width:100%; float:left; margin:auto;">
 		    <div class="line"></div>
 		    <ul>
-		    	<li>OOOOOO</li>
-		    	<li>OOOOOO</li>
+
 		    </ul>
 		</footer>
 

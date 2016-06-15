@@ -37,22 +37,23 @@
    position: absolute; bottom: 5px; right: 10px;
  }
 </style>
+@foreach ($bs_image as $value)
+<style>
+.bs_background{
+background-image:url('ahr/busineses_img/{{$value->image_big}}');
+}
+.bs_photo{
+background-image:url('ahr/busineses_img/{{$value->image_small}}');
+}
+</style>
+@endforeach
 <div class="wrapper">
     <!-- 1 -->
      <div class="panel panel-default">
        <div class="panel-body default_photo">
                <div class="row">
                     <div class="col-md-12">
-                   　@foreach ($bs_image as $value)
-                  　 <style>
-                     .bs_background{
-                      background-image:url('ahr/busineses_img/{{$value->image_big}}');
-                     }
-                     .bs_photo{
-                      background-image:url('ahr/busineses_img/{{$value->image_small}}');
-                     }
-                     </style>
-                     @endforeach
+                   　
                          <div class="img-thumbnail bs_background" >
                             <a href="#" class="float-right update_bt_big none">
                               <i class="fa fa-camera" aria-hidden="true"></i>
