@@ -202,14 +202,14 @@ class BusinessController extends Controller
     // upload image
     public function image(Request $request){
         $bs_image = New Bs_image;
-        $date = date("Ymdhis");
-        return $date;
+        $date = '2016060';
+
         $where = $bs_image::where('user_id',$request->user()->id)->first();
         if (is_null($where)) {
             //small
             if($request->hasFile('image_small'))
             {
-              $photoname_m = $date.$request->user()->id.'.'.'png';
+              $photoname_m = $date.'big'.$request->user()->id.'.'.'png';
               $photo_upload = $request->file('image_small')->move(public_path().'/ahr/busineses_img',$photoname_m);
               Bs_image::create([
                      'image_small' => $photoname_m,
@@ -219,7 +219,7 @@ class BusinessController extends Controller
             //big
             else if($request->hasFile('image_big'))
             {
-              $photoname_b = $date.$request->user()->id.'.'.'png';
+              $photoname_b = $date.'small'.$request->user()->id.'.'.'png';
               $photo_upload = $request->file('image_big')->move(public_path().'/ahr/busineses_img',$photoname_b);
               Bs_image::create([
                      'image_big' => $photoname_b,
