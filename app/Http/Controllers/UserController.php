@@ -142,7 +142,7 @@ class UserController extends Controller
                       ->get();
         // 職務經歷
         $exp_job = Experiences_job::where('experiences_job.user_id', $request->user()->id)
-                   ->join('exp_job', 'Experiences_job.experience', '=', 'exp_job.id')
+                   ->join('exp_job', 'experiences_job.experience', '=', 'exp_job.id')
                    ->get();
     	return view('pl_sidebar/profile',[
     		'personnels' => $personnels,
