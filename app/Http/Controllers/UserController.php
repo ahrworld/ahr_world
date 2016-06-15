@@ -128,20 +128,20 @@ class UserController extends Controller
     public function profile(Request $request)
     {
     	$personnel = new Personnel;
-    	$personnels = $personnel::where('user_id', $request->user()->id)
+    	$personnels = $personnel::where('personnels.user_id', $request->user()->id)
                       ->join('subject', 'personnels.subject_id', '=', 'subject.id')
                       ->get();
 
-        $per_skill = Personnels_skill::where('user_id', $request->user()->id)
+        $per_skill = Personnels_skill::where('personnels_skill.user_id', $request->user()->id)
                     ->join('skill_name', 'personnels_skill.personnel_skill', '=', 'skill_name.id')
                     ->join('skill_category', 'skill_name.skill_category_id', '=', 'skill_category.id')
                     ->get();
         // 語言
-        $languagelv = $personnel::where('user_id', $request->user()->id)
+        $languagelv = $personnel::where('personnels.user_id', $request->user()->id)
                       ->join('languagelvs', 'personnels.id', '=', 'languagelvs.personnels_id')
                       ->get();
         // 職務經歷
-        $exp_job = Experiences_job::where('user_id', $request->user()->id)
+        $exp_job = Experiences_job::where('Experiences_job.user_id', $request->user()->id)
                    ->join('exp_job', 'Experiences_job.experience', '=', 'exp_job.id')
                    ->get();
     	return view('pl_sidebar/profile',[
