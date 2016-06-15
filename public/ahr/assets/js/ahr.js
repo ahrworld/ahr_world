@@ -1,16 +1,21 @@
 $(document).ready(function() {
 		// business profile tab1
 		$('.default_photo .bs_background').hover(function(){
-		  $('.default_photo .bs_background .update_bt').toggleClass('none');
+		  $('.default_photo .bs_background .update_bt_big').toggleClass('none');
 		});
 		$('.default_photo .bs_photo').hover(function(){
-		  $('.default_photo .bs_photo .update_bt').toggleClass('none');
+		  $('.default_photo .bs_photo .update_bt_smile').toggleClass('none');
 		});
-		$('.default_photo .update_bt').click(function(){
+		// big
+		$('.default_photo .update_bt_big').click(function(){
 		  $('.default_photo').addClass('none');
-		  $('.update_photo').removeClass('none');
+		  $('.update_photo_big').removeClass('none');
 		});
-
+		// smile
+		$('.default_photo .update_bt_smile').click(function(){
+		  $('.default_photo').addClass('none');
+		  $('.update_photo_smile').removeClass('none');
+		});
 	    // list-inbox
 		$('.list-inbox').click(function(){
 			$('.label-status').addClass('none');

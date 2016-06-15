@@ -43,18 +43,27 @@
        <div class="panel-body default_photo">
                <div class="row">
                     <div class="col-md-12">
-                     @foreach ($tasks as $task)
-                         <div class="img-thumbnail bs_background" style=" background-image:url('ahr/busineses_img/big{{$task->user_id}}.jpg');">
-                            <a href="#" class="float-right update_bt none" style="">
+                   　@foreach ($bs_image as $value)
+                  　 <style>
+                     .bs_background{
+                      background-image:url('ahr/busineses_img/{{$value->image_big}}');
+                     }
+                     .bs_photo{
+                      background-image:url('ahr/busineses_img/{{$value->image_small}}');
+                     }
+                     </style>
+                     @endforeach
+                         <div class="img-thumbnail bs_background" >
+                            <a href="#" class="float-right update_bt_big none">
                               <i class="fa fa-camera" aria-hidden="true"></i>
                             </a>
                          </div>
-                         <div class="img-thumbnail bs_photo" style=" background-image:url('ahr/busineses_img/small{{$task->user_id}}.png');">
-                           <a href="#" class="float-right update_bt none">
+                         <div class="img-thumbnail bs_photo" >
+                           <a href="#" class="float-right update_bt_smile none">
                              <i class="fa fa-camera" aria-hidden="true"></i>
                            </a>
                          </div>
-                     @endforeach
+
                     </div>
                </div>
        </div>
@@ -135,17 +144,16 @@
                     </div>
                </div>
        </div> -->
-       <div class="panel-body update_photo none">
+       <!-- bakground photo -->
+       <div class="panel-body update_photo_big none">
 
                <div class="row">
-               <!-- logo left -->
-                    <!-- video -->
                     <div class="col-md-12">
                     <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>
 
-                     <div id="image-cropper">
+                     <!-- <div id="image-cropper">
                        <div class="cropit-preview"></div>
                        <form class="test_form" action="{{url('/business/image')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                        <input type="hidden" name="_token" value="{{ csrf_token()}}">
@@ -154,24 +162,39 @@
                        <input type="hidden" name="image_data" class="hidden_image_data" />
                        </form>
                      </div>
-                     <button class="download-btn"></button>
+                     <button class="download-btn"></button> -->
                        <form action="{{url('/business/image')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                         {{ csrf_field() }}
                          <div class="form-group">
-
+                           <label for="exampleInputFile2">Background Photo</label>
                            <input type="file" name="image_big"  multiple>
                            <p class="help-block">Example block-level help text here.</p>
                          </div>
-                         <div class="form-group">
-                           <label for="exampleInputFile2">File inputs</label>
-                           <input name="image_small" type="file" id="exampleInputFile2">
-                           <p class="help-block">Example block-level help text here.</p>
-                         </div>
-
                          <button type="submit" class="btn btn-default">Submit</button>
                        </form>
                     </div>
 
+               </div>
+       </div>
+       <!-- smile photo -->
+       <div class="panel-body update_photo_smile none">
+
+               <div class="row">
+                    <div class="col-md-12">
+                    <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+
+                       <form action="{{url('/business/image')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                         <div class="form-group">
+                           <label for="exampleInputFile2">Photo</label>
+                           <input name="image_small" type="file" id="exampleInputFile2">
+                           <p class="help-block">Example block-level help text here.</p>
+                         </div>
+                         <button type="submit" class="btn btn-default">Submit</button>
+                       </form>
+                    </div>
                </div>
        </div>
      </div>

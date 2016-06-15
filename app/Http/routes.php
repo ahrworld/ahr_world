@@ -60,8 +60,6 @@ Route::get('/company', function(){
 //form
 
 
-Route::resource('posts', 'PostsController');
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -109,7 +107,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/business/summary', 'BusinessController@summary');
     Route::post('/business/recruitments_add', 'BusinessController@recruitments_add');
     Route::get('/news_b2', 'BusinessController@news');
-
+    // usr
     Route::get('/step', 'UserController@step');
     Route::post('personnel_in', 'UserController@personnel_in');
 
@@ -117,6 +115,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/news','UserController@news');
     Route::post('ttt','UserController@ttt');
     Route::post('like','UserController@like');
+    // user ger business view
+    Route::get('posts/{id}',['as' => 'posts.show' , 'uses' => 'UserController@show']);
 
 	Route::get('/bs_end', function(){
 	return view('auth/bs_signin-end');

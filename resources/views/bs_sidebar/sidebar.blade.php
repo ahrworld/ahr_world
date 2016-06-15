@@ -7,10 +7,10 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
     <!-- bootstrap -->
-    <script src="ahr/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="{{ asset('ahr/bower_components/bootstrap/dist/js/bootstrap.js') }}"></script>
     <!-- ahr -->
-    <script src="ahr/assets/js/ahr.js"></script>
-    <link rel="stylesheet" href="assets/css/ahr.css">
+    <script src="{{ asset('ahr/assets/js/ahr.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('assets/css/ahr.css')}}">
     <!-- cropit -->
     <script src="{{ asset('ahr/bower_components/cropit/dist/jquery.cropit.js')}}"></script>
     <!-- tag-it -->
@@ -24,9 +24,9 @@
     <script src="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.css')}}">
     <!-- animate.css -->
-    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
     <!-- chart.js -->
-    <script src="ahr/assets/js/Chart.min.js"></script>
+    <script src="{{ asset('ahr/assets/js/Chart.min.js')}}"></script>
     <!-- test fily -->
     <link rel="stylesheet" href="{{ asset('ahr/assets/default_css/main.css')}}">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
@@ -57,7 +57,7 @@ $(document).ready(function() {
 	            <!-- Logo -->
 	            <div class="logo">
 	                <a href="#/">
-	                    <span><a href="#"><img src="assets/img/logo.png" height="40"></a></span>
+	                    <span><a href="#"><img src="{{ asset('assets/img/logo.png')}}" height="40"></a></span>
 	                </a>
 	            </div>
 
@@ -188,7 +188,6 @@ $(document).ready(function() {
 		    <ul>
 		    	<li>OOOOOO</li>
 		    	<li>OOOOOO</li>
-		    
 		    </ul>
 		</footer>
 

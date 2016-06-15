@@ -37,24 +37,31 @@
     });
     var token = '{{ Session::token() }}';
     $(document).ready(function() {
-        $('.bt_1').click(function() {
-            var r_id = $('.bt_1').attr('attr');
-            swal({
-              title: "応募しますか？",
-              showCancelButton: true,
-              confirmButtonClass: "btn-info",
-              confirmButtonText: "確認",
-              cancelButtonText: "キャンセル",
-              closeOnConfirm: false
-            },
-            function(){
-              $.ajax({
+        $('#news_modal_1 .skype_wrapper .yes').click(function(){
+            $('#news_modal_1 .modal-body').removeClass('none');
+            $('#news_modal_1 .skype_wrapper').addClass('none');
+            $('#news_modal_1 .modal-header').addClass('none');
+            $('#news_modal_1 .rk_wrapper').removeClass('none');
+        });
+        $('#news_modal_1 .rk_wrapper .back').click(function(){
+            $('#news_modal_1 .skype_wrapper').removeClass('none');
+            $('#news_modal_1 .modal-header').removeClass('none');
+            $('#news_modal_1 .modal-body').addClass('none');
+            $('#news_modal_1 .rk_wrapper').addClass('none');
+        });
+        $('.bt_1').click(function(){
+            var r_id = $(this).attr('attr');
+            $('.rk_bt').attr('attr',r_id);
+        });
+        $('#news_modal_1 .rk_wrapper .rk_bt').click(function(){
+               var id = $(this).attr('attr');
+               $.ajax({
                   type: "POST",
                   url: "ttt",
                   async: false,
                   dataType: "json",
                   data: {
-                      id: r_id,
+                      id: id,
                       _token: token
                   },
                   success: function(data) {
@@ -71,8 +78,8 @@
                 showConfirmButton: false
               })
               setTimeout("location.reload();", 1000);
-            });
         });
+
         $('.bt_2').click(function() {
             var r_id = $('.bt_2').attr('attr');
             $.ajax({
@@ -138,12 +145,18 @@
                     <div class="panel-body">
                         <!-- photo left -->
                         <div class="img-left">
-                            <img height="500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTI4NzJiNjg0YiB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1Mjg3MmI2ODRiIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" class="img-thumbnail">
+                            <a href="{{ route('posts.show', $value_r->id) }}">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                            </a>
                         </div>
                         <!-- content -->
                         <div class="panel-content">
                             @foreach($BSinformation as $key_b => $value_b)
+                            @if($value_b->user_id == $value_r->user_id)
+                            <a href="{{ route('posts.show', $value_r->id) }}">
                             <label style="font-size:18px;">{{$value_b->company_name}}</label>
+                            </a>
+                            @endif
                             @endforeach
 
                             <p>
@@ -151,15 +164,49 @@
                             <p>
                                 <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
-                                <label class="label-gray">応募条件</label><span></span></p>
+                                <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
                             <p>
-                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
+                                <label class="label-gray">給与</label><span>{{$value_r->annual_income}}万円～{{$value_r->annual_income}}万円</span></p>
                             <p>
                                 <label class="label-gray">勤務地</label><span></span></p>
                         </div>
                         <div class="img-right">
+
+                        <!-- news_modal_1 modal -->
+                        <div class="modal fade" id="news_modal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">ID公開しますか？</h4>
+                              </div>
+
+                              <div class="modal-body none">
+                                  <div class="form-group">
+                                  <label>メッセージ:</label>
+                                  <button class="btn btn-default">リクエストを送る</button>
+                                  <label style="color:#FF0037;">※テンプレートを使用する場合はボタンを押してください。</label>
+                                  </div>
+                                <textarea class="form-control"  rows="5">
+ご連絡頂き、ありがとうございます。
+ぜひ、「 」について、更にお話を伺えればと思っております。
+お忙しいところ恐縮ですが、よろしくお願い致します。
+                                </textarea>
+                              </div>
+                              <div class="modal-footer skype_wrapper">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                <button type="button" class="btn btn-primary yes">Yes</button>
+                              </div>
+                              <div class="modal-footer rk_wrapper none">
+                                <button type="button" class="btn btn-default back" data-dismiss="modal">NO</button>
+                                <button type="button" class="btn btn-primary rk_bt" >送信する</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- modal end -->
                             <div style="width:150px; float:left;">
-                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->id}}">応募する</a>
+                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->id}}" data-toggle="modal" data-target="#news_modal_1" >応募する</a>
                                 <a href="#" class="btn ahr-label-yellow ahr-btn-lg bt_2" attr="{{$value_r->id}}">お気に入り</a>
                             </div>
                         </div>
@@ -169,42 +216,7 @@
                 </div>
                 <!-- s1 end -->
 
-                <!-- 検索履歴 -->
-                <div class="s2 search none">
-                @foreach($Recruitment as $key_r => $value_r)
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <!-- photo left -->
-                        <div class="img-left">
-                            <img height="500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTI4NzJiNjg0YiB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1Mjg3MmI2ODRiIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" class="img-thumbnail">
-                        </div>
-                        <!-- content -->
-                        <div class="panel-content">
-                            @foreach($BSinformation as $key_b => $value_b)
-                            <label style="font-size:18px;">{{$value_b->company_name}}</label>
-                            @endforeach
-                            <label>更新日時:<span>{{$value_r->updated_at}}</span></label>
-                            <p>
-                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
-                            <p>
-                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
-                            <p>
-                                <label class="label-gray">応募条件</label><span></span></p>
-                            <p>
-                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
-                            <p>
-                                <label class="label-gray">勤務地</label><span></span></p>
-                        </div>
-                        <div class="img-right">
-                            <div style="width:150px; float:left;">
-                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->id}}">応募する</a>
-                                <button class="btn ahr-label-yellow ahr-btn-lg">お気に入り</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-                </div>
+
                 <!-- s2 end -->
             </div>
             <!-- wrapper end -->
@@ -227,12 +239,16 @@
                     <div class="panel-body">
                         <!-- photo left -->
                         <div class="img-left">
-                            <img height="500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTI4NzJiNjg0YiB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1Mjg3MmI2ODRiIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" class="img-thumbnail">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
                         </div>
                         <!-- content -->
                         <div class="panel-content">
                             @foreach($BSinformation as $key_b => $value_b)
+                            @if($value_b->user_id == $value_r->user_id)
+                            <a href="{{ route('posts.show', $value_r->id) }}">
                             <label style="font-size:18px;">{{$value_b->company_name}}</label>
+                            </a>
+                            @endif
                             @endforeach
                             <!-- <label>更新日時:<span>{{$value_r->updated_at}}</span></label> -->
                             <p>
@@ -265,12 +281,16 @@
                     <div class="panel-body">
                         <!-- photo left -->
                         <div class="img-left">
-                            <img height="500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTI4NzJiNjg0YiB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1Mjg3MmI2ODRiIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" class="img-thumbnail">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
                         </div>
                         <!-- content -->
                         <div class="panel-content">
                             @foreach($BSinformation as $key_b => $value_b)
+                            @if($value_b->user_id == $value_r->user_id)
+                            <a href="{{ route('posts.show', $value_r->id) }}">
                             <label style="font-size:18px;">{{$value_b->company_name}}</label>
+                            </a>
+                            @endif
                             @endforeach
                             <!-- <label>更新日時:<span>{{$value_r->updated_at}}</span></label> -->
                             <p>
@@ -301,12 +321,17 @@
                     <div class="panel-body">
                         <!-- photo left -->
                         <div class="img-left">
-                            <img height="500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTI4NzJiNjg0YiB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1Mjg3MmI2ODRiIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" class="img-thumbnail">
+
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
                         </div>
                         <!-- content -->
                         <div class="panel-content">
                             @foreach($BSinformation as $key_b => $value_b)
+                            @if($value_b->user_id == $value_r->user_id)
+                            <a href="{{ route('posts.show', $value_r->id) }}">
                             <label style="font-size:18px;">{{$value_b->company_name}}</label>
+                            </a>
+                            @endif
                             @endforeach
                             <!-- <label>更新日時:<span>2015/12/11</span></label> -->
                             <p>
@@ -337,12 +362,16 @@
                     <div class="panel-body">
                         <!-- photo left -->
                         <div class="img-left">
-                            <img height="500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTI4NzJiNjg0YiB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1Mjg3MmI2ODRiIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" class="img-thumbnail">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
                         </div>
                         <!-- content -->
                         <div class="panel-content">
                             @foreach($BSinformation as $key_b => $value_b)
+                            @if($value_b->user_id == $value_r->user_id)
+                            <a href="{{ route('posts.show', $value_r->id) }}">
                             <label style="font-size:18px;">{{$value_b->company_name}}</label>
+                            </a>
+                            @endif
                             @endforeach
                             <label>更新日時:<span>{{$value_r->updated_at}}</span></label>
                             <p>

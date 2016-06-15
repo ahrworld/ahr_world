@@ -329,7 +329,7 @@
 					       		      		       <select  name="subject" class="select22" style="width:100%;">
 					       		      		           <option value="">学科を選んでください</option>
 		      		         						   @foreach($subject as $value)
-		      		         						   <option value="{{$value->id}}" name="subject">{{$value->subject}}</option>
+		      		         						   <option value="{{$value->id}}">{{$value->subject}}</option>
 		      		         						   @endforeach
 					       		      		       </select>
 					       		      		     </td>

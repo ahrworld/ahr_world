@@ -20,21 +20,21 @@ td,tr,th,p,h1,h2,h3,h4,h5,h6,span,a,div,button,label,li,ul,table tbody tr th,tab
 	padding: 15px;
 	background: #f3f3f3;
 }
-.ahr-panel .wrapper{
+.wrapper{
 	margin-top: 20px;
 }
-.ahr-panel .wrapper .img-left{
+.wrapper .img-left{
 	float:left;
 }
-.ahr-panel .wrapper .panel-content{
+.wrapper .panel-content{
 	float:left;
 	margin-left:20px;
 }
-.ahr-panel .wrapper .panel-content label{
+.wrapper .panel-content label{
 	margin-bottom:20px;
 	margin-right:20px;
 }
-.ahr-panel .wrapper .img-right{
+.wrapper .img-right{
 	float:right;
 }
 /* navbar */
@@ -557,7 +557,7 @@ td,tr,th,p,h1,h2,h3,h4,h5,h6,span,a,div,button,label,li,ul,table tbody tr th,tab
 
 /* base */
 
-.close_bt ,.update_bt , .update_bt1,.update_bt2{
+.close_bt ,.update_bt ,.update_bt_smile , .update_bt_big , .update_bt1,.update_bt2{
   font-size:25px; color:#7F7F7F;
 }
 .close_bt:hover ,.update_bt:hover ,.update_bt1:hover,.update_bt2:hover{

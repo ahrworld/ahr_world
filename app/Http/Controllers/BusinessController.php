@@ -43,10 +43,10 @@ class BusinessController extends Controller
      */
     public function bs_info(Request $request)
     {
-        // if(Auth::user()->data_status == 1)
-        // {
-        //     return redirect()->intended('profile_b2');
-        // }
+        if(Auth::user()->data_status == 1)
+        {
+            return redirect()->intended('profile_b2');
+        }
         $subject = Subject::all();
         $exp_job = Exp_job::all();
         $exp_job_category = Exp_job_category::all();
@@ -111,6 +111,7 @@ class BusinessController extends Controller
             'welfare' => $request->welfare,
             'allowances' => $request->allowances,
             'education' => $request->education,
+            'bsinformations_id' => $a->id,
         ]);
 
         $employment = new Employment;
@@ -160,16 +161,19 @@ class BusinessController extends Controller
         $BSinformation = new BSinformations;
         $tasks = $BSinformation::where('user_id', $request->user()->id)->get();
         $Recruitment = new Recruitment;
-        $recruitments = $Recruitment::where('user_id', $request->user()->id)
+        $subject = Subject::all();
+        $exp_job = Exp_job::all();
+        $exp_job_category = Exp_job_category::all();
+        $recruitments = $Recruitment::where('recruitments.user_id', $request->user()->id)
         ->join('subject', 'recruitments.subject_id', '=', 'subject.id')
-                                    ->get();
-        $employments = $Recruitment::where('user_id', $request->user()->id)
+        ->get();
+        $employments = $Recruitment::where('recruitments.user_id', $request->user()->id)
         ->join('employments', 'recruitments.id', '=', 'employments.recruitments_id')
         ->get();
-        $experiences = $Recruitment::where('user_id', $request->user()->id)
+        $experiences = $Recruitment::where('recruitments.user_id', $request->user()->id)
         ->join('experiences', 'recruitments.id', '=', 'experiences.recruitments_id')
         ->get();
-        $languagelvs = $Recruitment::where('user_id', $request->user()->id)
+        $languagelvs = $Recruitment::where('recruitments.user_id', $request->user()->id)
         ->join('languagelvs', 'recruitments.id', '=', 'languagelvs.recruitments_id')
         ->get();
         $skill_data = skill_name::all();
@@ -177,6 +181,9 @@ class BusinessController extends Controller
         $bs_summary_A = Bs_summary::where('user_id', $request->user()->id)
         ->join('bs_summary_image', 'bs_summary.id', '=', 'bs_summary_image.bs_summary_id')
         ->get();
+
+        // bs_image
+        $bs_image = Bs_image::where('user_id', $request->user()->id)->get();
 
         return view('bs_sidebar/profile', [
             'tasks' => $tasks,
@@ -186,43 +193,57 @@ class BusinessController extends Controller
             'languagelvs' => $languagelvs,
             'skill_data' => $skill_data,
             'bs_summary_A' => $bs_summary_A,
+            'exp_job' => $exp_job,
+            'exp_job_category' => $exp_job_category,
+            'subject' => $subject,
+            'bs_image' => $bs_image,
         ]);
     }
+    // upload image
     public function image(Request $request){
         $bs_image = New Bs_image;
-        return $request->all();
-        if ($request->hasFile('image_big') && $request->hasFile('image_small'))
-        {
-            // big
-            $photo_b = $request->file('image_big')->getClientOriginalExtension();
-            $photoname_b = 'big'.$request->user()->id.'.'.$photo_b;
-            $photo_upload = $request->file('image_big')->move(public_path().'/ahr/busineses_img',$photoname_b);
-            $bs_image->image_big  = $photoname_b;
-            // small
-            $photo_m = $request->file('image_small')->getClientOriginalExtension();
-            $photoname_m = 'small'.$request->user()->id.'.'.$photo_m;
-            $photo_upload = $request->file('image_small')->move(public_path().'/ahr/busineses_img',$photoname_m);
-            $bs_image->image_small  = $photoname_m;
+        $date = date("Ymdhis");
+        $where = $bs_image::where('user_id',$request->user()->id)->first();
+        if (is_null($where)) {
+            //small
+            if($request->hasFile('image_small'))
+            {
+              $photoname_m = $date.$request->user()->id.'.'.'png';
+              $photo_upload = $request->file('image_small')->move(public_path().'/ahr/busineses_img',$photoname_m);
+              Bs_image::create([
+                     'image_small' => $photoname_m,
+                     'user_id' => $request->user()->id,
+              ]);
+            }
+            //big
+            else if($request->hasFile('image_big'))
+            {
+              $photoname_b = $date.$request->user()->id.'.'.'png';
+              $photo_upload = $request->file('image_big')->move(public_path().'/ahr/busineses_img',$photoname_b);
+              Bs_image::create([
+                     'image_big' => $photoname_b,
+                     'user_id' => $request->user()->id,
+              ]);
+            }
+            return redirect('/profile_b2');
         }
         //small
-        else if($request->hasFile('image_small'))
+        if($request->hasFile('image_small'))
         {
-          $photo_m = $request->file('image_small')->getClientOriginalExtension();
-          $photoname_m = 'small'.$request->user()->id.'.'.$photo_m;
+          $photoname_m = $date.$request->user()->id.'.'.'png';
           $photo_upload = $request->file('image_small')->move(public_path().'/ahr/busineses_img',$photoname_m);
-          $bs_image->image_big  = $photoname_m;
+          $bs_image::where('user_id',$request->user()->id)->update(['image_small' => $photoname_m]);
         }
         //big
         else if($request->hasFile('image_big'))
         {
-          $photo_b = $request->file('image_big')->getClientOriginalExtension();
-          $photoname_b = 'big'.$request->user()->id.'.'.$photo_b;
+          $photoname_b = $date.$request->user()->id.'.'.'png';
           $photo_upload = $request->file('image_big')->move(public_path().'/ahr/busineses_img',$photoname_b);
-          $bs_image->image_big  = $photoname_b;
+          $bs_image::where('user_id',$request->user()->id)->update(['image_big' => $photoname_b]);
         }
-        $bs_image->bsinformations_id = $request->user()->id;
-        $bs_image->save();
         return redirect('/profile_b2');
+
+
 
     }
     public function summary(Request $request){
@@ -248,12 +269,13 @@ class BusinessController extends Controller
     }
     //Recruitment
     public function recruitments_add(Request $request){
+        $a = BSinformations::where('user_id',$request->user()->id)->first();
         // Recruitment tabel
         $c = $request->user()->Recruitment()->create([
             'name' => $request->recruitment_name,
             'content' => $request->content,
             'ideal' => $request->ideal,
-            'subject' => $request->subject,
+            'subject_id' => $request->subject,
             'need_skill' => $request->need_skill,
             'if_skill' => $request->if_skill,
             'other_skill' => $request->other_skill,
@@ -266,6 +288,8 @@ class BusinessController extends Controller
             'welfare' => $request->welfare,
             'allowances' => $request->allowances,
             'education' => $request->education,
+            'bsinformations_id' => $a->id,
+
         ]);
 
         $employment = new Employment;

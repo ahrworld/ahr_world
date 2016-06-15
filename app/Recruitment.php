@@ -11,9 +11,9 @@ class Recruitment extends Model
 	protected $table = 'recruitments';
 	protected $fillable = [
         'name', 'content', 'employment_id', 'experience_id',
-        'ideal', 'subject','languageLv_id','need_skill','if_skill','other_skill',
+        'ideal', 'subject_id','languageLv_id','need_skill','if_skill','other_skill',
         'work_site', 'annual_income','monthly_income','work_time','bonus','holiday',
-        'welfare', 'allowances','education','user_id',
+        'welfare', 'allowances','education','user_id','bsinformations_id',
     ];
 
     public function employment()

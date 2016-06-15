@@ -292,6 +292,7 @@
                                 <div class="panel-content">
                                     <table class="user-view_table">
                                         <tbody>
+                                        @foreach($exp_job as $value)
                                             <tr>
                                                 <th width="150px" style="color:#000;">【經歷】</th>
                                                 <td></td>
@@ -302,11 +303,11 @@
                                             </tr> -->
                                             <tr>
                                                 <th width="150px">職種</th>
-                                                <td>：○○○○○○○</td>
+                                                <td>：{{ $value->name }}</td>
                                             </tr>
                                             <tr>
                                                 <th width="150px">期間</th>
-                                                <td>：</td>
+                                                <td>：{{ $value->year }}年</td>
                                             </tr>
                                             <!-- <tr>
                                                 <th width="150px">勤務地</th>
@@ -320,6 +321,7 @@
                                                 <th width="150px">給料（NTD）/月</th>
                                                 <td>：○○○○○○○</td>
                                             </tr> -->
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>

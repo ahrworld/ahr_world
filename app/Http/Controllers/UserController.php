@@ -137,7 +137,9 @@ class UserController extends Controller
                     ->join('skill_category', 'skill_name.skill_category_id', '=', 'skill_category.id')
                     ->get();
         // 語言
-        $languagelv = Languagelv::where('user_id', $request->user()->id)->get();
+        $languagelv = $personnel::where('user_id', $request->user()->id)
+                      ->join('languagelvs', 'personnels.id', '=', 'languagelvs.personnels_id')
+                      ->get();
         // 職務經歷
         $exp_job = Experiences_job::where('user_id', $request->user()->id)
                    ->join('exp_job', 'Experiences_job.experience', '=', 'exp_job.id')
@@ -146,7 +148,7 @@ class UserController extends Controller
     		'personnels' => $personnels,
             'per_skill' => $per_skill,
             'languagelv' => $languagelv,
-            'exp_job' => $name,
+            'exp_job' => $exp_job,
 
     	]);
     }
@@ -155,7 +157,7 @@ class UserController extends Controller
         // 標題
         $BSinformation = BSinformations::all();
         // 応募default
-        $Recruitment = Recruitment::whereNotIn('id', function($q){
+        $Recruitment = Recruitment::whereNotIn('recruitments.id', function($q){
                         $q->select('recruitments_id')
                         ->from('recruitments_status');
                       })->orWhere('user_id', $request->user()->id)->get();
@@ -196,5 +198,24 @@ class UserController extends Controller
         ]);
 
         return 'ok';
+    }
+
+    public function show(Request $request , $id)
+    {
+        $res  = Recruitment::where('recruitments.id', $id)
+        ->join('bsinformations', 'recruitments.bsinformations_id', '=', 'bsinformations.id')
+        ->get();
+        foreach ($res as $value) {
+            $a = $value->user_id;
+        }
+        $bs_image = Bs_image::where('bs_image.user_id',$a)->get();
+        if (is_null($res)) {
+            return redirect()->back()->with('message', '找不到該文章');
+        }
+
+        return view('pl_sidebar.show', [
+            'bs_image' => $bs_image,
+            'res' => $res,
+        ]);
     }
 }
