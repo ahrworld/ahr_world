@@ -1,4 +1,3 @@
-
 @extends('pl_sidebar/sidebar')
 @section('line_menu')
 @include('pl_sidebar/line_menu')
@@ -50,9 +49,7 @@
   });
 
 </script>
-<style>
 
-</style>
 <div class="scorl" style="width:60%;  float:left; margin-left:15px;">
     <!-- プロフィール Tab panes -->
     <div class="tab-content">
@@ -92,9 +89,6 @@
                 <!-- 3 -->
                 <div class="panel panel-default">
                     <div class="panel-body" style="padding-top: 0px !important;">
-                        <div class="row">
-                            <!-- logo left -->
-                            <div class="col-md-12">
                                 @foreach($personnels as $value)
                                 <h6 style="margin-bottom:0px !important;">■　基本情報</h6>
                                 <div class="panel-content">
@@ -149,12 +143,8 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-
                         </div>
-                        <!-- row end -->
                     </div>
-                </div>
                 <!-- 4 -->
                 <div class="panel panel-default">
                     <div class="panel-body" style="padding-top: 0px !important;">
