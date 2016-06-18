@@ -106,18 +106,23 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/business/image', 'BusinessController@image');
     Route::post('/business/summary', 'BusinessController@summary');
     Route::post('/business/recruitments_add', 'BusinessController@recruitments_add');
+    // bs mail_box
+    Route::get('/mail_box_bs','BusinessController@mail_box');
+    Route::get('/mail_box_bs/{id}',['as' => 'mail_bs.show' , 'uses' => 'BusinessController@mail_view']);
     // bs_blog
     Route::post('/business/blog','BusinessController@blog');
     Route::get('/news_b2', 'BusinessController@news');
     // user
     Route::get('/step', 'UserController@step');
     Route::post('personnel_in', 'UserController@personnel_in');
-
+    Route::get('/mail_box','UserController@mail_box');
+    Route::get('/mail_box/{id}',['as' => 'mail.show' , 'uses' => 'UserController@mail_view']);
     Route::get('/profile','UserController@profile');
     Route::get('/news','UserController@news');
     Route::post('ttt','UserController@ttt');
     Route::post('like','UserController@like');
-
+    // search
+    Route::post('search','UserController@search');
     // user ger business view
     Route::get('posts/{id}',['as' => 'posts.show' , 'uses' => 'UserController@show']);
 

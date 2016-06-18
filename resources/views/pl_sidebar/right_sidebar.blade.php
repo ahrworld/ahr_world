@@ -40,7 +40,7 @@
 </style>
 <div class="" style="width:18%; float:left; margin-left:15px;">
        <div class="panel panel-profile right_sidebar">
-               <img src="ahr/assets/img/rikuesuto.png" height="50"  alt="">
+               <img src="{{ asset('ahr/assets/img/rikuesuto.png')}}" height="50"  alt="">
        </div>
 
 </div>

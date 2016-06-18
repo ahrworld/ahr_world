@@ -136,10 +136,16 @@ td,tr,th,p,h1,h2,h3,h4,h5,h6,span,a,div,button,label,li,ul,table tbody tr th,tab
 	height: 34px !important;
 	width: 40px;
 	font-size: 30px;
-	line-height: 0px;
 	padding: 0px;
 	margin: 0 5px 5px 0;
+	line-height: 20px;
 }
+.disabled {
+        pointer-events: none;
+        cursor: default;
+        opacity: 0.6;
+}
+
 .td-star{
 	outline: none;
 }

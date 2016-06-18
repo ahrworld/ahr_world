@@ -13,6 +13,8 @@ use App\ModelBranch\Bs_image;
 use App\ModelBranch\Bs_summary;
 use App\ModelBranch\Bs_summary_image;
 use App\ModelBranch\Bs_blog;
+use App\ModelBranch\Mail_box;
+use App\ModelBranch\Notice;
 use App\ModelBranch\Exp_job;
 use App\ModelBranch\Exp_job_category;
 use App\ModelBranch\Subject;
@@ -371,6 +373,38 @@ class BusinessController extends Controller
                 'Recruitment' => $Recruitment,
                 'Recruitment_like' => $Recruitment_like,
             ]);
+    }
+    public function mail_box(Request $request)
+    {
+        // mail_box
+        $mail_box  = Mail_box::select('mail_box.id as mail_id','mail_title','bsinformations.company_name')
+                 ->where('mail_box.get_user_id', $request->user()->id)
+                 ->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')
+        ->paginate(5);
+        $mail_count = Mail_box::where('mail_box.get_user_id', $request->user()->id)->count();
+        // notice
+        $nt = Notice::where('notice.get_user_id', $request->user()->id);
+        $notice = $nt->join('bsinformations', 'notice.get_user_id', '=', 'bsinformations.user_id')
+        ->paginate(5);
+        $notice_count = $nt->count();
+
+        return view('bs_sidebar.mail_box', [
+            'mail_box' => $mail_box,
+            'mail_count' => $mail_count,
+            'notice' => $notice,
+            'notice_count' => $notice_count,
+        ]);
+    }
+    public function mail_view(Request $request , $id)
+    {
+
+        $mail_view  = Mail_box::where('mail_box.id', $id)->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')->first();
+
+
+        return view('bs_sidebar.mail_view', [
+            'mail_view' => $mail_view
+
+        ]);
     }
 
 }

@@ -31,7 +31,7 @@
 
     });
     </script>
-<div class="wrapper">
+<div class="wrapper" style="height:400px;">
     <div class="row">
       <div class="col-md-12">
          <div class="panel-group" id="accordion" role="tablist" >

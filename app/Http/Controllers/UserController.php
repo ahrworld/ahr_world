@@ -14,6 +14,8 @@ use App\Recruitment;
 use App\Recruitments_status;
 use App\Personnel;
 use App\ModelBranch\Exp_job;
+use App\ModelBranch\Mail_box;
+use App\ModelBranch\Notice;
 use App\ModelBranch\Exp_job_category;
 use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
@@ -181,12 +183,19 @@ class UserController extends Controller
     }
     public function ttt(Request $request)
     {
+        $Personnel = Personnel::where('user_id',$request->user()->id)->first();
         $Recruitments_status = Recruitments_status::create([
                     'status' => 1,
                     'recruitments_id' => $request->id,
                     'user_id' => $request->user()->id,
         ]);
-
+        $notice = Notice::create([
+                    'notice_title' => $Personnel->family_name.$Personnel->surname.'さんが新着応募',
+                    'notice_content' => $request->content,
+                    'status' => 0,
+                    'get_user_id' => $request->b_id,
+                    'post_user_id' => $request->user()->id,
+        ]);
         return 'ok';
     }
     public function like(Request $request)
@@ -199,7 +208,19 @@ class UserController extends Controller
 
         return 'ok';
     }
-
+    public function search(Request $request)
+    {
+        $Recruitment = Recruitment::whereNotIn('recruitments.id', function($q){
+                        $q->select('recruitments_id')
+                        ->from('recruitments_status');
+                      })->orWhere('user_id', $request->user()->id)
+                        ->paginate(3);
+        // if ($request->job == true){
+        //    $query = $Recruitment->where('name', 'like', '%'.$request->job.'%');
+        //    return response()->json($query);
+        // }
+        return response()->json($Recruitment);
+    }
     public function show(Request $request , $id)
     {
         $res  = Recruitment::where('recruitments.id', $id)
@@ -218,4 +239,38 @@ class UserController extends Controller
             'res' => $res,
         ]);
     }
+
+    public function mail_box(Request $request)
+    {
+        // mail_box
+        $mail_box  = Mail_box::select('mail_box.id as mail_id','mail_title','bsinformations.company_name')
+                 ->where('mail_box.post_user_id', $request->user()->id)
+                 ->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')
+        ->paginate(5);
+        $mail_count = Mail_box::where('mail_box.post_user_id', $request->user()->id)->count();
+        // notice
+        $nt = Notice::where('notice.post_user_id', $request->user()->id);
+        $notice = $nt->join('bsinformations', 'notice.get_user_id', '=', 'bsinformations.user_id')
+        ->paginate(5);
+        $notice_count = $nt->count();
+
+        return view('pl_sidebar.mail_box', [
+            'mail_box' => $mail_box,
+            'mail_count' => $mail_count,
+            'notice' => $notice,
+            'notice_count' => $notice_count,
+        ]);
+    }
+    public function mail_view(Request $request , $id)
+    {
+
+        $mail_view  = Mail_box::where('mail_box.id', $id)->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')->first();
+
+
+        return view('pl_sidebar.mail_view', [
+            'mail_view' => $mail_view
+
+        ]);
+    }
+
 }

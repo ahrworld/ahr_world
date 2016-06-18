@@ -1,7 +1,7 @@
 
 @extends('bs_sidebar/sidebar')
 @section('line_menu')
-<div style="height:20px;"></div>
+@include('bs_sidebar/line_menu')
 @endsection
 @section('content')
 
@@ -176,7 +176,7 @@ input[type="checkbox"] {
         <!-- 企業情報tab-panel end -->
         <!-- 採用情報 Tab panes -->
         <div role="tabpanel" class="tab-pane ahr-panel" id="a2">
-            @include('bs_sidebar/profile_branch/tab2')
+           @include('bs_sidebar/profile_branch/tab2')
         </div>
         <!-- 採用情報 tab-panel end -->
         <!-- 企業カラー Tab panes -->

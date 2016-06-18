@@ -165,7 +165,7 @@
 							      		     <tr>
 								      		     <th scope="row" align="right" width="170px">使用言語の選択<span class="color-red">※</span></th>
 								      		     <td>
-								      		     	<select class="select-language" name="user_language_id">
+								      		     	<select class="form-control select-language"  name="user_language_id">
 								      		     	@foreach ($Languages as $Language)
 								      		     	  <option value="{{ $Language->id }}">{{ $Language->language }}</option>
 								      		     	@endforeach
@@ -223,7 +223,7 @@
 								      		     <th scope="row" align="right" width="170px">選考プロセス<span class="color-red">※</span></th>
 								      		     <td>
 								      		        <!-- 優化時value要更換成ID -->
-								      		     	<select class="select-button" name="test_process1">
+								      		     	<select class="select-button form-control" name="test_process1">
 								      		     	  <option value="応募">応募</option>
 								      		     	  <option value="書類選考">書類選考</option>
 								      		     	</select>
@@ -232,7 +232,7 @@
 								      		     		<i class="fa fa-caret-right"></i>
 								      		     	</div>
 
-								      		     	<select class="select-button" name="test_process2">
+								      		     	<select class="select-button form-control" name="test_process2">
 								      		     	  <option value="一次面接">一次面接</option>
 								      		     	  <option value="二次面接">二次面接</option>
 								      		     	</select>
@@ -240,7 +240,7 @@
 								      		     	<div class="revision_1">
 								      		     		<i class="fa fa-caret-right"></i>
 								      		     	</div>
-								      		     	<select class="select-button" name="test_process3">
+								      		     	<select class="select-button form-control" name="test_process3">
 								      		     	  <option value="内定">内定</option>
 								      		     	  <option value="適性試験">適性試験</option>
 								      		     	  <option value="課題">課題</option>
@@ -410,19 +410,19 @@
 					       	      		     <tr>
 					       		      		     <th scope="row" align="right" width="20%">勤務時間</th>
 					       		      		     <td>
-					       		      		     <input type="text" name="work_time" class="form-control ahr-input_1" style="width:85%; float:left;"><button type="button" class="btn btn-default" style="border-radius:0px !important;">時間</button>
+					       		      		     <input type="text" name="work_time" class="form-control ahr-input_1" style="width:85%; float:left;">
 					       		      		     </td>
 					       	      		     </tr>
 					       	      		     <tr>
 					       		      		     <th scope="row" align="right" width="20%">ボーナス</th>
 					       		      		     <td>
-					       		      		     	<input type="text" name="bonus" class="form-control ahr-input_1">
+					       		      		     	<input type="text" name="bonus" class="form-control ahr-input_1" style="width:85%; float:left;">
 					       		      		     </td>
 					       	      		     </tr>
 					       	      		     <tr>
 					       		      		     <th scope="row" align="right" width="20%">休日休暇</th>
 					       		      		     <td>
-					       		      		     <input type="text" name="holiday" class="form-control ahr-input_1" style="width:85%; float:left;"><button type="button" class="btn btn-default" style="border-radius:0px !important;">日</button>
+					       		      		     <input type="text" name="holiday" class="form-control ahr-input_1" style="width:85%; float:left;">
 					       		      		     </td>
 					       	      		     </tr>
 					       	      		     <tr>
@@ -452,7 +452,7 @@
 					       	      		     </tbody>
 					       	      		   </table>
 					       	      		</div>
-										<!-- <div style="text-align:right;"><label class="add add_all" style="width:30px; height:30px;"></label></div><!-- add button --> -->
+										<!-- <div style="text-align:right;"><label class="add add_all" style="width:30px; height:30px;"></label></div><!-- add button --> 
 					             	</div>
 					             </div><!-- row end -->
 					             <div class="push_all" style="margin-top:30px;"></div>

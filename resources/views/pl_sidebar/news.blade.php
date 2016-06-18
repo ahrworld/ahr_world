@@ -1,6 +1,30 @@
 @extends('pl_sidebar/sidebar')
 @section('line_menu')
-@include('pl_sidebar/line_menu')
+<div class="row" style="width:60%; margin:80px  auto 30px;">
+  <div class="col-lg-12">
+    <form class="search" method="POST" >
+     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <input type="text" class="form-control" class="job" name="job" placeholder="職業から選ぶ">
+      </span>
+      <span class="input-group-btn">
+        <input type="text" class="form-control" placeholder="經驗。スキル">
+      </span>
+      <span class="input-group-btn">
+        <input type="text" class="form-control" placeholder="言語">
+      </span>
+      <span class="input-group-btn">
+        <input type="text" class="form-control" placeholder="勤務地">
+      </span>
+      <span class="input-group-btn">
+        <button class="btn ahr-button search_btn" style="height:34px; line-height:20px;" type="button">檢索</button>
+      </span>
+    </div><!-- /input-group -->
+    </form>
+  </div><!-- /.col-lg-12 -->
+</div><!-- /.row -->
+
 @endsection
 @section('content')
 <style>
@@ -37,6 +61,35 @@
     });
     var token = '{{ Session::token() }}';
     $(document).ready(function() {
+        // $('.search_btn').click(function(){
+        //     $.ajax({
+        //           type: "POST",
+        //           url: "search",
+        //           async: false,
+        //           dataType: "json",
+        //           data:  $('.search').serialize(),
+        //           success: function(data) {
+        //               console.log(JSON.stringify(data));
+        //               // for (var i = 0; i <= 5; i++) {
+        //               //     var moreArray = new Array;
+        //               //     moreArray.push(JSON.stringify(data[i]))
+
+
+        //               // };
+        //               var moreArray = new Array;
+        //                 $.each( data, function( key, value ) {
+
+        //                   moreArray.push('<p>' + JSON.stringify(data[])+'</p>');
+
+        //                 });
+        //                 console.log(moreArray);
+        //                $('.wrapper').html(moreArray);
+        //           },
+        //           error: function(data) {
+        //               console.log('Error:', data);
+        //           }
+        //       });
+        // });
         $('#news_modal_1 .skype_wrapper .yes').click(function(){
             $('#news_modal_1 .modal-body').removeClass('none');
             $('#news_modal_1 .skype_wrapper').addClass('none');
@@ -51,7 +104,9 @@
         });
         $('.bt_1').click(function(){
             var r_id = $(this).attr('attr');
-            $('.rk_bt').attr('attr',r_id);
+            var b_id = $(this).attr('bs');
+            $('#id').val(r_id);
+            $('#b_id').val(b_id);
         });
         $('#news_modal_1 .rk_wrapper .rk_bt').click(function(){
                var id = $(this).attr('attr');
@@ -182,13 +237,17 @@
                               </div>
 
                               <div class="modal-body none">
+                              <form class="form_a" action="{{url('/ttt')}}" method="POST" >
+                                {{ csrf_field() }}
                                   <div class="form-group">
                                   <label>メッセージ:</label>
                                   <button class="btn btn-default">リクエストを送る</button>
                                   <label style="color:#FF0037;">※テンプレートを使用する場合はボタンを押してください。</label>
                                   </div>
-                                <textarea class="form-control"  rows="5">
-ご連絡頂き、ありがとうございます。
+                                  <input type="hidden" name="id" id="id" value="">
+                                  <input type="hidden" name="b_id" id="b_id" value="">
+
+                                <textarea name="content" class="form-control"  rows="5">ご連絡頂き、ありがとうございます。
 ぜひ、「 」について、更にお話を伺えればと思っております。
 お忙しいところ恐縮ですが、よろしくお願い致します。
                                 </textarea>
@@ -199,14 +258,15 @@
                               </div>
                               <div class="modal-footer rk_wrapper none">
                                 <button type="button" class="btn btn-default back" data-dismiss="modal">NO</button>
-                                <button type="button" class="btn btn-primary rk_bt" >送信する</button>
+                                <button type="submit" class="btn btn-primary" >送信する</button>
                               </div>
+                              </form>
                             </div>
                           </div>
                         </div>
                         <!-- modal end -->
                             <div style="width:150px; float:left;">
-                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->id}}" data-toggle="modal" data-target="#news_modal_1" >応募する</a>
+                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->id}}" bs="{{$value_r->user_id}}" data-toggle="modal" data-target="#news_modal_1" >応募する</a>
                                 <a href="#" class="btn ahr-label-yellow ahr-btn-lg bt_2" attr="{{$value_r->id}}">お気に入り</a>
                             </div>
                         </div>

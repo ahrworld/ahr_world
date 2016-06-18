@@ -193,7 +193,7 @@
 		</div>
 		<div class="base"></div>
 		<div class="background7">
-			<img src="ahr/assets/img/bs_lp_bk7.png" height="1800" style="margin-top:20px;">
+			<img src="ahr/assets/img/bs_lp_bk7.png" height="1400" style="margin-top:20px;">
 		</div>
 		<div class="base"></div>
 		<div class="background8">

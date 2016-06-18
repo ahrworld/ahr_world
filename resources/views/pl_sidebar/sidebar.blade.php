@@ -6,17 +6,17 @@
     <title>ahr</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- bootstrap -->
-    <script src="ahr/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="{{ asset('ahr/bower_components/bootstrap/dist/js/bootstrap.js')}}"></script>
     <!-- ahr -->
-    <script src="ahr/assets/js/ahr.js"></script>
-    <link rel="stylesheet" href="assets/css/ahr.css">
+    <script src="{{ asset('ahr/assets/js/ahr.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('assets/css/ahr.css')}}">
     <!-- bootstrap-sweetalert -->
     <script src="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.css')}}">
     <!-- animate.css -->
-    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css')}}">
     <!-- chart.js -->
-    <script src="ahr/assets/js/Chart.min.js"></script>
+    <script src="{{ asset('ahr/assets/js/Chart.min.js')}}"></script>
     <!-- test fily -->
     <link rel="stylesheet" href="{{ asset('ahr/assets/default_css/main.css')}}">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
@@ -50,7 +50,7 @@ $(document).ready(function() {
 	            <!-- Logo -->
 	            <div class="logo">
 	                <a href="#/">
-	                    <span><a href="#"><img src="assets/img/logo.png" height="40"></a></span>
+	                    <span><a href="#"><img src="{{ asset('assets/img/logo.png')}}" height="40"></a></span>
 	                </a>
 	            </div>
 
@@ -96,7 +96,7 @@ $(document).ready(function() {
 	                    </li>
 	                    <li class="dropdown" dropdown is-open="isopenEmail">
 	                        <a href="javascript:;" class="dropdown-toggle mail-icon" dropdown-toggle>
-	                            <span class="badge badge-info">3</span>
+	                            <span class="badge badge-info"></span>
 	                        </a>
 	                        <div class="dropdown-menu with-arrow panel panel-default">
 	                        </div>
@@ -153,7 +153,7 @@ $(document).ready(function() {
 		</section>
 		<!-- main -->
 
-        <main style="width:100%; margin:50px auto;">
+        <main style="width:1260px; margin:50px auto;">
         		  @yield('line_menu')
 				  @include('pl_sidebar/left_sidebar')
 				  @yield('content')
