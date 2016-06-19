@@ -58,9 +58,7 @@
     <div class="panel-body">
         <!-- photo left -->
         <div class="img-left">
-            <a href="{{ route('posts.show', $value_r->user_id) }}">
             <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
-            </a>
         </div>
         <!-- content -->
         <div class="panel-content">
@@ -77,15 +75,54 @@
             <p>
                 <label class="label-gray">勤務地</label><span></span></p>
         </div>
+        <!-- news_modal_1 modal -->
+        <div class="modal fade" id="news_modal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">ID公開しますか？</h4>
+              </div>
+
+              <div class="modal-body none">
+              <form class="form_a" action="{{url('/ttt')}}" method="POST" >
+                {{ csrf_field() }}
+                  <div class="form-group">
+                  <label>メッセージ:</label>
+                  <button class="btn btn-default">リクエストを送る</button>
+                  <label style="color:#FF0037;">※テンプレートを使用する場合はボタンを押してください。</label>
+                  </div>
+                  <input type="hidden" name="id" id="id" value="">
+                  <input type="hidden" name="b_id" id="b_id" value="{{$value_r->user_id}}">
+
+                <textarea name="content" class="form-control"  rows="5">ご連絡頂き、ありがとうございます。
+        ぜひ、「 」について、更にお話を伺えればと思っております。
+        お忙しいところ恐縮ですが、よろしくお願い致します。
+                </textarea>
+              </div>
+              <div class="modal-footer skype_wrapper">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary yes">Yes</button>
+              </div>
+              <div class="modal-footer rk_wrapper none">
+                <button type="button" class="btn btn-default back" data-dismiss="modal">NO</button>
+                <button type="submit" class="btn btn-primary" >送信する</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- modal end -->
         <div class="img-right">
             <div style="width:150px; float:left;">
-                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->id}}">応募する</a>
-                <a href="#" class="btn ahr-label-yellow ahr-btn-lg bt_2" attr="{{$value_r->id}}">お気に入り</a>
+                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$r_id->r_id}}" bs="{{$value_r->user_id}}" data-toggle="modal" data-target="#news_modal_1">応募する</a>
+                <a href="#" class="btn ahr-label-yellow ahr-btn-lg bt_2" attr="{{$r_id->r_id}}">お気に入り</a>
             </div>
         </div>
     </div>
 </div>
 @endforeach
+
 </div>
 </div>
 

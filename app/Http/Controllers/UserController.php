@@ -159,15 +159,20 @@ class UserController extends Controller
         // 標題
         $BSinformation = BSinformations::all();
         // 応募default
-        $Recruitment = Recruitment::whereNotIn('recruitments.id', function($q){
+        $Recruitment = Recruitment::select('recruitments.id as r_id','name','recruitments.user_id','content','need_skill','annual_income','monthly_income','work_site')
+                        ->whereNotIn('recruitments.id', function($q){
                         $q->select('recruitments_id')
                         ->from('recruitments_status');
-                      })->orWhere('user_id', $request->user()->id)->get();
+                      })->orWhere('user_id', $request->user()->id)
+                        ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                        ->get();
                    //orWhere作法不好，只有或，沒有和的條件，所以user id一旦錯了就全錯了
         // 応募した
-        $Recruitment_ofa = Recruitments_status::where('recruitments_status.user_id', $request->user()->id)
+        $Recruitment_ofa = Recruitments_status::select('recruitments.id as r_id','name','recruitments.user_id','content','need_skill','annual_income','monthly_income','work_site')
+                            ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',1)
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                            ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->get();
         // お気に入り
         $Recruitment_like = Recruitments_status::where('recruitments_status.user_id', $request->user()->id)
@@ -196,7 +201,7 @@ class UserController extends Controller
                     'get_user_id' => $request->b_id,
                     'post_user_id' => $request->user()->id,
         ]);
-        return 'ok';
+        return redirect('/news');
     }
     public function like(Request $request)
     {
@@ -226,6 +231,9 @@ class UserController extends Controller
         $res  = Recruitment::where('recruitments.id', $id)
         ->join('bsinformations', 'recruitments.bsinformations_id', '=', 'bsinformations.id')
         ->get();
+        $r_id = Recruitment::select('recruitments.id as r_id')
+                ->where('recruitments.id', $id)
+                ->first();
         foreach ($res as $value) {
             $a = $value->user_id;
         }
@@ -237,6 +245,7 @@ class UserController extends Controller
         return view('pl_sidebar.show', [
             'bs_image' => $bs_image,
             'res' => $res,
+            'r_id' =>$r_id,
         ]);
     }
 
@@ -244,12 +253,12 @@ class UserController extends Controller
     {
         // mail_box
         $mail_box  = Mail_box::select('mail_box.id as mail_id','mail_title','bsinformations.company_name')
-                 ->where('mail_box.post_user_id', $request->user()->id)
+                 ->where('mail_box.get_user_id', $request->user()->id)
                  ->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')
         ->paginate(5);
         $mail_count = Mail_box::where('mail_box.post_user_id', $request->user()->id)->count();
         // notice
-        $nt = Notice::where('notice.post_user_id', $request->user()->id);
+        $nt = Notice::where('notice.get_user_id', $request->user()->id);
         $notice = $nt->join('bsinformations', 'notice.get_user_id', '=', 'bsinformations.user_id')
         ->paginate(5);
         $notice_count = $nt->count();

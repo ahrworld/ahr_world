@@ -98,7 +98,7 @@ class BusinessController extends Controller
 
         // Recruitment tabel
         $c = $request->user()->Recruitment()->create([
-            'name' => $request->recruitment_name,
+            'job_id' => $request->recruitment_name,
             'content' => $request->content,
             'ideal' => $request->ideal,
             'subject_id' => $request->subject,
@@ -169,6 +169,7 @@ class BusinessController extends Controller
         $exp_job_category = Exp_job_category::all();
         $recruitments = $Recruitment::where('recruitments.user_id', $request->user()->id)
         ->join('subject', 'recruitments.subject_id', '=', 'subject.id')
+        ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
         ->get();
         $employments = $Recruitment::where('recruitments.user_id', $request->user()->id)
         ->join('employments', 'recruitments.id', '=', 'employments.recruitments_id')
@@ -279,7 +280,7 @@ class BusinessController extends Controller
         $a = BSinformations::where('user_id',$request->user()->id)->first();
         // Recruitment tabel
         $c = $request->user()->Recruitment()->create([
-            'name' => $request->recruitment_name,
+            'job_id' => $request->recruitment_name,
             'content' => $request->content,
             'ideal' => $request->ideal,
             'subject_id' => $request->subject,

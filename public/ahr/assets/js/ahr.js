@@ -1,4 +1,48 @@
 $(document).ready(function() {
+		$('.bt_1').click(function(){
+		    var r_id = $(this).attr('attr');
+		    var b_id = $(this).attr('bs');
+		    $('#id').val(r_id);
+		    $('#b_id').val(b_id);
+		});
+		$('#news_modal_1 .skype_wrapper .yes').click(function(){
+            $('#news_modal_1 .modal-body').removeClass('none');
+            $('#news_modal_1 .skype_wrapper').addClass('none');
+            $('#news_modal_1 .modal-header').addClass('none');
+            $('#news_modal_1 .rk_wrapper').removeClass('none');
+        });
+        $('#news_modal_1 .rk_wrapper .back').click(function(){
+            $('#news_modal_1 .skype_wrapper').removeClass('none');
+            $('#news_modal_1 .modal-header').removeClass('none');
+            $('#news_modal_1 .modal-body').addClass('none');
+            $('#news_modal_1 .rk_wrapper').addClass('none');
+        });
+        $('#news_modal_1 .rk_wrapper .rk_bt').click(function(){
+               var id = $(this).attr('attr');
+               $.ajax({
+                  type: "POST",
+                  url: "ttt",
+                  async: false,
+                  dataType: "json",
+                  data: {
+                      id: id,
+                      _token: token
+                  },
+                  success: function(data) {
+                      console.log(JSON.stringify(data));
+                  },
+                  error: function(data) {
+                      console.log('Error:', data);
+                  }
+              });
+              swal({
+                title: "成功",
+                type: "success",
+                timer:1000,
+                showConfirmButton: false
+              })
+              setTimeout("location.reload();", 1000);
+        });
 		// business profile tab1
 		$('.default_photo .bs_background').hover(function(){
 		  $('.default_photo .bs_background .update_bt_big').toggleClass('none');

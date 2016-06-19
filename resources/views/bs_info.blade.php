@@ -153,19 +153,19 @@
 							      		     <tr>
 								      		     <th scope="row" align="right" width="170px">企業名<span class="color-red">※</span></th>
 								      		     <td>
-								      		     	<input type="text" name="company_name" class="form-control ahr-input_1">
+								      		     	<input type="text" name="company_name" required="required" class="form-control ahr-input_1">
 								      		     </td>
 							      		     </tr>
 							      		     <tr>
 								      		     <th scope="row" align="right" width="170px">担当者氏名<span class="color-red">※</span></th>
 								      		     <td>
-								      		     	<input type="text" name="name" class="form-control ahr-input_1">
+								      		     	<input type="text" name="name" required="required" class="form-control ahr-input_1">
 								      		     </td>
 							      		     </tr>
 							      		     <tr>
 								      		     <th scope="row" align="right" width="170px">使用言語の選択<span class="color-red">※</span></th>
 								      		     <td>
-								      		     	<select class="form-control select-language"  name="user_language_id">
+								      		     	<select class="form-control select-language" required="required" name="user_language_id">
 								      		     	@foreach ($Languages as $Language)
 								      		     	  <option value="{{ $Language->id }}">{{ $Language->language }}</option>
 								      		     	@endforeach
@@ -182,14 +182,14 @@
 							      		     <tr>
 								      		     <th scope="row" align="right" width="170px">企業サイトURL<span class="color-red">※</span></th>
 								      		     <td>
-								      		     	<input type="text" class="form-control ahr-input_1" name="web_url">
+								      		     	<input type="text" required="required" class="form-control ahr-input_1" name="web_url">
 								      		     </td>
 							      		     </tr>
 
 							      		     <tr>
 								      		     <th scope="row" align="right" width="170px">本社所在地<span class="color-red">※</span></th>
 								      		     <td>
-								      		     	<input type="text" class="form-control ahr-input_1" name="address">
+								      		     	<input type="text" required="required" class="form-control ahr-input_1" name="address">
 								      		     </td>
 							      		     </tr>
 							      		     </tbody>

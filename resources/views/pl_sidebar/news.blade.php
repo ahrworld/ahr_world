@@ -61,6 +61,7 @@
     });
     var token = '{{ Session::token() }}';
     $(document).ready(function() {
+
         // $('.search_btn').click(function(){
         //     $.ajax({
         //           type: "POST",
@@ -90,50 +91,6 @@
         //           }
         //       });
         // });
-        $('#news_modal_1 .skype_wrapper .yes').click(function(){
-            $('#news_modal_1 .modal-body').removeClass('none');
-            $('#news_modal_1 .skype_wrapper').addClass('none');
-            $('#news_modal_1 .modal-header').addClass('none');
-            $('#news_modal_1 .rk_wrapper').removeClass('none');
-        });
-        $('#news_modal_1 .rk_wrapper .back').click(function(){
-            $('#news_modal_1 .skype_wrapper').removeClass('none');
-            $('#news_modal_1 .modal-header').removeClass('none');
-            $('#news_modal_1 .modal-body').addClass('none');
-            $('#news_modal_1 .rk_wrapper').addClass('none');
-        });
-        $('.bt_1').click(function(){
-            var r_id = $(this).attr('attr');
-            var b_id = $(this).attr('bs');
-            $('#id').val(r_id);
-            $('#b_id').val(b_id);
-        });
-        $('#news_modal_1 .rk_wrapper .rk_bt').click(function(){
-               var id = $(this).attr('attr');
-               $.ajax({
-                  type: "POST",
-                  url: "ttt",
-                  async: false,
-                  dataType: "json",
-                  data: {
-                      id: id,
-                      _token: token
-                  },
-                  success: function(data) {
-                      console.log(JSON.stringify(data));
-                  },
-                  error: function(data) {
-                      console.log('Error:', data);
-                  }
-              });
-              swal({
-                title: "成功",
-                type: "success",
-                timer:1000,
-                showConfirmButton: false
-              })
-              setTimeout("location.reload();", 1000);
-        });
 
         $('.bt_2').click(function() {
             var r_id = $('.bt_2').attr('attr');
@@ -200,7 +157,7 @@
                     <div class="panel-body">
                         <!-- photo left -->
                         <div class="img-left">
-                            <a href="{{ route('posts.show', $value_r->id) }}">
+                            <a href="{{ route('posts.show', $value_r->r_id) }}">
                             <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
                             </a>
                         </div>
@@ -208,7 +165,7 @@
                         <div class="panel-content">
                             @foreach($BSinformation as $key_b => $value_b)
                             @if($value_b->user_id == $value_r->user_id)
-                            <a href="{{ route('posts.show', $value_r->id) }}">
+                            <a href="{{ route('posts.show', $value_r->r_id) }}">
                             <label style="font-size:18px;">{{$value_b->company_name}}</label>
                             </a>
                             @endif
@@ -221,9 +178,9 @@
                             <p>
                                 <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
                             <p>
-                                <label class="label-gray">給与</label><span>{{$value_r->annual_income}}万円～{{$value_r->annual_income}}万円</span></p>
+                                <label class="label-gray">給与</label><span>{{$value_r->monthly_income}}万円～{{$value_r->annual_income}}万円</span></p>
                             <p>
-                                <label class="label-gray">勤務地</label><span></span></p>
+                                <label class="label-gray">勤務地</label><span>{{$value_r->work_site}}</span></p>
                         </div>
                         <div class="img-right">
 
@@ -266,8 +223,8 @@
                         </div>
                         <!-- modal end -->
                             <div style="width:150px; float:left;">
-                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->id}}" bs="{{$value_r->user_id}}" data-toggle="modal" data-target="#news_modal_1" >応募する</a>
-                                <a href="#" class="btn ahr-label-yellow ahr-btn-lg bt_2" attr="{{$value_r->id}}">お気に入り</a>
+                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->r_id}}" bs="{{$value_r->user_id}}" data-toggle="modal" data-target="#news_modal_1" >応募する</a>
+                                <a href="#" class="btn ahr-label-yellow ahr-btn-lg bt_2" attr="{{$value_r->r_id}}">お気に入り</a>
                             </div>
                         </div>
                     </div>
