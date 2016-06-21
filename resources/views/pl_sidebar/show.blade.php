@@ -1,4 +1,4 @@
-@extends('bs_sidebar/sidebar')
+@extends('pl_sidebar/sidebar')
 @section('line_menu')
 <div style="height:20px;"></div>
 @endsection
@@ -57,9 +57,15 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <!-- photo left -->
+        @if(isset($bs_image->image_small))
+        <div class="img-left">
+            <img height="175" src="{{ asset('ahr/busineses_img/')}}/{{$bs_image->image_small}}" alt="">
+        </div>
+        @else
         <div class="img-left">
             <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
         </div>
+        @endif
         <!-- content -->
         <div class="panel-content">
             <label style="font-size:18px;">{{$value_r->company_name}}</label>
@@ -142,12 +148,17 @@
                     <div class="panel-body default_photo">
                         <div class="row">
                             <div class="col-md-12">
-                                @foreach ($bs_image as $task)
-                                <div class="img-thumbnail bs_background" style=" background-image:url('{{ asset('ahr/busineses_img/')}}/{{$task->image_big}}');">
+                                @if(isset($bs_image))
+                                <div class="img-thumbnail bs_background" style=" background-image:url('{{ asset('ahr/busineses_img/')}}/{{$bs_image->image_big}}');">
                                 </div>
-                                <div class="img-thumbnail bs_photo" style=" background-image:url('{{ asset('ahr/busineses_img/')}}/{{$task->image_small}}');">
+                                <div class="img-thumbnail bs_photo" style=" background-image:url('{{ asset('ahr/busineses_img/')}}/{{$bs_image->image_small}}');">
                                 </div>
-                                @endforeach
+                                @else
+                                <div class="img-thumbnail bs_background">
+                                </div>
+                                <div class="img-thumbnail bs_photo">
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

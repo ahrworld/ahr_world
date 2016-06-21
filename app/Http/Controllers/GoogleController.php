@@ -48,6 +48,6 @@ class GoogleController extends Controller
             ]);
         }
         Auth::loginUsingId($user->id);
-        return redirect('/');
+        return redirect('/step');
     }
 }

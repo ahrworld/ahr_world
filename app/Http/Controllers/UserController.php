@@ -156,14 +156,18 @@ class UserController extends Controller
     }
     public function news(Request $request)
     {
-        // 標題
-        $BSinformation = BSinformations::all();
+        // 圖片
+        $bs_image = Bs_image::first();
+
         // 応募default
-        $Recruitment = Recruitment::select('recruitments.id as r_id','name','recruitments.user_id','content','need_skill','annual_income','monthly_income','work_site')
+        $Recruitment = Recruitment::select('recruitments.id as r_id','exp_job.name',
+            'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
+            'content','need_skill','annual_income','monthly_income','work_site')
                         ->whereNotIn('recruitments.id', function($q){
                         $q->select('recruitments_id')
                         ->from('recruitments_status');
-                      })->orWhere('user_id', $request->user()->id)
+                      })->orWhere('recruitments.user_id', $request->user()->id)
+                        ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                         ->get();
                    //orWhere作法不好，只有或，沒有和的條件，所以user id一旦錯了就全錯了
@@ -180,7 +184,7 @@ class UserController extends Controller
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->get();
         return view('pl_sidebar/news',[
-          'BSinformation' => $BSinformation,
+          'bs_image' => $bs_image,
           'Recruitment' => $Recruitment,
           'Recruitment_ofa' => $Recruitment_ofa,
           'Recruitment_like' => $Recruitment_like,
@@ -237,7 +241,7 @@ class UserController extends Controller
         foreach ($res as $value) {
             $a = $value->user_id;
         }
-        $bs_image = Bs_image::where('bs_image.user_id',$a)->get();
+        $bs_image = Bs_image::where('bs_image.user_id',$a)->first();
         if (is_null($res)) {
             return redirect()->back()->with('message', '找不到該文章');
         }

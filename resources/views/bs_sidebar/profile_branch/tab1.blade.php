@@ -1,13 +1,55 @@
 <style>
+ .fileUpload {
+     position: relative;
+     overflow: hidden;
+ }
+ .fileUpload span{
+     font-size: 13px;
+ }
+ .fileUpload input.upload {
+     position: absolute;
+     top: 0;
+     right: 0;
+     margin: 0;
+     padding: 0;
+     font-size: 20px;
+     cursor: pointer;
+     opacity: 0;
+     filter: alpha(opacity=0);
+ }
+ .cropit_form{
+   text-align: center;
+ }
  .cropit-preview {
    /* You can specify preview size in CSS */
-   width: 100%;
-   height: 100px;
+   width: 200px;
+   height: 200px;
+   text-align: center;
+   margin: auto;
  }
- .cropit-photo {
-   /* You can specify preview size in CSS */
-   width: 100%;
-   height: 100px;
+
+ /* Translucent background image */
+ .cropit-preview-background {
+   opacity: .2;
+ }
+ .cropit-image-zoom-input{
+   width: 300px !important;
+   display: initial !important;
+ }
+ input.cropit-image-zoom-input {
+   position: relative;
+ }
+ .cropit-image-input.custom {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+ }
+ /* Limit the background image by adding overflow: hidden */
+ #image-cropper {
+   overflow: hidden;
  }
  /* this page only start */
 /* .panel-default{
@@ -78,19 +120,28 @@ background-image:url('ahr/busineses_img/{{$value->image_small}}');
        var token = '{{ Session::token() }}';
         $(document).ready(function() {
           // cropit
-          $('#image-cropper').cropit();
+          $('#image-cropper').cropit({
+            imageBackground: true,
+            imageBackgroundBorderWidth: 30 // Width of background border
+          });
+          // Handle rotation
+          $('.rotate-cw-btn').click(function() {
+            $('#image-cropper').cropit('rotateCW');
+          });
+          $('.rotate-ccw-btn').click(function() {
+            $('#image-cropper').cropit('rotateCCW');
+          });
           $('.download-btn').click(function() {
             var imageData = $('#image-cropper').cropit('export');
             $('.hidden_image_data').val(imageData);
             $.ajax({
                 type: "POST",
-                url: "/business/image",
+                url: "/business/image/test",
                 async: false,
                 dataType: "json",
                 data:  $('.test_form').serialize(),
                 success: function(data) {
-                    console.log(data);
-                    console.log(JSON.stringify(data));
+                     console.log(JSON.stringify(data));
                 },
                 error: function(data) {
                     console.log('Error:', data);
@@ -119,62 +170,45 @@ background-image:url('ahr/busineses_img/{{$value->image_small}}');
         });
        </script>
 
-     <!--   <div class="panel-body update_background">
-               <div class="row">
-                    <div class="col-md-12">
-                     @foreach ($tasks as $task)
-                         <div class="img-thumbnail bs_background" style=" background-image:url('ahr/busineses_img/big{{$task->user_id}}.jpg');">
-                            <a href="#" class="float-right update_bt none" style="">
-                              <i class="fa fa-camera" aria-hidden="true"></i>
-                            </a>
-                         </div>
-                     @endforeach
-                    </div>
-               </div>
-       </div>
-       <div class="panel-body update_photo">
-               <div class="row">
-                    <div class="col-md-12">
-                     @foreach ($tasks as $task)
-                         <div class="img-thumbnail bs_photo" style=" background-image:url('ahr/busineses_img/small{{$task->user_id}}.png');">
-                           <a href="#" class="float-right update_bt none">
-                             <i class="fa fa-camera" aria-hidden="true"></i>
-                           </a>
-                         </div>
-                     @endforeach
-                    </div>
-               </div>
-       </div> -->
+
        <!-- bakground photo -->
        <div class="panel-body update_photo_big none">
-
                <div class="row">
-                    <div class="col-md-12">
-                    <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    </a>
-
-                     <!-- <div id="image-cropper">
-                       <div class="cropit-preview"></div>
-                       <form class="test_form" action="{{url('/business/image')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
-                       <input type="hidden" name="_token" value="{{ csrf_token()}}">
-                       <input type="range" class="cropit-image-zoom-input" />
-                       <input type="file" name="imageData" class="cropit-image-input" />
-                       <input type="hidden" name="image_data" class="hidden_image_data" />
-                       </form>
-                     </div>
-                     <button class="download-btn"></button> -->
-                       <form action="{{url('/business/image')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                         <div class="form-group">
-                           <label for="exampleInputFile2">Background Photo</label>
-                           <input type="file" name="image_big"  multiple>
-                           <p class="help-block">Example block-level help text here.</p>
-                         </div>
-                         <button type="submit" class="btn btn-default">Submit</button>
-                       </form>
-                    </div>
-
+                   <div class="col-md-12">
+                       <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
+                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                       </a>
+                       <div id="image-cropper">
+                           <div class="cropit_wrapper" style="width:70%; float:left;">
+                               <div class="cropit-preview"></div>
+                               <form class="cropit_form" action="{{url('/business/image/test')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                                   <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                                   <span class="rotate-cw-btn"><i class="fa fa-undo"></i></button>
+                                      <!-- range -->
+                                        <span style="font-size:18px;">
+                                          <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                        </span>
+                                   <input type="range" class="cropit-image-zoom-input" />
+                                   <span style="font-size:30px;">
+                                          <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                        </span>
+                                   <input type="hidden" name="image_data" class="hidden_image_data" />
+                           </div>
+                           <!-- 分界點 -->
+                           <div class="column" style="float:left; width:30%;">
+                               <div class="fileUpload btn btn-info">
+                                   <span><i class="fa fa-picture-o"></i>&nbsp;写真を選んでください</span>
+                                   <input id="uploadBtn" class="cropit-image-input upload" required="required" name="image" type="file" accept="image/*" />
+                               </div>
+                               <button type="button" class="btn btn-primary download-btn">
+                                   <span><i class="fa fa-picture-o"></i>&nbsp;確認</span>
+                               </button>
+                           </div>
+                           </form>
+                       </div>
+                       <!-- image-cropper end-->
+                   </div>
+                   <!-- col-md-12 end-->
                </div>
        </div>
        <!-- smile photo -->

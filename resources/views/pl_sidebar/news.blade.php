@@ -157,19 +157,21 @@
                     <div class="panel-body">
                         <!-- photo left -->
                         <div class="img-left">
+
                             <a href="{{ route('posts.show', $value_r->r_id) }}">
+                            @if($bs_image->user_id == $value_r->b_user_id)
+                            <img height="175" width="175" src="{{ asset('ahr/busineses_img/')}}/{{$bs_image->image_small}}" alt="">
+                            @else
                             <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                            @endif
+
                             </a>
                         </div>
                         <!-- content -->
                         <div class="panel-content">
-                            @foreach($BSinformation as $key_b => $value_b)
-                            @if($value_b->user_id == $value_r->user_id)
                             <a href="{{ route('posts.show', $value_r->r_id) }}">
-                            <label style="font-size:18px;">{{$value_b->company_name}}</label>
+                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
-                            @endif
-                            @endforeach
 
                             <p>
                                 <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
@@ -260,13 +262,11 @@
                         </div>
                         <!-- content -->
                         <div class="panel-content">
-                            @foreach($BSinformation as $key_b => $value_b)
-                            @if($value_b->user_id == $value_r->user_id)
+
                             <a href="{{ route('posts.show', $value_r->id) }}">
-                            <label style="font-size:18px;">{{$value_b->company_name}}</label>
+                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
-                            @endif
-                            @endforeach
+
                             <!-- <label>更新日時:<span>{{$value_r->updated_at}}</span></label> -->
                             <p>
                                 <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
@@ -302,13 +302,11 @@
                         </div>
                         <!-- content -->
                         <div class="panel-content">
-                            @foreach($BSinformation as $key_b => $value_b)
-                            @if($value_b->user_id == $value_r->user_id)
+
                             <a href="{{ route('posts.show', $value_r->id) }}">
-                            <label style="font-size:18px;">{{$value_b->company_name}}</label>
+                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
-                            @endif
-                            @endforeach
+
                             <!-- <label>更新日時:<span>{{$value_r->updated_at}}</span></label> -->
                             <p>
                                 <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
@@ -343,13 +341,10 @@
                         </div>
                         <!-- content -->
                         <div class="panel-content">
-                            @foreach($BSinformation as $key_b => $value_b)
-                            @if($value_b->user_id == $value_r->user_id)
                             <a href="{{ route('posts.show', $value_r->id) }}">
-                            <label style="font-size:18px;">{{$value_b->company_name}}</label>
+                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
-                            @endif
-                            @endforeach
+
                             <!-- <label>更新日時:<span>2015/12/11</span></label> -->
                             <p>
                                 <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
@@ -383,13 +378,11 @@
                         </div>
                         <!-- content -->
                         <div class="panel-content">
-                            @foreach($BSinformation as $key_b => $value_b)
-                            @if($value_b->user_id == $value_r->user_id)
+
                             <a href="{{ route('posts.show', $value_r->id) }}">
-                            <label style="font-size:18px;">{{$value_b->company_name}}</label>
+                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
-                            @endif
-                            @endforeach
+
                             <label>更新日時:<span>{{$value_r->updated_at}}</span></label>
                             <p>
                                 <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
