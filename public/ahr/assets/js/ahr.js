@@ -155,7 +155,7 @@ $(document).ready(function() {
 		  $('.update_photo_big').removeClass('none');
 		});
 		// big close
-		$('.update_photo_big #image-cropper .column .close').click(function(){
+		$('.update_photo_big #image-cropper .close').click(function(){
 		  $('.update_photo_big').addClass('none');
 		  $('.default_photo').removeClass('none');
 		});

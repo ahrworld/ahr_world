@@ -156,10 +156,11 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                        <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                        </a>
+
                        <div id="image-cropper" class="panel panel-default">
-                          <a href="javascript:;" class="close">
+                           <a href="javascript:;" class="close" style="margin-bottom: 30px;">
                                   <i class="fa fa-times" aria-hidden="true"></i>
-                               </a>
+                           </a>
                            <div class="cropit_wrapper" style="width:100%; float:left; margin-bottom: 20px;">
                                   <div class="cropit-preview"></div>
                                   <form class="cropit_form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
