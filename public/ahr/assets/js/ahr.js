@@ -1,3 +1,9 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+var token = '{{ Session::token() }}';
 $(document).ready(function() {
 		$('.bt_1').click(function(){
 		    var r_id = $(this).attr('attr');
@@ -43,23 +49,7 @@ $(document).ready(function() {
               })
               setTimeout("location.reload();", 1000);
         });
-		// business profile tab1
-		$('.default_photo .bs_background').hover(function(){
-		  $('.default_photo .bs_background .update_bt_big').toggleClass('none');
-		});
-		$('.default_photo .bs_photo').hover(function(){
-		  $('.default_photo .bs_photo .update_bt_smile').toggleClass('none');
-		});
-		// big
-		$('.default_photo .update_bt_big').click(function(){
-		  $('.default_photo').addClass('none');
-		  $('.update_photo_big').removeClass('none');
-		});
-		// smile
-		$('.default_photo .update_bt_smile').click(function(){
-		  $('.default_photo').addClass('none');
-		  $('.update_photo_smile').removeClass('none');
-		});
+
 	    // list-inbox
 		$('.list-inbox').click(function(){
 			$('.label-status').addClass('none');
@@ -149,5 +139,104 @@ $(document).ready(function() {
 			    })
 			}
 		});
+
+
+
+		// business profile tab1  ****image update
+		$('.default_photo .bs_background').hover(function(){
+		  $('.default_photo .bs_background .update_bt_big').toggleClass('none');
+		});
+		$('.default_photo .bs_photo').hover(function(){
+		  $('.default_photo .bs_photo .update_bt_smile').toggleClass('none');
+		});
+		// big
+		$('.default_photo .update_bt_big').click(function(){
+		  $('.default_photo').addClass('none');
+		  $('.update_photo_big').removeClass('none');
+		});
+		// big close
+		$('.update_photo_big #image-cropper .column .close').click(function(){
+		  $('.update_photo_big').addClass('none');
+		  $('.default_photo').removeClass('none');
+		});
+		// smile
+		$('.default_photo .update_bt_smile').click(function(){
+		  $('.default_photo').addClass('none');
+		  $('.update_photo_smile').removeClass('none');
+		});
+		// smile close
+		$('.update_photo_smile #image-cropper .column .close').click(function(){
+		  $('.update_photo_smile').addClass('none');
+		  $('.default_photo').removeClass('none');
+		});
+		// cropit
+		$('.update_photo_big #image-cropper').cropit({
+		  imageBackground: true,
+		  imageBackgroundBorderWidth: 30 // Width of background border
+		});
+		$('.update_photo_smile #image-cropper').cropit({
+		  imageBackground: true,
+		  imageBackgroundBorderWidth: 30 // Width of background border
+		});
+		// Handle rotation
+		$('.rotate-cw-btn').click(function() {
+		  $('#image-cropper').cropit('rotateCW');
+		});
+		$('.rotate-ccw-btn').click(function() {
+		  $('#image-cropper').cropit('rotateCCW');
+		});
+		$('.update_photo_big #image-cropper .ok-btn').click(function() {
+		  var imageData = $('.update_photo_big #image-cropper').cropit('export');
+		  $('.update_photo_big #image-cropper .hidden_image_data').val(imageData);
+		  $.ajax({
+		      type: "POST",
+		      url: "/business/image_big",
+		      async: false,
+		      dataType: "json",
+		      data:  $('.update_photo_big #image-cropper .cropit_form').serialize(),
+		      success: function(data) {
+		           console.log(JSON.stringify(data));
+		           setTimeout("location.reload();", 1000);
+		           swal({
+		               title: "完成",
+		               type: "success",
+		               timer:1000,
+		               showConfirmButton: false
+		           })
+		           setTimeout("location.reload();", 1000);
+		      },
+		      error: function(data) {
+		          console.log('Error:', data);
+
+		      }
+		  });
+		});
+		$('.update_photo_smile #image-cropper .ok-btn').click(function() {
+		  var imageData = $('.update_photo_smile #image-cropper').cropit('export');
+		  $('.update_photo_smile #image-cropper .hidden_image_data').val(imageData);
+		  $.ajax({
+		      type: "POST",
+		      url: "/business/image_small",
+		      async: false,
+		      dataType: "json",
+		      data:  $('.update_photo_smile #image-cropper .cropit_form').serialize(),
+		      success: function(data) {
+		           console.log(JSON.stringify(data));
+		           swal({
+		               title: "完成",
+		               type: "success",
+		               timer:1000,
+		               showConfirmButton: false
+		           })
+		           setTimeout("location.reload();", 1000);
+		      },
+		      error: function(data) {
+		          console.log('Error:', data);
+
+		      }
+		  });
+		});
+		/////  image update end
+
 });
 

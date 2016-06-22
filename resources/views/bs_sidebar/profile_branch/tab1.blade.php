@@ -20,14 +20,18 @@
  .cropit_form{
    text-align: center;
  }
- .cropit-preview {
+ .update_photo_big .cropit-preview {
+   /* You can specify preview size in CSS */
+   width: 650px;
+   height: 150px;
+   margin: auto;
+ }
+ .update_photo_smile .cropit-preview {
    /* You can specify preview size in CSS */
    width: 200px;
    height: 200px;
-   text-align: center;
    margin: auto;
  }
-
  /* Translucent background image */
  .cropit-preview-background {
    opacity: .2;
@@ -36,6 +40,7 @@
    width: 300px !important;
    display: initial !important;
  }
+
  input.cropit-image-zoom-input {
    position: relative;
  }
@@ -47,10 +52,7 @@
     width: 1px;
     height: 1px;
  }
- /* Limit the background image by adding overflow: hidden */
- #image-cropper {
-   overflow: hidden;
- }
+
  /* this page only start */
 /* .panel-default{
   margin-bottom: 20px !important;
@@ -82,10 +84,10 @@
 @foreach ($bs_image as $value)
 <style>
 .bs_background{
-background-image:url('ahr/busineses_img/{{$value->image_big}}');
+background-image:url(data:image/png;base64,{{$value->image_big}});
 }
 .bs_photo{
-background-image:url('ahr/busineses_img/{{$value->image_small}}');
+background-image:url(data:image/png;base64,{{$value->image_small}});
 }
 </style>
 @endforeach
@@ -97,12 +99,12 @@ background-image:url('ahr/busineses_img/{{$value->image_small}}');
                     <div class="col-md-12">
                    　
                          <div class="img-thumbnail bs_background" >
-                            <a href="#" class="float-right update_bt_big none">
+                            <a href="javascript:;" class="float-right update_bt_big none">
                               <i class="fa fa-camera" aria-hidden="true"></i>
                             </a>
                          </div>
                          <div class="img-thumbnail bs_photo" >
-                           <a href="#" class="float-right update_bt_smile none">
+                           <a href="javascript:;" class="float-right update_bt_smile none">
                              <i class="fa fa-camera" aria-hidden="true"></i>
                            </a>
                          </div>
@@ -112,43 +114,8 @@ background-image:url('ahr/busineses_img/{{$value->image_small}}');
        </div>
 
        <script>
-       $.ajaxSetup({
-           headers: {
-               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-           }
-       });
-       var token = '{{ Session::token() }}';
         $(document).ready(function() {
-          // cropit
-          $('#image-cropper').cropit({
-            imageBackground: true,
-            imageBackgroundBorderWidth: 30 // Width of background border
-          });
-          // Handle rotation
-          $('.rotate-cw-btn').click(function() {
-            $('#image-cropper').cropit('rotateCW');
-          });
-          $('.rotate-ccw-btn').click(function() {
-            $('#image-cropper').cropit('rotateCCW');
-          });
-          $('.download-btn').click(function() {
-            var imageData = $('#image-cropper').cropit('export');
-            $('.hidden_image_data').val(imageData);
-            $.ajax({
-                type: "POST",
-                url: "/business/image/test",
-                async: false,
-                dataType: "json",
-                data:  $('.test_form').serialize(),
-                success: function(data) {
-                     console.log(JSON.stringify(data));
-                },
-                error: function(data) {
-                    console.log('Error:', data);
 
-                }
-            });
-          });
           // summary
           $('#bs_summary .summary_type_next').click(function() {
             var checked = $("input[name='summary_Type']:checked").val();
@@ -170,7 +137,18 @@ background-image:url('ahr/busineses_img/{{$value->image_small}}');
         });
        </script>
 
-
+       <style>
+        #image-cropper {
+          overflow: hidden;
+          padding:10px;
+        }
+        #image-cropper .column{
+          float:left; width:30%;
+        }
+        #image-cropper .column .close{
+          font-size:20px; float:right; margin-bottom: 50px;
+        }
+       </style>
        <!-- bakground photo -->
        <div class="panel-body update_photo_big none">
                <div class="row">
@@ -178,29 +156,32 @@ background-image:url('ahr/busineses_img/{{$value->image_small}}');
                        <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                        </a>
-                       <div id="image-cropper">
-                           <div class="cropit_wrapper" style="width:70%; float:left;">
-                               <div class="cropit-preview"></div>
-                               <form class="cropit_form" action="{{url('/business/image/test')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                       <div id="image-cropper" class="panel panel-default">
+                          <a href="javascript:;" class="close">
+                                  <i class="fa fa-times" aria-hidden="true"></i>
+                               </a>
+                           <div class="cropit_wrapper" style="width:100%; float:left; margin-bottom: 20px;">
+                                  <div class="cropit-preview"></div>
+                                  <form class="cropit_form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                                    <input type="hidden" name="_token" value="{{ csrf_token()}}">
-                                   <span class="rotate-cw-btn"><i class="fa fa-undo"></i></button>
-                                      <!-- range -->
-                                        <span style="font-size:18px;">
-                                          <i class="fa fa-picture-o" aria-hidden="true"></i>
-                                        </span>
+                                   <!-- range -->
+                                   <span style="font-size:18px;">
+                                      <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                   </span>
                                    <input type="range" class="cropit-image-zoom-input" />
                                    <span style="font-size:30px;">
-                                          <i class="fa fa-picture-o" aria-hidden="true"></i>
-                                        </span>
-                                   <input type="hidden" name="image_data" class="hidden_image_data" />
+                                      <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                   </span>
+                                   <input type="hidden" name="image_big" class="hidden_image_data" />
                            </div>
                            <!-- 分界點 -->
-                           <div class="column" style="float:left; width:30%;">
-                               <div class="fileUpload btn btn-info">
+                           <div class="column_big">
+                               <div class="fileUpload btn btn-info float-left" style="width:200px;">
                                    <span><i class="fa fa-picture-o"></i>&nbsp;写真を選んでください</span>
                                    <input id="uploadBtn" class="cropit-image-input upload" required="required" name="image" type="file" accept="image/*" />
                                </div>
-                               <button type="button" class="btn btn-primary download-btn">
+                               <div>&nbsp;</div>
+                               <button type="button" class="btn btn-primary ok-btn float-right" style="width:200px;">
                                    <span><i class="fa fa-picture-o"></i>&nbsp;確認</span>
                                </button>
                            </div>
@@ -214,24 +195,48 @@ background-image:url('ahr/busineses_img/{{$value->image_small}}');
        <!-- smile photo -->
        <div class="panel-body update_photo_smile none">
 
-               <div class="row">
-                    <div class="col-md-12">
-                    <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    </a>
-
-                       <form action="{{url('/business/image')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                         <div class="form-group">
-                           <label for="exampleInputFile2">Photo</label>
-                           <input name="image_small" type="file" id="exampleInputFile2">
-                           <p class="help-block">Example block-level help text here.</p>
-                         </div>
-                         <button type="submit" class="btn btn-default">Submit</button>
-                       </form>
-                    </div>
-               </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
+                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                      </a>
+                      <div id="image-cropper" class="panel panel-default">
+                          <div class="cropit_wrapper" style="width:70%; float:left;">
+                                 <div class="cropit-preview"></div>
+                                 <form class="cropit_form"  method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                                  <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                                  <!-- range -->
+                                  <span style="font-size:18px;">
+                                     <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                  </span>
+                                  <input type="range" class="cropit-image-zoom-input" />
+                                  <span style="font-size:30px;">
+                                     <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                  </span>
+                                  <input type="hidden" name="image_small" class="hidden_image_data" />
+                          </div>
+                          <!-- 分界點 -->
+                          <div class="column">
+                              <a href="javascript:;" class="close">
+                                 <i class="fa fa-times" aria-hidden="true"></i>
+                              </a>
+                              <div class="fileUpload btn btn-info" style="width:200px;">
+                                  <span><i class="fa fa-picture-o"></i>&nbsp;写真を選んでください</span>
+                                  <input id="uploadBtn" class="cropit-image-input upload" required="required" name="image" type="file" accept="image/*" />
+                              </div>
+                              <div>&nbsp;</div>
+                              <button type="button" class="btn btn-primary ok-btn" style="width:200px;">
+                                  <span><i class="fa fa-picture-o"></i>&nbsp;確認</span>
+                              </button>
+                          </div>
+                          </form>
+                      </div>
+                      <!-- image-cropper end-->
+                  </div>
+                  <!-- col-md-12 end-->
+              </div>
        </div>
+
      </div>
      <!-- 2 -->
      @foreach ($tasks as $task)

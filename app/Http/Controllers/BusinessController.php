@@ -254,18 +254,44 @@ class BusinessController extends Controller
 
 
     }
-    public function image_test(Request $request){
+    public function image_big(Request $request){
+        if($request->image_big){
+        $where = Bs_image::where('user_id',$request->user()->id)->first();
+        // $png_url = time().$request->user()->id.".png";
+        // $path = public_path()."/ahr/busineses_img/".$png_url;
+        $img = $request->image_big;
+        $img = str_replace('data:image/png;base64,', '', $img);
+        // $img = substr($img, strpos($img, ",")+1);
+        // $data = base64_decode($img);
+        // $success = file_put_contents($path, $data);
+            if (is_null($where)) {
+                Bs_image::create([
+                   'image_big' => $img,
+                   'user_id' => $request->user()->id,
+                ]);
+                return response()->json('new ok');
+            }
+        Bs_image::where('user_id',$request->user()->id)->update(['image_big' => $img]);
+        return response()->json('update ok');
+       }
+       return response()->json('no data');
+    }
+    public function image_small(Request $request){
 
-        $png_url = time().$request->user()->id.".png";
-        $path = public_path()."/ahr/busineses_img/".$png_url;
-        $img = $request->image_data;
-        $img = substr($img, strpos($img, ",")+1);
-        $data = base64_decode($img);
-        $success = file_put_contents($path, $data);
-
-        return response()->json(
-           'ok'
-        );
+        if($request->image_small){
+        $where = Bs_image::where('user_id',$request->user()->id)->first();
+        $img = $request->image_small;
+        $img = str_replace('data:image/png;base64,', '', $img);
+           if (is_null($where)) {
+                Bs_image::create([
+                   'image_small' => $img,
+                   'user_id' => $request->user()->id,
+                ]);
+                return response()->json('new ok');
+            }
+        Bs_image::where('user_id',$request->user()->id)->update(['image_small' => $img]);
+        return response()->json('update ok');
+       }
     }
     public function summary(Request $request){
        // summary create
