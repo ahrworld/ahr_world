@@ -157,7 +157,7 @@ class UserController extends Controller
     public function news(Request $request)
     {
         // 圖片
-        $bs_image = Bs_image::first();
+        $bs_image = Bs_image::all();
 
         // 応募default
         $Recruitment = Recruitment::select('recruitments.id as r_id','exp_job.name',

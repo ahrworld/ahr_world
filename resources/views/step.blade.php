@@ -11,6 +11,8 @@
     <!-- ahr -->
     <link rel="stylesheet" href="assets/css/ahr.css">
     <script src="ahr/assets/js/ahr.js"></script>
+    <!-- cropit -->
+    <script src="{{ asset('ahr/bower_components/cropit/dist/jquery.cropit.js')}}"></script>
     <!-- animate.css -->
     <link rel="stylesheet" href="assets/css/animate.css">
     <!-- jquery step -->

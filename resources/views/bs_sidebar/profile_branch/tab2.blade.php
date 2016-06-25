@@ -1,10 +1,4 @@
     <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    var token = '{{ Session::token() }}';
     $(document).ready(function(e) {
       $('.language .add').click(function(){
         $('.language .append').append($('<select class=form-control name=language[] style="width:100px;float:left;margin-right:5px; margin-bottom:5px;"><option value=日本語>日本語<option value=中囯語>中囯語<option value=英語>英語<option value=ベトナム語>ベトナム語</select><select class=form-control name=languagelv[] style="width:100px;margin-right:5px; margin-bottom:5px;"><option value=ビジネス>ビジネス<option value=日常会話>日常会話<option value=母語>母語</select>'));
@@ -89,7 +83,7 @@
                          <tr>
                          <th scope="row" width="20%">語学・母語レベル</th>
                          <td>
-                        
+
                          </td>
                          </tr>
                          <tr>

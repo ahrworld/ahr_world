@@ -59,7 +59,7 @@
         <!-- photo left -->
         @if(isset($bs_image->image_small))
         <div class="img-left">
-            <img height="175" src="{{ asset('ahr/busineses_img/')}}/{{$bs_image->image_small}}" alt="">
+            <img height="175" src="data:image/png;base64,{{$bs_image->image_small}}" alt="">
         </div>
         @else
         <div class="img-left">
@@ -149,9 +149,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 @if(isset($bs_image))
-                                <div class="img-thumbnail bs_background" style=" background-image:url('{{ asset('ahr/busineses_img/')}}/{{$bs_image->image_big}}');">
+                                <div class="img-thumbnail bs_background" style=" background-image:url('data:image/png;base64,{{$bs_image->image_big}}');">
                                 </div>
-                                <div class="img-thumbnail bs_photo" style=" background-image:url('{{ asset('ahr/busineses_img/')}}/{{$bs_image->image_small}}');">
+                                <div class="img-thumbnail bs_photo" style=" background-image:url('data:image/png;base64,{{$bs_image->image_small}}');">
                                 </div>
                                 @else
                                 <div class="img-thumbnail bs_background">

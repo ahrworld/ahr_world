@@ -152,19 +152,19 @@
             <div class="wrapper">
                 <!-- 企業検索 -->
                 <div class="s1 search">
+                @foreach($bs_image as $b_image)
                 @foreach($Recruitment as $key_r => $value_r)
+
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <!-- photo left -->
                         <div class="img-left">
-
                             <a href="{{ route('posts.show', $value_r->r_id) }}">
-                            @if($bs_image->user_id == $value_r->b_user_id)
-                            <img height="175" width="175" src="{{ asset('ahr/busineses_img/')}}/{{$bs_image->image_small}}" alt="">
+                            @if($b_image->user_id == $value_r->b_user_id)
+                            <img height="175" width="175" src="data:image/png;base64,{{$b_image->image_small}}" alt="">
                             @else
                             <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
                             @endif
-
                             </a>
                         </div>
                         <!-- content -->
@@ -231,6 +231,7 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
                 @endforeach
                 </div>
                 <!-- s1 end -->

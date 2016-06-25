@@ -161,8 +161,7 @@ class BusinessController extends Controller
     }
 
     public function profile(Request $request){
-        $BSinformation = new BSinformations;
-        $tasks = $BSinformation::where('user_id', $request->user()->id)->get();
+        $tasks = BSinformations::where('user_id', $request->user()->id)->get();
         $Recruitment = new Recruitment;
         $subject = Subject::all();
         $exp_job = Exp_job::all();
@@ -190,7 +189,10 @@ class BusinessController extends Controller
         $bs_image = Bs_image::where('user_id', $request->user()->id)->get();
         // bs_blog
         $bs_blog = Bs_blog::where('user_id' ,$request->user()->id)->get();
-
+        // 面接
+        $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+        $prev_date = date('Y-m-d', strtotime($date .' -1 week'));
+        $next_date = date('Y-m-d', strtotime($date .' +1 week'));
         return view('bs_sidebar/profile', [
             'tasks' => $tasks,
             'recruitments' => $recruitments,
@@ -204,55 +206,10 @@ class BusinessController extends Controller
             'subject' => $subject,
             'bs_image' => $bs_image,
             'bs_blog' => $bs_blog,
+            'date' => $date,
+            'prev_date' => $prev_date,
+            'next_date' => $next_date,
         ]);
-    }
-    // upload image
-    public function image(Request $request){
-        $bs_image = New Bs_image;
-        $date = date('ymdhis');
-
-        $where = $bs_image::where('user_id',$request->user()->id)->first();
-        if (is_null($where)) {
-            //small
-            if($request->hasFile('image_small'))
-            {
-              $photoname_m = $date.'big'.$request->user()->id.'.'.'png';
-              $photo_upload = $request->file('image_small')->move(public_path().'/ahr/busineses_img',$photoname_m);
-              Bs_image::create([
-                     'image_small' => $photoname_m,
-                     'user_id' => $request->user()->id,
-              ]);
-            }
-            //big
-            else if($request->hasFile('image_big'))
-            {
-              $photoname_b = $date.'small'.$request->user()->id.'.'.'png';
-              $photo_upload = $request->file('image_big')->move(public_path().'/ahr/busineses_img',$photoname_b);
-              Bs_image::create([
-                     'image_big' => $photoname_b,
-                     'user_id' => $request->user()->id,
-              ]);
-            }
-            return redirect('/profile_b2');
-        }
-        //small
-        if($request->hasFile('image_small'))
-        {
-          $photoname_m = $date.$request->user()->id.'.'.'png';
-          $photo_upload = $request->file('image_small')->move(public_path().'/ahr/busineses_img',$photoname_m);
-          $bs_image::where('user_id',$request->user()->id)->update(['image_small' => $photoname_m]);
-        }
-        //big
-        else if($request->hasFile('image_big'))
-        {
-          $photoname_b = $date.$request->user()->id.'.'.'png';
-          $photo_upload = $request->file('image_big')->move(public_path().'/ahr/busineses_img',$photoname_b);
-          $bs_image::where('user_id',$request->user()->id)->update(['image_big' => $photoname_b]);
-        }
-        return redirect('/profile_b2');
-
-
-
     }
     public function image_big(Request $request){
         if($request->image_big){
@@ -274,7 +231,6 @@ class BusinessController extends Controller
         Bs_image::where('user_id',$request->user()->id)->update(['image_big' => $img]);
         return response()->json('update ok');
        }
-       return response()->json('no data');
     }
     public function image_small(Request $request){
 
@@ -437,13 +393,21 @@ class BusinessController extends Controller
     }
     public function mail_view(Request $request , $id)
     {
-
         $mail_view  = Mail_box::where('mail_box.id', $id)->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')->first();
-
-
         return view('bs_sidebar.mail_view', [
             'mail_view' => $mail_view
 
+        ]);
+    }
+    public function interview()
+    {
+        $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+        $prev_date = date('Y-m-d', strtotime($date .' -1 week'));
+        $next_date = date('Y-m-d', strtotime($date .' +1 week'));
+        return view('bs_sidebar.interview_time', [
+            'date' => $date,
+            'prev_date' => $prev_date,
+            'next_date' => $next_date,
         ]);
     }
 

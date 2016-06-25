@@ -40,27 +40,121 @@
 
     });
     </script>
-    <?php
-    //用ajax做inserrt
-    $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
-    $prev_date = date('Y-m-d', strtotime($date .' -1 week'));
 
-    $next_date = date('Y-m-d', strtotime($date .' +1 week'));
-    for($i=1;$i<=5;$i++){
-        $date = date('Y-m-d', strtotime($date .'+1 day'));
-        echo $date;
-        for ($j=1; $j<=5 ; $j++) {
-            //使用if 做判斷  date = sql date
-            echo "<button class='test$i$j change' data-href='$date' type='button'>X</button>";
-        }
-        echo '<br>';
+<?php
+$monthNames = Array("January", "February", "March", "April", "May", "June", "July",
+"August", "September", "October", "November", "December");
 
-    }
+if (!isset($_REQUEST["month"])) $_REQUEST["month"] = date("n");
+if (!isset($_REQUEST["year"])) $_REQUEST["year"] = date("Y");
 
-    ?>
+$cMonth = $_REQUEST["month"];
+$cYear = $_REQUEST["year"];
 
-  <a href="?date=<?=$prev_date;?>">Previous</a>
-  <a href="?date=<?=$next_date;?>">Next</a>
+$prev_year = $cYear;
+$next_year = $cYear;
+$prev_month = $cMonth-1;
+$next_month = $cMonth+1;
+
+if ($prev_month == 0 ) {
+    $prev_month = 12;
+    $prev_year = $cYear - 1;
+}
+if ($next_month == 13 ) {
+    $next_month = 1;
+    $next_year = $cYear + 1;
+}
+?>
+
+<?php
+
+ $date =time () ;
+ //This puts the day, month, and year in seperate variables
+ $day = date('d', $date) ;
+ $month = date('m', $date) ;
+ $year = date('Y', $date) ;
+ //Here we generate the first day of the month
+ $first_day = mktime(0,0,0,$cMonth, 1, $cYear) ;
+ //This gets us the month name
+ $title = date('F', $first_day) ;
+ //Here we find out what day of the week the first day of the month falls on
+ $day_of_week = date('D', $first_day) ;
+ //Once we know what day of the week it falls on, we know how many blank days occure before it. If the first day of the week is a Sunday then it would be zero
+ switch($day_of_week){
+ case "Sun": $blank = 0; break;
+ case "Mon": $blank = 1; break;
+ case "Tue": $blank = 2; break;
+ case "Wed": $blank = 3; break;
+ case "Thu": $blank = 4; break;
+ case "Fri": $blank = 5; break;
+ case "Sat": $blank = 6; break;
+ }
+ //We then determine how many days are in the current month
+ $days_in_month = cal_days_in_month(0, $month, $year) ;
+ //Here we start building the table heads
+ echo "<table border=1 width=294>";
+ echo "<tr><th colspan=7> $title $year </th></tr>";
+ echo "<tr><td></td><td width=42>S</td><td width=42>M</td><td
+width=42>T</td><td width=42>W</td><td width=42>T</td><td
+width=42>F</td><td width=42>S</td></tr>";
+ //This counts the days in the week, up to 7
+ $day_count = 1;
+ echo "<tr>";
+ //first we take care of those blank days
+ while ( $blank > 0 )
+ {
+ echo "<td></td>";
+ $blank = $blank-1;
+ $day_count++;
+ }
+ //sets the first day of the month to 1
+ $day_num = 1;
+
+ //count up the days, untill we've done all of them in the month
+ echo "<td></td>";
+
+ while ( $day_num <= $days_in_month )
+ {
+ if(($day_count % 7) == 1)
+ {
+    echo "<td></td>";
+ }
+ echo "<td>  $day_num</td>";
+
+ $day_num++;
+ $day_count++;
+ //Make sure we start a new row every week
+ if ($day_count > 7)
+ {
+ echo "</tr><tr>";
+
+ $day_count = 1;
+
+ echo "<tr>";
+ echo "<td>dsa</td></tr>";
+ echo "<tr>";
+ echo "<td>dsa</td></tr>";
+ echo "<tr>";
+ echo "<td>dsa</td></tr>";
+ }
+ }
+
+ //Finaly we finish out the table with some blank details if needed
+ while ( $day_count >1 && $day_count <=7 )
+ {
+
+ echo "<td> </td>";
+ $day_count++;
+ }
+
+ echo "</tr></table>";
+?>
+</table>
+</td>
+</tr>
+</table>
+<a href="<?php echo "?month=". $prev_month . "&year=" . $prev_year; ?>" style="color:#FFFFFF width:300px;">Previous</a>
+<a href="<?php echo "?month=". $next_month . "&year=" . $next_year; ?>" style="color:#FFFFFF width:300px;">Next</a>
 
     <div class="date"></div>
      <!-- Current Tasks -->

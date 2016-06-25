@@ -153,7 +153,7 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
        <div class="panel-body update_photo_big none">
                <div class="row">
                    <div class="col-md-12">
-                       <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
+                       <a href="javascript:;" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                        </a>
 
@@ -198,7 +198,7 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
 
               <div class="row">
                   <div class="col-md-12">
-                      <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
+                      <a href="javascript:;" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </a>
                       <div id="image-cropper" class="panel panel-default">
@@ -294,7 +294,7 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
      </div>
      <!-- 4 -->
      <div class="default_summary">
-       <a href="#" class="float-right update_bt none" style="position: absolute; text-align: right; width: 57%;">
+       <a href="javascript:;" class="float-right update_bt none" >
          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
        </a>
        <h6>■会社概要</h6>
@@ -340,7 +340,7 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
      </div>
      <!-- update_summary -->
      <div class="update_summary none">
-       <a href="#" class="float-right close_bt">
+       <a href="javascript:;" class="float-right close_bt">
          <i class="fa fa-times-circle" aria-hidden="true"></i>
        </a>
        <h6>■会社概要<span class="red-color">※マークは必須項目です。</span></h6>
