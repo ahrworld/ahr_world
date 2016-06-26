@@ -17,16 +17,12 @@ class TaskController extends Controller
 
     public function index(Request $request)
     {
-        // $a = 'bruce';
-        // $Y = date('Y');
-        // $W = date("W", strtotime('2013-06-06'));
-        // $year = "2010"; // Year 2010
-        // $week = "01"; // Week 1
 
-        // $date1 = date( "l, M jS, Y", strtotime($year."W".$week."1") ); // First day of week
-        // $date2 = date( "l, M jS, Y", strtotime($year."W".$week."-50") );
+       
+        //Here we start building the table heads
         return view('tasks.index', [
             'tasks' => $this->tasks->forUser($request->user()),
+
         ]);
     }
     public function store(Request $request)
@@ -55,7 +51,7 @@ class TaskController extends Controller
     }
     public function testdate(Request $request)
     {
-       
+
         for($i=0;$i<=5;++$i){
             $d=strtotime("$i day");
             $date = date("Y-m-d", $d);

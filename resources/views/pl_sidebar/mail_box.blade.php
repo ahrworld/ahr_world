@@ -1,6 +1,6 @@
 @extends('pl_sidebar/sidebar')
 @section('line_menu')
-@include('pl_sidebar/line_menu')
+<div style="margin-top:80px;">&nbsp;</div>
 @endsection
 @section('content')
 

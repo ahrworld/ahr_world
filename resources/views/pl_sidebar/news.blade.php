@@ -54,12 +54,6 @@
         <li role="presentation"><a href="#a3" aria-controls="a3" role="tab" data-toggle="tab">面接日程</a></li>
     </ul>
     <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    var token = '{{ Session::token() }}';
     $(document).ready(function() {
 
         // $('.search_btn').click(function(){
@@ -152,19 +146,14 @@
             <div class="wrapper">
                 <!-- 企業検索 -->
                 <div class="s1 search">
-                @foreach($bs_image as $b_image)
-                @foreach($Recruitment as $key_r => $value_r)
 
+                @foreach($Recruitment as $key_r => $value_r)
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <!-- photo left -->
                         <div class="img-left">
                             <a href="{{ route('posts.show', $value_r->r_id) }}">
-                            @if($b_image->user_id == $value_r->b_user_id)
-                            <img height="175" width="175" src="data:image/png;base64,{{$b_image->image_small}}" alt="">
-                            @else
                             <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
-                            @endif
                             </a>
                         </div>
                         <!-- content -->
@@ -231,7 +220,6 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
                 @endforeach
                 </div>
                 <!-- s1 end -->

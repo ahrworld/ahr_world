@@ -7,6 +7,8 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- bootstrap -->
     <script src="{{ asset('ahr/bower_components/bootstrap/dist/js/bootstrap.js')}}"></script>
+    <!-- cropit -->
+    <script src="{{ asset('ahr/bower_components/cropit/dist/jquery.cropit.js')}}"></script>
     <!-- ahr -->
     <script src="{{ asset('ahr/assets/js/ahr.js')}}"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/ahr.css')}}">

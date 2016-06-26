@@ -64,9 +64,7 @@ if ($next_month == 13 ) {
     $next_month = 1;
     $next_year = $cYear + 1;
 }
-?>
 
-<?php
 
  $date =time () ;
  //This puts the day, month, and year in seperate variables
@@ -150,9 +148,7 @@ width=42>F</td><td width=42>S</td></tr>";
  echo "</tr></table>";
 ?>
 </table>
-</td>
-</tr>
-</table>
+
 <a href="<?php echo "?month=". $prev_month . "&year=" . $prev_year; ?>" style="color:#FFFFFF width:300px;">Previous</a>
 <a href="<?php echo "?month=". $next_month . "&year=" . $next_year; ?>" style="color:#FFFFFF width:300px;">Next</a>
 

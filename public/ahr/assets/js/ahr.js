@@ -164,11 +164,24 @@ $(document).ready(function() {
 		  $('.default_photo').addClass('none');
 		  $('.update_photo_smile').removeClass('none');
 		});
-		// smile close
+
+		// smile close  business and user
 		$('.update_photo_smile #image-cropper .column .close').click(function(){
 		  $('.update_photo_smile').addClass('none');
 		  $('.default_photo').removeClass('none');
+		  $('.update_1').removeClass('none');
 		});
+
+		// user profile tab1 image update
+		$('.update_1 .photo').hover(function(){
+		  $('.update_1 .photo .update_bt_smile').toggleClass('none');
+		});
+		$('#p1 .update_1 .update_bt_smile').click(function(){
+		  $('#p1 .update_1').addClass('none');
+		  $('#p1 .update_photo_smile').removeClass('none');
+		});
+		// end user
+
 		// cropit
 		$('.update_photo_big #image-cropper').cropit({
 		  imageBackground: true,
@@ -220,6 +233,31 @@ $(document).ready(function() {
 		      async: false,
 		      dataType: "json",
 		      data:  $('.update_photo_smile #image-cropper .cropit_form').serialize(),
+		      success: function(data) {
+		           console.log(JSON.stringify(data));
+		           swal({
+		               title: "完成",
+		               type: "success",
+		               timer:1000,
+		               showConfirmButton: false
+		           })
+		           setTimeout("location.reload();", 1000);
+		      },
+		      error: function(data) {
+		          console.log('Error:', data);
+
+		      }
+		  });
+		});
+		$('#p1 .update_photo_smile #image-cropper .ok-btn').click(function() {
+		  var imageData = $('#p1 .update_photo_smile #image-cropper').cropit('export');
+		  $('#p1 .update_photo_smile #image-cropper .hidden_image_data').val(imageData);
+		  $.ajax({
+		      type: "POST",
+		      url: "/image_small",
+		      async: false,
+		      dataType: "json",
+		      data:  $('#p1 .update_photo_smile #image-cropper .cropit_form').serialize(),
 		      success: function(data) {
 		           console.log(JSON.stringify(data));
 		           swal({

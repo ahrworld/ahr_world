@@ -35,7 +35,7 @@ class BusinessController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth.bs');
         $this->middleware('role.business');
     }
 
@@ -161,6 +161,10 @@ class BusinessController extends Controller
     }
 
     public function profile(Request $request){
+        if(Auth::user()->data_status == 0)
+        {
+            return redirect()->intended('bs_info');
+        }
         $tasks = BSinformations::where('user_id', $request->user()->id)->get();
         $Recruitment = new Recruitment;
         $subject = Subject::all();

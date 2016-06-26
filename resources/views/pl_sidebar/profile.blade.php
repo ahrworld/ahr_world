@@ -11,27 +11,21 @@
     color:#1C46BB;
   }
 
-  .update_content{
-    margin-left: 0px !important;
+  .update_1 .photo{
+    background-position: center;
+    background-size: cover;
+    height:150px;
+    width:150px;
+    float: left;
+  }
+  .update_1 .photo .update_bt_smile{
+    margin-top: 110px;
   }
 </style>
 <script>
   $(document).ready(function() {
-    $('.default_photo').hover(function(){
-      $('.default_photo .update_bt').toggleClass('none');
-    });
-    $('.default_photo .update_bt').click(function(){
-      $('.default_photo').addClass('none');
-      $('.update_photo').removeClass('none');
-    });
 
-    $('.update-panel1').hover(function(){
-      $('.update_bt1').toggleClass('none');
-    });
-    $('.update_bt1').click(function(){
-      $('.default_content').addClass('none');
-      $('.update_content').removeClass('none');
-    });
+
 
 
     $('.default_summary .update_bt').click(function(){
@@ -49,19 +43,33 @@
   });
 
 </script>
-
+@foreach ($pl_image as $value)
+<style>
+.photo{
+background-image:url(data:image/png;base64,{{$value->image_small}});
+}
+</style>
+@endforeach
 <div class="scorl" style="width:60%;  float:left; margin-left:15px;">
+     <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#p1" aria-controls="p1" role="tab" data-toggle="tab">プロフィール</a></li>
+        <li role="presentation"><a href="#a2" aria-controls="p2" role="tab" data-toggle="tab">MY ポートフォリオ自己紹介・分析</a></li>
+        <li role="presentation"><a href="#a3" aria-controls="p3" role="tab" data-toggle="tab">面接日程</a></li>
+    </ul>
     <!-- プロフィール Tab panes -->
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane ahr-panel fade in active" id="a1">
-            <div class="wrapper">
+        <div role="tabpanel" class="tab-pane ahr-panel fade in active" id="p1">
+            <div class="wrapper" style="margin-top:0px !important;">
                 <!-- 1 -->
                 <div class="panel panel-default">
-                    <div class="panel-body">
+                    <div class="panel-body  update_1">
                         <!-- photo left -->
-                        <div class="img-left">
-                            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTI4NzJiNjg0YiB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1Mjg3MmI2ODRiIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" class="img-thumbnail">
-                        </div>
+
+                        <div class="img-thumbnail photo">
+                           <a href="javascript:;" class="float-right update_bt_smile none">
+                             <i class="fa fa-camera" aria-hidden="true"></i>
+                           </a>
+                         </div>
                         <!-- content -->
                         <div class="panel-content">
                             <button class="btn btn-default">履歴書ダウンロード</button>
@@ -74,7 +82,55 @@
                         </div>
                         <!-- ? right -->
                     </div>
+                    <!-- dsa -->
+                    <!-- smile photo -->
+                    <div class="panel-body update_photo_smile none">
+
+                           <div class="row">
+                               <div class="col-md-12">
+                                   <a href="javascript:;" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
+                                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                   </a>
+                                   <div id="image-cropper">
+                                       <div class="cropit_wrapper" style="width:70%; float:left;">
+                                              <div class="cropit-preview"></div>
+                                              <form class="cropit_form"  method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                                               <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                                               <!-- range -->
+                                               <span style="font-size:18px;">
+                                                  <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                               </span>
+                                               <input type="range" class="cropit-image-zoom-input" />
+                                               <span style="font-size:30px;">
+                                                  <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                               </span>
+                                               <input type="hidden" name="image_small" class="hidden_image_data" />
+                                       </div>
+                                       <!-- 分界點 -->
+                                       <div class="column">
+                                           <a href="javascript:;" class="close" style="margin-bottom:60px;">
+                                              <i class="fa fa-times" aria-hidden="true"></i>
+                                           </a>
+                                           <div class="fileUpload btn btn-info" style="width:200px;">
+                                               <span><i class="fa fa-picture-o"></i>&nbsp;写真を選んでください</span>
+                                               <input id="uploadBtn" class="cropit-image-input upload" required="required" name="image" type="file" accept="image/*" />
+                                           </div>
+                                           <div>&nbsp;</div>
+                                           <button type="button" class="btn btn-primary ok-btn" style="width:200px;">
+                                               <span><i class="fa fa-picture-o"></i>&nbsp;確認</span>
+                                           </button>
+                                       </div>
+                                       </form>
+                                   </div>
+                                   <!-- image-cropper end-->
+                               </div>
+                               <!-- col-md-12 end-->
+                           </div>
+                    </div>
+                    <!-- small photo -->
                 </div>
+
+
                 <!-- 2 -->
                 <style>
                 .user-view_table th {

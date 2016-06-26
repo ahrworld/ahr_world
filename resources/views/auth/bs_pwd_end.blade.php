@@ -9,7 +9,7 @@
 					      <h5 style="color:#888889; text-align:center; font-size:16px; ">パスワードの変更が完了しました！</h5>
 					      <div class="form-group">
 					      <div style="text-align:center; margin:auto; padding-top:10px; width:100%;">
-					     	 <a href="#" class="btn btn-info btn-lg ahr-button-lg">編集Pageへ移動</a>
+					     	 <a href="{{url('profile')}}" class="btn btn-info btn-lg ahr-button-lg">編集Pageへ移動</a>
 					      </div>
 					    </form>
 				</div>

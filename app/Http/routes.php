@@ -118,6 +118,7 @@ Route::group(['middleware' => 'web'], function () {
     // user
     Route::get('/step', 'UserController@step');
     Route::post('personnel_in', 'UserController@personnel_in');
+    Route::post('/image_small', 'UserController@image_small');
     Route::get('/mail_box','UserController@mail_box');
     Route::get('/mail_box/{id}',['as' => 'mail.show' , 'uses' => 'UserController@mail_view']);
     Route::get('/profile','UserController@profile');

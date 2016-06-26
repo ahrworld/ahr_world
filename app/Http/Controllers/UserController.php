@@ -22,6 +22,7 @@ use App\PersonnelBranch\skill_name;
 use App\PersonnelBranch\skill_title;
 use App\PersonnelBranch\Experiences_job;
 use App\PersonnelBranch\Personnels_skill;
+use App\PersonnelBranch\Pl_image;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -129,6 +130,10 @@ class UserController extends Controller
     }
     public function profile(Request $request)
     {
+        if(Auth::user()->data_status == 0)
+        {
+            return redirect()->intended('step');
+        }
     	$personnel = new Personnel;
     	$personnels = $personnel::where('personnels.user_id', $request->user()->id)
                       ->join('subject', 'personnels.subject_id', '=', 'subject.id')
@@ -146,11 +151,14 @@ class UserController extends Controller
         $exp_job = Experiences_job::where('experiences_job.user_id', $request->user()->id)
                    ->join('exp_job', 'experiences_job.experience', '=', 'exp_job.id')
                    ->get();
+        // pl_image
+        $pl_image = Pl_image::where('user_id', $request->user()->id)->get();
     	return view('pl_sidebar/profile',[
     		'personnels' => $personnels,
             'per_skill' => $per_skill,
             'languagelv' => $languagelv,
             'exp_job' => $exp_job,
+            'pl_image' => $pl_image,
 
     	]);
     }
@@ -172,12 +180,15 @@ class UserController extends Controller
                         ->get();
                    //orWhere作法不好，只有或，沒有和的條件，所以user id一旦錯了就全錯了
         // 応募した
-        $Recruitment_ofa = Recruitments_status::select('recruitments.id as r_id','name','recruitments.user_id','content','need_skill','annual_income','monthly_income','work_site')
+        $Recruitment_ofa = Recruitments_status::select('recruitments.id as r_id','exp_job.name','recruitments.user_id',
+            'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',1)
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                            ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->get();
+
         // お気に入り
         $Recruitment_like = Recruitments_status::where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',2)
@@ -214,7 +225,6 @@ class UserController extends Controller
                     'recruitments_id' => $request->id,
                     'user_id' => $request->user()->id,
         ]);
-
         return 'ok';
     }
     public function search(Request $request)
@@ -252,7 +262,24 @@ class UserController extends Controller
             'r_id' =>$r_id,
         ]);
     }
+    public function image_small(Request $request){
 
+        if($request->image_small){
+        $where = Pl_image::where('user_id',$request->user()->id)->first();
+        $img = $request->image_small;
+        $img = str_replace('data:image/png;base64,', '', $img);
+           if (is_null($where)) {
+                Pl_image::create([
+                   'image_small' => $img,
+                   'user_id' => $request->user()->id,
+                ]);
+                return response()->json('new ok');
+            }
+        Pl_image::where('user_id',$request->user()->id)->update(['image_small' => $img]);
+        return response()->json('update ok');
+       }
+
+    }
     public function mail_box(Request $request)
     {
         // mail_box
@@ -285,5 +312,6 @@ class UserController extends Controller
 
         ]);
     }
+
 
 }
