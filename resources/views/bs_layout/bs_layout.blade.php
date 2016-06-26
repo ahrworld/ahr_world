@@ -9,6 +9,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="{{ asset('ahr/bower_components/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js')}}"></script>
 	<script src="{{ asset('ahr/assets/js/ahr.js')}}"></script>
+	<!-- cropit -->
+    <script src="{{ asset('ahr/bower_components/cropit/dist/jquery.cropit.js')}}"></script>
 	<!-- tag-it -->
 	<link rel="stylesheet" href="{{ asset('ahr/assets/tag_it/jquery.tagit.css')}}">
 	<link rel="stylesheet" href="{{ asset('ahr/assets/tag_it/tagit.ui-zendesk.css')}}">
