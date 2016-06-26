@@ -32,7 +32,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/step';
 
     /**
      * Create a new authentication controller instance.
@@ -108,7 +108,6 @@ class AuthController extends Controller
         return $users;
 
     }
- 
 
 
 }

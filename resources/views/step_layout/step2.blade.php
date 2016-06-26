@@ -10,7 +10,7 @@
   <!-- content -->
   <div class="container-fluid">
 		<div class="row">
-			
+
 			<div class="col-md-3">
 			  <div class="form-group">
 			    <label for="">郵便番号<span style="color:red;">※</span></label>
@@ -52,15 +52,15 @@
 			  <div class="form-group">
 			    <label for="namefield">①国籍を選んでください。</label>
 			    	<select name="country" class="js-example-templating js-states" style="width: 100%">
-			    		<option value="日本">日本</option>
-			    		<option value="台湾">台湾</option>
-			    		<option value="ベトナム">ベトナム</option>
-			    		<option value="韓国">韓国</option>
-			    		<option value="香港">香港</option>
-			    		<option value="中国">中国</option>
-			    		<option value="インド">インド</option>
-			    		<option value="インドネシア">インドネシア</option>
-			    		<option value="マレーシア">マレーシア</option>
+			    		<option value="jp">日本</option>
+			    		<option value="tw">台湾</option>
+			    		<option value="vn">ベトナム</option>
+			    		<option value="kr">韓国</option>
+			    		<option value="hk">香港</option>
+			    		<option value="cn">中国</option>
+			    		<option value="in">インド</option>
+			    		<option value="id">インドネシア</option>
+			    		<option value="my">マレーシア</option>
 			    	</select>
 			  </div>
 			</div>
@@ -71,22 +71,22 @@
 			  <div class="form-group">
 			    <label for="want_country">②希望勤務地を選んでください。<span style="color:#800000;">※複数選択可能</span><span style="font-size:12px;">(PS:需求限制幾個？）</span></label>
 			    	<select name="want_country" class="js-example-templating2 js-states" multiple="multiple" style="width: 100%">
-			    		<option value="日本">日本</option>
-			    		<option value="台湾">台湾</option>
-			    		<option value="ベトナム">ベトナム</option>
-			    		<option value="韓国">韓国</option>
-			    		<option value="香港">香港</option>
-			    		<option value="中国">中国</option>
-			    		<option value="インド">インド</option>
-			    		<option value="インドネシア">インドネシア</option>
-			    		<option value="マレーシア">マレーシア</option>
+			    		<option value="jp">日本</option>
+			    		<option value="tw">台湾</option>
+			    		<option value="vn">ベトナム</option>
+			    		<option value="kr">韓国</option>
+			    		<option value="hk">香港</option>
+			    		<option value="cn">中国</option>
+			    		<option value="in">インド</option>
+			    		<option value="id">インドネシア</option>
+			    		<option value="my">マレーシア</option>
 			    	</select>
 			  </div>
 			</div>
 
 		    <div>&nbsp;</div>
 
-		  
+
 		</div>
   </div>
 </div><!-- end tab1 -->

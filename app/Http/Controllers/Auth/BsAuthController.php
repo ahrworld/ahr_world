@@ -32,7 +32,7 @@ class BsAuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/business';
+    protected $redirectTo = '/bs_info';
 
 
     /**

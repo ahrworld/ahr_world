@@ -98,7 +98,7 @@ class UserController extends Controller
                     'languagelv_name' => $value,
                     'lv' => $request->languagelv[$key],
                     'personnels_id' => $a->id,
-                    'user_id' => $request->user()->id,
+                    'languagelvs.user_id' => $request->user()->id,
             ]);
         }
 

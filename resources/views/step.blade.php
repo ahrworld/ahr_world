@@ -29,8 +29,9 @@
 <script>
     function formatState (state) {
 	  if (!state.id) { return state.text; }
+	  
 	  var $state = $(
-	    '<span><img height="30" src="/ahr/assets/flag/' + state.element.value.toLowerCase() + '.svg" class="img-flag" /> ' + state.text + '</span>'
+	    '<span><img height="30" src="ahr/assets/flag/' + state.element.value.toLowerCase() + '.svg" class="img-flag" /> ' + state.text + '</span>'
 	  );
 	  return $state;
 	};
