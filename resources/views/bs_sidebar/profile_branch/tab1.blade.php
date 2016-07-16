@@ -11,7 +11,7 @@
    background-position: center;
    background-size: cover;
    width:100%;
-   height:150px;
+   height:250px;
    display: block;
  }
  .default_photo .bs_background .update_bt{
