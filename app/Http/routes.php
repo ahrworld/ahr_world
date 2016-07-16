@@ -60,6 +60,9 @@ Route::get('/portfolio_b', function(){
 Route::get('/company', function(){
 	return view('company');
 });
+Route::get('/interview/show', function(){
+    return view('pl_sidebar/test_interview');
+});
 //form
 
 
@@ -106,6 +109,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/profile_b2','BusinessController@profile');
     Route::get('/interview','BusinessController@interview');
+
     Route::post('/business/update', 'BusinessController@update');
     Route::post('/business/image_big', 'BusinessController@image_big');
     Route::post('/business/image_small', 'BusinessController@image_small');
