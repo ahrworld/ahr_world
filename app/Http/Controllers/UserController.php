@@ -229,16 +229,21 @@ class UserController extends Controller
     }
     public function search(Request $request)
     {
-        $Recruitment = Recruitment::whereNotIn('recruitments.id', function($q){
+        // $Recruitment = Recruitment::whereNotIn('recruitments.id', function($q){
+        //                 $q->select('recruitments_id')
+        //                 ->from('recruitments_status');
+        //               })->orWhere('user_id', $request->user()->id)
+        //                 ->paginate(3);
+        if ($request->job == true){
+           $query = Recruitment::whereNotIn('recruitments.id', function($q){
                         $q->select('recruitments_id')
                         ->from('recruitments_status');
                       })->orWhere('user_id', $request->user()->id)
-                        ->paginate(3);
-        // if ($request->job == true){
-        //    $query = $Recruitment->where('name', 'like', '%'.$request->job.'%');
-        //    return response()->json($query);
-        // }
-        return response()->json($Recruitment);
+                         ->where('name', 'like', '%'.$request->job.'%')
+                         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')->paginate(5);
+           return response()->json($query);
+        }
+        return response()->json('not data');
     }
     public function show(Request $request , $id)
     {

@@ -21,6 +21,7 @@
         <button class="btn ahr-button search_btn" style="height:34px; line-height:20px;" type="button">檢索</button>
       </span>
     </div><!-- /input-group -->
+
     </form>
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
@@ -56,35 +57,28 @@
     <script>
     $(document).ready(function() {
 
-        // $('.search_btn').click(function(){
-        //     $.ajax({
-        //           type: "POST",
-        //           url: "search",
-        //           async: false,
-        //           dataType: "json",
-        //           data:  $('.search').serialize(),
-        //           success: function(data) {
-        //               console.log(JSON.stringify(data));
-        //               // for (var i = 0; i <= 5; i++) {
-        //               //     var moreArray = new Array;
-        //               //     moreArray.push(JSON.stringify(data[i]))
+        $('.search_btn').click(function(){
+            $.ajax({
+                  type: "POST",
+                  url: "search",
+                  async: false,
+                  dataType: "json",
+                  data:  $('.search').serialize(),
+                  success: function(data) {
+                      console.log(JSON.stringify(data));
+                      var listArray = new Object();
+                      $.each(data, function(key, value) {
+                        listArray[value.name] = value;
+                        console.log(value);
+                      });
 
-
-        //               // };
-        //               var moreArray = new Array;
-        //                 $.each( data, function( key, value ) {
-
-        //                   moreArray.push('<p>' + JSON.stringify(data[])+'</p>');
-
-        //                 });
-        //                 console.log(moreArray);
-        //                $('.wrapper').html(moreArray);
-        //           },
-        //           error: function(data) {
-        //               console.log('Error:', data);
-        //           }
-        //       });
-        // });
+                       $('.wrapper').html(moreArray);
+                  },
+                  error: function(data) {
+                      console.log('Error:', data);
+                  }
+              });
+        });
 
         $('.bt_2').click(function() {
             var r_id = $('.bt_2').attr('attr');
@@ -146,7 +140,6 @@
             <div class="wrapper">
                 <!-- 企業検索 -->
                 <div class="s1 search">
-
                 @foreach($Recruitment as $key_r => $value_r)
                 <div class="panel panel-default">
                     <div class="panel-body">

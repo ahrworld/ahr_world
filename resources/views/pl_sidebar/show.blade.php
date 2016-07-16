@@ -137,7 +137,6 @@
         <li role="presentation" class="active"><a href="#a1" aria-controls="a1" role="tab" data-toggle="tab">企業情報</a></li>
         <li role="presentation"><a href="#a2" aria-controls="a2" role="tab" data-toggle="tab">採用情報</a></li>
         <li role="presentation"><a href="#a3" aria-controls="a3" role="tab" data-toggle="tab">企業カラー</a></li>
-        <li role="presentation"><a href="#a4" aria-controls="a4" role="tab" data-toggle="tab">面接日程</a></li>
     </ul>
     <!-- 企業情報 Tab panes -->
     <div class="tab-content">
@@ -283,19 +282,7 @@
             </div>
             <!-- wrapper end -->
         </div>
-        <!-- 企業カラー tab-panel end -->
-        <!-- 面接日程 Tab panes -->
-        <div role="tabpanel" class="tab-pane ahr-panel" id="a4">
-            <div class="wrapper">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default ahr-button_6 active">面接調整完了者</button>
-                    <button type="button" class="btn btn-default ahr-button_6">選考進行中</button>
-                    <button type="button" class="btn btn-default ahr-button_6">内定確定者</button>
-                </div>
-            </div>
-            <!-- wrapper end -->
-        </div>
-        <!-- 面接日程 tab-panel end -->
+        
     </div>
     <!-- tab-content end -->
 </div>

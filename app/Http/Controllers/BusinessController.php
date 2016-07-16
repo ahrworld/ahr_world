@@ -405,14 +405,8 @@ class BusinessController extends Controller
     }
     public function interview()
     {
-        $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
-        $prev_date = date('Y-m-d', strtotime($date .' -1 week'));
-        $next_date = date('Y-m-d', strtotime($date .' +1 week'));
-        return view('bs_sidebar.interview_time', [
-            'date' => $date,
-            'prev_date' => $prev_date,
-            'next_date' => $next_date,
-        ]);
+        
+        return view('bs_sidebar.interview_time');
     }
 
 }
