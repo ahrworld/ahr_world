@@ -166,7 +166,7 @@ input[type="checkbox"] {
         <li role="presentation" class="active"><a href="#a1" aria-controls="a1" role="tab" data-toggle="tab">企業情報</a></li>
         <li role="presentation"><a href="#a2" aria-controls="a2" role="tab" data-toggle="tab">採用情報</a></li>
         <li role="presentation"><a href="#a3" aria-controls="a3" role="tab" data-toggle="tab">企業カラー</a></li>
-        <li role="presentation"><a href="#a4" aria-controls="a4" role="tab" data-toggle="tab">面接日程</a></li>
+        <li role="presentation"><a href="{{ url('/interview/edit')}}">面接日程</a></li>
     </ul>
     <!-- 企業情報 Tab panes -->
     <div class="tab-content">

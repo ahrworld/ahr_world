@@ -4,12 +4,29 @@
 @endsection
 @section('content')
 <script>
-$( document ).ready(function() {
- $('.status').click(function(){
-    if($(this).html('X'))
-    {
+function myFunction() {
+    if($(this).html('X')){
         $(this).html('O');
-    };
+        $(this).removeClass('status_x');
+        $(this).addClass('status_o');
+    }else{
+        $(this).html('X');
+        $(this).removeClass('status_o');
+        $(this).addClass('status_x');
+    }
+
+}
+$( document ).ready(function() {
+ $('.status_o').click(function(){
+        $(this).html('X');
+        $(this).removeClass('status_o');
+        $(this).addClass('status_x');
+
+ });
+ $('.status_x').click(function(){
+        $(this).html('O');
+        $(this).removeClass('status_x');
+        $(this).addClass('status_o');
 
  });
 
@@ -114,18 +131,18 @@ $( document ).ready(function() {
             color:#FFFFFF width:300px; float:right;
         }
         </style>
-        
+
         <table class="interview" border="1" width="100%">
                  @if($blank >= 1)
                     <td style="text-align:center;">
-                    <div style="height:19px;"><img src="{{asset('assets/img/in_th.png')}}" alt=""></div>
-                    <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">10:00-11:00</div>
-                    <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">11:00-12:00</div>
-                    <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">13:00-14:00</div>
-                    <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">14:00-15:00</div>
-                    <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">15:00-16:00</div>
-                    <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">16:00-17:00</div>
-                    <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">17:00-18:00</div>
+                    <div style="height:30px;"><img src="{{asset('assets/img/in_th.png')}}" height="30px" width="127px" alt=""></div>
+                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">10:00-11:00</div>
+                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">11:00-12:00</div>
+                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">13:00-14:00</div>
+                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">14:00-15:00</div>
+                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">15:00-16:00</div>
+                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">16:00-17:00</div>
+                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">17:00-18:00</div>
                     </td>
                 @endif
                 @while($blank > 0)
@@ -140,27 +157,27 @@ $( document ).ready(function() {
                 @while($day_num <= $days_in_month)
                     @if(($day_count % 7) == 1)
                         <td style="text-align:center; width:20px;">
-                        <div style="height:20px;"><img  src="{{asset('assets/img/in_th.png')}}" alt=""></div>
-                        <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">10:00-11:00</div>
-                        <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">11:00-12:00</div>
-                        <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">13:00-14:00</div>
-                        <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">14:00-15:00</div>
-                        <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">15:00-16:00</div>
-                        <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">16:00-17:00</div>
-                        <div style="background:#D6EEFB; padding:5px 0px; border-top: 1px solid #000 !important;">17:00-18:00</div>
+                        <div style="height:30px;"><img src="{{asset('assets/img/in_th.png')}}" height="30px" width="127px" alt=""></div>
+                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">10:00-11:00</div>
+                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">11:00-12:00</div>
+                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">13:00-14:00</div>
+                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">14:00-15:00</div>
+                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">15:00-16:00</div>
+                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">16:00-17:00</div>
+                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">17:00-18:00</div>
                         </td>
                     @endif
                     @if(($day_count % 7) == 6)
 
                     <td style="background:#419ECA; text-align:center; color:#FFF; height='100' ">
-                       <div style="height:21px; line-height:21px; line-height:21px;">{{$day_num}}</div>
+                       <div style="height:30px; font-size:16px; font-weight:bold; line-height:30px;">{{$day_num}}</div>
                        @for ($i = 0; $i < 7; $i++)
                        @if($i === 2)
-                       <div class="status" style="cursor: pointer; color:#000; padding:5px 0px; border-top: 1px solid #000 !important;">
+                       <div class="status status_o">
                            O
                        </div>
                        @else
-                       <div class="status" style="cursor: pointer; color:#000; padding:5px 0px; border-top: 1px solid #000 !important;">
+                       <div class="status status_x">
                            X
                        </div>
                        @endif
@@ -169,19 +186,46 @@ $( document ).ready(function() {
 
                     </td>
 
+                    <style>
+                    .status_o{
+                        cursor: pointer;
+                        color: #0d7b0d;
+                        font-size: 16px;
+                        padding:15px 0px;
+                        background: #FFF;
+                        border-top: 1px solid #000 !important;
+                        font-weight: bold !important;
+                    }
+                    .status_o:hover{
+                        background:#CCC;
 
+                    }
+                    .status_x{
+                        cursor: pointer;
+                        color:#ccc;
+                        font-size: 16px;
+                        padding:15px 0px;
+                        background: #FFF;
+                        border-top: 1px solid #000 !important;
+                        font-weight: bold !important;
+                    }
+                    .status_x:hover{
+                        background: #7accf8;
+                        color:#000;
+                    }
+                    </style>
 
                     @elseif(($day_count % 7) == 0)
 
                     <td style="background:#DF7B9D; text-align:center; height='100'">
-                       <div style="height:21px; line-height:21px; color:#FFF;">{{$day_num}}</div>
+                       <div style="height:30px; font-size:16px; font-weight:bold;  line-height:30px; color:#FFF;">{{$day_num}}</div>
                        @for ($i = 0; $i < 7; $i++)
                            @if($i === 2)
-                           <div class="status" style="cursor: pointer; padding:5px 0px; border-top: 1px solid #000 !important;">
+                           <div class="status status_o">
                                O
                            </div>
                            @else
-                           <div class="status" style="cursor: pointer; padding:5px 0px; border-top: 1px solid #000 !important;">
+                           <div class="status status_x">
                                X
                            </div>
                            @endif
@@ -195,14 +239,14 @@ $( document ).ready(function() {
 
 
                     <td style="background:#D6EEFB; text-align:center; height='100'">
-                       <div style="height:21px; line-height:21px; ">{{$day_num}}</div>
+                       <div style="height:30px; font-size:16px; font-weight:bold;  line-height:30px; ">{{$day_num}}</div>
                        @for ($i = 0; $i < 7; $i++)
                            @if($i === 2)
-                           <div class="status" style="cursor: pointer; padding:5px 0px; border-top: 1px solid #000 !important;">
+                           <div class="status_o">
                                O
                            </div>
                            @else
-                           <div class="status" style="cursor: pointer; padding:5px 0px; border-top: 1px solid #000 !important;">
+                           <div class="status_x">
                                X
                            </div>
                            @endif
