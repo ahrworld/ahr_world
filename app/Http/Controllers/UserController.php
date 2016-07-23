@@ -168,17 +168,30 @@ class UserController extends Controller
         $bs_image = Bs_image::all();
 
         // 応募default
-        $Recruitment = Recruitment::select('recruitments.id as r_id','exp_job.name',
+        // $Recruitment = Recruitment::select('recruitments.id as r_id','exp_job.name',
+        //     'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
+        //     'content','need_skill','annual_income','monthly_income','work_site')
+        //                 ->whereNotIn('recruitments.id', function($q){
+        //                 $q->select('recruitments_id')
+        //                 ->from('recruitments_status');
+        //               })->orWhere('recruitments.user_id', $request->user()->id)
+        //                 ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
+        //                 ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+        //                 ->get();
+                   //orWhere作法不好，只有或，沒有和的條件，所以user id一旦錯了就全錯了
+        $ssa = Recruitment::select('recruitments.id as r_id','exp_job.name',
             'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
             'content','need_skill','annual_income','monthly_income','work_site')
-                        ->whereNotIn('recruitments.id', function($q){
-                        $q->select('recruitments_id')
-                        ->from('recruitments_status');
-                      })->orWhere('recruitments.user_id', $request->user()->id)
+                        ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
+                        ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id');
+        $Recruitment = Recruitment::select('recruitments.id as r_id','exp_job.name',
+            'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
+            'content','need_skill','annual_income','monthly_income','work_site','image_small')
                         ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                        ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                         ->get();
-                   //orWhere作法不好，只有或，沒有和的條件，所以user id一旦錯了就全錯了
+
         // 応募した
         $Recruitment_ofa = Recruitments_status::select('recruitments.id as r_id','exp_job.name','recruitments.user_id',
             'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name')

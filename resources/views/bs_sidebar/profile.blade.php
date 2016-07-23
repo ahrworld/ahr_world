@@ -152,11 +152,9 @@ input[type="checkbox"] {
     filter: alpha(opacity=0);
 }
 .blog_image{
-  background-position: center;
-  background-size: cover;
+   background-repeat: no-repeat;
   width:100%;
-  height:150px;
-  display: block;
+  height:100%;
 }
 </style>
 
@@ -189,23 +187,29 @@ input[type="checkbox"] {
                             <div class="form-group">
                                 <form action="{{url('/business/blog')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                                     {{ csrf_field() }}
-                                    <label>Title</label>
-                                    <input type="text" name="title" required="required" class="form-control" placeholder="Title">
                             </div>
+
+                                <style>
+                            .dsa_s{
+                                display: block;
+                                background-position: center;
+                                background-size: cover;
+                                height:100px;
+                                width:100px;
+                            }
+                            </style>
                             <div class="form-group">
-                                <label>Sub Title</label>
-                                <input type="text" name="sub_title" required="required" class="form-control" placeholder="Sub Title">
-                            </div>
-                            <div class="form-group">
-                                <label>內容</label>
-                                <textarea class="form-control" required="required" name="blog_content" rows="3"></textarea>
+
+
+                                 <div class="col-sm-3 img-thumbnail dsa_s bs_photo"></div>
+                                 <textarea class="col-sm-10" required="required" placeholder="您在想什麼呢？" name="blog_content" rows="3" style="border-left:none; margin-bottom:20px; height:100px;"></textarea>
                             </div>
                             <div class="form-group">
                                 <div class="fileUpload btn btn-warning">
                                     <span><i class="fa fa-picture-o"></i></span>
                                     <input id="uploadBtn" required="required" name="image" type="file" accept="image/*" class="upload" />
                                 </div>
-                                <input id="uploadFile" placeholder="Choose File" disabled="disabled" style="height:30px;" />
+                                <input id="uploadFile" placeholder="相片/影片" disabled="disabled" style="height:30px; width:60px; border:none;" />
                                 <button type="submit" class="btn btn-primary float-right">確認</button>
                             </div>
                             </form>
@@ -220,22 +224,11 @@ input[type="checkbox"] {
                         <div class="row">
                             <!-- video -->
                             <div class="col-md-12">
-                                <span class="img-thumbnail blog_image" style="background-image:url('ahr/business_blog/{{$value->blog_image}}');">
-                                </span>
+                            <img src="ahr/business_blog/{{$value->blog_image}}" width="300">
                                 <table style="margin-bottom:20px;">
-                                    <tbody>
-                                        <tr>
-                                            <th style="text-align:right !important; font-size:14px; padding-top:15px;">{{ $value->title }}</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th style="text-align:right !important; font-size:14px; padding-top:15px;">{{ $value->sub_title }}</th>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
+
                                 </table>
                                 <div class="panel-content">
-                                    <label style="font-size:14px;">內容:</label>
                                     <p>{{ $value->blog_content }}</p>
                                 </div>
                             </div>

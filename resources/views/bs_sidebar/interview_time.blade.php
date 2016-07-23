@@ -34,9 +34,9 @@ $( document ).ready(function() {
 </script>
 <div class="scorl" style="width:60%; float:left; margin-left:15px;">
 <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" ><a href="#a1" aria-controls="a1" role="tab" data-toggle="tab">企業情報</a></li>
-        <li role="presentation"><a href="#a2" aria-controls="a2" role="tab" data-toggle="tab">採用情報</a></li>
-        <li role="presentation"><a href="#a3" aria-controls="a3" role="tab" data-toggle="tab">企業カラー</a></li>
+        <li role="presentation" ><a href="{{ url('profile_b2#a2')}}">企業情報</a></li>
+        <li role="presentation"><a href="{{ url('profile_b2')}}">採用情報</a></li>
+        <li role="presentation"><a href="{{ url('profile_b2')}}">企業カラー</a></li>
         <li role="presentation" class="active"><a href="#a4" aria-controls="a4" role="tab" data-toggle="tab">面接日程</a></li>
 </ul>
 <div class="tab-content">
@@ -105,7 +105,12 @@ $( document ).ready(function() {
             <label  style="line-height: 23px;" class="radio-inline">
               <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> ベトナム時間
             </label>
+            <label style="line-height: 10px; float:right;" class="radio-inline">
+        <input type="button" class="btn btn-primary" style="float:right; margin-top:20px; height:30px; margin-bottom:20px;" value="更改">
+              
+            </label>
         </div>
+
     <div class="caln_wrapper">
         <div class="column">
         <a class="prev" href="<?php echo "?month=". $prev_month . "&year=" . $prev_year; ?>"><<{{$prev_month}}月</a>
@@ -265,15 +270,14 @@ $( document ).ready(function() {
                      <?php $day_count = 1; ?>
 
                     <tr >
-                      <td style="border:0px;">&nbsp;</td>
-                      <td style="border:0px;">&nbsp;</td>
-
                          <td style="border:0px;">&nbsp;</td>
- <td style="border:0px;">&nbsp;</td>
- <td style="border:0px;">&nbsp;</td>
- <td style="border:0px;">&nbsp;</td>
- <td style="border:0px;">&nbsp;</td>
- <td style="border:0px;">&nbsp;</td>
+                         <td style="border:0px;">&nbsp;</td>
+                         <td style="border:0px;">&nbsp;</td>
+                         <td style="border:0px;">&nbsp;</td>
+                         <td style="border:0px;">&nbsp;</td>
+                         <td style="border:0px;">&nbsp;</td>
+                         <td style="border:0px;">&nbsp;</td>
+                         <td style="border:0px;">&nbsp;</td>
 
                     </tr>
                     @endif
@@ -290,7 +294,6 @@ $( document ).ready(function() {
                 @endwhile
 
         </table>
-        <button class="btn btn-primary" style="float:right; margin-top:20px;">確認</button>
         </div>
         </div>
         </div>

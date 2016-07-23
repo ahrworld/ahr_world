@@ -144,11 +144,15 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <!-- photo left -->
+                        @if(isset($value_r->image_small))
                         <div class="img-left">
-                            <a href="{{ route('posts.show', $value_r->r_id) }}">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
-                            </a>
+                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
                         </div>
+                        @else
+                        <div class="img-left">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        </div>
+                        @endif
                         <!-- content -->
                         <div class="panel-content">
                             <a href="{{ route('posts.show', $value_r->r_id) }}">
