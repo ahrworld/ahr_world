@@ -18,15 +18,20 @@ function myFunction() {
 }
 $( document ).ready(function() {
  $('.status_o').click(function(){
+     $('.status_o').mouseover(function(){
         $(this).html('X');
         $(this).removeClass('status_o');
         $(this).addClass('status_x');
+     });
 
  });
  $('.status_x').click(function(){
+  $('.status_x').mouseover(function(){
+      
         $(this).html('O');
         $(this).removeClass('status_x');
         $(this).addClass('status_o');
+        });
 
  });
 
