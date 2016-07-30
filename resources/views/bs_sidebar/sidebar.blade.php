@@ -23,6 +23,9 @@
     <!-- bootstrap-sweetalert -->
     <script src="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.css')}}">
+    <!-- bootstrap upload -->
+    <link rel="stylesheet" href="{{asset('ahr/bower_components/bootstrap-fileinput-master/css/fileinput.css')}}">
+    <script src="{{asset('ahr/bower_components/bootstrap-fileinput-master/js/fileinput.min.js')}}" type="text/javascript"></script>
     <!-- animate.css -->
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
     <!-- chart.js -->
@@ -38,10 +41,12 @@
 
 </head>
 <script>
+
 $(document).ready(function() {
     $('#myTabs a:last').click(function () {
 		 myRadarChart();
 	});
+	
 });
 </script>
 <style>

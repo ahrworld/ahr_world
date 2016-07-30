@@ -29,7 +29,7 @@ $(document).ready(function() {
         $('.default_summary .update_bt').toggleClass('none');
     });
     document.getElementById("uploadBtn").onchange = function () {
-        document.getElementById("uploadFile").value = this.value;
+        document.getElementById("file-1").value = this.value;
     };
 });
 $(function() {
@@ -157,7 +157,9 @@ input[type="checkbox"] {
   height:100%;
 }
 </style>
-
+<script>
+    
+</script>
 <div class="scorl" style="width:60%; float:left; margin-left:15px;">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -197,6 +199,9 @@ input[type="checkbox"] {
                                 height:100px;
                                 width:100px;
                             }
+                            .kv-fileinput-caption{
+                                height: 26px !important;
+                            }
                             </style>
                             <div class="form-group">
 
@@ -205,11 +210,9 @@ input[type="checkbox"] {
                                  <textarea class="col-sm-10" required="required" placeholder="您在想什麼呢？" name="blog_content" rows="3" style="border-left:none; margin-bottom:20px; height:100px;"></textarea>
                             </div>
                             <div class="form-group">
-                                <div class="fileUpload btn btn-warning">
-                                    <span><i class="fa fa-picture-o"></i></span>
-                                    <input id="uploadBtn" required="required" name="image" type="file" accept="image/*" class="upload" />
-                                </div>
-                                <input id="uploadFile" placeholder="相片/影片" disabled="disabled" style="height:30px; width:60px; border:none;" />
+                               
+                                 <input id="file-1" type="file" name="image"  multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
+                                <hr>
                                 <button type="submit" class="btn btn-primary float-right">確認</button>
                             </div>
                             </form>
@@ -217,6 +220,7 @@ input[type="checkbox"] {
                     </div>
                 </div>
             </div>
+             
             <div class="wrapper">
                 @foreach($bs_blog as $value)
                 <div class="panel panel-default">
