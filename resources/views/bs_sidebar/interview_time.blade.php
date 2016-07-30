@@ -17,6 +17,18 @@ function myFunction() {
 
 }
 $( document ).ready(function() {
+  $('.ci').click(function(){
+        $('.status').html('X');
+        $('.status').removeClass('status_o');
+        $('.status').addClass('status_x');
+
+ });
+  $('.ai').click(function(){
+        $('.status').html('O');
+        $('.status').removeClass('status_x');
+        $('.status').addClass('status_o');
+
+ });
  $('.status_o').click(function(){
      $('.status_o').mouseover(function(){
         $(this).html('X');
@@ -27,7 +39,7 @@ $( document ).ready(function() {
  });
  $('.status_x').click(function(){
   $('.status_x').mouseover(function(){
-      
+
         $(this).html('O');
         $(this).removeClass('status_x');
         $(this).addClass('status_o');
@@ -112,8 +124,14 @@ $( document ).ready(function() {
             </label>
             <label style="line-height: 10px; float:right;" class="radio-inline">
         <input type="button" class="btn btn-primary" style="float:right; margin-top:20px; height:30px; margin-bottom:20px;" value="更改">
-              
+
             </label>
+        </div>
+
+        <div>
+            <input type="button" class="btn btn-info ci" style="float:left; margin-top:20px; height:30px; margin-bottom:20px; margin-right:10px;" value="全圈">
+             <input type="button" class="btn btn-info ai" style="float:left; margin-top:20px; height:30px; margin-bottom:20px;" value="全叉">
+
         </div>
 
     <div class="caln_wrapper">
@@ -252,11 +270,11 @@ $( document ).ready(function() {
                        <div style="height:30px; font-size:16px; font-weight:bold;  line-height:30px; ">{{$day_num}}</div>
                        @for ($i = 0; $i < 7; $i++)
                            @if($i === 2)
-                           <div class="status_o">
+                           <div class="status status_o">
                                O
                            </div>
                            @else
-                           <div class="status_x">
+                           <div class="status status_x">
                                X
                            </div>
                            @endif
