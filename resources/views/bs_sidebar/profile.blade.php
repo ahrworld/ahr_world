@@ -14,7 +14,16 @@ $(document).ready(function() {
         $('.default_content').addClass('none');
         $('.update_content').removeClass('none');
     });
+    $('.preview_btn').click(function() {
+            var reader = new FileReader();
 
+            reader.onload = function (e) {
+                $('.preview_wrapper .img').attr('src', e.target.result);
+                var ss = $('.text_rd').val();
+                $('.preview_wrapper pre').text(ss);
+            }
+
+    });
 
     $('.default_summary .update_bt').click(function() {
         $('.default_summary').addClass('none');
@@ -32,6 +41,50 @@ $(document).ready(function() {
         document.getElementById("file-1").value = this.value;
     };
 });
+
+$(function (){
+
+    function format_float(num, pos)
+    {
+        var size = Math.pow(10, pos);
+        return Math.round(num * size) / size;
+    }
+
+    function preview(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.preview_wrapper .img').attr('src', e.target.result);
+                var ss = $('.text_rd').val();
+                $('.preview_wrapper pre').text(ss);
+
+
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function preview_(input) {
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.preview_wrapper .img').attr('src', e.target.result);
+                var ss = $('.text_rd').val();
+                $('.preview_wrapper pre').text(ss);
+            }
+
+    }
+    $("body").on("change", ".upl", function (){
+        preview(this);
+    })
+    $("body").on("change", ".preview_btn", function (){
+        preview_(this);
+    })
+
+})
 $(function() {
 
     var sampleTags = [
@@ -153,8 +206,13 @@ input[type="checkbox"] {
 }
 .blog_image{
    background-repeat: no-repeat;
-  width:100%;
-  height:100%;
+   width:100%;
+   height:100%;
+}
+pre{
+    background: #FFF !important;
+    border:0px !important;
+
 }
 </style>
 <script>
@@ -187,7 +245,7 @@ input[type="checkbox"] {
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <form action="{{url('/business/preview')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                                <form action="{{url('/business/blog')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                             </div>
 
@@ -204,23 +262,31 @@ input[type="checkbox"] {
                             }
                             </style>
                             <div class="form-group">
-
-
                                  <div class="col-sm-3 img-thumbnail dsa_s bs_photo"></div>
-                                 <textarea class="col-sm-10" required="required" placeholder="您在想什麼呢？" name="blog_content" rows="3" style="border-left:none; margin-bottom:20px; height:100px;"></textarea>
+                                 <textarea class="col-sm-10 text_rd" required="required" placeholder="您在想什麼呢？" name="blog_content" rows="3" style="border-left:none; margin-bottom:20px; height:100px;"></textarea>
                             </div>
                             <div class="form-group">
                                 <div class="fileUpload btn btn-warning">
                                     <span><i class="fa fa-picture-o"></i></span>
-                                    <input id="uploadBtn"  name="image" type="file" accept="image/*" class="upload" />
+                                    <input id="uploadBtn" name="image" type="file" accept="image/*" class="upload upl" />
+
                                 </div>
-                                <input id="uploadFile" placeholder="相片/影片" disabled="disabled" style="height:30px; width:60px; border:none;" />   <hr>
+
+                                <input id="uploadFile" placeholder="相片/影片" disabled="disabled" style="height:30px; width:60px; border:none;" />
+                                <!-- preview image -->
+                                    <div>
+                                        <img class="preview" style="max-width: 150px; max-height: 150px;">
+                                        <div class="size"></div>
+                                    </div>
+                                      <hr>
+                                <div class="preview_wrapper">
+                                    <pre></pre>
+                                    <img class="img" style="max-width: 150px; max-height: 150px;">
+                                </div>
                                 <button type="submit" class="btn btn-primary float-right">投槁</button>
                                 <span class="float-right">&nbsp;</span>
-                                <button type="submit" class="btn btn-info float-right preview_btn">預覽</button>
+                                <button type="button" class="btn btn-info float-right preview_btn">預覽</button>
                             </div>
-
-                            <div class="preview"></div>
                             </form>
                         </div>
 
@@ -232,15 +298,14 @@ input[type="checkbox"] {
                 @foreach($bs_blog as $value)
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <div class="row">
+                        <div class="row" style="padding:20px;">
                             <!-- video -->
                             <div class="col-md-12">
-                            <img src="ahr/business_blog/{{$value->blog_image}}" width="300">
-                                <table style="margin-bottom:20px;">
-
-                                </table>
-                                <div class="panel-content">
-                                    <p>{{ $value->blog_content }}</p>
+                                <div class="panel-content" style="width:100%; font-size:18px; padding-right:50px;">
+                                        <pre>{{ $value->blog_content }}</pre>
+                                </div>
+                                <div style="width:100%;">
+                                <img src="ahr/business_blog/{{$value->blog_image}}" width="300">
                                 </div>
                             </div>
                         </div>
