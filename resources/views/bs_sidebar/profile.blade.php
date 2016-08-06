@@ -305,7 +305,7 @@ pre{
                                         <pre>{{ $value->blog_content }}</pre>
                                 </div>
                                 <div style="width:100%;">
-                                <img src="ahr/business_blog/{{$value->blog_image}}" width="300">
+                                <img src="ahr/business_blog/{{$value->blog_image}}" width="100%">
                                 </div>
                             </div>
                         </div>
