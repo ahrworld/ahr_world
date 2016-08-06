@@ -356,6 +356,12 @@ class BusinessController extends Controller
 
        return redirect('/profile_b2');
     }
+    public function preview(Request $request){
+       $date = date('ymdhis');
+    
+
+       return $request->hasFile('image');
+    }
     public function news(Request $request){
         // 新応募
         $Recruitment = Recruitment::where('recruitments.user_id', $request->user()->id)

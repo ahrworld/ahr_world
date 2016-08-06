@@ -158,7 +158,7 @@ input[type="checkbox"] {
 }
 </style>
 <script>
-    
+
 </script>
 <div class="scorl" style="width:60%; float:left; margin-left:15px;">
     <!-- Nav tabs -->
@@ -187,7 +187,7 @@ input[type="checkbox"] {
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <form action="{{url('/business/blog')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                                <form action="{{url('/business/preview')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                             </div>
 
@@ -210,17 +210,24 @@ input[type="checkbox"] {
                                  <textarea class="col-sm-10" required="required" placeholder="您在想什麼呢？" name="blog_content" rows="3" style="border-left:none; margin-bottom:20px; height:100px;"></textarea>
                             </div>
                             <div class="form-group">
-                               
-                                 <input id="file-1" type="file" name="image"  multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
-                                <hr>
-                                <button type="submit" class="btn btn-primary float-right">確認</button>
+                                <div class="fileUpload btn btn-warning">
+                                    <span><i class="fa fa-picture-o"></i></span>
+                                    <input id="uploadBtn"  name="image" type="file" accept="image/*" class="upload" />
+                                </div>
+                                <input id="uploadFile" placeholder="相片/影片" disabled="disabled" style="height:30px; width:60px; border:none;" />   <hr>
+                                <button type="submit" class="btn btn-primary float-right">投槁</button>
+                                <span class="float-right">&nbsp;</span>
+                                <button type="submit" class="btn btn-info float-right preview_btn">預覽</button>
                             </div>
+
+                            <div class="preview"></div>
                             </form>
                         </div>
+
                     </div>
                 </div>
             </div>
-             
+
             <div class="wrapper">
                 @foreach($bs_blog as $value)
                 <div class="panel panel-default">

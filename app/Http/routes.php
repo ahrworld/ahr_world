@@ -121,6 +121,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/mail_box_bs/{id}',['as' => 'mail_bs.show' , 'uses' => 'BusinessController@mail_view']);
     // bs_blog
     Route::post('/business/blog','BusinessController@blog');
+    Route::post('/business/preview','BusinessController@preview');
     Route::get('/news_b2', 'BusinessController@news');
     // user
     Route::get('/step', 'UserController@step');
