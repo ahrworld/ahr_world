@@ -298,9 +298,13 @@ pre{
                 @foreach($bs_blog as $value)
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <div class="row" style="padding:20px;">
+                        <div class="row">
+
                             <!-- video -->
                             <div class="col-md-12">
+                            <div class="col-sm-3 img-thumbnail dsa_s bs_photo" style="width:60px; height:60px;"></div>
+                            
+                            <span style="line-height: 107px; padding-left:5px;">30分前</span>
                                 <div class="panel-content" style="width:100%; font-size:18px; padding-right:50px;">
                                         <pre>{{ $value->blog_content }}</pre>
                                 </div>
