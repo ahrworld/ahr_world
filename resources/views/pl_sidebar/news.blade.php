@@ -9,13 +9,13 @@
         <input type="text" class="form-control" class="job" name="job" placeholder="職業から選ぶ">
       </span>
       <span class="input-group-btn">
-        <input type="text" class="form-control" placeholder="經驗。スキル">
+        <input type="text" class="form-control" name="skill" placeholder="經驗。スキル">
       </span>
       <span class="input-group-btn">
-        <input type="text" class="form-control" placeholder="言語">
+        <input type="text" class="form-control" name="language" placeholder="言語">
       </span>
       <span class="input-group-btn">
-        <input type="text" class="form-control" placeholder="勤務地">
+        <input type="text" class="form-control" name="work_site" placeholder="勤務地">
       </span>
       <span class="input-group-btn">
         <button class="btn ahr-button search_btn" style="height:34px; line-height:20px;" type="button">檢索</button>
@@ -65,19 +65,25 @@
                   dataType: "json",
                   data:  $('.search').serialize(),
                   success: function(data) {
-                      console.log(JSON.stringify(data));
-                      var listArray = new Object();
-                      $.each(data, function(key, value) {
-                        listArray[value.name] = value;
+                      console.log(JSON.stringify(data.data[0]['id']));
+                      var listArray = [];
+                      $.each(data.data, function(key, value) {
                         console.log(value);
+                        listArray.push('<div class="panel panel-default"> <div class="panel-body"> <div class="img-left"> <img height="175" src="data:image/png;base64,'+value.image_small+'" alt=""> </div><div class="panel-content"> <a href="#"> <label style="font-size:18px;">'+value.company_name+'</label> </a> <p> <label class="label-gray">業種</label><span class="job_name">'+value.name+'</span></p><p> <label class="label-gray">仕事内容</label><span>'+value.content+'</span></p><p> <label class="label-gray">応募条件</label><span>'+value.need_skill+'</span></p><p> <label class="label-gray">給与</label><span>'+value.monthly_income+'万円～'+ value.annual_income +' 万円</span></p><p> <label class="label-gray">勤務地</label><span>'+value.work_site+'</span></p></div><div class="img-right"> <div class="modal fade" id="news_modal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <div class="modal-dialog" role="document"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> <h4 class="modal-title" id="myModalLabel">ID公開しますか？</h4> </div><div class="modal-body none"> <form class="form_a" action="{{url('/ttt')}}" method="POST" >{{csrf_field()}}<div class="form-group"> <label>メッセージ:</label> <button class="btn btn-default">リクエストを送る</button> <label style="color:#FF0037;">※テンプレートを使用する場合はボタンを押してください。</label> </div><input type="hidden" name="id" id="id" value=""> <input type="hidden" name="b_id" id="b_id" value=""> <textarea name="content" class="form-control" rows="5">ご連絡頂き、ありがとうございます。ぜひ、「 」について、更にお話を伺えればと思っております。お忙しいところ恐縮ですが、よろしくお願い致します。 </textarea> </div><div class="modal-footer skype_wrapper"> <button type="button" class="btn btn-default" data-dismiss="modal">No</button> <button type="button" class="btn btn-primary yes">Yes</button> </div><div class="modal-footer rk_wrapper none"> <button type="button" class="btn btn-default back" data-dismiss="modal">NO</button> <button type="submit" class="btn btn-primary" >送信する</button> </div></form> </div></div></div><div style="width:150px; float:left;"> <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" data-toggle="modal" data-target="#news_modal_1" >応募する</a> <a href="#" class="btn ahr-label-yellow ahr-btn-lg bt_2">お気に入り</a> </div></div></div></div>');
                       });
 
-                       $('.wrapper').html(moreArray);
+                       $('.search_test').html(listArray);
                   },
                   error: function(data) {
                       console.log('Error:', data);
                   }
               });
+                swal({
+                    title: "ok",
+                    type: "success",
+                    timer:1000,
+                    showConfirmButton: false
+                })
         });
 
         $('.bt_2').click(function() {
@@ -130,6 +136,7 @@
         });
     });
     </script>
+    <div class="wrappers"></div>
     <!-- 応募者管理 Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane ahr-panel active" id="a1">
@@ -139,7 +146,7 @@
             </div>
             <div class="wrapper">
                 <!-- 企業検索 -->
-                <div class="s1 search">
+                <div class="s1 search_test">
                 @foreach($Recruitment as $key_r => $value_r)
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -160,7 +167,7 @@
                             </a>
 
                             <p>
-                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
+                                <label class="label-gray">業種</label><span class="job_name">{{$value_r->name}}</span></p>
                             <p>
                                 <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
@@ -255,7 +262,7 @@
 
                             <!-- <label>更新日時:<span>{{$value_r->updated_at}}</span></label> -->
                             <p>
-                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
+                                <label class="label-gray">業種</label><span class="job_name">{{$value_r->name}}</span></p>
                             <p>
                                 <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>

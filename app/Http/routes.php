@@ -120,6 +120,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/mail_box_bs','BusinessController@mail_box');
     Route::get('/mail_box_bs/{id}',['as' => 'mail_bs.show' , 'uses' => 'BusinessController@mail_view']);
     // bs_blog
+    Route::get('/blog', function(){
+         return view('bs_sidebar/profile_branch/tab3');
+    });
     Route::post('/business/blog','BusinessController@blog');
     Route::post('/business/preview','BusinessController@preview');
     Route::get('/news_b2', 'BusinessController@news');

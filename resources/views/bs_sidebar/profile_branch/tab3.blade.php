@@ -96,15 +96,7 @@ pre{
     </ul>
     <!-- 企業情報 Tab panes -->
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane ahr-panel active" id="a1">
-            @include('bs_sidebar/profile_branch/tab1')
-        </div>
-        <!-- 企業情報tab-panel end -->
-        <!-- 採用情報 Tab panes -->
-        <div role="tabpanel" class="tab-pane ahr-panel" id="a2">
-           @include('bs_sidebar/profile_branch/tab2')
-        </div>
-        <!-- 採用情報 tab-panel end -->
+       
         <!-- 企業カラー Tab panes -->
         <div role="tabpanel" class="tab-pane ahr-panel" id="a3">
             <!-- wall_blog -->
@@ -162,7 +154,6 @@ pre{
             </div>
 
             <div class="wrapper">
-                @foreach($bs_blog as $value)
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="row">
@@ -172,25 +163,17 @@ pre{
                             <div class="col-sm-3 img-thumbnail dsa_s bs_photo" style="width:60px; height:60px;"></div>
                             <span style="line-height: 107px; padding-left:5px;">30分前</span>
                                 <div class="panel-content" style="width:100%; font-size:18px; padding-right:50px;">
-                                        <pre>{{ $value->blog_content }}</pre>
                                 </div>
                                 <div style="width:100%;">
-                                <img src="ahr/business_blog/{{$value->blog_image}}" width="100%">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
             <!-- wrapper end -->
         </div>
-        <!-- 企業カラー tab-panel end -->
-        <!-- 面接日程 Tab panes -->
-        <div role="tabpanel" class="tab-pane ahr-panel" id="a4">
-            @include('bs_sidebar/profile_branch/tab4')
-        </div>
-        <!-- 面接日程 tab-panel end -->
+      
     </div>
     <!-- tab-content end -->
 </div>

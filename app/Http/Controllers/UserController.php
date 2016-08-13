@@ -248,12 +248,12 @@ class UserController extends Controller
         //               })->orWhere('user_id', $request->user()->id)
         //                 ->paginate(3);
         if ($request->job == true){
-           $query = Recruitment::whereNotIn('recruitments.id', function($q){
-                        $q->select('recruitments_id')
-                        ->from('recruitments_status');
-                      })->orWhere('user_id', $request->user()->id)
-                         ->where('name', 'like', '%'.$request->job.'%')
-                         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')->paginate(5);
+           $query = Recruitment::join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
+                        ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                        ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
+                        ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
+                        ->orWhere('exp_job.name', 'like', '%'.$request->job.'%')
+                        ->paginate(5);
            return response()->json($query);
         }
         return response()->json('not data');
