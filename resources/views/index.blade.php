@@ -82,7 +82,7 @@
 	                    @if (Auth::guest())
 	                    	<li><a class="user_lp_blog" href="#">ブログ</a></li>
 	                        <li><button type="button" class="btn btn-default user_lp_btn1"><a href="{{ url('/login') }}" style="padding: 20px 40px;">ログイン</a></button></li>
-	                        <li><button type="button" class="btn btn-default user_lp_btn1"><a href="{{ url('/register') }}" style="padding: 20px 40px;">アカウント作成</a></button></li>
+	                        <li><button type="button" class="btn btn-default user_lp_btn1"><a href="{{ url('/register') }}" style="padding: 20px 20px;">アカウント作成</a></button></li>
 	                    @else
 	                        <li><button type="button" class="btn btn-default user_lp_btn1"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></button></li>
 	                    @endif
