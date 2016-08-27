@@ -186,10 +186,11 @@ class UserController extends Controller
                         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id');
         $Recruitment = Recruitment::select('recruitments.id as r_id','exp_job.name',
             'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
-            'content','need_skill','annual_income','monthly_income','work_site','image_small')
+            'content','need_skill','annual_income','monthly_income','work_site','image_small','languagelvs.languagelv_name')
                         ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                         ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
+                        ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                         ->get();
 
         // 応募した
@@ -242,21 +243,16 @@ class UserController extends Controller
     }
     public function search(Request $request)
     {
-        // $Recruitment = Recruitment::whereNotIn('recruitments.id', function($q){
-        //                 $q->select('recruitments_id')
-        //                 ->from('recruitments_status');
-        //               })->orWhere('user_id', $request->user()->id)
-        //                 ->paginate(3);
-        if ($request->job == true){
            $query = Recruitment::join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                         ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                         ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
-                        ->orWhere('exp_job.name', 'like', '%'.$request->job.'%')
-                        ->paginate(5);
+                        ->where('exp_job.name', 'like', '%'.$request->job.'%')
+                        ->where('languagelvs.languagelv_name', 'like', '%'.$request->language.'%')
+                        ->where('recruitments.need_skill', 'like', '%'.$request->skill.'%')
+                        ->where('recruitments.work_site', 'like', '%'.$request->work_site.'%')
+                        ->get();
            return response()->json($query);
-        }
-        return response()->json('not data');
     }
     public function show(Request $request , $id)
     {

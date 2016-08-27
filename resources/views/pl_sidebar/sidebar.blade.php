@@ -119,6 +119,21 @@ $(document).ready(function() {
 	                        </div>
 	                    </li>
 	                </ul>
+	                <!-- search -->
+	                <div  style="width:650px; float:left; margin-left:50px; ">
+	                    <form class="search" method="POST" >
+	                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+	                    <div class="input-group">
+	                      <span class="input-group-btn">
+	                        <input type="text" class="form-control" class="job" name="job" placeholder="全文檢索">
+	                      </span>
+	                      <span class="input-group-btn">
+	                        <button class="btn ahr-button search_btn" style="height:34px; line-height:20px;" type="button">檢索</button>
+	                      </span>
+	                    </div><!-- /input-group -->
+
+	                    </form>
+	                </div><!-- /.row -->
 					<!-- right -->
 	                <ul class="nav-right pull-right list-unstyled">
 	                    <li class="dropdown langs text-normal" dropdown is-open="status.isopenLang" data-ng-controller="LangCtrl">
