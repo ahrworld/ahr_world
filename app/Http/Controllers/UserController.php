@@ -208,11 +208,18 @@ class UserController extends Controller
                             ->where('recruitments_status.status',2)
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->get();
+        // 面接調整
+        $Recruitment_a = Recruitments_status::where('recruitments_status.user_id', $request->user()->id)
+                            ->where('recruitments_status.status',3)
+                            ->orWhere('recruitments_status.status',4)
+                            ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                            ->get();
         return view('pl_sidebar/news',[
           'bs_image' => $bs_image,
           'Recruitment' => $Recruitment,
           'Recruitment_ofa' => $Recruitment_ofa,
           'Recruitment_like' => $Recruitment_like,
+          'Recruitment_a' => $Recruitment_a,
         ]);
     }
     public function ttt(Request $request)
@@ -247,6 +254,7 @@ class UserController extends Controller
                         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                         ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                         ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
+                        ->where('bsinformations.company_name', 'like', '%'.$request->company_name.'%')
                         ->where('exp_job.name', 'like', '%'.$request->job.'%')
                         ->where('languagelvs.languagelv_name', 'like', '%'.$request->language.'%')
                         ->where('recruitments.need_skill', 'like', '%'.$request->skill.'%')

@@ -125,7 +125,19 @@ $(document).ready(function() {
 	                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 	                    <div class="input-group">
 	                      <span class="input-group-btn">
-	                        <input type="text" class="form-control" class="job" name="job" placeholder="全文檢索">
+	                        <input type="text" class="form-control" class="company_name" name="company_name" placeholder="会社名前">
+	                      </span>
+	                      <span class="input-group-btn">
+	                        <input type="text" class="form-control" class="job" name="job" placeholder="職業から選ぶ">
+	                      </span>
+	                      <span class="input-group-btn">
+	                        <input type="text" class="form-control" name="skill" placeholder="經驗。スキル">
+	                      </span>
+	                      <span class="input-group-btn">
+	                        <input type="text" class="form-control" name="language" placeholder="言語">
+	                      </span>
+	                      <span class="input-group-btn">
+	                        <input type="text" class="form-control" name="work_site" placeholder="勤務地">
 	                      </span>
 	                      <span class="input-group-btn">
 	                        <button class="btn ahr-button search_btn" style="height:34px; line-height:20px;" type="button">檢索</button>

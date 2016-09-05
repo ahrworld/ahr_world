@@ -1,12 +1,16 @@
 @extends('pl_sidebar/sidebar')
-@section('line_menu')
-<div class="row" style="width:60%; margin:80px  auto 30px;">
+
+@section('search')
+<div class="row" style="width:650px; float:left; margin-left:50px; ">
   <div class="col-lg-12">
     <form class="search" method="POST" >
      <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
     <div class="input-group">
       <span class="input-group-btn">
-        <input type="text" class="form-control" class="job" name="job" placeholder="職業から選ぶ">
+        <input type="text" class="form-control" class="company_name" name="company_name" placeholder="会社名前">
+      </span>
+      <span class="input-group-btn">
+        <input type="text" class="form-control"  class="job" name="job" placeholder="職業から選ぶ">
       </span>
       <span class="input-group-btn">
         <input type="text" class="form-control" name="skill" placeholder="經驗。スキル">
@@ -26,6 +30,9 @@
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
 
+@endsection
+@section('line_menu')
+<div style="height:50px;">&nbsp;</div>
 @endsection
 @section('content')
 <style>
@@ -133,6 +140,19 @@
         });
         $('#a2 .s4_btn').click(function(){
             $('#a2 .s4').removeClass('none').addClass('animated fadeIn').siblings('.search').addClass('none');
+        });
+        //面接調整
+        $('#a3 .s1_btn').click(function(){
+            $('#a3 .s1').removeClass('none').addClass('animated fadeIn').siblings('.search').addClass('none');
+        });
+        $('#a3 .s2_btn').click(function(){
+            $('#a3 .s2').removeClass('none').addClass('animated fadeIn').siblings('.search').addClass('none');
+        });
+        $('#a3 .s3_btn').click(function(){
+            $('#a3 .s3').removeClass('none').addClass('animated fadeIn').siblings('.search').addClass('none');
+        });
+        $('#a3 .s4_btn').click(function(){
+            $('#a3 .s4').removeClass('none').addClass('animated fadeIn').siblings('.search').addClass('none');
         });
     });
     </script>
@@ -408,16 +428,44 @@
         <!-- 面接管理 Tab panes -->
         <div role="tabpanel" class="tab-pane ahr-panel" id="a3">
             <div class="">
-                <button class="btn btn-default ahr-button_5 active">面接調整完了者</button>
-                <button class="btn btn-default ahr-button_5">選考進行中</button>
-                <button class="btn btn-default ahr-button_5">内定確定者</button>
+                <button class="btn btn-default ahr-button_5 s1_btn active">面接日程</button>
+                <button class="btn btn-default ahr-button_5 s2_btn">選考進行中</button>
+                <button class="btn btn-default ahr-button_5 s3_btn">内定企業</button>
             </div>
             <div class="wrapper">
                 <!-- 1 -->
+                <div class="s1 search">
+                @foreach($Recruitment_a as $key_r => $value_r)
                 <div class="panel panel-default">
                     <div class="panel-body">
+                        <!-- photo left -->
+                        <div class="img-left">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        </div>
+                        <!-- content -->
+                        <div class="panel-content">
 
+                            <a href="{{ route('posts.show', $value_r->id) }}">
+                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
+                            </a>
+
+                            <p>
+                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
+                            <p>
+                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
+                            <p>
+                                <label class="label-gray">応募条件</label><span></span></p>
+                            <p>
+                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
+                            <p>
+                                <label class="label-gray">勤務地</label><span></span></p>
+                        </div>
+                        <div class="img-right">
+                          
+                        </div>
                     </div>
+                </div>
+                @endforeach
                 </div>
             </div>
             <!-- wrapper end -->

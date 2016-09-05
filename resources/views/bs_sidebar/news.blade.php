@@ -47,6 +47,10 @@ $(document).ready(function() {
     $('#b2 .s2_btn').click(function(){
         $('#b2 .s2').removeClass('none').addClass('animated fadeIn').siblings('.search').addClass('none');
     });
+    $('.assess-default').click(function(){
+       var abc = $(this).attr('attr');
+       $('.rs_id').val(abc);
+    });
 
 });
 </script>
@@ -78,24 +82,82 @@ $(document).ready(function() {
                         </div>
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                            <label class="ahr-label_bs">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
-                            <label class="" style="border:1px solid #ccc; padding:5px;"><span>{{ $value->name }}</span></label>
-
-                            <p><label class="label-gray">最終学歴</label><span>{{$value->school}}</span></p>
-                            <p><label class="label-gray">学部</label><span></span></p>
-                            <p><label class="label-gray">言語レベル</label><span></span></p>
-                            <p><label class="label-gray">國</label><span>{{$value->country}}</span></p>
+                            <label class="ahr-label_bs">Name:<span>{{ $value->rs_id }}</span></label>
+                           <!--  <label class="" style="border:1px solid #ccc; padding:5px;"><span>{{ $value->name }}</span></label>
+ -->
+                            <p><label class="label-gray" style="width:80px;">工作職位</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">学部</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">國籍</label><span></span></p>
                         </div>
                         <!-- ? right -->
                         <div class="img-right" style="margin:15px;">
-                          <a href="#" class="assess-default">
+                          <a href="#" class="assess-default" data-toggle="modal" data-target="#assess_modal" attr="{{$value->rs_id}}" >
                             ？
                           </a>
                         </div>
                     </div>
                 </div>
+                 <!-- news_modal_1 modal -->
+                        <div class="modal fade" id="assess_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">この応募者に対する評価:</h4>
+                              </div>
+
+                              <div class="modal-body">
+
+                                  <div class="assess_btn" style="margin:15px;">
+                                  <form class="form_a" action="{{url('/a')}}" method="POST" >
+                                  {{ csrf_field() }}
+                                         <input type="hidden" name="rs_id" class="rs_id" value="">
+                                          <button type="submit" class="btn btn-default">A</button>
+                                  </form>
+                                  <form class="form_a" action="{{url('/b')}}" method="POST" >
+                                  {{ csrf_field() }}
+                                        <input type="hidden" name="rs_id" class="rs_id" value="">
+
+                                          <button type="submit" class="btn btn-default">B</button>
+                                  </form>
+                                  <form class="form_a" action="{{url('/c')}}" method="POST" >
+                                  {{ csrf_field() }}
+                                        <input type="hidden" name="rs_id" class="rs_id" value="">
+
+                                          <button type="submit" class="btn btn-default">C</button>
+                                  </form>
+                                  <form class="form_a" action="{{url('/d')}}" method="POST" >
+                                  {{ csrf_field() }}
+                                            <input type="hidden" name="rs_id" class="rs_id" value="">
+
+                                          <button type="submit" class="btn btn-default">D</button>
+                                          </form>
+                                  <form class="form_a" action="{{url('/e')}}" method="POST" >
+                                  {{ csrf_field() }}
+                                        <input type="hidden" name="rs_id" class="rs_id" value="">
+
+                                          <button type="submit" class="btn btn-default">E</button>
+                                  </form>
+
+                                  </div>
+
+                              </div>
+
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- modal end -->
                 @endforeach
                 </div>
+                <style>
+                .assess_btn button{
+                    height: 50px;
+                    width: 50px;
+                    font-size: 30px;
+                }
+                </style>
 
                 <!-- お気に入り登錄者 -->
                 <div class="s2 search none">
@@ -138,6 +200,58 @@ $(document).ready(function() {
                 <button class="btn btn-default ahr-button_5">逆オファー中</button>
             </div>
             <div class="wrapper">
+                <div class="b2 search">
+                @foreach($Recruitment_a as $key => $value)
+                <div class="panel panel-default">
+                    <div class="panel-body" style="padding:0px !important;">
+                        <!-- photo left -->
+                        <div class="img-left">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        </div>
+                        <!-- content -->
+                        <div class="panel-content" style="margin:15px 0px 0px 15px;">
+                            <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
+                            <p><label class="label-gray" style="width:80px;">工作職位</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">学部</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">國籍</label><span></span></p>
+                        </div>
+
+                        <!-- ? right -->
+                        <div class="img-right" style="margin:15px;">
+                          <a href="#" class="assess-default">
+                            A
+                          </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @foreach($Recruitment_a as $key => $value)
+                <div class="panel panel-default">
+                    <div class="panel-body" style="padding:0px !important;">
+                        <!-- photo left -->
+                        <div class="img-left">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        </div>
+                        <!-- content -->
+                        <div class="panel-content" style="margin:15px 0px 0px 15px;">
+                            <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
+                            <p><label class="label-gray" style="width:80px;">工作職位</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">学部</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">國籍</label><span></span></p>
+                        </div>
+
+                        <!-- ? right -->
+                        <div class="img-right" style="margin:15px;">
+                          <a href="#" class="assess-default">
+                            B
+                          </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                </div>
             </div>
             <!-- wrapper end -->
         </div>

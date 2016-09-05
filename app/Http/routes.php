@@ -126,6 +126,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/business/blog','BusinessController@blog');
     Route::post('/business/preview','BusinessController@preview');
     Route::get('/news_b2', 'BusinessController@news');
+    Route::post('a','BusinessController@a');
+    Route::post('b','BusinessController@b');
+    Route::post('c','BusinessController@c');
+    Route::post('d','BusinessController@d');
+    Route::post('e','BusinessController@e');
     // user
     Route::get('/step', 'UserController@step');
     Route::post('personnel_in', 'UserController@personnel_in');
@@ -140,6 +145,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('search','UserController@search');
     // user ger business view
     Route::get('posts/{id}',['as' => 'posts.show' , 'uses' => 'UserController@show']);
+
 
 	Route::get('/bs_end', function(){
 	return view('auth/bs_signin-end');

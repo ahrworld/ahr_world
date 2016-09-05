@@ -22,6 +22,7 @@ use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
 use App\PersonnelBranch\skill_title;
 use App\Recruitment;
+use App\Recruitments_status;
 use App\PluralAdd\Employ;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -364,10 +365,11 @@ class BusinessController extends Controller
     }
     public function news(Request $request){
         // 新応募
-        $Recruitment = Recruitment::where('recruitments.user_id', $request->user()->id)
-                                    ->join('recruitments_status', 'recruitments.id', '=', 'recruitments_status.recruitments_id')
+        $Recruitment = Recruitments_status::select('recruitments_status.id as rs_id')
+                                    ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->where('recruitments_status.status', 1)
+                                    ->where('recruitments.user_id', $request->user()->id)
                                     ->get();
         // お気に入り登錄者
         $Recruitment_like = Recruitment::where('recruitments.user_id', $request->user()->id)
@@ -375,10 +377,53 @@ class BusinessController extends Controller
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->where('recruitments_status.status', 2)
                                     ->get();
+        // 面接調整中
+        $Recruitment_a = Recruitments_status::join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                                    ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
+                                    ->where('recruitments.user_id', $request->user()->id)
+                                    ->where('recruitments_status.status', 3)
+                                    ->get();
+        $Recruitment_b = Recruitments_status::join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                                    ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
+                                    ->where('recruitments.user_id', $request->user()->id)
+                                    ->where('recruitments_status.status', 4)
+                                    ->get();
         return view('/bs_sidebar/news',[
                 'Recruitment' => $Recruitment,
                 'Recruitment_like' => $Recruitment_like,
+                'Recruitment_a' => $Recruitment_a,
+                'Recruitment_b' => $Recruitment_b,
             ]);
+    }
+    public function a(Request $request)
+    {
+        Recruitments_status::where('recruitments_status.id', $request->rs_id)
+                            ->update(['status' => 3]);
+        return redirect('news_b2');
+    }
+    public function b(Request $request)
+    {
+        Recruitments_status::where('recruitments_status.id', $request->rs_id)
+                            ->update(['status' => 4]);
+        return redirect('news_b2');
+    }
+    public function c(Request $request)
+    {
+        Recruitments_status::where('recruitments_status.id', $request->rs_id)
+                            ->update(['status' => 5]);
+        return redirect('news_b2');
+    }
+    public function d(Request $request)
+    {
+        Recruitments_status::where('recruitments_status.id', $request->rs_id)
+                            ->update(['status' => 6]);
+        return redirect('news_b2');
+    }
+    public function e(Request $request)
+    {
+        Recruitments_status::where('recruitments_status.id', $request->rs_id)
+                            ->update(['status' => 7]);
+        return redirect('news_b2');
     }
     public function mail_box(Request $request)
     {
