@@ -388,11 +388,33 @@ class BusinessController extends Controller
                                     ->where('recruitments.user_id', $request->user()->id)
                                     ->where('recruitments_status.status', 4)
                                     ->get();
+        // 面接調整中完了
+        $Recruitment_f = Recruitments_status::select('recruitments_status.id as rs_id')
+                                    ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                                    ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
+                                    ->where('recruitments.user_id', $request->user()->id)
+                                    ->where('recruitments_status.status', 8)
+                                    ->get();
+        $Recruitment_h = Recruitments_status::select('recruitments_status.id as rs_id')
+                                    ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                                    ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
+                                    ->where('recruitments.user_id', $request->user()->id)
+                                    ->where('recruitments_status.status', 9)
+                                    ->get();
+        $Recruitment_i = Recruitments_status::select('recruitments_status.id as rs_id')
+                                    ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                                    ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
+                                    ->where('recruitments.user_id', $request->user()->id)
+                                    ->where('recruitments_status.status', 10)
+                                    ->get();
         return view('/bs_sidebar/news',[
                 'Recruitment' => $Recruitment,
                 'Recruitment_like' => $Recruitment_like,
                 'Recruitment_a' => $Recruitment_a,
                 'Recruitment_b' => $Recruitment_b,
+                'Recruitment_f' => $Recruitment_f,
+                'Recruitment_h' => $Recruitment_h,
+                'Recruitment_i' => $Recruitment_i,
             ]);
     }
     public function a(Request $request)
@@ -423,6 +445,18 @@ class BusinessController extends Controller
     {
         Recruitments_status::where('recruitments_status.id', $request->rs_id)
                             ->update(['status' => 7]);
+        return redirect('news_b2');
+    }
+    public function h(Request $request)
+    {
+        Recruitments_status::where('recruitments_status.id', $request->rs_id)
+                            ->update(['status' => 9]);
+        return redirect('news_b2');
+    }
+    public function i(Request $request)
+    {
+        Recruitments_status::where('recruitments_status.id', $request->rs_id)
+                            ->update(['status' => 10]);
         return redirect('news_b2');
     }
     public function mail_box(Request $request)

@@ -207,12 +207,19 @@ class UserController extends Controller
         $Recruitment_like = Recruitments_status::where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',2)
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                            ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
+                            ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->get();
         // 面接調整
-        $Recruitment_a = Recruitments_status::where('recruitments_status.user_id', $request->user()->id)
+        $Recruitment_a = Recruitments_status::select('recruitments.id as r_id','exp_job.name',
+            'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
+            'content','need_skill','annual_income','monthly_income','work_site')
+                            ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',3)
                             ->orWhere('recruitments_status.status',4)
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                            ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
+                            ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->get();
         return view('pl_sidebar/news',[
           'bs_image' => $bs_image,
@@ -301,6 +308,18 @@ class UserController extends Controller
         return response()->json('update ok');
        }
 
+    }
+    public function f(Request $request)
+    {
+        Recruitments_status::where('recruitments_status.id', $request->rs_id)
+                            ->update(['status' => 8]);
+        return redirect('news');
+    }
+    public function g(Request $request)
+    {
+        Recruitments_status::where('recruitments_status.id', $request->rs_id)
+                            ->update(['status' => 0]);
+        return redirect('news');
     }
     public function mail_box(Request $request)
     {

@@ -29,23 +29,23 @@ $( document ).ready(function() {
         $('.status').addClass('status_o');
 
  });
- $('.status_o').click(function(){
-     $('.status_o').mouseover(function(){
-        $(this).html('X');
-        $(this).removeClass('status_o');
-        $(this).addClass('status_x');
-     });
+ // $('.status_o').click(function(){
+ //     $('.status_o').mouseover(function(){
+ //        $(this).html('X');
+ //        $(this).removeClass('status_o');
+ //        $(this).addClass('status_x');
+ //     });
 
- });
- $('.status_x').click(function(){
-  $('.status_x').mouseover(function(){
+ // });
+ // $('.status_x').click(function(){
+ //  $('.status_x').mouseover(function(){
 
-        $(this).html('O');
-        $(this).removeClass('status_x');
-        $(this).addClass('status_o');
-        });
+ //        $(this).html('O');
+ //        $(this).removeClass('status_x');
+ //        $(this).addClass('status_o');
+ //        });
 
- });
+ // });
 
 });
 </script>
@@ -128,12 +128,12 @@ $( document ).ready(function() {
             </label>
         </div>
 
-        <div>
+      <!--   <div>
             <input type="button" class="btn btn-info ci" style="float:left; margin-top:20px; height:30px; margin-bottom:20px; margin-right:10px;" value="全圈">
              <input type="button" class="btn btn-info ai" style="float:left; margin-top:20px; height:30px; margin-bottom:20px;" value="全叉">
 
         </div>
-
+ -->
     <div class="caln_wrapper">
         <div class="column">
         <a class="prev" href="<?php echo "?month=". $prev_month . "&year=" . $prev_year; ?>"><<{{$prev_month}}月</a>
@@ -219,7 +219,7 @@ $( document ).ready(function() {
                         cursor: pointer;
                         color: #0d7b0d;
                         font-size: 16px;
-                        padding:15px 0px;
+                        padding:16px 0px;
                         background: #FFF;
                         border-top: 1px solid #000 !important;
                         font-weight: bold !important;
@@ -232,7 +232,7 @@ $( document ).ready(function() {
                         cursor: pointer;
                         color:#ccc;
                         font-size: 16px;
-                        padding:15px 0px;
+                        padding:16px 0px;
                         background: #FFF;
                         border-top: 1px solid #000 !important;
                         font-weight: bold !important;

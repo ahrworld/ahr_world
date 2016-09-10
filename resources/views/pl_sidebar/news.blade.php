@@ -461,7 +461,20 @@
                                 <label class="label-gray">勤務地</label><span></span></p>
                         </div>
                         <div class="img-right">
-                          
+                            <div style="width:160px; float:left;">
+                                <!-- <button class="btn ahr-label-blue ahr-btn-lg">スケジュールを選ぶ</button> -->
+                                <form action="{{url('/f')}}" method="POST" >
+                                      {{ csrf_field() }}
+                                      <input type="hidden" name="rs_id" class="rs_id" value="{{$value_r->r_id}}">
+                                      <button class="btn ahr-label-blue ahr-btn-lg">スケジュールを選ぶ</button>
+                                </form>
+                                <form action="{{url('/g')}}" method="POST" >
+                                      {{ csrf_field() }}
+                                      <input type="hidden" name="rs_id" class="rs_id" value="{{$value_r->r_id}}">
+                                      <button class="btn ahr-label-yellow ahr-btn-lg">辞退する</button>
+                                </form>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>

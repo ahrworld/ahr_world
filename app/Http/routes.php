@@ -131,6 +131,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('c','BusinessController@c');
     Route::post('d','BusinessController@d');
     Route::post('e','BusinessController@e');
+    Route::post('h','BusinessController@h');
+    Route::post('i','BusinessController@i');
     // user
     Route::get('/step', 'UserController@step');
     Route::post('personnel_in', 'UserController@personnel_in');
@@ -145,7 +147,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('search','UserController@search');
     // user ger business view
     Route::get('posts/{id}',['as' => 'posts.show' , 'uses' => 'UserController@show']);
-
+    Route::post('f','UserController@f');
+    Route::post('g','UserController@g');
 
 	Route::get('/bs_end', function(){
 	return view('auth/bs_signin-end');
