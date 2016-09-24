@@ -117,7 +117,7 @@
                 timer:1000,
                 showConfirmButton: false
             })
-            setTimeout("location.reload();", 1000);
+          
 
         });
 

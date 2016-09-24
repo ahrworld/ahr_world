@@ -254,11 +254,7 @@ class UserController extends Controller
     }
     public function like(Request $request)
     {
-        $Recruitments_status = Recruitments_status::create([
-                    'status' => 2,
-                    'recruitments_id' => $request->id,
-                    'user_id' => $request->user()->id,
-        ]);
+       
         return 'ok';
     }
     public function search(Request $request)

@@ -101,7 +101,7 @@ $(document).ready(function() {
                            <!--  <label class="" style="border:1px solid #ccc; padding:5px;"><span>{{ $value->name }}</span></label>
  -->
                             <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
-                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">最終学歴</label><span>{{ $value->school }}</span></p>
                             <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
                             <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
                         </div>
@@ -211,7 +211,7 @@ $(document).ready(function() {
                             <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
                             <label class="" style="border:1px solid #ccc; padding:2px 5px; font-weight:100;"><span>{{ $value->name }}</span></label>
                             <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
-                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">最終学歴</label><span>{{ $value->school }}</span></p>
                             <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
                             <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
                         </div>
@@ -236,11 +236,12 @@ $(document).ready(function() {
                         </div>
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                            <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
+                            <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span><span>♂</span></label>
                             <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
-                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
-                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">最終学歴</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">SKILL</label><span></span></p>
                             <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span>日本語(Native),中国語(Business),英語(Communication)....</span></p>
                         </div>
 
                         <!-- ? right -->
@@ -263,7 +264,7 @@ $(document).ready(function() {
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
                             <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
                             <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
-                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">最終学歴</label><span>{{ $value->school }}</span></p>
                             <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
                             <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
                         </div>
@@ -303,7 +304,7 @@ $(document).ready(function() {
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
                             <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
                             <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
-                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">最終学歴</label><span>{{ $value->school }}</span></p>
                             <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
                             <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
                         </div>
@@ -328,7 +329,7 @@ $(document).ready(function() {
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
                             <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
                             <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
-                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">最終学歴</label><span>{{ $value->school }}</span></p>
                             <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
                             <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
                         </div>
