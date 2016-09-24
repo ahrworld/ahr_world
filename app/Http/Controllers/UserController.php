@@ -195,12 +195,14 @@ class UserController extends Controller
 
         // 応募した
         $Recruitment_ofa = Recruitments_status::select('recruitments.id as r_id','exp_job.name','recruitments.user_id',
-            'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name')
+            'content','need_skill','annual_income','monthly_income','work_site','image_small','bsinformations.company_name','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',1)
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
+                            ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
 
         // お気に入り
@@ -209,17 +211,21 @@ class UserController extends Controller
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
+                            ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
         // 面接調整
-        $Recruitment_a = Recruitments_status::select('recruitments.id as r_id','exp_job.name',
-            'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
-            'content','need_skill','annual_income','monthly_income','work_site')
+        $Recruitment_a = Recruitments_status::select('recruitments.id as r_id','image_small','exp_job.name',
+            'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.user_id as b_user_id',
+            'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',3)
                             ->orWhere('recruitments_status.status',4)
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
+                            ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
         return view('pl_sidebar/news',[
           'bs_image' => $bs_image,

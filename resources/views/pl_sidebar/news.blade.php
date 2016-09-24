@@ -272,9 +272,15 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <!-- photo left -->
+                        @if(isset($value_r->image_small))
+                        <div class="img-left">
+                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </div>
+                        @else
                         <div class="img-left">
                             <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
                         </div>
+                        @endif
                         <!-- content -->
                         <div class="panel-content">
 
@@ -288,8 +294,11 @@
                             <p>
                                 <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
-                                <label class="label-gray">応募条件</label><span></span></p>
+                                <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
                             <p>
+                                <label class="label-gray">言語</label><span>{{$value_r->languagelv_name}}</span></p>
+                            <p>
+
                                 <label class="label-gray">給与</label><span>000万円～000万円</span></p>
                             <p>
                                 <label class="label-gray">勤務地</label><span></span></p>
@@ -312,9 +321,15 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <!-- photo left -->
+                        @if(isset($value_r->image_small))
+                        <div class="img-left">
+                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </div>
+                        @else
                         <div class="img-left">
                             <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
                         </div>
+                        @endif
                         <!-- content -->
                         <div class="panel-content">
 
@@ -328,7 +343,9 @@
                             <p>
                                 <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
-                                <label class="label-gray">応募条件</label><span></span></p>
+                                <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
+                            <p>
+                                <label class="label-gray">言語</label><span>{{$value_r->languagelv_name}}</span></p>
                             <p>
                                 <label class="label-gray">給与</label><span>000万円～000万円</span></p>
                             <p>
@@ -366,7 +383,9 @@
                             <p>
                                 <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
-                                <label class="label-gray">応募条件</label><span></span></p>
+                                <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
+                            <p>
+                                <label class="label-gray">言語</label><span>{{$value_r->languagelv_name}}</span></p>
                             <p>
                                 <label class="label-gray">給与</label><span>000万円～000万円</span></p>
                             <p>
@@ -404,7 +423,9 @@
                             <p>
                                 <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
-                                <label class="label-gray">応募条件</label><span></span></p>
+                                <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
+                            <p>
+                                <label class="label-gray">言語</label><span>{{$value_r->languagelv_name}}</span></p>
                             <p>
                                 <label class="label-gray">給与</label><span>000万円～000万円</span></p>
                             <p>
@@ -439,12 +460,20 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <!-- photo left -->
+                        @if(isset($value_r->image_small))
+                        <div class="img-left">
+                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </div>
+                        @else
                         <div class="img-left">
                             <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
                         </div>
+                        @endif
                         <!-- content -->
                         <div class="panel-content">
-
+                            <p>
+                              <span style="padding:4px 15px; background:#F0844A; color: #FFF;">日程決定</span>
+                            </p>
                             <a href="{{ route('posts.show', $value_r->id) }}">
                             <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
@@ -454,7 +483,9 @@
                             <p>
                                 <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
-                                <label class="label-gray">応募条件</label><span></span></p>
+                                <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
+                            <p>
+                                <label class="label-gray">言語</label><span>{{$value_r->languagelv_name}}</span></p>
                             <p>
                                 <label class="label-gray">給与</label><span>000万円～000万円</span></p>
                             <p>

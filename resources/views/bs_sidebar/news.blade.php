@@ -40,6 +40,9 @@ $(document).ready(function() {
     $('#b1 .s2_btn').click(function(){
         $('#b1 .s2').removeClass('none').addClass('animated fadeIn').siblings('.search').addClass('none');
     });
+    $('#b1 .s3_btn').click(function(){
+        $('#b1 .s3').removeClass('none').addClass('animated fadeIn').siblings('.search').addClass('none');
+    });
     //選考管理
     $('#b2 .s1_btn').click(function(){
         $('#b2 .s1').removeClass('none').addClass('animated fadeIn').siblings('.search').addClass('none');
@@ -79,6 +82,9 @@ $(document).ready(function() {
                 <button class="btn btn-default ahr-button_5 s3_btn">保 留</button>
                 <button class="btn btn-default ahr-button_5 s4_btn">足 跡</button>
             </div>
+            <div style="float:right;">
+                <a href="{{ url('bs_e') }}">不合格</a>
+            </div>
             <div class="wrapper">
                 <!-- 新応募者 -->
                 <div class="s1 search">
@@ -91,13 +97,13 @@ $(document).ready(function() {
                         </div>
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                            <label class="ahr-label_bs">Name:<span>{{ $value->rs_id }}</span></label>
+                            <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->surname.$value->family_name }}</span></label>
                            <!--  <label class="" style="border:1px solid #ccc; padding:5px;"><span>{{ $value->name }}</span></label>
  -->
-                            <p><label class="label-gray" style="width:80px;">工作職位</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">学部</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">國籍</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
                         </div>
                         <!-- ? right -->
                         <div class="img-right" style="margin:15px;">
@@ -160,7 +166,7 @@ $(document).ready(function() {
                                   </div>
 
                               </div>
-                        
+
 
                             </div>
                           </div>
@@ -204,15 +210,68 @@ $(document).ready(function() {
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
                             <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
                             <label class="" style="border:1px solid #ccc; padding:2px 5px; font-weight:100;"><span>{{ $value->name }}</span></label>
-                            <p><label class="label-gray">最終学歴</label><span>○○○○○○○○○○○○○○○○○○○○○○○○</span></p>
-                            <p><label class="label-gray">学部</label><span>○○○○○○○○○○○○○○○○○○○○○○○○○</span></p>
-                            <p><label class="label-gray">言語レベル</label><span>○○○○○○○○○○○○○○○○○○○</span></p>
-                            <p><label class="label-gray">夢</label><span>○○○○○○○○○○○○○○○○○○○</span></p>
+                            <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
                         </div>
                         <!-- ? right -->
                         <div class="img-right" style="margin:15px;">
                           <a href="#" class="assess-default">
                             ？
+                          </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                </div>
+                <!-- 保留 -->
+                <div class="s3 search none">
+                @foreach($Recruitment_c as $key => $value)
+                <div class="panel panel-default">
+                    <div class="panel-body" style="padding:0px !important;">
+                        <!-- photo left -->
+                        <div class="img-left">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        </div>
+                        <!-- content -->
+                        <div class="panel-content" style="margin:15px 0px 0px 15px;">
+                            <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
+                            <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
+                        </div>
+
+                        <!-- ? right -->
+                        <div class="img-right" style="margin:15px;">
+                          <a href="#" class="assess-default">
+                            C
+                          </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @foreach($Recruitment_d as $key => $value)
+                <div class="panel panel-default">
+                    <div class="panel-body" style="padding:0px !important;">
+                        <!-- photo left -->
+                        <div class="img-left">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        </div>
+                        <!-- content -->
+                        <div class="panel-content" style="margin:15px 0px 0px 15px;">
+                            <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
+                            <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
+                        </div>
+
+                        <!-- ? right -->
+                        <div class="img-right" style="margin:15px;">
+                          <a href="#" class="assess-default">
+                            D
                           </a>
                         </div>
                     </div>
@@ -243,10 +302,10 @@ $(document).ready(function() {
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
                             <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
-                            <p><label class="label-gray" style="width:80px;">工作職位</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">学部</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">國籍</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
                         </div>
 
                         <!-- ? right -->
@@ -258,7 +317,7 @@ $(document).ready(function() {
                     </div>
                 </div>
                 @endforeach
-                @foreach($Recruitment_a as $key => $value)
+                @foreach($Recruitment_b as $key => $value)
                 <div class="panel panel-default">
                     <div class="panel-body" style="padding:0px !important;">
                         <!-- photo left -->
@@ -268,10 +327,10 @@ $(document).ready(function() {
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
                             <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
-                            <p><label class="label-gray" style="width:80px;">工作職位</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">学部</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">國籍</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
                         </div>
 
                         <!-- ? right -->
@@ -307,34 +366,65 @@ $(document).ready(function() {
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
                             <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
-                            <p><label class="label-gray" style="width:80px;">工作職位</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">学部</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">國籍</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
                         </div>
                         <!-- ? right -->
                         <div class="img-right" style="margin:15px;">
-                          <a href="#" class="assess-default">
+                          <a href="#" class="assess-default" style="margin-left: 89px;">
                             A
                           </a>
-                          <div style="width:160px; float:left;">
-                                <!-- <button class="btn ahr-label-blue ahr-btn-lg">スケジュールを選ぶ</button> -->
-                                <form action="{{url('/h')}}" method="POST" >
-                                      {{ csrf_field() }}
-                                      <input type="hidden" name="rs_id" class="rs_id" value="{{ $value->rs_id }}">
-                                      <button class="btn ahr-label-blue ahr-btn-lg">面接合格</button>
-                                </form>
-                                <form action="{{url('/g')}}" method="POST" >
-                                      {{ csrf_field() }}
-                                      <input type="hidden" name="rs_id" class="rs_id" value="{{ $value->rs_id }}">
-                                      <button class="btn ahr-label-yellow ahr-btn-lg">内定出し</button>
-                                </form>
-                                <form action="{{url('/g')}}" method="POST" >
-                                      {{ csrf_field() }}
-                                      <input type="hidden" name="rs_id" class="rs_id" value="{{ $value->rs_id }}">
-                                      <button class="btn ahr-label-yellow ahr-btn-lg">不採用</button>
-                                </form>
-                            </div>
+                          <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" style="width:130px;background: #00B9EF; color:#FFF;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              予約中
+                              <span class="caret" style="float:right; margin-top:4px; color:#FFF;"></span>
+                            </button>
+                            <ul class="dropdown-menu" style="min-width: 131px !important; border:0px;" aria-labelledby="dropdownMenu1">
+                              <li>
+                              <form action="{{url('/h')}}" method="POST" >
+                              {{ csrf_field() }}
+                              <input type="hidden" name="rs_id" class="rs_id" value="{{ $value->rs_id }}">
+                               <button class="btn btn-default dropdown-toggle" style="width:130px; background: #00B9EF; color:#FFF;">
+                                 檢討中
+                                 <span class="caret" style="float:right; margin-top:4px; color:#FFF;"></span>
+                               </button>
+                              </form>
+                              </li>
+                              <li>
+                              <form action="{{url('/h')}}" method="POST" >
+                              {{ csrf_field() }}
+                              <input type="hidden" name="rs_id" class="rs_id" value="{{ $value->rs_id }}">
+                               <button type="submit" class="btn btn-default dropdown-toggle" style="width:130px; background: #00B9EF; color:#FFF;">
+                                 面接合格
+                                 <span class="caret" style="float:right; margin-top:4px; color:#FFF;"></span>
+                               </button>
+                              </form>
+                              </li>
+                              <li>
+                              <form action="{{url('/g')}}" method="POST" >
+                              {{ csrf_field() }}
+                              <input type="hidden" name="rs_id" class="rs_id" value="{{ $value->rs_id }}">
+                               <button type="submit" class="btn btn-default dropdown-toggle" style="width:130px; background: #00B9EF; color:#FFF;">
+                                 内定出し
+                                 <span class="caret" style="float:right; margin-top:4px; color:#FFF;"></span>
+                               </button>
+                              </form>
+                              </li>
+                              <li>
+                              <form action="{{url('/h')}}" method="POST" >
+                              {{ csrf_field() }}
+                              <input type="hidden" name="rs_id" class="rs_id" value="{{ $value->rs_id }}">
+                               <button class="btn btn-default dropdown-toggle" style="width:130px; background: #00B9EF; color:#FFF;">
+                                 不採用
+                                 <span class="caret" style="float:right; margin-top:4px; color:#FFF;"></span>
+                               </button>
+                              </form>
+                              </li>
+                            </ul>
+                          </div>
+
                         </div>
                     </div>
                 </div>
@@ -351,30 +441,49 @@ $(document).ready(function() {
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
                             <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
-                            <p><label class="label-gray" style="width:80px;">工作職位</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">学部</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">國籍</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
                         </div>
                         <!-- ? right -->
                         <div class="img-right" style="margin:15px;">
-                          <a href="#" class="assess-default">
+                          <a href="#" class="assess-default" style="margin-left: 89px;">
                             A
                           </a>
-                          <div style="width:160px; float:left;">
-                                <!-- <button class="btn ahr-label-blue ahr-btn-lg">スケジュールを選ぶ</button> -->
-                                <form action="{{url('/i')}}" method="POST" >
-                                      {{ csrf_field() }}
-                                      <input type="hidden" name="rs_id" class="rs_id" value="{{ $value->rs_id }}">
-                                      <button class="btn ahr-label-blue ahr-btn-lg">内定出し</button>
-                                </form>
-                                <form action="＃" method="POST" >
-                                      {{ csrf_field() }}
-                                      <input type="hidden" name="rs_id" class="rs_id" value="{{ $value->rs_id }}">
-                                      <button class="btn ahr-label-yellow ahr-btn-lg">不採用</button>
-                                </form>
-                            </div>
+                          <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" style="width:130px;background: #00B9EF; color:#FFF;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              予約中
+                              <span class="caret" style="float:right; margin-top:4px; color:#FFF;"></span>
+                            </button>
+                            <ul class="dropdown-menu" style="min-width: 131px !important; border:0px;" aria-labelledby="dropdownMenu1">
+                              <li>
+                              <form action="{{url('/i')}}" method="POST" >
+                              {{ csrf_field() }}
+                              <input type="hidden" name="rs_id" class="rs_id" value="{{ $value->rs_id }}">
+                               <button type="submit" class="btn btn-default dropdown-toggle" style="width:130px; background: #00B9EF; color:#FFF;">
+                                 内定出し
+                                 <span class="caret" style="float:right; margin-top:4px; color:#FFF;"></span>
+                               </button>
+                              </form>
+                              </li>
+                              <li>
+                              <form action="{{url('/h')}}" method="POST" >
+                              {{ csrf_field() }}
+                              <input type="hidden" name="rs_id" class="rs_id" value="{{ $value->rs_id }}">
+                               <button class="btn btn-default dropdown-toggle" style="width:130px; background: #00B9EF; color:#FFF;">
+                                 不採用
+                                 <span class="caret" style="float:right; margin-top:4px; color:#FFF;"></span>
+                               </button>
+                              </form>
+                              </li>
+                            </ul>
+                          </div>
+                          <div style="width:150px; float:left;">
+                                <button class="btn ahr-label-blue ahr-btn-lg" style="margin-top:8px !important;">メールBOXへ</button>
+                           </div>
                         </div>
+
                     </div>
                 </div>
                 @endforeach
@@ -390,10 +499,10 @@ $(document).ready(function() {
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
                             <label class="ahr-label_bs" style="font-size:16px;">Name:<span>{{ $value->family_name.$value->surname }}</span></label>
-                            <p><label class="label-gray" style="width:80px;">工作職位</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">学部</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span></span></p>
-                            <p><label class="label-gray" style="width:80px;">國籍</label><span></span></p>
+                            <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
+                            <p><label class="label-gray" style="width:80px;">國籍</label><span>{{ $value->country }}</span></p>
                         </div>
                         <!-- ? right -->
                         <div class="img-right" style="margin:15px;">
@@ -401,11 +510,13 @@ $(document).ready(function() {
                             A
                           </a>
                           <div style="width:160px; float:left;">
-                              
+
                             </div>
                         </div>
                     </div>
                 </div>
+
+                </style>
                 @endforeach
                 </div>
             </div>

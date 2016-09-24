@@ -133,6 +133,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('e','BusinessController@e');
     Route::post('h','BusinessController@h');
     Route::post('i','BusinessController@i');
+    Route::get('/bs_e', 'BusinessController@bs_e');
     // user
     Route::get('/step', 'UserController@step');
     Route::post('personnel_in', 'UserController@personnel_in');
