@@ -354,6 +354,7 @@ $(document).ready(function() {
                 <button class="btn btn-default ahr-button_5 s1_btn active">面接調整完了者</button>
                 <button class="btn btn-default ahr-button_5 s2_btn">選考進行中</button>
                 <button class="btn btn-default ahr-button_5 s3_btn">内定確定者</button>
+                <button class="btn btn-default ahr-button_5 s4_btn">勤務開始報告</button>
             </div>
             <div class="wrapper">
                 <div class="s1 search">
