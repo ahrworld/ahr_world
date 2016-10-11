@@ -108,7 +108,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/business_b', 'BusinessController@business_b');
 
     Route::get('/profile_b2','BusinessController@profile');
-    Route::get('/interview/edit','BusinessController@interview');
 
     Route::post('/business/update', 'BusinessController@update');
     Route::post('/business/image_big', 'BusinessController@image_big');
@@ -123,6 +122,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/blog', function(){
          return view('bs_sidebar/profile_branch/tab3');
     });
+    // bs interview_time
+    Route::get('/interview/edit','BusinessController@interview');
+    Route::post('/interview/edit/submit','BusinessController@interview_submit');
+
     Route::post('/business/blog','BusinessController@blog');
     Route::post('/business/preview','BusinessController@preview');
     Route::get('/news_b2', 'BusinessController@news');

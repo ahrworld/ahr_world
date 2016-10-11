@@ -18,6 +18,7 @@ use App\ModelBranch\Notice;
 use App\ModelBranch\Exp_job;
 use App\ModelBranch\Exp_job_category;
 use App\ModelBranch\Subject;
+use App\ModelBranch\Interview_time;
 use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
 use App\PersonnelBranch\skill_title;
@@ -359,7 +360,7 @@ class BusinessController extends Controller
     }
     public function preview(Request $request){
        $date = date('ymdhis');
-    
+
 
        return $request->hasFile('image');
     }
@@ -529,6 +530,7 @@ class BusinessController extends Controller
     public function mail_view(Request $request , $id)
     {
         $mail_view  = Mail_box::where('mail_box.id', $id)->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')->first();
+
         return view('bs_sidebar.mail_view', [
             'mail_view' => $mail_view
 
@@ -536,8 +538,22 @@ class BusinessController extends Controller
     }
     public function interview()
     {
-        
-        return view('bs_sidebar.interview_time');
+        $a = Interview_time::where('bsinformations_id',5)->get();
+        return view('bs_sidebar.interview_time', [
+            'a' => $a
+        ]);
     }
+    public function interview_submit(Request $request)
+    {
+        // foreach ($request->time as $key => $value) {
+        //     if (Interview_time::where('time',$value)->first() == true) {
+        //          return '已經填寫過了';
+        //     }
+        //     Interview_time::create([
+        //         'time' => $value
+        //      ]);
+        // }
 
+        return response()->json($request->id);
+    }
 }

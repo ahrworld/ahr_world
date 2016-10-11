@@ -4,48 +4,64 @@
 @endsection
 @section('content')
 <script>
-function myFunction() {
-    if($(this).html('X')){
-        $(this).html('O');
-        $(this).removeClass('status_x');
-        $(this).addClass('status_o');
-    }else{
-        $(this).html('X');
-        $(this).removeClass('status_o');
-        $(this).addClass('status_x');
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-
-}
+});
+var token = '{{ Session::token() }}';
 $( document ).ready(function() {
-  $('.ci').click(function(){
-        $('.status').html('X');
-        $('.status').removeClass('status_o');
-        $('.status').addClass('status_x');
-
- });
-  $('.ai').click(function(){
-        $('.status').html('O');
-        $('.status').removeClass('status_x');
-        $('.status').addClass('status_o');
-
- });
- // $('.status_o').click(function(){
- //     $('.status_o').mouseover(function(){
- //        $(this).html('X');
- //        $(this).removeClass('status_o');
- //        $(this).addClass('status_x');
- //     });
+ //  $('.ci').click(function(){
+ //        $('.status').html('X');
+ //        $('.status').removeClass('status_o');
+ //        $('.status').addClass('status_x');
 
  // });
- // $('.status_x').click(function(){
- //  $('.status_x').mouseover(function(){
-
- //        $(this).html('O');
- //        $(this).removeClass('status_x');
- //        $(this).addClass('status_o');
- //        });
+ //  $('.ai').click(function(){
+ //        $('.status').html('O');
+ //        $('.status').removeClass('status_x');
+ //        $('.status').addClass('status_o');
 
  // });
+ $('.status').on('click', function(){
+        console.log($(this).attr('attr'));
+        var b = $(this).html();
+        if(b == 'X'){
+            $(this).html('O');
+            $(this).removeClass('status_x');
+            $(this).addClass('status_o');
+            $(this).attr('value','O');
+
+        }else{
+            $(this).html('X');
+            $(this).removeClass('status_o');
+            $(this).addClass('status_x');
+            $(this).remo('value','X');
+        }
+ });
+ $('.test_time').click(function() {
+        var winners_array = $('.status_o').map(function(){
+              return $(this).attr('time');
+        }).get();
+        console.log(winners_array);
+        $.ajax({
+            type: "POST",
+            url: "/interview/edit/submit",
+            async: false,
+            dataType: "json",
+            data: {
+                time: winners_array,
+                _token: token
+            },
+            success: function(data) {
+                console.log(JSON.stringify(data));
+            },
+            error: function(data) {
+                console.log('Error:', data);
+
+            }
+        });
+  });
 
 });
 </script>
@@ -123,7 +139,7 @@ $( document ).ready(function() {
               <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> ベトナム時間
             </label>
             <label style="line-height: 10px; float:right;" class="radio-inline">
-        <input type="button" class="btn btn-primary" style="float:right; margin-top:20px; height:30px; margin-bottom:20px;" value="更改">
+        <input type="button" class="btn btn-primary test_time" style="float:right; margin-top:20px; height:30px; margin-bottom:20px;" value="更改">
 
             </label>
         </div>
@@ -199,22 +215,23 @@ $( document ).ready(function() {
 
                     <td style="background:#419ECA; text-align:center; color:#FFF; height='100' ">
                        <div style="height:30px; font-size:16px; font-weight:bold; line-height:30px;">{{$day_num}}</div>
+
                        @for ($i = 0; $i < 7; $i++)
-                       @if($i === 2)
-                       <div class="status status_o">
-                           O
-                       </div>
-                       @else
-                       <div class="status status_x">
-                           X
-                       </div>
+                       @foreach($a as $value)
+                       @if($value->time === $cYear.$title.$day_num.$i)
+                       <div class="status_o" time="{{$cYear.$title.$day_num.$i}}"><span class="status"  value="1" year="{{$cYear}}" day="{{$day_num}}" status="{{$i}}">O</span></div>
                        @endif
 
+                       @endforeach
+                       <div class="status_x"><span class="status"  value="2" year="{{$cYear}}" day="{{$day_num}}" status="{{$i}}">X</span></div>
                        @endfor
 
                     </td>
 
                     <style>
+                    .status{
+                        background: rgba(255, 255, 255, 0) !important;
+                    }
                     .status_o{
                         cursor: pointer;
                         color: #0d7b0d;
@@ -249,13 +266,9 @@ $( document ).ready(function() {
                        <div style="height:30px; font-size:16px; font-weight:bold;  line-height:30px; color:#FFF;">{{$day_num}}</div>
                        @for ($i = 0; $i < 7; $i++)
                            @if($i === 2)
-                           <div class="status status_o">
-                               O
-                           </div>
+                           <div class="status_o"><span class="status">O</span></div>
                            @else
-                           <div class="status status_x">
-                               X
-                           </div>
+                           <div class="status_x"><span class="status">X</span></div>
                            @endif
                        @endfor
                     </td>
@@ -270,13 +283,9 @@ $( document ).ready(function() {
                        <div style="height:30px; font-size:16px; font-weight:bold;  line-height:30px; ">{{$day_num}}</div>
                        @for ($i = 0; $i < 7; $i++)
                            @if($i === 2)
-                           <div class="status status_o">
-                               O
-                           </div>
+                           <div class="status_o"><span class="status">O</span></div>
                            @else
-                           <div class="status status_x">
-                               X
-                           </div>
+                           <div class="status_x"><span class="status">X</span></div>
                            @endif
                        @endfor
                     </td>
@@ -307,9 +316,6 @@ $( document ).ready(function() {
 
 
                 @endwhile
-
-
-
 
                 @while($day_count >1 && $day_count <=7)
                 <td></td>

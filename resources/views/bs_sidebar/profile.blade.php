@@ -14,7 +14,7 @@ $(document).ready(function() {
         $('.default_content').addClass('none');
         $('.update_content').removeClass('none');
     });
-   
+
     $('.default_summary .update_bt').click(function() {
         $('.default_summary').addClass('none');
         $('.update_summary').removeClass('none');

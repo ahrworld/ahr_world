@@ -167,17 +167,19 @@ class UserController extends Controller
         // 圖片
         $bs_image = Bs_image::all();
 
-        // 応募default
-        // $Recruitment = Recruitment::select('recruitments.id as r_id','exp_job.name',
-        //     'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
-        //     'content','need_skill','annual_income','monthly_income','work_site')
-        //                 ->whereNotIn('recruitments.id', function($q){
-        //                 $q->select('recruitments_id')
-        //                 ->from('recruitments_status');
-        //               })->orWhere('recruitments.user_id', $request->user()->id)
-        //                 ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
-        //                 ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-        //                 ->get();
+        //応募default
+        $Recruitment = Recruitment::select('recruitments.id as r_id','exp_job.name',
+            'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
+            'content','need_skill','annual_income','monthly_income','work_site','image_small','languagelvs.languagelv_name')
+                        ->whereNotIn('recruitments.id', function($q){
+                        $q->select('recruitments_id')
+                        ->from('recruitments_status');
+                      })->orWhere('recruitments.user_id', $request->user()->id)
+                        ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
+                        ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                        ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
+                        ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
+                        ->get();
                    //orWhere作法不好，只有或，沒有和的條件，所以user id一旦錯了就全錯了
         $ssa = Recruitment::select('recruitments.id as r_id','exp_job.name',
             'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
@@ -254,8 +256,12 @@ class UserController extends Controller
     }
     public function like(Request $request)
     {
-       
-        return 'ok';
+        $Recruitments_status = Recruitments_status::create([
+                    'status' => 2,
+                    'recruitments_id' => $request->id,
+                    'user_id' => $request->user()->id,
+        ]);
+        return response()->json('ok');
     }
     public function search(Request $request)
     {

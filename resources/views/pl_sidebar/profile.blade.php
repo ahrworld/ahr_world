@@ -40,6 +40,14 @@
     $('.default_summary').hover(function(){
       $('.default_summary .update_bt').toggleClass('none');
     });
+
+    $('.update-panel1').hover(function() {
+        $('.update_bt1').toggleClass('none');
+    });
+    $('.update_bt1').click(function() {
+        $('.default_content').addClass('none');
+        $('.update_content').removeClass('none');
+    });
   });
 
 </script>

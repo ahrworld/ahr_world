@@ -62,6 +62,12 @@
         <li role="presentation"><a href="#a3" aria-controls="a3" role="tab" data-toggle="tab">面接日程</a></li>
     </ul>
     <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var token = '{{ Session::token() }}';
     $(document).ready(function() {
 
         $('.search_btn').click(function(){
@@ -117,7 +123,7 @@
                 timer:1000,
                 showConfirmButton: false
             })
-          
+
 
         });
 
@@ -167,6 +173,48 @@
             <div class="wrapper">
                 <!-- 企業検索 -->
                 <div class="s1 search_test">
+                @foreach($Recruitment_ofa as $key_r => $value_r)
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- photo left -->
+                        @if(isset($value_r->image_small))
+                        <div class="img-left">
+                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </div>
+                        @else
+                        <div class="img-left">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        </div>
+                        @endif
+                        <!-- content -->
+                        <div class="panel-content">
+                            <a href="{{ route('posts.show', $value_r->r_id) }}">
+
+                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
+                            </a>
+                            <span style="padding:5px; border:1px solid #CCC;">応募済み</span>
+                            <p>
+                                <label class="label-gray">業種</label><span class="job_name">{{$value_r->name}}</span></p>
+                            <p>
+                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
+                            <p>
+                                <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
+                            <p>
+                                <label class="label-gray">言語</label><span>{{$value_r->languagelv_name}}</span></p>
+                            <p>
+                                <label class="label-gray">給与</label><span>{{$value_r->monthly_income}}万円～{{$value_r->annual_income}}万円</span></p>
+                            <p>
+                                <label class="label-gray">勤務地</label><span>{{$value_r->work_site}}</span></p>
+                        </div>
+                        <div class="img-right">
+
+                            <div style="width:150px; float:left;">
+                                <button class="btn ahr-label-blue ahr-btn-lg">リクエストを送る</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
                 @foreach($Recruitment as $key_r => $value_r)
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -183,6 +231,7 @@
                         <!-- content -->
                         <div class="panel-content">
                             <a href="{{ route('posts.show', $value_r->r_id) }}">
+
                             <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
 
@@ -504,7 +553,7 @@
                                       <input type="hidden" name="rs_id" class="rs_id" value="{{$value_r->r_id}}">
                                       <button class="btn ahr-label-yellow ahr-btn-lg">辞退する</button>
                                 </form>
-                                
+
                             </div>
                         </div>
                     </div>
