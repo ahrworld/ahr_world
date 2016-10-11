@@ -63,9 +63,36 @@ $(document).ready(function() {
        var abc = $(this).attr('attr');
        $('.rs_id').val(abc);
     });
-
+    $('.assess_btn .A').click(function(){
+       $(this).addClass('actives').siblings('.actives').removeClass('actives');
+       $('.rs_status').val(3);
+       $('.rs_content').text('この度はぜひ面接をさせていただきたいと思います。つきましては、面接時に「」について詳しくお聞かせ願いたいと思っておりますので、ご準備お願いいたします。');
+    });
+    $('.assess_btn .B').click(function(){
+       $(this).addClass('actives').siblings('.actives').removeClass('actives');
+       $('.rs_status').val(4);
+       $('.rs_content').text('この度はぜひ面接をさせていただきたいと思います。つきましては、面接時に「」について詳しくお聞かせ願いたいと思っておりますので、ご準備お願いいたします。');
+    });
+    $('.assess_btn .C').click(function(){
+       $(this).addClass('actives').siblings('.actives').removeClass('actives');
+       $('.rs_status').val(5);
+       $('.rs_content').text('残念ながら、「」が当社の募集基準を満たしていないため、保留中とさせていただきます。「」の追加がありましたら、履歴書の更新をお願いいたします。');
+    });
+    $('.assess_btn .D').click(function(){
+       $(this).addClass('actives').siblings('.actives').removeClass('actives');
+       $('.rs_status').val(6);
+       $('.rs_content').text('残念ながら、「」が当社の募集基準を満たしていないため、保留中とさせていただきます。「」の追加がありましたら、履歴書の更新をお願いいたします。');
+    });
+    $('.assess_btn .E').click(function(){
+       $(this).addClass('actives').siblings('.actives').removeClass('actives');
+       $('.rs_status').val(7);
+       $('.rs_content').text('残念ながら、基礎情報が不足しているため、不採用とさせていただきます。基礎情報の追加がありましたら、履歴書の更新をお願いいたします。');
+    });
 });
 </script>
+<style>
+  
+</style>
 <div class="scorl" style="width:60%; float:left; margin-left:15px;">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -125,49 +152,33 @@ $(document).ready(function() {
                               <div class="modal-body">
 
                                   <div class="assess_btn" style="margin:15px; height: 100px;">
-                                      <form action="{{url('/a')}}" method="POST" >
-                                      {{ csrf_field() }}
-                                             <input type="hidden" name="rs_id" class="rs_id" value="">
-                                              <button type="submit" style="background:#00B9EF;" class="btn btn-default">A</button>
-                                      </form>
-                                      <form action="{{url('/b')}}" method="POST" >
-                                      {{ csrf_field() }}
-                                            <input type="hidden" name="rs_id" class="rs_id" value="">
-
-                                              <button type="submit" style="background:#00B9EF;" class="btn btn-default">B</button>
-                                      </form>
-                                      <form action="{{url('/c')}}" method="POST" >
-                                      {{ csrf_field() }}
-                                            <input type="hidden" name="rs_id" class="rs_id" value="">
-
-                                              <button type="submit" style="background:#BAE3F9;" class="btn btn-default">C</button>
-                                      </form>
-                                      <form action="{{url('/d')}}" method="POST" >
-                                      {{ csrf_field() }}
-                                                <input type="hidden" name="rs_id" class="rs_id" value="">
-
-                                              <button type="submit" style="background:#BAE3F9;" class="btn btn-default">D</button>
-                                              </form>
-                                      <form action="{{url('/e')}}" method="POST" >
-                                      {{ csrf_field() }}
-                                            <input type="hidden" name="rs_id" class="rs_id" value="">
-
-                                              <button type="submit" style="background:#999D9C;" class="btn btn-default">E</button>
-                                      </form>
+                                    <button type="submit" style="background:#00B9EF;" class="btn btn-default A">A</button>
+                                    <button type="submit" style="background:#00B9EF;" class="btn btn-default B">B</button>
+                                    <button type="submit" style="background:#BAE3F9;" class="btn btn-default C">C</button>
+                                    <button type="submit" style="background:#BAE3F9;" class="btn btn-default D">D</button>
+                                    <button type="submit" style="background:#999D9C;" class="btn btn-default E">E</button>
                                       <div class="tag">
                                           <span>A:面接調整へ</span>
                                           <span>B:面接調整へ</span>
                                           <span>C:檢討</span>
-                                          <div>&nbsp;</div>
                                           <span>D:檢討</span>
                                           <span>E:不合格</span>
                                       </div>
-
                                   </div>
-
+                                  <form action="{{url('/assess')}}" method="POST">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="rs_id" class="rs_id" value="">
+                                    <input type="hidden" name="rs_status" class="rs_status" value="">
+                                    <textarea name="rs_content" class="form-control rs_content"  rows="5">
+                                    </textarea>
+                                    <div class="modal-footer rk_wrapper ">
+                                    <button type="button" class="btn btn-default back" data-dismiss="modal">NO</button>
+                                    <button type="submit" class="btn btn-primary">送信する</button>
+                                    </div>
+                                  </form>
                               </div>
-
-
+                              
+                            
                             </div>
                           </div>
                         </div>
@@ -179,21 +190,32 @@ $(document).ready(function() {
                     float: left;
                     margin-right: 20px;
                 }
+                .assess_btn{
+                    text-align: center;
+                }
                 .assess_btn button{
                     height: 50px;
                     width: 50px;
                     font-size: 30px;
                     font-weight: bold;
                     color: #FFF !important;
+                    margin: 0px 5px;
+
+                }
+                .assess_btn button.actives{
+                    animation: progress-bar-stripes 2s linear infinite !important;
+                    background-image: -webkit-linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent) !important;
+                    background-color: #1C7EBB !important;
+                    border: 1px dashed #CCC;
                 }
                 .assess_btn .tag{
                     float: left;
                     width: 100%;
-                    font-size: 14px;
+                    font-size: 12px;
                     margin-top: 20px;
                 }
                 .assess_btn .tag span{
-                    margin-right: 20px;
+                    margin-right: 10px;
                 }
                 </style>
 

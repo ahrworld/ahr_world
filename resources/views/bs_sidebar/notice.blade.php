@@ -20,11 +20,11 @@
                                 </div>
                                 <!-- mail right -->
                                             <section class="panel panel-default mail-container">
-                                            <div class="panel-heading"><strong><i class="fa fa-envelope-o"></i>&nbsp;View mail</strong></div>
+                                            <div class="panel-heading"><strong><i class="fa fa-envelope-o" style="font-size: 18px;"></i></strong></div>
                                             <div class="panel-body">
                                                 <div class="mail-header row">
                                                     <div class="col-md-8">
-                                                        <h3>{{$notice->notice_title}}</h3>
+                                                        <h4 style="color:#000;">{{$notice->notice_title}}</h4>
                                                     </div>
                                                     <div class="col-md-4">
                                                     </div>

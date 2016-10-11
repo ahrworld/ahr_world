@@ -86,17 +86,18 @@
                       });
 
                        $('.search_test').html(listArray);
+                       swal({
+                           title: "ok",
+                           type: "success",
+                           timer:1000,
+                           showConfirmButton: false
+                       });
                   },
                   error: function(data) {
                       console.log('Error:', data);
                   }
               });
-                swal({
-                    title: "ok",
-                    type: "success",
-                    timer:1000,
-                    showConfirmButton: false
-                })
+                
         });
 
         $('.bt_2').click(function() {
@@ -112,17 +113,18 @@
                   },
                   success: function(data) {
                       console.log(JSON.stringify(data));
+                      swal({
+                          title: "お気に入り",
+                          type: "success",
+                          timer:1000,
+                          showConfirmButton: false
+                      });
                   },
                   error: function(data) {
                       console.log('Error:', data);
                   }
             });
-            swal({
-                title: "お気に入り",
-                type: "success",
-                timer:1000,
-                showConfirmButton: false
-            })
+            
 
 
         });

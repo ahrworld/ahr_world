@@ -115,9 +115,7 @@ Route::group(['middleware' => 'web'], function () {
     // bs_summary
     Route::post('/business/summary', 'BusinessController@summary');
     Route::post('/business/recruitments_add', 'BusinessController@recruitments_add');
-    // bs mail_box
-    Route::get('/mail_box_bs','BusinessController@mail_box');
-    Route::get('/mail_box_bs/{id}',['as' => 'mail_bs.show' , 'uses' => 'BusinessController@mail_view']);
+    
     // bs_blog
     Route::get('/blog', function(){
          return view('bs_sidebar/profile_branch/tab3');
@@ -129,13 +127,14 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/business/blog','BusinessController@blog');
     Route::post('/business/preview','BusinessController@preview');
     Route::get('/news_b2', 'BusinessController@news');
-    Route::post('a','BusinessController@a');
-    Route::post('b','BusinessController@b');
-    Route::post('c','BusinessController@c');
-    Route::post('d','BusinessController@d');
-    Route::post('e','BusinessController@e');
-    Route::post('h','BusinessController@h');
-    Route::post('i','BusinessController@i');
+    
+    // bs mail_box
+    Route::get('/mail_box_bs','MailBox\BusinessController@mail_box');
+    Route::get('/mail_box_bs/{id}',['as' => 'mail_bs.show' , 'uses' => 'MailBox\BusinessController@mail_view']);
+    Route::get('/mail_box_bs/{id}',['as' => 'notice_bs.show' , 'uses' => 'MailBox\BusinessController@notice_view']);
+    Route::post('/mail_box_bs/notice','MailBox\BusinessController@notice_delete');
+    Route::post('/assess','MailBox\BusinessController@assess');
+   
     Route::get('/bs_e', 'BusinessController@bs_e');
     // user
     Route::get('/step', 'UserController@step');

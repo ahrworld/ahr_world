@@ -23,8 +23,8 @@ $( document ).ready(function() {
  //        $('.status').addClass('status_o');
 
  // });
- $('.status').on('click', function(){
-        console.log($(this).attr('attr'));
+ $('.sta').on('click', function(){
+        console.log($(this).attr('time'));
         var b = $(this).html();
         if(b == 'X'){
             $(this).html('O');
@@ -36,7 +36,7 @@ $( document ).ready(function() {
             $(this).html('X');
             $(this).removeClass('status_o');
             $(this).addClass('status_x');
-            $(this).remo('value','X');
+            $(this).attr('value','X');
         }
  });
  $('.test_time').click(function() {
@@ -44,6 +44,9 @@ $( document ).ready(function() {
               return $(this).attr('time');
         }).get();
         console.log(winners_array);
+        var delect_time = $('.status_x').map(function(){
+              return $(this).attr('time');
+        }).get();
         $.ajax({
             type: "POST",
             url: "/interview/edit/submit",
@@ -51,6 +54,7 @@ $( document ).ready(function() {
             dataType: "json",
             data: {
                 time: winners_array,
+                delect_time : delect_time,
                 _token: token
             },
             success: function(data) {
@@ -66,12 +70,7 @@ $( document ).ready(function() {
 });
 </script>
 <div class="scorl" style="width:60%; float:left; margin-left:15px;">
-<ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" ><a href="{{ url('profile_b2#a2')}}">企業情報</a></li>
-        <li role="presentation"><a href="{{ url('profile_b2')}}">採用情報</a></li>
-        <li role="presentation"><a href="{{ url('profile_b2')}}">企業カラー</a></li>
-        <li role="presentation" class="active"><a href="#a4" aria-controls="a4" role="tab" data-toggle="tab">面接日程</a></li>
-</ul>
+
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane ahr-panel active" style="    padding-bottom: 50px;">
 <div class="panel panel-default">
@@ -180,13 +179,13 @@ $( document ).ready(function() {
                  @if($blank >= 1)
                     <td style="text-align:center;">
                     <div style="height:30px;"><img src="{{asset('assets/img/in_th.png')}}" height="30px" width="127px" alt=""></div>
-                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">10:00-11:00</div>
-                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">11:00-12:00</div>
-                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">13:00-14:00</div>
-                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">14:00-15:00</div>
-                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">15:00-16:00</div>
-                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">16:00-17:00</div>
-                    <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">17:00-18:00</div>
+                    <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">10:00-11:00</div>
+                    <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">11:00-12:00</div>
+                    <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">13:00-14:00</div>
+                    <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">14:00-15:00</div>
+                    <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">15:00-16:00</div>
+                    <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">16:00-17:00</div>
+                    <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">17:00-18:00</div>
                     </td>
                 @endif
                 @while($blank > 0)
@@ -202,29 +201,39 @@ $( document ).ready(function() {
                     @if(($day_count % 7) == 1)
                         <td style="text-align:center; width:20px;">
                         <div style="height:30px;"><img src="{{asset('assets/img/in_th.png')}}" height="30px" width="127px" alt=""></div>
-                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">10:00-11:00</div>
-                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">11:00-12:00</div>
-                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">13:00-14:00</div>
-                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">14:00-15:00</div>
-                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">15:00-16:00</div>
-                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">16:00-17:00</div>
-                        <div style="background:#D6EEFB; padding:17px 0px; border-top: 1px solid #000 !important;">17:00-18:00</div>
+                        <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">10:00-11:00</div>
+                        <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">11:00-12:00</div>
+                        <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">13:00-14:00</div>
+                        <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">14:00-15:00</div>
+                        <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">15:00-16:00</div>
+                        <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">16:00-17:00</div>
+                        <div style="background:#D6EEFB; padding:6.5px 0px; border-top: 1px solid #000 !important;">17:00-18:00</div>
                         </td>
                     @endif
                     @if(($day_count % 7) == 6)
 
                     <td style="background:#419ECA; text-align:center; color:#FFF; height='100' ">
                        <div style="height:30px; font-size:16px; font-weight:bold; line-height:30px;">{{$day_num}}</div>
-
+                       
                        @for ($i = 0; $i < 7; $i++)
-                       @foreach($a as $value)
-                       @if($value->time === $cYear.$title.$day_num.$i)
-                       <div class="status_o" time="{{$cYear.$title.$day_num.$i}}"><span class="status"  value="1" year="{{$cYear}}" day="{{$day_num}}" status="{{$i}}">O</span></div>
+                       <?php $check = 0; ?>
+                       @foreach($a as $key => $value)
+                       @if($value->time == $cYear.$title.$day_num.$i)
+                           <?php
+                              $check = 1;
+                           ?>
+                          @break 
                        @endif
-
                        @endforeach
-                       <div class="status_x"><span class="status"  value="2" year="{{$cYear}}" day="{{$day_num}}" status="{{$i}}">X</span></div>
+
+                       @if($check == 1)
+                          <div class="status_o sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status"  value="1" year="{{$cYear}}" day="{{$day_num}}" status="{{$i}}">O</span></div>
+                       @else
+                         <div class="status_x sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status"  value="2" year="{{$cYear}}" day="{{$day_num}}" status="{{$i}}">X</span></div>
+                       @endif
+                      
                        @endfor
+                      
 
                     </td>
 
@@ -236,7 +245,7 @@ $( document ).ready(function() {
                         cursor: pointer;
                         color: #0d7b0d;
                         font-size: 16px;
-                        padding:16px 0px;
+                        padding:5px 0px;
                         background: #FFF;
                         border-top: 1px solid #000 !important;
                         font-weight: bold !important;
@@ -249,7 +258,7 @@ $( document ).ready(function() {
                         cursor: pointer;
                         color:#ccc;
                         font-size: 16px;
-                        padding:16px 0px;
+                        padding:5px 0px;
                         background: #FFF;
                         border-top: 1px solid #000 !important;
                         font-weight: bold !important;
@@ -265,11 +274,22 @@ $( document ).ready(function() {
                     <td style="background:#DF7B9D; text-align:center; height='100'">
                        <div style="height:30px; font-size:16px; font-weight:bold;  line-height:30px; color:#FFF;">{{$day_num}}</div>
                        @for ($i = 0; $i < 7; $i++)
-                           @if($i === 2)
-                           <div class="status_o"><span class="status">O</span></div>
-                           @else
-                           <div class="status_x"><span class="status">X</span></div>
-                           @endif
+                       <?php $check = 0; ?>
+                       @foreach($a as $key => $value)
+                       @if($value->time == $cYear.$title.$day_num.$i)
+                           <?php
+                              $check = 1;
+                           ?>
+                          @break 
+                       @endif
+                       @endforeach
+
+                       @if($check == 1)
+                          <div class="status_o sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status"  value="1" year="{{$cYear}}" day="{{$day_num}}" status="{{$i}}">O</span></div>
+                       @else
+                         <div class="status_x sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status"  value="2" year="{{$cYear}}" day="{{$day_num}}" status="{{$i}}">X</span></div>
+                       @endif
+                      
                        @endfor
                     </td>
 
@@ -282,11 +302,22 @@ $( document ).ready(function() {
                     <td style="background:#D6EEFB; text-align:center; height='100'">
                        <div style="height:30px; font-size:16px; font-weight:bold;  line-height:30px; ">{{$day_num}}</div>
                        @for ($i = 0; $i < 7; $i++)
-                           @if($i === 2)
-                           <div class="status_o"><span class="status">O</span></div>
-                           @else
-                           <div class="status_x"><span class="status">X</span></div>
-                           @endif
+                       <?php $check = 0; ?>
+                       @foreach($a as $key => $value)
+                       @if($value->time == $cYear.$title.$day_num.$i)
+                           <?php
+                              $check = 1;
+                           ?>
+                          @break 
+                       @endif
+                       @endforeach
+
+                       @if($check == 1)
+                          <div class="status_o sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status"  value="1" year="{{$cYear}}" day="{{$day_num}}" status="{{$i}}">O</span></div>
+                       @else
+                         <div class="status_x sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status"  value="2" year="{{$cYear}}" day="{{$day_num}}" status="{{$i}}">X</span></div>
+                       @endif
+                      
                        @endfor
                     </td>
 
