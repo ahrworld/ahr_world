@@ -140,8 +140,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/step', 'UserController@step');
     Route::post('personnel_in', 'UserController@personnel_in');
     Route::post('/image_small', 'UserController@image_small');
-    Route::get('/mail_box','UserController@mail_box');
-    Route::get('/mail_box/{id}',['as' => 'mail.show' , 'uses' => 'UserController@mail_view']);
+    Route::get('/mail_box','MailBox\UserController@mail_box');
+    Route::get('/mail_box/{id}',['as' => 'mail.show' , 'uses' => 'MailBox\UserController@mail_view']);
+    Route::get('/mail_box/{id}',['as' => 'notice.show' , 'uses' => 'MailBox\UserController@notice_view']);
+   
     Route::get('/profile','UserController@profile');
     Route::get('/news','UserController@news');
     Route::post('ttt','UserController@ttt');
@@ -150,6 +152,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('search','UserController@search');
     // user ger business view
     Route::get('posts/{id}',['as' => 'posts.show' , 'uses' => 'UserController@show']);
+    Route::get('schedule/{id}',['as' => 'schedule.show' , 'uses' => 'UserController@schedule']);
+    Route::post('schedule/check','UserController@schedule_check');
     Route::post('f','UserController@f');
     Route::post('g','UserController@g');
 

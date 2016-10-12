@@ -1,9 +1,51 @@
-@extends('pl_sidebar/sidebar')
+ @extends('pl_sidebar/sidebar')
 @section('line_menu')
 <div style="margin-top:80px;">&nbsp;</div>
 @endsection
 @section('content')
+<script>
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+var token = '{{ Session::token() }}';
+$( document ).ready(function() {
+ $('.delete_notice').click(function() {
+        var delete_id = $('.mail-hightlight').map(function(){
+              return $(this).attr('notice');
+        }).get();
+        console.log(delete_id);
+        $.ajax({
+            type: "POST",
+            url: "/mail_box_bs/notice",
+            async: false,
+            dataType: "json",
+            data: {
+                delete: delete_id,
+                _token: token
+            },
+            success: function(data) {
+                console.log(JSON.stringify(data));
+                swal({
+                    title: "ok",
+                    type: "success",
+                    timer:1000,
+                    showConfirmButton: false
+                });
+            },
+            error: function(data) {
+                console.log('Error:', data);
 
+            }
+
+        });
+
+  });
+
+});
+     
+</script>
 <div tyle="background:#FFF; height:100vh;">
     <div class="mail_box_wrapper" style="width:60%;  float:left; margin-left: 20px;">
             <div class="row" style="text-align:center;">
@@ -69,11 +111,7 @@
                                             <span class="badge badge-danger pull-right">3</span>
                                         </a>
                                     </li>
-                                    <li class="list-group-item text-left">
-                                        <a href="javascript:;">
-                                            <i class="fa fa-trash-o"></i>削除
-                                        </a>
-                                    </li>
+                                    
                                 </ul>
                             </section>
                         </div>
@@ -162,7 +200,7 @@
                                                         </label>
                                                     </td>
                                                     <td width="25%">
-                                                        <a href="{{ route('mail.show', $value->mail_id) }}">
+                                                        <a href="{{ route('mail_bs.show', $value->mail_id) }}">
                                                             <p class="company_name"><i class="fa fa-circle color-info"></i>
                                                             {{$value->company_name}}
                                                             </p>
@@ -235,9 +273,13 @@
                                         <li class="divider"></li>
                                         <li><a href="javascript:;">既読</a></li>
                                     </ul>
+
                                     <!-- refresh -->
-                                    <button type="button" class="btn btn-default mail-refresh">
+                                    <button type="button" class="btn btn-default mail-refresh"  style="font-size: 16px !important;">
                                         <i class="fa fa-repeat"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-default mail-refresh delete_notice" style="font-size: 18px !important;">
+                                        <i class="fa fa-trash-o"></i>
                                     </button>
                                     <!-- next&back -->
                                     <div class="float-right">
@@ -245,9 +287,10 @@
                                         <button type="button" class="btn btn-default mail-back">
                                             <i class="fa fa-angle-left"></i>
                                         </button>
-                                        <button type="button" class="btn btn-default mail-next">
+                                        <button type="button" class="btn btn-default mail-next" >
                                             <i class="fa fa-angle-right"></i>
                                         </button>
+
                                     </div>
                                 </div>
                                 <!-- mail right -->
@@ -259,7 +302,7 @@
                                         <section class="panel panel-default mail-container" data-ng-controller="NotifyCtrl">
                                             <table class="table table-hover">
                                                  @foreach($notice as $value)
-                                                    <tr class="mail-unread">
+                                                    <tr class="mail-unread" notice="{{$value->n_id}}">
                                                         <td width="100">
                                                             <label class="ui-checkbox">
                                                                 <input class="mail-checkbox" name="checkbox1" type="checkbox" value="option1">
@@ -272,9 +315,22 @@
 
                                                             </label>
                                                         </td>
-                                                        <td width="25%"><p class="company_name">{{$value->company_name}}</p></td>
-                                                        <td width="32%"><p class="mail_title">{{$value->notice_title}}</td>
+                                                        <td width="20%">
+                                                        <a href="{{ route('notice.show', $value->n_id) }}">
+                                                            <p class="company_name"><i class="fa fa-circle color-label_5 pull-left"></i>
+                                                            新規
+                                                            </p>
+                                                        </a>
+                                                        </td>
+                                                        <td width="32%"><p class="mail_title">
+                                                        <a href="{{ route('notice_bs.show', $value->n_id) }}">
+                                                        {{$value->notice_title}}
+                                                        </a>
+                                                        </td>
+
                                                         <td width="20%"></td>
+
+                                                       
                                                     </tr>
                                                 @endforeach
 
@@ -310,5 +366,4 @@
     </div>
 </div>
 @endsection
-
 

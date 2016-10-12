@@ -1,6 +1,6 @@
-@extends('bs_sidebar/sidebar')
+@extends('pl_sidebar/sidebar')
 @section('line_menu')
-@include('bs_sidebar/line_menu')
+<div style="height:20px;"></div>
 @endsection
 @section('content')
 <script>
@@ -11,33 +11,40 @@ $.ajaxSetup({
 });
 var token = '{{ Session::token() }}';
 $( document ).ready(function() {
- //  $('.ci').click(function(){
- //        $('.status').html('X');
- //        $('.status').removeClass('status_o');
- //        $('.status').addClass('status_x');
 
- // });
- //  $('.ai').click(function(){
- //        $('.status').html('O');
- //        $('.status').removeClass('status_x');
- //        $('.status').addClass('status_o');
-
- // });
- $('.sta').on('click', function(){
-        console.log($(this).attr('time'));
-        var b = $(this).html();
-        if(b == 'X'){
-            $(this).html('O');
-            $(this).removeClass('status_x');
-            $(this).addClass('status_o');
-            $(this).attr('value','O');
-
-        }else{
-            $(this).html('X');
-            $(this).removeClass('status_o');
-            $(this).addClass('status_x');
-            $(this).attr('value','X');
+ $('.status_o').click(function() {
+        var day = $(this).attr('day');
+        var time = $(this).attr('time');
+        var value = $(this).attr('value');
+        var bs = $(this).attr('bs');
+        var rs = $(this).attr('rs');
+        $('.value').val(value);
+        $('.bs_id').val(bs);
+        $('.rs_id').val(rs);
+        $('.day').html(day);
+        switch (time) {
+            case '0':
+                $('.time').html('10:00-11:00');
+                break;
+            case '1':
+                $('.time').html('11:00-12:00');
+                break;
+            case '2':
+                $('.time').html('13:00-14:00');
+                break;
+            case '3':
+                $('.time').html('14:00-15:00');
+                break;
+            case '4':
+                $('.time').html('15:00-16:00');
+                break;
+            case '5':
+                $('.time').html('16:00-17:00');
+                break;
+            case '6':
+                $('.time').html('17:00-18:00');
         }
+       
  });
  $('.test_time').click(function() {
         var winners_array = $('.status_o').map(function(){
@@ -69,12 +76,40 @@ $( document ).ready(function() {
 
 });
 </script>
+<div class="modal fade" id="schedule_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="width:415px !important;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel" style="font-weight: bold;">面接日程確認</h4>
+      </div>
+
+      <div class="modal-body">
+          <form action="{{url('/schedule/check')}}" method="POST">
+            {{ csrf_field() }}
+            <h5 style="text-align:center; font-weight: bold;">日本時間</h5>
+            <h5 style="text-align: center; font-weight: bold;">日期:<span class="day"></span></h5>
+            <h5 style="text-align: center; font-weight: bold;">時間:<span class="time"></span></h5>
+            <input type="hidden" name="value" class="value" value="">
+            <input type="hidden" name="bs_id" class="bs_id" value="">
+            <input type="hidden" name="rs_id" class="rs_id" value="">
+            <div class="modal-footer rk_wrapper ">
+            <button type="button" class="btn btn-default back" data-dismiss="modal">キャンセル</button>
+            <button type="submit" class="btn btn-primary">確認する</button>
+            </div>
+          </form>
+      </div>
+      
+    
+    </div>
+  </div>
+</div>
 <div class="scorl" style="width:60%; float:left; margin-left:15px;">
 
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane ahr-panel active" style="    padding-bottom: 50px;">
 <div class="panel panel-default">
-                <div class="panel-body">
+<div class="panel-body">
     <?php
     $monthNames = Array("January", "February", "March", "April", "May", "June", "July",
        "August", "September", "October", "November", "December");
@@ -127,21 +162,7 @@ $( document ).ready(function() {
         //Here we start building the table heads
         $day_count = 1;
         ?>
-        <div　style="margin-bottom:150px;">
-            <label style="line-height: 23px;" class="radio-inline">
-              <input  type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 台湾時間
-            </label>
-            <label  style="line-height: 23px;" class="radio-inline">
-              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked="">　日本時間
-            </label>
-            <label  style="line-height: 23px;" class="radio-inline">
-              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> ベトナム時間
-            </label>
-            <label style="line-height: 10px; float:right;" class="radio-inline">
-        <input type="button" class="btn btn-primary test_time" style="float:right; margin-top:20px; height:30px; margin-bottom:20px;" value="更改">
-
-            </label>
-        </div>
+      
 
       <!--   <div>
             <input type="button" class="btn btn-info ci" style="float:left; margin-top:20px; height:30px; margin-bottom:20px; margin-right:10px;" value="全圈">
@@ -151,9 +172,9 @@ $( document ).ready(function() {
  -->
     <div class="caln_wrapper">
         <div class="column">
-        <a class="prev" href="<?php echo "?month=". $prev_month . "&year=" . $prev_year; ?>"><<{{$prev_month}}月</a>
-        <span class="badge">{{$cYear}}年{{$title}}月</span>
-        <a class="next" href="<?php echo "?month=". $next_month . "&year=" . $next_year; ?>">{{$next_month}}月>></a>
+        <a class="prev"  style="font-size: 16px; font-weight: bold;" href="<?php echo "?month=". $prev_month . "&year=" . $prev_year; ?>"><<{{$prev_month}}月</a>
+        <span class="badge" style="font-size: 16px; font-weight: bold;">{{$cYear}}年{{$title}}月</span>
+        <a class="next"  style="font-size: 16px; font-weight: bold;" href="<?php echo "?month=". $next_month . "&year=" . $next_year; ?>">{{$next_month}}月>></a>
         </div>
         <style>
         .interview .status{
@@ -227,9 +248,9 @@ $( document ).ready(function() {
                        @endforeach
 
                        @if($check == 1)
-                          <div class="status_o sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">O</span></div>
+                          <div class="status_o sta" bs="{{$res->user_id}}" rs="{{$id}}" value="{{$cYear.$title.$day_num.$i}}" day="{{$cYear.'-'.$title.'-'.$day_num}}" time="{{$i}}" data-toggle="modal" data-target="#schedule_modal"><span class="status">O</span></div>
                        @else
-                         <div class="status_x sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">X</span></div>
+                         <div class="status_x sta" ><span class="status">X</span></div>
                        @endif
                       
                        @endfor
@@ -255,7 +276,6 @@ $( document ).ready(function() {
 
                     }
                     .status_x{
-                        cursor: pointer;
                         color:#ccc;
                         font-size: 16px;
                         padding:5px 0px;
@@ -263,10 +283,7 @@ $( document ).ready(function() {
                         border-top: 1px solid #000 !important;
                         font-weight: bold !important;
                     }
-                    .status_x:hover{
-                        background: #7accf8;
-                        color:#000;
-                    }
+                  
                     </style>
 
                     @elseif(($day_count % 7) == 0)
@@ -285,9 +302,9 @@ $( document ).ready(function() {
                        @endforeach
 
                        @if($check == 1)
-                          <div class="status_o sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">O</span></div>
+                          <div class="status_o sta" bs="{{$res->user_id}}" rs="{{$id}}" value="{{$cYear.$title.$day_num.$i}}" day="{{$cYear.'-'.$title.'-'.$day_num}}" time="{{$i}}" data-toggle="modal" data-target="#schedule_modal"><span class="status">O</span></div>
                        @else
-                         <div class="status_x sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">X</span></div>
+                         <div class="status_x sta"><span class="status">X</span></div>
                        @endif
                       
                        @endfor
@@ -313,9 +330,9 @@ $( document ).ready(function() {
                        @endforeach
 
                        @if($check == 1)
-                          <div class="status_o sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">O</span></div>
+                          <div class="status_o sta" bs="{{$res->user_id}}" rs="{{$id}}" value="{{$cYear.$title.$day_num.$i}}" day="{{$cYear.'-'.$title.'-'.$day_num}}" time="{{$i}}" data-toggle="modal" data-target="#schedule_modal"><span class="status">O</span></div>
                        @else
-                         <div class="status_x sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">X</span></div>
+                         <div class="status_x sta"><span class="status">X</span></div>
                        @endif
                       
                        @endfor
@@ -362,6 +379,3 @@ $( document ).ready(function() {
 </div>
 <!-- wrapper end -->
 @endsection
-
-
-

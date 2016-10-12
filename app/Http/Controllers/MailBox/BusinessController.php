@@ -42,8 +42,16 @@ class BusinessController extends Controller
     {
         Recruitments_status::where('recruitments_status.id', $request->rs_id)
                             ->update(['status' => $request->rs_status]);
-        
-        
+        $Personnel =  Recruitments_status::where('recruitments_status.id', $request->rs_id)->first();
+       
+        $BS = BSinformations::where('user_id',$request->user()->id)->first();
+        Notice::create([
+                    'notice_title' => $BS->company_name.'企業様から評価が届いています',
+                    'notice_content' => $request->rs_content,
+                    'status' => $request->rs_status,
+                    'get_user_id' => $Personnel->user_id,
+                    'post_user_id' => $request->user()->id,
+        ]);        
         return redirect('news_b2');
     }
    

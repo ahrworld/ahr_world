@@ -1,7 +1,7 @@
 @extends('pl_sidebar/sidebar')
 
 @section('search')
-<div class="row" style="width:650px; float:left; margin-left:50px; ">
+<div class="row " style="width:650px; float:left; margin-left:50px; ">
   <div class="col-lg-12">
     <form class="search" method="POST" >
      <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -522,12 +522,13 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-                            <p>
-                              <span style="padding:4px 15px; background:#F0844A; color: #FFF;">日程決定</span>
-                            </p>
-                            <a href="{{ route('posts.show', $value_r->id) }}">
+                        
+                              
+                           
+                            <a href="#">
                             <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
+                            <span style="padding:4px 15px; background:#F0844A; color: #FFF;">日程決定</span>
 
                             <p>
                                 <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
@@ -545,11 +546,8 @@
                         <div class="img-right">
                             <div style="width:160px; float:left;">
                                 <!-- <button class="btn ahr-label-blue ahr-btn-lg">スケジュールを選ぶ</button> -->
-                                <form action="{{url('/f')}}" method="POST" >
-                                      {{ csrf_field() }}
-                                      <input type="hidden" name="rs_id" class="rs_id" value="{{$value_r->r_id}}">
-                                      <button class="btn ahr-label-blue ahr-btn-lg">スケジュールを選ぶ</button>
-                                </form>
+                                      <a href="{{ route('schedule.show', $value_r->r_id) }}" class="btn ahr-label-blue ahr-btn-lg">スケジュールを選ぶ</a>
+                               
                                 <form action="{{url('/g')}}" method="POST" >
                                       {{ csrf_field() }}
                                       <input type="hidden" name="rs_id" class="rs_id" value="{{$value_r->r_id}}">

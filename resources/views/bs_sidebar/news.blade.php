@@ -167,12 +167,13 @@ $(document).ready(function() {
                                   </div>
                                   <form action="{{url('/assess')}}" method="POST">
                                     {{ csrf_field() }}
+                                    
                                     <input type="hidden" name="rs_id" class="rs_id" value="">
                                     <input type="hidden" name="rs_status" class="rs_status" value="">
                                     <textarea name="rs_content" class="form-control rs_content"  rows="5">
                                     </textarea>
                                     <div class="modal-footer rk_wrapper ">
-                                    <button type="button" class="btn btn-default back" data-dismiss="modal">NO</button>
+                                    <button type="button" class="btn btn-default back" data-dismiss="modal">キャンセル</button>
                                     <button type="submit" class="btn btn-primary">送信する</button>
                                     </div>
                                   </form>

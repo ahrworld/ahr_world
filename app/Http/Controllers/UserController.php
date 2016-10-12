@@ -20,6 +20,7 @@ use App\ModelBranch\Exp_job_category;
 use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
 use App\PersonnelBranch\skill_title;
+use App\ModelBranch\Interview_time;
 use App\PersonnelBranch\Experiences_job;
 use App\PersonnelBranch\Personnels_skill;
 use App\PersonnelBranch\Pl_image;
@@ -229,6 +230,7 @@ class UserController extends Controller
                             ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
+
         return view('pl_sidebar/news',[
           'bs_image' => $bs_image,
           'Recruitment' => $Recruitment,
@@ -299,6 +301,35 @@ class UserController extends Controller
             'r_id' =>$r_id,
         ]);
     }
+    // 秀面接日程
+    public function schedule(Request $request , $id)
+    {
+        $res  = Recruitment::where('recruitments.id', $id)
+        ->join('bsinformations', 'recruitments.bsinformations_id', '=', 'bsinformations.id')
+        ->first();
+        $a = Interview_time::where('bsinformations_id',$res->user_id)->get();
+        return view('pl_sidebar.schedule', [
+            'res' => $res,
+            'a' =>$a,
+            'id' => $id,
+        ]);
+    }
+    // 確認行程時間
+    public function schedule_check(Request $request)
+    {
+         Interview_time::where('bsinformations_id',$request->bs_id)
+                         ->where('time',$request->value)
+                         ->update([
+                            'personnels_id' => $request->user()->id,
+                            'status' => 1
+                         ]);
+                         
+         Recruitments_status::where('recruitments_status.recruitments_id', $request->rs_id)
+                            ->where('recruitments_status.user_id', $request->user()->id)
+                            ->update(['status' => 8]);
+         // 待追加Notice
+         return redirect('/news');
+    }
     public function image_small(Request $request){
 
         if($request->image_small){
@@ -317,50 +348,14 @@ class UserController extends Controller
        }
 
     }
-    public function f(Request $request)
-    {
-        Recruitments_status::where('recruitments_status.id', $request->rs_id)
-                            ->update(['status' => 8]);
-        return redirect('news');
-    }
+    
     public function g(Request $request)
     {
         Recruitments_status::where('recruitments_status.id', $request->rs_id)
                             ->update(['status' => 0]);
         return redirect('news');
     }
-    public function mail_box(Request $request)
-    {
-        // mail_box
-        $mail_box  = Mail_box::select('mail_box.id as mail_id','mail_title','bsinformations.company_name')
-                 ->where('mail_box.get_user_id', $request->user()->id)
-                 ->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')
-        ->paginate(5);
-        $mail_count = Mail_box::where('mail_box.post_user_id', $request->user()->id)->count();
-        // notice
-        $nt = Notice::where('notice.get_user_id', $request->user()->id);
-        $notice = $nt->join('bsinformations', 'notice.get_user_id', '=', 'bsinformations.user_id')
-        ->paginate(5);
-        $notice_count = $nt->count();
-
-        return view('pl_sidebar.mail_box', [
-            'mail_box' => $mail_box,
-            'mail_count' => $mail_count,
-            'notice' => $notice,
-            'notice_count' => $notice_count,
-        ]);
-    }
-    public function mail_view(Request $request , $id)
-    {
-
-        $mail_view  = Mail_box::where('mail_box.id', $id)->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')->first();
-
-
-        return view('pl_sidebar.mail_view', [
-            'mail_view' => $mail_view
-
-        ]);
-    }
+    
 
 
 }
