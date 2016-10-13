@@ -237,18 +237,31 @@ $( document ).ready(function() {
                        <div style="height:30px; font-size:16px; font-weight:bold; line-height:30px;">{{$day_num}}</div>
                        
                        @for ($i = 0; $i < 7; $i++)
-                       <?php $check = 0; ?>
+                       <?php $check = 0; $ok = 0?>
                        @foreach($a as $key => $value)
                        @if($value->time == $cYear.$title.$day_num.$i)
                            <?php
                               $check = 1;
                            ?>
-                          @break 
+                          @break
+
                        @endif
                        @endforeach
 
                        @if($check == 1)
+                          @foreach($a as $key => $value)
+                          @if($value->time == $cYear.$title.$day_num.$i && $value->status == 1)
+                            <?php
+                              $ok = 1;
+                            ?>
+                          @break
+                          @endif
+                          @endforeach
+                          @if($ok == 1)
+                          <div class="status_ok sta"><span class="status">済み</span></div>
+                          @else
                           <div class="status_o sta" bs="{{$res->user_id}}" rs="{{$id}}" value="{{$cYear.$title.$day_num.$i}}" day="{{$cYear.'-'.$title.'-'.$day_num}}" time="{{$i}}" data-toggle="modal" data-target="#schedule_modal"><span class="status">O</span></div>
+                          @endif
                        @else
                          <div class="status_x sta" ><span class="status">X</span></div>
                        @endif
@@ -264,7 +277,7 @@ $( document ).ready(function() {
                     }
                     .status_o{
                         cursor: pointer;
-                        color: #0d7b0d;
+                        color: #229173;
                         font-size: 16px;
                         padding:5px 0px;
                         background: #FFF;
@@ -273,7 +286,10 @@ $( document ).ready(function() {
                     }
                     .status_o:hover{
                         background:#CCC;
-
+                    }
+                    .status_ok{
+                        background: #229173;
+                        padding:5.5px 0px;
                     }
                     .status_x{
                         color:#ccc;
@@ -291,20 +307,33 @@ $( document ).ready(function() {
                     <td style="background:#DF7B9D; text-align:center; height='100'">
                        <div style="height:30px; font-size:16px; font-weight:bold;  line-height:30px; color:#FFF;">{{$day_num}}</div>
                        @for ($i = 0; $i < 7; $i++)
-                       <?php $check = 0; ?>
+                       <?php $check = 0; $ok = 0?>
                        @foreach($a as $key => $value)
                        @if($value->time == $cYear.$title.$day_num.$i)
                            <?php
                               $check = 1;
                            ?>
-                          @break 
+                          @break
+
                        @endif
                        @endforeach
 
                        @if($check == 1)
+                          @foreach($a as $key => $value)
+                          @if($value->time == $cYear.$title.$day_num.$i && $value->status == 1)
+                            <?php
+                              $ok = 1;
+                            ?>
+                          @break
+                          @endif
+                          @endforeach
+                          @if($ok == 1)
+                          <div class="status_ok sta"><span class="status">済み</span></div>
+                          @else
                           <div class="status_o sta" bs="{{$res->user_id}}" rs="{{$id}}" value="{{$cYear.$title.$day_num.$i}}" day="{{$cYear.'-'.$title.'-'.$day_num}}" time="{{$i}}" data-toggle="modal" data-target="#schedule_modal"><span class="status">O</span></div>
+                          @endif
                        @else
-                         <div class="status_x sta"><span class="status">X</span></div>
+                         <div class="status_x sta" ><span class="status">X</span></div>
                        @endif
                       
                        @endfor
@@ -319,20 +348,33 @@ $( document ).ready(function() {
                     <td style="background:#D6EEFB; text-align:center; height='100'">
                        <div style="height:30px; font-size:16px; font-weight:bold;  line-height:30px; ">{{$day_num}}</div>
                        @for ($i = 0; $i < 7; $i++)
-                       <?php $check = 0; ?>
+                       <?php $check = 0; $ok = 0?>
                        @foreach($a as $key => $value)
                        @if($value->time == $cYear.$title.$day_num.$i)
                            <?php
                               $check = 1;
                            ?>
-                          @break 
+                          @break
+
                        @endif
                        @endforeach
 
                        @if($check == 1)
+                          @foreach($a as $key => $value)
+                          @if($value->time == $cYear.$title.$day_num.$i && $value->status == 1)
+                            <?php
+                              $ok = 1;
+                            ?>
+                          @break
+                          @endif
+                          @endforeach
+                          @if($ok == 1)
+                          <div class="status_ok sta"><span class="status">済み</span></div>
+                          @else
                           <div class="status_o sta" bs="{{$res->user_id}}" rs="{{$id}}" value="{{$cYear.$title.$day_num.$i}}" day="{{$cYear.'-'.$title.'-'.$day_num}}" time="{{$i}}" data-toggle="modal" data-target="#schedule_modal"><span class="status">O</span></div>
+                          @endif
                        @else
-                         <div class="status_x sta"><span class="status">X</span></div>
+                         <div class="status_x sta" ><span class="status">X</span></div>
                        @endif
                       
                        @endfor

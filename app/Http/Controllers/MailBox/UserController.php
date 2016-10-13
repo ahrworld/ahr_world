@@ -72,10 +72,10 @@ class UserController extends Controller
     public function notice_view(Request $request , $id)
     {
         $notice = Notice::where('notice.id', $id)->first();
-
+         
         return view('pl_sidebar.notice', [
-            'notice' => $notice
-
+            'notice' => $notice,
+           
         ]);
     }
     public function notice_delete(Request $request)

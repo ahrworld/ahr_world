@@ -40,10 +40,9 @@ $( document ).ready(function() {
         }
  });
  $('.test_time').click(function() {
-        var winners_array = $('.status_o').map(function(){
+        var time = $('.status_o').map(function(){
               return $(this).attr('time');
         }).get();
-        console.log(winners_array);
         var delect_time = $('.status_x').map(function(){
               return $(this).attr('time');
         }).get();
@@ -53,7 +52,7 @@ $( document ).ready(function() {
             async: false,
             dataType: "json",
             data: {
-                time: winners_array,
+                time: time,
                 delect_time : delect_time,
                 _token: token
             },
@@ -216,7 +215,7 @@ $( document ).ready(function() {
                        <div style="height:30px; font-size:16px; font-weight:bold; line-height:30px;">{{$day_num}}</div>
                        
                        @for ($i = 0; $i < 7; $i++)
-                       <?php $check = 0; ?>
+                       <?php $check = 0; $ok =0 ?>
                        @foreach($a as $key => $value)
                        @if($value->time == $cYear.$title.$day_num.$i)
                            <?php
@@ -227,7 +226,19 @@ $( document ).ready(function() {
                        @endforeach
 
                        @if($check == 1)
-                          <div class="status_o sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">O</span></div>
+                          @foreach($a as $key => $value)
+                          @if($value->time == $cYear.$title.$day_num.$i && $value->status == 1)
+                            <?php
+                              $ok = 1;
+                            ?>
+                          @break
+                          @endif
+                          @endforeach
+                          @if($ok == 1)
+                          <div class="status_ok sta"><span class="status">済み</span></div>
+                          @else
+                          <div class="status_o sta" time="{{$cYear.$title.$day_num.$i}}" year="{{$cYear}}" month="{{$title}}" day="{{$day_num}}" time_status="{{$i}}"><span class="status">O</span></div>
+                          @endif
                        @else
                          <div class="status_x sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">X</span></div>
                        @endif
@@ -243,7 +254,7 @@ $( document ).ready(function() {
                     }
                     .status_o{
                         cursor: pointer;
-                        color: #0d7b0d;
+                        color: #229173;
                         font-size: 16px;
                         padding:5px 0px;
                         background: #FFF;
@@ -252,7 +263,10 @@ $( document ).ready(function() {
                     }
                     .status_o:hover{
                         background:#CCC;
-
+                    }
+                    .status_ok{
+                        background: #229173;
+                        padding:5.5px 0px;
                     }
                     .status_x{
                         cursor: pointer;
@@ -273,8 +287,8 @@ $( document ).ready(function() {
 
                     <td style="background:#DF7B9D; text-align:center; height='100'">
                        <div style="height:30px; font-size:16px; font-weight:bold;  line-height:30px; color:#FFF;">{{$day_num}}</div>
-                       @for ($i = 0; $i < 7; $i++)
-                       <?php $check = 0; ?>
+                        @for ($i = 0; $i < 7; $i++)
+                       <?php $check = 0; $ok =0 ?>
                        @foreach($a as $key => $value)
                        @if($value->time == $cYear.$title.$day_num.$i)
                            <?php
@@ -285,7 +299,19 @@ $( document ).ready(function() {
                        @endforeach
 
                        @if($check == 1)
+                          @foreach($a as $key => $value)
+                          @if($value->time == $cYear.$title.$day_num.$i && $value->status == 1)
+                            <?php
+                              $ok = 1;
+                            ?>
+                          @break
+                          @endif
+                          @endforeach
+                          @if($ok == 1)
+                          <div class="status_ok sta"><span class="status">済み</span></div>
+                          @else
                           <div class="status_o sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">O</span></div>
+                          @endif
                        @else
                          <div class="status_x sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">X</span></div>
                        @endif
@@ -301,8 +327,8 @@ $( document ).ready(function() {
 
                     <td style="background:#D6EEFB; text-align:center; height='100'">
                        <div style="height:30px; font-size:16px; font-weight:bold;  line-height:30px; ">{{$day_num}}</div>
-                       @for ($i = 0; $i < 7; $i++)
-                       <?php $check = 0; ?>
+                        @for ($i = 0; $i < 7; $i++)
+                       <?php $check = 0; $ok =0 ?>
                        @foreach($a as $key => $value)
                        @if($value->time == $cYear.$title.$day_num.$i)
                            <?php
@@ -313,7 +339,19 @@ $( document ).ready(function() {
                        @endforeach
 
                        @if($check == 1)
-                          <div class="status_o sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">O</span></div>
+                          @foreach($a as $key => $value)
+                          @if($value->time == $cYear.$title.$day_num.$i && $value->status == 1)
+                            <?php
+                              $ok = 1;
+                            ?>
+                          @break
+                          @endif
+                          @endforeach
+                          @if($ok == 1)
+                          <div class="status_ok sta"><span class="status">済み</span></div>
+                          @else
+                          <div class="status_o sta" time="{{$cYear.$title.$day_num.$i}}" year="{{$cYear}}" month="{{$title}}" day="{{$day_num}}" time_status="{{$i}}"><span class="status">O</span></div>
+                          @endif
                        @else
                          <div class="status_x sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">X</span></div>
                        @endif

@@ -41,9 +41,31 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @if($notice->status == 1)
                                                 <div class="mail-content">
                                                     <blockquote>{{$notice->notice_content}}</blockquote>
                                                 </div>
+                                                @elseif($notice->status == 8)
+                                                <div class="mail-content">
+                                                    <blockquote>下記、ご確認をお願い致します。<br>
+                                                                【日時：○月○日（○）　00:00-00:00】<br>
+                                                                【SkypeID：{{$Personnel->skype_id}}】<br>
+                                                                <br>
+                                                                下記のＵＲＬから応募者情報をご確認頂けます。<br>
+                                                                https://www.000111222333444555666<br>
+                                                                <br>
+                                                                日時変更や応募者へのリクエストなどは、このメールから送信頂けます。<br>
+                                                                返信ボタンをクリックして、メッセージをお送りください。<br>
+                                                                <br>
+                                                                ★マッチング率を向上させるために、企業情報を定期的に更新しましょう★<br>
+                                                                ①企業情報を編集する　https://www.000111222333444555666<br>
+                                                                ②採用情報を編集する　https://www.000111222333444555666<br>
+                                                                ③企業カラーを編集する　https://www.000111222333444555666<br>
+
+                                                                ★ごリクエスト・ご相談がございましたら、ヘルプもしくは事務局までお問い合わせください★<br>
+                                                                00000000@aaa.co.jp</blockquote>
+                                                </div>
+                                                @endif
                                                 <!-- 附件 -->
                                                 <!-- <div class="mail-attachments">
                                                     <p><i class="fa fa-paperclip"></i> 2 attachements | <a href="javascript:;">Save all attachements</a></p>

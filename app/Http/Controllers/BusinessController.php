@@ -484,15 +484,15 @@ class BusinessController extends Controller
                 'time' => $value,
                 'bsinformations_id' => $request->user()->id
                 ]);
-                return response()->json('ok');
+                
             }
         }
         //delect
         foreach ($request->delect_time as $key => $value) {
             if (Interview_time::where('time',$value)->first() == true) {
                  Interview_time::where('time',$value)->where('bsinformations_id',$request->user()->id)->delete();
-                return response()->json('ok');
             }
         }
+        return response()->json('ok');
     }
 }

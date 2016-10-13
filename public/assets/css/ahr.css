@@ -6,6 +6,10 @@ body{
 }
 td,tr,th,p,h1,h2,h3,h4,h5,h6,span,a,div,button,label,li,ul,table tbody tr th,table tbody tr td{
 	/*font-family: "小塚ゴシック Pr6N" !important;*/
+	font-family: 'Raleway', sans-serif;
+}
+blockquote{
+	font-size: 14px !important;
 }
 .nav-tabs>li>a{
    color:#B8B6B4 !important;

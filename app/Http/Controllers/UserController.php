@@ -230,7 +230,6 @@ class UserController extends Controller
                             ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
-
         return view('pl_sidebar/news',[
           'bs_image' => $bs_image,
           'Recruitment' => $Recruitment,
@@ -294,7 +293,6 @@ class UserController extends Controller
         if (is_null($res)) {
             return redirect()->back()->with('message', '找不到該文章');
         }
-
         return view('pl_sidebar.show', [
             'bs_image' => $bs_image,
             'res' => $res,
@@ -328,6 +326,15 @@ class UserController extends Controller
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->update(['status' => 8]);
          // 待追加Notice
+         $Personnel = Personnel::where('user_id',$request->user()->id)->first();
+                       
+         Notice::create([
+                    'notice_title' => $Personnel->family_name.$Personnel->surname.'応募者様との、面接調整が完了しました。',
+                    'notice_content' => $request->value,
+                    'status' => 8,
+                    'get_user_id' => $request->bs_id,
+                    'post_user_id' => $request->user()->id
+         ]);  
          return redirect('/news');
     }
     public function image_small(Request $request){

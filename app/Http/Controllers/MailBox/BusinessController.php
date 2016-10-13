@@ -25,6 +25,7 @@ use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
 use App\PersonnelBranch\skill_title;
 use App\Recruitment;
+use App\Personnel;
 use App\Recruitments_status;
 use App\PluralAdd\Employ;
 use App\Http\Requests;
@@ -101,10 +102,12 @@ class BusinessController extends Controller
     // notice
     public function notice_view(Request $request , $id)
     {
-        $notice = Notice::where('notice.id', $id)->join('bsinformations', 'notice.get_user_id', '=', 'bsinformations.user_id')->first();
-
+        $notice = Notice::where('notice.id', $id)->first();
+        $Personnel = Personnel::where('user_id',$notice->post_user_id)->first();
+        
         return view('bs_sidebar.notice', [
-            'notice' => $notice
+            'notice' => $notice,
+            'Personnel' => $Personnel
 
         ]);
     }
