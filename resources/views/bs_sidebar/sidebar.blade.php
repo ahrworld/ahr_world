@@ -68,7 +68,7 @@ $(document).ready(function() {
 
 	                    <li class="dropdown" dropdown is-open="isopenComment">
 	                        <a href="javascript:;" class="dropdown-toggle member-icon" dropdown-toggle ng-disabled="disabled">
-	                            <span class="badge badge-success">2</span>
+	                            <span class="badge badge-success"></span>
 	                        </a>
 	                        <div class="dropdown-menu with-arrow panel panel-default">
 	                            <div class="panel-heading">
@@ -105,14 +105,14 @@ $(document).ready(function() {
 	                    </li>
 	                    <li class="dropdown" dropdown is-open="isopenEmail">
 	                        <a href="javascript:;" class="dropdown-toggle mail-icon" dropdown-toggle>
-	                            <span class="badge badge-info">3</span>
+	                            <span class="badge badge-info">{{$notice_count}}</span>
 	                        </a>
 	                        <div class="dropdown-menu with-arrow panel panel-default">
 	                        </div>
 	                    </li>
 	                    <li class="dropdown" dropdown is-open="isopeBell">
 	                        <a href="javascript:;" class="dropdown-toggle ie-icon" dropdown-toggle ng-disabled="disabled">
-	                            <span class="badge badge-warning">3</span>
+	                            <span class="badge badge-warning"></span>
 	                        </a>
 	                        <div class="dropdown-menu with-arrow panel panel-default">
 	                            <div class="panel-heading">

@@ -106,9 +106,7 @@ $(document).ready(function() {
 		$('.ahr-button_4').click(function(){
 			$(this).addClass('active').siblings('.active').removeClass('active');
 		});
-		$('.ahr-button_5').click(function(){
-			$(this).addClass('active').siblings('.active').removeClass('active');
-		});
+		
 		$('.ahr-button_6').click(function(){
 			$(this).addClass('active').siblings('.active').removeClass('active');
 		});

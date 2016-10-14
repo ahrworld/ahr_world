@@ -47,7 +47,7 @@ class BusinessController extends Controller
        
         $BS = BSinformations::where('user_id',$request->user()->id)->first();
         Notice::create([
-                    'notice_title' => $BS->company_name.'企業様から評価が届いています',
+                    'notice_title' => $BS->company_name.$request->rs_title,
                     'notice_content' => $request->rs_content,
                     'status' => $request->rs_status,
                     'get_user_id' => $Personnel->user_id,

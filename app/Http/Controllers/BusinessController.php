@@ -163,6 +163,7 @@ class BusinessController extends Controller
     }
 
     public function profile(Request $request){
+        $notice_count = Notice::where('notice.get_user_id', $request->user()->id)->count();
         if(Auth::user()->data_status == 0)
         {
             return redirect()->intended('bs_info');
@@ -200,6 +201,7 @@ class BusinessController extends Controller
         $prev_date = date('Y-m-d', strtotime($date .' -1 week'));
         $next_date = date('Y-m-d', strtotime($date .' +1 week'));
         return view('bs_sidebar/profile', [
+            'notice_count' => $notice_count,
             'tasks' => $tasks,
             'recruitments' => $recruitments,
             'employments' => $employments,
@@ -365,9 +367,21 @@ class BusinessController extends Controller
        return $request->hasFile('image');
     }
     public function news(Request $request){
+        $notice_count = Notice::where('notice.get_user_id', $request->user()->id)->count();
+        $Recruitment_img = Recruitments_status::select('pl_image.image_small','pl_image.user_id as u_id')
+                                    ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                                    ->join('pl_image', 'recruitments_status.user_id', '=', 'pl_image.user_id')
+                                    ->where('recruitments.user_id', $request->user()->id)
+                                    ->get();
+        $Re = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
+                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
+                                    ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                                    ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
+                                    ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                                    ->where('recruitments.user_id', $request->user()->id);                
         // 新応募
         $Recruitment = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
-                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.language_lv')
+                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
@@ -382,7 +396,7 @@ class BusinessController extends Controller
                                     ->get();
         // 面接調整中
         $Recruitment_a = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
-                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.language_lv')
+                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
@@ -390,7 +404,7 @@ class BusinessController extends Controller
                                     ->where('recruitments_status.status', 3)
                                     ->get();
         $Recruitment_b = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
-                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.language_lv')
+                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
@@ -398,7 +412,7 @@ class BusinessController extends Controller
                                     ->where('recruitments_status.status', 4)
                                     ->get();
         $Recruitment_c = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
-                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.language_lv')
+                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
@@ -406,7 +420,7 @@ class BusinessController extends Controller
                                     ->where('recruitments_status.status', 5)
                                     ->get();
         $Recruitment_d = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
-                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.language_lv')
+                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
@@ -415,7 +429,7 @@ class BusinessController extends Controller
                                     ->get();
         // 面接調整中完了
         $Recruitment_f = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
-                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.language_lv')
+                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
@@ -423,7 +437,7 @@ class BusinessController extends Controller
                                     ->where('recruitments_status.status', 8)
                                     ->get();
         $Recruitment_h = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
-                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.language_lv')
+                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
@@ -431,7 +445,7 @@ class BusinessController extends Controller
                                     ->where('recruitments_status.status', 9)
                                     ->get();
         $Recruitment_i = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
-                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.language_lv')
+                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
@@ -439,6 +453,8 @@ class BusinessController extends Controller
                                     ->where('recruitments_status.status', 10)
                                     ->get();
         return view('/bs_sidebar/news',[
+                'notice_count' => $notice_count,
+                'Recruitment_img' => $Recruitment_img,
                 'Recruitment' => $Recruitment,
                 'Recruitment_like' => $Recruitment_like,
                 'Recruitment_a' => $Recruitment_a,
@@ -468,25 +484,43 @@ class BusinessController extends Controller
     public function interview(Request $request)
     {
         $a = Interview_time::where('bsinformations_id',$request->user()->id)->get();
-     
+        $notice_count = Notice::where('notice.get_user_id', $request->user()->id)->count();
         return view('bs_sidebar.interview_time', [
-            'a' => $a
+            'a' => $a,
+            'notice_count' => $notice_count
         ]);
     }
     public function interview_submit(Request $request)
     {
+
+        // $data = $request->bruce;
+        // foreach ($data as $value) {
+        //    return $value['time'];
+        // }
+        // return $data;
+        // $unames = json_encode($data);
+        // $uname = json_decode($unames);
+        // return $uname['data'];
+        // foreach ($uname['bruce']['time'] as $key => $value) {
+        //    return $value;
+        // }
+        // return false;
         //create
         foreach ($request->time as $key => $value) {
             if (Interview_time::where('time',$value)->first() == true) {
                 
             }else{
-                Interview_time::create([
+                $a = Interview_time::create([
                 'time' => $value,
                 'bsinformations_id' => $request->user()->id
                 ]);
+                 // foreach ($request->time_status as $key => $dsa) {
                 
+                 //         Interview_time::where('id',$a->id)->update(['time_status' => $dsa]);
+                 // }
             }
         }
+        
         //delect
         foreach ($request->delect_time as $key => $value) {
             if (Interview_time::where('time',$value)->first() == true) {

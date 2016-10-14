@@ -43,18 +43,35 @@ $( document ).ready(function() {
         var time = $('.status_o').map(function(){
               return $(this).attr('time');
         }).get();
+        var year = $('.status_o').map(function(){
+              return $(this).attr('year');
+        }).get();
+        var month = $('.status_o').map(function(){
+              return $(this).attr('month');
+        }).get();
+        var day = $('.status_o').map(function(){
+              return $(this).attr('day');
+        }).get();
+        var time_status = $('.status_o').map(function(){
+              return $(this).attr('time_status');
+        }).get();
         var delect_time = $('.status_x').map(function(){
               return $(this).attr('time');
         }).get();
+
         $.ajax({
             type: "POST",
             url: "/interview/edit/submit",
             async: false,
             dataType: "json",
             data: {
-                time: time,
-                delect_time : delect_time,
-                _token: token
+                  time: time,
+                  year: year,
+                  month: month,
+                  day: day,
+                  time_status: time_status,
+                  delect_time : delect_time,
+                  _token: token
             },
             success: function(data) {
                 console.log(JSON.stringify(data));
@@ -310,7 +327,7 @@ $( document ).ready(function() {
                           @if($ok == 1)
                           <div class="status_ok sta"><span class="status">済み</span></div>
                           @else
-                          <div class="status_o sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">O</span></div>
+                          <div class="status_o sta" time="{{$cYear.$title.$day_num.$i}}" year="{{$cYear}}" month="{{$title}}" day="{{$day_num}}" time_status="{{$i}}"><span class="status">O</span></div>
                           @endif
                        @else
                          <div class="status_x sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">X</span></div>
