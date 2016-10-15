@@ -104,10 +104,12 @@ class BusinessController extends Controller
     {
         $notice = Notice::where('notice.id', $id)->first();
         $Personnel = Personnel::where('user_id',$notice->post_user_id)->first();
+        $notice_count = Notice::where('notice.get_user_id', $request->user()->id)->count();
         
         return view('bs_sidebar.notice', [
             'notice' => $notice,
             'Personnel' => $Personnel
+            'notice_count' => $notice_count,
 
         ]);
     }
