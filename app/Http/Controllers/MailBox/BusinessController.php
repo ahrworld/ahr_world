@@ -44,7 +44,7 @@ class BusinessController extends Controller
         Recruitments_status::where('recruitments_status.id', $request->rs_id)
                             ->update(['status' => $request->rs_status]);
         $Personnel =  Recruitments_status::where('recruitments_status.id', $request->rs_id)->first();
-       
+
         $BS = BSinformations::where('user_id',$request->user()->id)->first();
         Notice::create([
                     'notice_title' => $BS->company_name.$request->rs_title,
@@ -52,10 +52,10 @@ class BusinessController extends Controller
                     'status' => $request->rs_status,
                     'get_user_id' => $Personnel->user_id,
                     'post_user_id' => $request->user()->id,
-        ]);        
+        ]);
         return redirect('news_b2');
     }
-   
+
     public function h(Request $request)
     {
         Recruitments_status::where('recruitments_status.id', $request->rs_id)
@@ -96,7 +96,6 @@ class BusinessController extends Controller
 
         return view('bs_sidebar.notice', [
             'notice' => $notice
-
         ]);
     }
     // notice
@@ -105,12 +104,10 @@ class BusinessController extends Controller
         $notice = Notice::where('notice.id', $id)->first();
         $Personnel = Personnel::where('user_id',$notice->post_user_id)->first();
         $notice_count = Notice::where('notice.get_user_id', $request->user()->id)->count();
-        
         return view('bs_sidebar.notice', [
             'notice' => $notice,
-            'Personnel' => $Personnel
+            'Personnel' => $Personnel,
             'notice_count' => $notice_count,
-
         ]);
     }
     public function notice_delete(Request $request)
