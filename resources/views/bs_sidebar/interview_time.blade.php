@@ -230,7 +230,7 @@ $( document ).ready(function() {
 
                     <td style="background:#419ECA; text-align:center; color:#FFF; height='100' ">
                        <div style="height:30px; font-size:16px; font-weight:bold; line-height:30px;">{{$day_num}}</div>
-                       
+
                        @for ($i = 0; $i < 7; $i++)
                        <?php $check = 0; $ok =0 ?>
                        @foreach($a as $key => $value)
@@ -238,7 +238,7 @@ $( document ).ready(function() {
                            <?php
                               $check = 1;
                            ?>
-                          @break 
+                          @break
                        @endif
                        @endforeach
 
@@ -259,9 +259,9 @@ $( document ).ready(function() {
                        @else
                          <div class="status_x sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">X</span></div>
                        @endif
-                      
+
                        @endfor
-                      
+
 
                     </td>
 
@@ -311,7 +311,7 @@ $( document ).ready(function() {
                            <?php
                               $check = 1;
                            ?>
-                          @break 
+                          @break
                        @endif
                        @endforeach
 
@@ -332,7 +332,7 @@ $( document ).ready(function() {
                        @else
                          <div class="status_x sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">X</span></div>
                        @endif
-                      
+
                        @endfor
                     </td>
 
@@ -351,7 +351,7 @@ $( document ).ready(function() {
                            <?php
                               $check = 1;
                            ?>
-                          @break 
+                          @break
                        @endif
                        @endforeach
 
@@ -372,7 +372,7 @@ $( document ).ready(function() {
                        @else
                          <div class="status_x sta" time="{{$cYear.$title.$day_num.$i}}"><span class="status">X</span></div>
                        @endif
-                      
+
                        @endfor
                     </td>
 

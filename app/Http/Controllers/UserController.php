@@ -187,14 +187,6 @@ class UserController extends Controller
             'content','need_skill','annual_income','monthly_income','work_site')
                         ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id');
-        $Recruitment = Recruitment::select('recruitments.id as r_id','exp_job.name',
-            'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
-            'content','need_skill','annual_income','monthly_income','work_site','image_small','languagelvs.languagelv_name')
-                        ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
-                        ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-                        ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
-                        ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
-                        ->get();
 
         // 応募した
         $Recruitment_ofa = Recruitments_status::select('recruitments.id as r_id','exp_job.name','recruitments.user_id',
@@ -209,7 +201,9 @@ class UserController extends Controller
                             ->get();
 
         // お気に入り
-        $Recruitment_like = Recruitments_status::where('recruitments_status.user_id', $request->user()->id)
+        $Recruitment_like = Recruitments_status::select('recruitments.id as r_id','exp_job.name','recruitments.user_id',
+            'content','need_skill','annual_income','monthly_income','work_site','image_small','bsinformations.company_name','languagelvs.languagelv_name')
+                            ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',2)
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
@@ -241,11 +235,19 @@ class UserController extends Controller
     public function ttt(Request $request)
     {
         $Personnel = Personnel::where('user_id',$request->user()->id)->first();
-        $Recruitments_status = Recruitments_status::create([
+        $ReIf = Recruitments_status::where('recruitments_id',$request->id)->where('user_id',$request->user()->id)->get();
+
+        if ($ReIf->count() == true) {
+           Recruitments_status::where('recruitments_status.recruitments_id', $request->id)
+                            ->where('recruitments_status.user_id', $request->user()->id)
+                            ->update(['status' => 1]);
+        }else{
+           Recruitments_status::create([
                     'status' => 1,
                     'recruitments_id' => $request->id,
                     'user_id' => $request->user()->id,
-        ]);
+          ]);
+        }
         $notice = Notice::create([
                     'notice_title' => $Personnel->family_name.$Personnel->surname.'さんが新着応募',
                     'notice_content' => $request->content,
@@ -321,20 +323,20 @@ class UserController extends Controller
                             'personnels_id' => $request->user()->id,
                             'status' => 1
                          ]);
-                         
+
          Recruitments_status::where('recruitments_status.recruitments_id', $request->rs_id)
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->update(['status' => 8]);
          // 待追加Notice
          $Personnel = Personnel::where('user_id',$request->user()->id)->first();
-                       
+
          Notice::create([
                     'notice_title' => $Personnel->family_name.$Personnel->surname.'応募者様との、面接調整が完了しました。',
                     'notice_content' => $request->value,
                     'status' => 8,
                     'get_user_id' => $request->bs_id,
                     'post_user_id' => $request->user()->id
-         ]);  
+         ]);
          return redirect('/news');
     }
     public function image_small(Request $request){
@@ -355,14 +357,14 @@ class UserController extends Controller
        }
 
     }
-    
+
     public function g(Request $request)
     {
         Recruitments_status::where('recruitments_status.id', $request->rs_id)
                             ->update(['status' => 0]);
         return redirect('news');
     }
-    
+
 
 
 }

@@ -54,6 +54,45 @@
     height: 180px !important;
 }
 </style>
+
+<!-- news_modal_1 modal -->
+<div class="modal fade" id="news_modal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">ID公開しますか？</h4>
+      </div>
+
+      <div class="modal-body none">
+      <form class="form_a" action="{{url('/ttt')}}" method="POST" >
+        {{ csrf_field() }}
+          <div class="form-group">
+          <label>メッセージ:</label>
+          <button class="btn btn-default">リクエストを送る</button>
+          <label style="color:#FF0037;">※テンプレートを使用する場合はボタンを押してください。</label>
+          </div>
+          <input type="hidden" name="id" id="id" value="">
+          <input type="hidden" name="b_id" id="b_id" value="">
+
+        <textarea name="content" class="form-control"  rows="5">ご連絡頂き、ありがとうございます。
+ぜひ、「 」について、更にお話を伺えればと思っております。
+お忙しいところ恐縮ですが、よろしくお願い致します。
+        </textarea>
+      </div>
+      <div class="modal-footer skype_wrapper">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary yes">Yes</button>
+      </div>
+      <div class="modal-footer rk_wrapper none">
+        <button type="button" class="btn btn-default back" data-dismiss="modal">NO</button>
+        <button type="submit" class="btn btn-primary" >送信する</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- modal end -->
 <div class="scorl" style="width:60%; float:left; margin-left:15px;">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -97,7 +136,7 @@
                       console.log('Error:', data);
                   }
               });
-                
+
         });
 
         $('.bt_2').click(function() {
@@ -119,12 +158,16 @@
                           timer:1000,
                           showConfirmButton: false
                       });
+                      var explode = function(){
+                         window.location.reload();
+                      };
+                      setTimeout(explode, 1100);
                   },
                   error: function(data) {
                       console.log('Error:', data);
                   }
             });
-            
+
 
 
         });
@@ -217,6 +260,49 @@
                     </div>
                 </div>
                 @endforeach
+                @foreach($Recruitment_like as $key_r => $value_r)
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- photo left -->
+                        @if(isset($value_r->image_small))
+                        <div class="img-left">
+                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </div>
+                        @else
+                        <div class="img-left">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        </div>
+                        @endif
+                        <!-- content -->
+                        <div class="panel-content">
+                            <a href="{{ route('posts.show', $value_r->r_id) }}">
+
+                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
+                            </a>
+                            <span style="padding:5px;background: #ffb61c;color: #FFF;">お気に入り</span>
+                            <p>
+                                <label class="label-gray">業種</label><span class="job_name">{{$value_r->name}}</span></p>
+                            <p>
+                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
+                            <p>
+                                <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
+                            <p>
+                                <label class="label-gray">言語</label><span>{{$value_r->languagelv_name}}</span></p>
+                            <p>
+                                <label class="label-gray">給与</label><span>{{$value_r->monthly_income}}万円～{{$value_r->annual_income}}万円</span></p>
+                            <p>
+                                <label class="label-gray">勤務地</label><span>{{$value_r->work_site}}</span></p>
+                        </div>
+
+                        <div class="img-right">
+
+                            <div style="width:150px; float:left;">
+                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->r_id}}" bs="{{$value_r->user_id}}" data-toggle="modal" data-target="#news_modal_1" >応募する</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
                 @foreach($Recruitment as $key_r => $value_r)
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -252,44 +338,6 @@
                         </div>
                         <div class="img-right">
 
-                        <!-- news_modal_1 modal -->
-                        <div class="modal fade" id="news_modal_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">ID公開しますか？</h4>
-                              </div>
-
-                              <div class="modal-body none">
-                              <form class="form_a" action="{{url('/ttt')}}" method="POST" >
-                                {{ csrf_field() }}
-                                  <div class="form-group">
-                                  <label>メッセージ:</label>
-                                  <button class="btn btn-default">リクエストを送る</button>
-                                  <label style="color:#FF0037;">※テンプレートを使用する場合はボタンを押してください。</label>
-                                  </div>
-                                  <input type="hidden" name="id" id="id" value="">
-                                  <input type="hidden" name="b_id" id="b_id" value="">
-
-                                <textarea name="content" class="form-control"  rows="5">ご連絡頂き、ありがとうございます。
-ぜひ、「 」について、更にお話を伺えればと思っております。
-お忙しいところ恐縮ですが、よろしくお願い致します。
-                                </textarea>
-                              </div>
-                              <div class="modal-footer skype_wrapper">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                <button type="button" class="btn btn-primary yes">Yes</button>
-                              </div>
-                              <div class="modal-footer rk_wrapper none">
-                                <button type="button" class="btn btn-default back" data-dismiss="modal">NO</button>
-                                <button type="submit" class="btn btn-primary" >送信する</button>
-                              </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- modal end -->
                             <div style="width:150px; float:left;">
                                 <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->r_id}}" bs="{{$value_r->user_id}}" data-toggle="modal" data-target="#news_modal_1" >応募する</a>
                                 <a href="#" class="btn ahr-label-yellow ahr-btn-lg bt_2" attr="{{$value_r->r_id}}">お気に入り</a>
@@ -522,9 +570,9 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-                        
-                              
-                           
+
+
+
                             <a href="#">
                             <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
@@ -547,7 +595,7 @@
                             <div style="width:160px; float:left;">
                                 <!-- <button class="btn ahr-label-blue ahr-btn-lg">スケジュールを選ぶ</button> -->
                                       <a href="{{ route('schedule.show', $value_r->r_id) }}" class="btn ahr-label-blue ahr-btn-lg">スケジュールを選ぶ</a>
-                               
+
                                 <form action="{{url('/g')}}" method="POST" >
                                       {{ csrf_field() }}
                                       <input type="hidden" name="rs_id" class="rs_id" value="{{$value_r->r_id}}">
