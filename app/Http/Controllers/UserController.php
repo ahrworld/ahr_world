@@ -160,7 +160,6 @@ class UserController extends Controller
             'languagelv' => $languagelv,
             'exp_job' => $exp_job,
             'pl_image' => $pl_image,
-
     	]);
     }
     public function news(Request $request)
@@ -175,8 +174,7 @@ class UserController extends Controller
                         ->whereNotIn('recruitments.id', function($q){
                         $q->select('recruitments_id')
                         ->from('recruitments_status');
-                      })->orWhere('recruitments.user_id', $request->user()->id)
-                        ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
+                      })->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                         ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                         ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
@@ -276,8 +274,8 @@ class UserController extends Controller
                         ->where('exp_job.name', 'like', '%'.$request->job.'%')
                         ->where('languagelvs.languagelv_name', 'like', '%'.$request->language.'%')
                         ->where('recruitments.need_skill', 'like', '%'.$request->skill.'%')
-                        ->where('recruitments.work_site', 'like', '%'.$request->work_site.'%')
                         ->get();
+            
            return response()->json($query);
     }
     public function show(Request $request , $id)

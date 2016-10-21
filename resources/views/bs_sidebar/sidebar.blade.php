@@ -105,7 +105,9 @@ $(document).ready(function() {
 	                    </li>
 	                    <li class="dropdown" dropdown is-open="isopenEmail">
 	                        <a href="javascript:;" class="dropdown-toggle mail-icon" dropdown-toggle>
+	                        	@if($notice_count > 0)
 	                            <span class="badge badge-info">{{$notice_count}}</span>
+	                            @endif
 	                        </a>
 	                        <div class="dropdown-menu with-arrow panel panel-default">
 	                        </div>

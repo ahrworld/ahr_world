@@ -13,12 +13,13 @@ var token = '{{ Session::token() }}';
 $( document ).ready(function() {
  $('.delete_notice').click(function() {
         var delete_id = $('.mail-hightlight').map(function(){
-              return $(this).attr('notice');
+              return $(this).attr('mail');
         }).get();
         console.log(delete_id);
+       
         $.ajax({
             type: "POST",
-            url: "/mail_box_bs/notice",
+            url: "/mail_box_bs/delete",
             async: false,
             dataType: "json",
             data: {
@@ -36,7 +37,6 @@ $( document ).ready(function() {
             },
             error: function(data) {
                 console.log('Error:', data);
-
             }
 
         });
@@ -83,46 +83,16 @@ $( document ).ready(function() {
                         </div>
                     </div>
                     <div class="row">
-                        <!-- list box -->
-                        <div class="col-md-3">
-                            <section class="panel panel-default mail-categories">
-                                <ul class="list-group">
-                                    <li class="list-group-item active list-inbox text-left">
-                                        <a href="javascript:;">
-                                            <i class="fa fa-inbox"></i>受信トレイ
-                                            <span class="badge badge-info pull-right">{{$mail_count}}</span>
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item list-notice text-left">
-                                        <a href="javascript:;">
-                                            <i class="fa fa-question-circle"></i>お知らせ
-                                            <span class="badge badge-success pull-right">{{$notice_count}}</span>
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item text-left">
-                                        <a href="javascript:;">
-                                            <i class="fa fa-pencil"></i>非表示メール
-                                            <span class="badge badge-warning pull-right">1</span>
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item text-left">
-                                        <a href="javascript:;">
-                                            <i class="fa fa-star"></i>重要
-                                            <span class="badge badge-danger pull-right">3</span>
-                                        </a>
-                                    </li>
-                                    
-                                </ul>
-                            </section>
-                        </div>
                         <!-- right mail -->
-                        <div class="col-md-9 text-left" style=" padding-left:0px !important;">
+                        <div class="col-md-12 text-left">
                             <!-- mail-inbox -->
                             <div class="mail-inbox">
-                                <div class="btn-group" dropdown is-open="status.isopen1" style="width:100%;">
-                                    <button type="button" class="btn btn-default dropdown-toggle mail-select" dropdown-toggle style="margin-bottom:15px !important;">
-                                        <label class="ui-checkbox">
-                                            <input name="checkbox1" type="checkbox" value="option1"><span></span></label> <span class="caret"></span>
+                                <div class="btn-group" dropdown style="width:100%; margin-bottom: 20px;">
+                                    
+                                    <button type="button" class="btn btn-default dropdown-toggle mail-select"  data-toggle="dropdown">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu" style="font-size:12px;">
                                         <li><a href="javascript:;">すべてチェック</a></li>
@@ -142,6 +112,9 @@ $( document ).ready(function() {
                                     <!-- refresh -->
                                     <button type="button" class="btn btn-default mail-refresh">
                                         <i class="fa fa-repeat"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-default mail-refresh delete_notice" style="font-size: 18px !important;">
+                                        <i class="fa fa-trash-o"></i>
                                     </button>
                                     <!-- next&back -->
                                     <div class="float-right">
@@ -165,11 +138,35 @@ $( document ).ready(function() {
                                 </div>
                                 <!-- mail right -->
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#s" aria-controls="s" role="tab" data-toggle="tab">新着メール</a></li>
-                                    <li role="presentation"><a href="#b" aria-controls="b" role="tab" data-toggle="tab">重要メール</a></li>
+                                    <li role="presentation" class="active list-inbox">
+                                    <a href="#chat" aria-controls="chat" role="tab" data-toggle="tab">
+                                    <i class="fa fa-inbox"></i>&nbsp;
+                                    新着メール
+                                    </a>
+                                    </li>
+                                    <li role="presentation" class="list-notice">
+                                    <a href="#notice" aria-controls="notice" role="tab" data-toggle="tab">
+                                    <i class="fa fa-question-circle"></i>&nbsp;
+                                    お知らせ
+                                    <!-- &nbsp;
+                                    <span class="badge badge-success pull-right">{{$notice_count}}</span>  -->
+                                    </a>
+                                    </li>
+                                    <li role="presentation">
+                                    <a href="#important" aria-controls="important" role="tab" data-toggle="tab">
+                                    <i class="fa fa-star"></i>&nbsp;
+                                    重要メール
+                                    </a>
+                                    </li>
+                                    <li role="presentation">
+                                    <a href="#no_imp" aria-controls="no_imp" role="tab" data-toggle="tab">
+                                    <i class="fa fa-pencil"></i>&nbsp;
+                                    非表示メール
+                                    </a>
+                                    </li>
                                 </ul>
                                 <div class="tab-content" style="">
-                                    <div role="tabpanel" class="tab-pane active" id="s">
+                                    <div role="tabpanel" class="tab-pane active" id="chat">
                                         <section class="panel panel-default mail-container" data-ng-controller="NotifyCtrl">
                                             <table class="table table-hover">
                                             <style>
@@ -217,7 +214,7 @@ $( document ).ready(function() {
                                             </table>
                                         </section>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane" id="b">
+                                    <div role="tabpanel" class="tab-pane" id="important">
                                         <!-- <section class="panel panel-default mail-container">
                                             <table class="table table-hover">
                                                 <tr class="mail-unread">
@@ -245,64 +242,12 @@ $( document ).ready(function() {
                                             </table>
                                         </section> -->
                                     </div>
-                                </div>
-                                <!-- tab end -->
-                            </div>
-                            <!-- mail-inbox end <-->
-
-                            <!-- お知らせ -->
-                            <!-- mail-inbox -->
-                            <div class="mail-view none">
-                                <div class="btn-group" dropdown is-open="status.isopen1" style="width:100%;">
-                                    <button type="button" class="btn btn-default dropdown-toggle mail-select" style=" margin-bottom: 15px;" dropdown-toggle ng-disabled="disabled">
-                                        <label class="ui-checkbox">
-                                            <input name="checkbox1" type="checkbox" value="option1"><span></span></label> <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu" style="font-size:12px;">
-                                        <li><a href="javascript:;">すべてチェック</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="javascript:;">選択解除</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="javascript:;">重要</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="javascript:;">非表示</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="javascript:;">表示</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="javascript:;">未読</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="javascript:;">既読</a></li>
-                                    </ul>
-
-                                    <!-- refresh -->
-                                    <button type="button" class="btn btn-default mail-refresh"  style="font-size: 16px !important;">
-                                        <i class="fa fa-repeat"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-default mail-refresh delete_notice" style="font-size: 18px !important;">
-                                        <i class="fa fa-trash-o"></i>
-                                    </button>
-                                    <!-- next&back -->
-                                    <div class="float-right">
-                                        <span style="margin-right:10px;">1-50(共有113列)</span>
-                                        <button type="button" class="btn btn-default mail-back">
-                                            <i class="fa fa-angle-left"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-default mail-next" >
-                                            <i class="fa fa-angle-right"></i>
-                                        </button>
-
-                                    </div>
-                                </div>
-                                <!-- mail right -->
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#b" aria-controls="b" role="tab" data-toggle="tab">お知らせ</a></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active" id="s">
+                                    <!-- お知らせ -->
+                                    <div role="tabpanel" class="tab-pane" id="notice">
                                         <section class="panel panel-default mail-container" data-ng-controller="NotifyCtrl">
                                             <table class="table table-hover">
                                                  @foreach($notice as $value)
-                                                    <tr class="mail-unread" notice="{{$value->n_id}}">
+                                                    <tr class="mail-unread" mail="{{$value->id}}">
                                                         <td width="100">
                                                             <label class="ui-checkbox">
                                                                 <input class="mail-checkbox" name="checkbox1" type="checkbox" value="option1">
@@ -316,15 +261,15 @@ $( document ).ready(function() {
                                                             </label>
                                                         </td>
                                                         <td width="20%">
-                                                        <a href="{{ route('notice_bs.show', $value->n_id) }}">
+                                                        <a href="{{ route('mail_bs.show', $value->id) }}">
                                                             <p class="company_name"><i class="fa fa-circle color-label_5 pull-left"></i>
                                                             新規
                                                             </p>
                                                         </a>
                                                         </td>
                                                         <td width="32%"><p class="mail_title">
-                                                        <a href="{{ route('notice_bs.show', $value->n_id) }}">
-                                                        {{$value->notice_title}}
+                                                        <a href="{{ route('mail_bs.show', $value->id) }}">
+                                                        {{$value->mail_title}}
                                                         </a>
                                                         </td>
 
@@ -337,24 +282,7 @@ $( document ).ready(function() {
                                             </table>
                                         </section>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane" id="b">
-                                        <section class="panel panel-default mail-container">
-                                            <table class="table table-hover">
-
-                                                <tr class="mail-unread">
-                                                    <td>
-                                                        <label class="ui-checkbox">
-                                                            <input name="checkbox1" type="checkbox" value="option1"><span></span></label>
-                                                    </td>
-                                                    <td>Gmail</td>
-                                                    <td>Please confirm your registeration</td>
-                                                    <td> </td>
-                                                    <td>2/19/14 2:00 PM</td>
-                                                    <td><i class="fa fa-star"></i></td>
-                                                </tr>
-                                            </table>
-                                        </section>
-                                    </div>
+                                    <!-- end -->
                                 </div>
                                 <!-- tab end -->
                             </div>

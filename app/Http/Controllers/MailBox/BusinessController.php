@@ -46,10 +46,11 @@ class BusinessController extends Controller
         $Personnel =  Recruitments_status::where('recruitments_status.id', $request->rs_id)->first();
 
         $BS = BSinformations::where('user_id',$request->user()->id)->first();
-        Notice::create([
-                    'notice_title' => $BS->company_name.$request->rs_title,
-                    'notice_content' => $request->rs_content,
+        Mail_box::create([
+                    'mail_title' => $BS->company_name.$request->rs_title,
+                    'mail_content' => $request->rs_content,
                     'status' => $request->rs_status,
+                    'mail_status' => 0,
                     'get_user_id' => $Personnel->user_id,
                     'post_user_id' => $request->user()->id,
         ]);
@@ -77,12 +78,10 @@ class BusinessController extends Controller
                  ->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')
         ->paginate(5);
         $mail_count = Mail_box::where('mail_box.get_user_id', $request->user()->id)->count();
-        // notice
-        $nt = Notice::where('notice.get_user_id', $request->user()->id);
-        $notice = $nt->select('notice.id as n_id','notice_title','notice_content','create_time')->join('bsinformations', 'notice.get_user_id', '=', 'bsinformations.user_id')
-        ->paginate(5);
-        $notice_count = $nt->count();
-
+        $notice = Mail_box::where('mail_box.mail_status',1)
+                  ->where('mail_box.get_user_id', $request->user()->id)
+                  ->paginate(5);
+        $notice_count = Mail_box::where('mail_box.mail_status',1)->where('mail_box.get_user_id', $request->user()->id)->count();
         return view('bs_sidebar.mail_box', [
             'mail_box' => $mail_box,
             'mail_count' => $mail_count,
@@ -92,33 +91,22 @@ class BusinessController extends Controller
     }
     public function mail_view(Request $request , $id)
     {
-        $notice  = Notice::where('notice.id', $id)->join('bsinformations', 'notice.get_user_id', '=', 'bsinformations.user_id')->first();
+        $mail_box  = Mail_box::where('mail_box.id', $id)->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')->first();
 
-        return view('bs_sidebar.notice', [
-            'notice' => $notice
+        return view('bs_sidebar.mail_box', [
+            'mail_box' => $mail_box
         ]);
     }
-    // notice
-    public function notice_view(Request $request , $id)
-    {
-        $notice = Notice::where('notice.id', $id)->first();
-        $Personnel = Personnel::where('user_id',$notice->post_user_id)->first();
-        $notice_count = Notice::where('notice.get_user_id', $request->user()->id)->count();
-        return view('bs_sidebar.notice', [
-            'notice' => $notice,
-            'Personnel' => $Personnel,
-            'notice_count' => $notice_count,
-        ]);
-    }
-    public function notice_delete(Request $request)
+  
+    public function delete(Request $request)
     {
         //delect
         foreach ($request->delete as $key => $value) {
-            if (Notice::where('notice.id',$value)->first() == true) {
-                 Notice::where('notice.id',$value)->delete();
-                 return response()->json('ok');
+            if (Mail_box::where('mail_box.id',$value)->first() == true) {
+                 Mail_box::where('mail_box.id',$value)->delete();
             }
         }
+        return response()->json('ok');
     }
 
 }

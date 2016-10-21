@@ -131,8 +131,7 @@ Route::group(['middleware' => 'web'], function () {
     // bs mail_box
     Route::get('/mail_box_bs','MailBox\BusinessController@mail_box');
     Route::get('/mail_box_bs/{id}',['as' => 'mail_bs.show' , 'uses' => 'MailBox\BusinessController@mail_view']);
-    Route::get('/mail_box_bs/{id}',['as' => 'notice_bs.show' , 'uses' => 'MailBox\BusinessController@notice_view']);
-    Route::post('/mail_box_bs/notice','MailBox\BusinessController@notice_delete');
+    Route::post('/mail_box_bs/delete','MailBox\BusinessController@delete');
     Route::post('/assess','MailBox\BusinessController@assess');
    
     Route::get('/bs_e', 'BusinessController@bs_e');
@@ -142,8 +141,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/image_small', 'UserController@image_small');
     Route::get('/mail_box','MailBox\UserController@mail_box');
     Route::get('/mail_box/{id}',['as' => 'mail.show' , 'uses' => 'MailBox\UserController@mail_view']);
-    Route::get('/mail_box/{id}',['as' => 'notice.show' , 'uses' => 'MailBox\UserController@notice_view']);
-   
+    Route::post('/mail_box/delete','MailBox\UserController@delete');
+
     Route::get('/profile','UserController@profile');
     Route::get('/news','UserController@news');
     Route::post('ttt','UserController@ttt');

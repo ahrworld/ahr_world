@@ -5,6 +5,15 @@ $.ajaxSetup({
 });
 var token = '{{ Session::token() }}';
 $(document).ready(function() {
+// 修正tabs連結
+var url = document.location.toString();
+if (url.match('#')) {
+    $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+} 
+// Change hash for page-reload
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+    window.location.hash = e.target.hash;
+})
 		$('.bt_1').click(function(){
 		    var r_id = $(this).attr('attr');
 		    var b_id = $(this).attr('bs');
@@ -54,9 +63,6 @@ $(document).ready(function() {
 		$('.list-inbox').click(function(){
 			$('.label-status').addClass('none');
 			$('.inbox-status').removeClass('none').addClass('animated fadeIn');
-			$('.mail-compose').addClass('none');
-			$('.mail-view').addClass('none');
-			$('.mail-inbox').removeClass('none').addClass('animated fadeIn');
 		});
 		// list-mail
 		$('.list-mail').click(function(){
@@ -70,9 +76,6 @@ $(document).ready(function() {
 		$('.list-notice').click(function(){
 			$('.label-status').addClass('none');
 			$('.notice-status').removeClass('none').addClass('animated fadeIn');
-			$('.mail-compose').addClass('none');
-			$('.mail-inbox').addClass('none');
-			$('.mail-view').removeClass('none').addClass('animated fadeIn');
 		});
 
 		$('.list-group li').click(function(){

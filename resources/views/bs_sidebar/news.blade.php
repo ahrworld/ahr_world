@@ -13,15 +13,7 @@ $.ajaxSetup({
 
 var token = '{{ Session::token() }}';
 $(document).ready(function() {
-// 修正tabs連結
-var url = document.location.toString();
-if (url.match('#')) {
-    $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
-} 
-// Change hash for page-reload
-$('.nav-tabs a').on('shown.bs.tab', function (e) {
-    window.location.hash = e.target.hash;
-})
+
 
     $('.bt_1').click(function() {
         var r_id = $('.bt_1').attr('attr');
