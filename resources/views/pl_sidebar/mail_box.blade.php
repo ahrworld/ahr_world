@@ -47,7 +47,7 @@ $(document).ready(function() {
                 setTimeout(explode, 1100);
             },
             error: function(data) {
-            
+
             }
 
         });
@@ -55,10 +55,10 @@ $(document).ready(function() {
   });
 
 });
-     
+
 </script>
 <div tyle="background:#FFF; height:100vh;">
-    <div class="mail_box_wrapper" style="width:60%;  float:left; margin-left: 20px;">
+    <div class="mail_box_wrapper" style="width:60%;  float:left; margin-left: 20px; height:500px;">
             <div class="row" style="text-align:center;">
                 <div class="col-md-12">
                     <div class="row" style="margin-left:5px;">
@@ -99,7 +99,7 @@ $(document).ready(function() {
                             <!-- mail-inbox -->
                             <div class="mail-inbox">
                                 <div class="btn-group" dropdown style="width:100%; margin-bottom: 20px;">
-                                    
+
                                     <button type="button" class="btn btn-default dropdown-toggle mail-select"  data-toggle="dropdown">
                                         <i class="fa fa-cog" aria-hidden="true"></i>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -286,7 +286,7 @@ $(document).ready(function() {
 
                                                         <td width="20%"></td>
 
-                                                       
+
                                                     </tr>
                                                 @endforeach
 

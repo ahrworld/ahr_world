@@ -47,7 +47,7 @@ $( document ).ready(function() {
      
 </script>
 <div tyle="background:#FFF; height:100vh;">
-    <div class="mail_box_wrapper" style="width:60%;  float:left; margin-left: 20px;">
+    <div class="mail_box_wrapper" style="width:60%;  float:left; margin-left: 20px;  height:500px;">
             <div class="row" style="text-align:center;">
                 <div class="col-md-12">
                     <div class="row" style="margin-left:5px;">
