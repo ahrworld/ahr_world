@@ -18,7 +18,7 @@
                                         <i class="fa fa-mail-reply"></i>
                                     </a>
                                 </div>
-                                
+
                                 <!-- mail right -->
                                             <section class="panel panel-default mail-container">
                                             <div class="panel-heading"><strong><i class="fa fa-envelope-o" style="font-size: 18px;"></i></strong></div>
