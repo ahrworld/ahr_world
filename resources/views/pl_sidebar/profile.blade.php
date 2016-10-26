@@ -25,9 +25,6 @@
 <script>
   $(document).ready(function() {
 
-
-
-
     $('.default_summary .update_bt').click(function(){
       $('.default_summary').addClass('none');
       $('.update_summary').removeClass('none');
@@ -36,9 +33,44 @@
       $('.update_summary').addClass('none');
       $('.default_summary').removeClass('none');
     });
-
-    $('.default_summary').hover(function(){
-      $('.default_summary .update_bt').toggleClass('none');
+    
+    $('.panel-default').hover(function(){
+      $(this).find(".update_bt").toggleClass('none');
+    });
+    // 基本情報
+    $('.panel_1 .update_bt').click(function(){
+      $(".panel_1").addClass('none');
+      $(".panel_1_update").removeClass('none');
+    });
+    // 学歴
+    $('.panel_2 .update_bt').click(function(){
+      $(".panel_2").addClass('none');
+      $(".panel_2_update").removeClass('none');
+    });
+    // スキル
+    $('.panel_3 .update_bt').click(function(){
+      $(".panel_3").addClass('none');
+      $(".panel_3_update").removeClass('none');
+    });
+    // 語學スキル
+    $('.panel_4 .update_bt').click(function(){
+      $(".panel_4").addClass('none');
+      $(".panel_4_update").removeClass('none');
+    });
+   // 職務經歷書
+    $('.panel_5 .update_bt').click(function(){
+      $(".panel_5").addClass('none');
+      $(".panel_5_update").removeClass('none');
+    });
+    // 海外經驗
+    $('.panel_6 .update_bt').click(function(){
+      $(".panel_6").addClass('none');
+      $(".panel_6_update").removeClass('none');
+    });
+    // 志望動機
+    $('.panel_7 .update_bt').click(function(){
+      $(".panel_7").addClass('none');
+      $(".panel_7_update").removeClass('none');
     });
 
     $('.update-panel1').hover(function() {
@@ -150,9 +182,14 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                     padding-top: 10px;
                 }
                 </style>
-                <!-- 3 -->
-                <div class="panel panel-default">
+                <!-- ■　基本情報 -->
+                <div class="panel panel-default panel_1">
+                    
                     <div class="panel-body" style="padding-top: 0px !important;">
+                    <!-- EDIT BUTTON -->
+                    <a href="javascript:;" class="float-right update_bt none" >
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
                                 @foreach($personnels as $value)
                                 <h6 style="margin-bottom:0px !important;">■　基本情報</h6>
                                 <div class="panel-content">
@@ -209,12 +246,74 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                                 </div>
                         </div>
                     </div>
-                <!-- 4 -->
-                <div class="panel panel-default">
+                    <!-- ■　基本情報update -->
+                     <div class="panel panel-update panel_1_update none">
+                         <div class="panel-body" style="padding-top: 0px !important;">
+                              <h6 style="margin-bottom:0px !important;">■　基本情報</h6>
+                                <div class="panel-content">
+                                    <table class="user-view_table">
+                                        <tbody>
+                                            <tr>
+                                                <th width="80px">氏名：</th>
+                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->family_name.$value->surname}}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="80px">英語名：</th>
+                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->family_name_en.$value->surname_en }}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="80px">国籍</th>
+                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->country }}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="80px">性別</th>
+                                                @if($value->sex === 1)
+                                                <td>：男</td>
+                                                @endif
+                                                @if($value->sex === 0)
+                                                <td>：女</td>
+                                                @endif
+                                            </tr>
+                                            <tr>
+                                                <th width="80px">生年月日</th>
+                                                <td>：{{ $value->birthday }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th width="80px">現住所*</th>
+                                                <td>：{{ $value->post.$value->city.$value->address}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th width="80px">E-mail*</th>
+                                                <td>：{{ Auth::user()->email }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th width="80px">Skype ID*</th>
+                                                <td>：{{ $value->skype_id }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th width="80px">Line ID*</th>
+                                                <td>：{{ $value->line_id }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th width="80px">電話番号*</th>
+                                                <td>：{{ $value->phone }}</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                        </div>
+                    </div>
+                <!-- ■　学歴 -->
+                <div class="panel panel-default panel_2">
                     <div class="panel-body" style="padding-top: 0px !important;">
                         <div class="row">
                             <!-- logo left -->
                             <div class="col-md-12">
+                            <!-- EDIT BUTTON -->
+                            <a href="javascript:;" class="float-right update_bt none" >
+                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
                                 <h6>■　学歴</h6>
                                 <div class="panel-content">
                                     <table class="user-view_table">
@@ -244,12 +343,16 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                         @endforeach
                     </div>
                 </div>
-                <!-- 5 -->
-                <div class="panel panel-default">
+                <!-- ■　語学スキル -->
+                <div class="panel panel-default panel_3">
                     <div class="panel-body" style="padding-top: 0px !important;">
                         <div class="row">
                             <!-- logo left -->
                             <div class="col-md-12">
+                            <!-- EDIT BUTTON -->
+                            <a href="javascript:;" class="float-right update_bt none" >
+                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
                                 <h6>■　語学スキル</h6>
                                 <div class="panel-content">
                                     <table class="user-view_table">
@@ -296,12 +399,16 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                         <!-- row end -->
                     </div>
                 </div>
-                <!-- 6 -->
-                <div class="panel panel-default">
+                <!-- ■　スキル -->
+                <div class="panel panel-default panel_4">
                     <div class="panel-body" style="padding-top: 0px !important;">
                         <div class="row">
                             <!-- logo left -->
                             <div class="col-md-12">
+                            <!-- EDIT BUTTON -->
+                            <a href="javascript:;" class="float-right update_bt none" >
+                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
                                 <h6>■　スキル</h6>
                                 <div class="panel-content">
                                     <table class="user-view_table">
@@ -336,12 +443,16 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                         <!-- row end -->
                     </div>
                 </div>
-                <!-- 7 -->
-                <div class="panel panel-default">
+                <!-- ■　職務経歴書 -->
+                <div class="panel panel-default panel_5">
                     <div class="panel-body" style="padding-top: 0px !important;">
                         <div class="row">
                             <!-- logo left -->
                             <div class="col-md-12">
+                            <!-- EDIT BUTTON -->
+                            <a href="javascript:;" class="float-right update_bt none" >
+                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
                                 <h6>■　職務経歴書</h6>
                                 <div class="panel-content">
                                     <table class="user-view_table">
@@ -384,12 +495,16 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                         <!-- row end -->
                     </div>
                 </div>
-                <!-- 8 -->
-                <div class="panel panel-default">
+                <!-- ■　海外経験 -->
+                <div class="panel panel-default panel_6">
                     <div class="panel-body" style="padding-top: 0px !important;">
                         <div class="row">
                             <!-- logo left -->
                             <div class="col-md-12">
+                            <!-- EDIT BUTTON -->
+                            <a href="javascript:;" class="float-right update_bt none" >
+                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
                                 <h6>■　海外経験</h6>
                                 <div class="panel-content">
                                     <table class="user-view_table">
