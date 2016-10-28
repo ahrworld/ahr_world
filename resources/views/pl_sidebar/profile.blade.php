@@ -262,41 +262,41 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                                                 <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->family_name_en.$value->surname_en }}"></td>
                                             </tr>
                                             <tr>
-                                                <th width="80px">国籍</th>
+                                                <th width="80px">国籍：</th>
                                                 <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->country }}"></td>
                                             </tr>
                                             <tr>
-                                                <th width="80px">性別</th>
+                                                <th width="80px">性別：</th>
                                                 @if($value->sex === 1)
-                                                <td>：男</td>
+                                                <td>男</td>
                                                 @endif
                                                 @if($value->sex === 0)
-                                                <td>：女</td>
+                                                <td>女</td>
                                                 @endif
                                             </tr>
                                             <tr>
                                                 <th width="80px">生年月日</th>
-                                                <td>：{{ $value->birthday }}</td>
+                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->birthday }}"></td>
                                             </tr>
                                             <tr>
-                                                <th width="80px">現住所*</th>
-                                                <td>：{{ $value->post.$value->city.$value->address}}</td>
+                                                <th width="80px">現住所*：</th>
+                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->post.$value->city.$value->address}}"></td>
                                             </tr>
                                             <tr>
-                                                <th width="80px">E-mail*</th>
-                                                <td>：{{ Auth::user()->email }}</td>
+                                                <th width="80px">E-mail*：</th>
+                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ Auth::user()->email }}"></td>
                                             </tr>
                                             <tr>
-                                                <th width="80px">Skype ID*</th>
-                                                <td>：{{ $value->skype_id }}</td>
+                                                <th width="80px">Skype ID*：</th>
+                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->skype_id }}"></td>
                                             </tr>
                                             <tr>
-                                                <th width="80px">Line ID*</th>
-                                                <td>：{{ $value->line_id }}</td>
+                                                <th width="80px">Line ID*：</th>
+                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->line_id }}"></td>
                                             </tr>
                                             <tr>
-                                                <th width="80px">電話番号*</th>
-                                                <td>：{{ $value->phone }}</td>
+                                                <th width="80px">電話番号*：</th>
+                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->phone }}"></td>
                                             </tr>
 
                                         </tbody>
