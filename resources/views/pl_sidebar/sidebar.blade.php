@@ -141,7 +141,7 @@ $(document).ready(function() {
 		    	            <ul class="dropdown-menu with-arrow pull-right list-langs" aria-labelledby="dropdownMenu1">
 		    	            	<li><a href="javascript:;">プロフィールプレビュー</a></li>
 		    	            	<li class="divider"></li>
-		    	            	<li><a href="javascript:;">設定</a></li>
+		    	            	<li><a href="{{ url('/setting') }}">設定</a></li>
 		    	            	<li class="divider"></li>
 		    	            	<li><a href="javascript:;">お役立情報</a></li>
 		    	            	<li class="divider"></li>

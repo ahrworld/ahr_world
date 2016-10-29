@@ -161,7 +161,13 @@ class BusinessController extends Controller
         // return $request->all();
 
     }
-
+    public function setting(Request $request)
+    {
+        $notice_count = Notice::where('notice.get_user_id', $request->user()->id)->count();
+        return view('bs_sidebar.bs_setting', [
+            'notice_count' => $notice_count
+        ]);
+    }
     public function profile(Request $request){
         $notice_count = Notice::where('notice.get_user_id', $request->user()->id)->count();
         if(Auth::user()->data_status == 0)
@@ -378,7 +384,7 @@ class BusinessController extends Controller
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-                                    ->where('recruitments.user_id', $request->user()->id);                
+                                    ->where('recruitments.user_id', $request->user()->id);
         // 新応募
         $Recruitment = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
                                     'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
@@ -508,19 +514,19 @@ class BusinessController extends Controller
         //create
         foreach ($request->time as $key => $value) {
             if (Interview_time::where('time',$value)->first() == true) {
-                
+
             }else{
                 $a = Interview_time::create([
                 'time' => $value,
                 'bsinformations_id' => $request->user()->id
                 ]);
                  // foreach ($request->time_status as $key => $dsa) {
-                
+
                  //         Interview_time::where('id',$a->id)->update(['time_status' => $dsa]);
                  // }
             }
         }
-        
+
         //delect
         foreach ($request->delect_time as $key => $value) {
             if (Interview_time::where('time',$value)->first() == true) {

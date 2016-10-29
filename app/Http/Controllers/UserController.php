@@ -355,7 +355,16 @@ class UserController extends Controller
        }
 
     }
-
+    // setting
+    public function setting(Request $request)
+    {
+        $a = Personnel::where('personnels.user_id', $request->user()->id)->first();
+        $notice_count = Mail_box::where('mail_box.mail_status',1)->where('mail_box.get_user_id', $request->user()->id)->count();
+        return view('pl_sidebar.setting', [
+            'a' =>$a,
+            'notice_count' => $notice_count
+        ]);
+    }
     public function g(Request $request)
     {
         Recruitments_status::where('recruitments_status.id', $request->rs_id)

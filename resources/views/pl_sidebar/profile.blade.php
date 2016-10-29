@@ -24,7 +24,41 @@
 </style>
 <script>
   $(document).ready(function() {
+     var ctx = $("#canvas").get(0).getContext("2d");
 
+     var radarChartData = {
+            labels: ["特定專門", "生活樣式", "挑戰客服", "奉仕貢獻", "創意創業", "安全安定", "自由自立", "縂合管理"],
+            datasets: [
+              {
+                label: "My First dataset",
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [65,59,90,81,56,55,40,40]
+              },
+              {
+                label: "My Second dataset",
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [28,48,40,19,96,27,100,100]
+              }
+            ]
+          };
+
+     var myRadarChart = new Chart(ctx).Radar(radarChartData, {
+         pointDot: false
+     });
+
+    $('#myTabs a:last').click(function () {
+     myRadarChart();
+  });
     $('.default_summary .update_bt').click(function(){
       $('.default_summary').addClass('none');
       $('.update_summary').removeClass('none');
@@ -33,7 +67,7 @@
       $('.update_summary').addClass('none');
       $('.default_summary').removeClass('none');
     });
-    
+
     $('.panel-default').hover(function(){
       $(this).find(".update_bt").toggleClass('none');
     });
@@ -184,7 +218,7 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                 </style>
                 <!-- ■　基本情報 -->
                 <div class="panel panel-default panel_1">
-                    
+
                     <div class="panel-body" style="padding-top: 0px !important;">
                     <!-- EDIT BUTTON -->
                     <a href="javascript:;" class="float-right update_bt none" >
@@ -547,6 +581,16 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
             <!-- wrapper end -->
         </div>
         <!-- プロフィール tab-panel end -->
+        <div role="tabpanel" class="tab-pane ahr-panel fade in active" id="a2">
+            <div class="wrapper" style="margin-top:0px !important;">
+                <!-- 1 -->
+                <div class="panel panel-default">
+                <div id="canvas"></div>
+                </div>
+            </div>
+       </div>
+
+
     </div>
     <!-- tab-content end -->
 </div>

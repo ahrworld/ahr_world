@@ -8,34 +8,34 @@
 	main{
 		margin-top:50px;
 	}
-	main .container{
+	main .scol{
 		background: #FFF;
 	}
-	main .container .setting thead th{
+	main .scol .setting thead th{
 		 border-bottom: 2px solid #484848 !important;
 		 font-size: 20px !important;
 	}
-	main .container .setting tbody th{
+	main .scol .setting tbody th{
 		 vertical-align: baseline !important;
 		 color:#000;
 		 font-weight: 200;
 	}
-	main .container hr{
+	main .scol hr{
 		 border:2;
 	}
-	main .container tbody tr:hover{
+	main .scol tbody tr:hover{
 		 background:#F1F1F1;
 	}
-	main .container tbody tr.FFF{
+	main .scol tbody tr.FFF{
 		 background:#FFF;
 	}
-	main .container tbody tr td{
+	main .scol tbody tr td{
 		 padding:10px 2px;
 	}
-	main .container tbody tr td:first-child{
+	main .scol tbody tr td:first-child{
 		 color:#000;
 	}
-	main .container tbody tr .edit{
+	main .scol tbody tr .edit{
 		 color:#3B598D;
 		 cursor: pointer;
 	}
@@ -57,7 +57,7 @@
 	});
 </script>
 
-	<div  style="width:60%; float:left; margin-left:15px;">
+	<div class="scol"  style="width:60%; float:left; margin-left:15px;">
 		<div class="setting" style="padding:20px 30px;">
 
 			<table class="table table-condensed" >
@@ -69,7 +69,7 @@
 			    <tbody>
 			        <tr>
 			            <th scope="row" width="150">ユーザーネーム</th>
-			            <td class="name" width="500">OOOOOOOOOOO</td>
+			            <td class="name" width="500"></td>
 			            <td class="edit" width="100" align="right">編集</td>
 			            <td class="edit_ct" width="600" colspan="2">
 			            	<p>※ユーザーネームの変更は一度しかできません。</p>
@@ -81,7 +81,7 @@
 			        </tr>
 			        <tr>
 			            <th scope="row" width="150">メールアカウント追加</th>
-			            <td width="500">ahr@gmail.com</td>
+			            <td width="500"></td>
 			            <td class="edit" width="100" align="right">編集</td>
 			            <td class="edit_ct" width="600" colspan="2">
 			            	<p>メインの連絡先&nbsp;&nbsp;&nbsp;<span><input type="radio" checked>&nbsp;ahr@gmail.com</span></p>
@@ -169,5 +169,6 @@
 
 		</div>
 	</div>
+
 
 @endsection
