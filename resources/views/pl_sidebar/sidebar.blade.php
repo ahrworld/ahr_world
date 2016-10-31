@@ -17,6 +17,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.css')}}">
     <!-- animate.css -->
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css')}}">
+    <!-- select2 -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/js/select2.min.js"></script>
     <!-- chart.js -->
     <script src="{{ asset('ahr/assets/js/Chart.min.js')}}"></script>
     <!-- test fily -->
@@ -29,15 +32,6 @@
     <link rel="stylesheet" href="{{ asset('fily/bower_components/weather-icons/css/weather-icons.min.css')}}">
 
 </head>
-<script>
-$(document).ready(function() {
-
-    $('#myTabs a:last').click(function () {
-		 myRadarChart();
-	});
-});
-
-</script>
 <style>
 	#header .clearfix .container{
 		padding-left:0px !important;

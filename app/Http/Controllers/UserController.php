@@ -162,6 +162,35 @@ class UserController extends Controller
             'pl_image' => $pl_image,
     	]);
     }
+    public function personnels_update(Request $request)
+    {
+         if (isset($request->family_name)) {
+            Personnel::where('user_id', $request->user()->id)
+            ->update([
+            'family_name' =>  $request->family_name,
+            'surname' =>  $request->surname,
+            'family_name_en' => $request->family_name_en,
+            'surname_en' =>  $request->surname_en,
+            'country' => $request->country,
+            'birthday' =>  $request->birthday,
+            'skype_id' => $request->skype_id,
+            'line_id' => $request->line_id,
+            'phone' => $request->phone,
+            ]);
+            return redirect('/profile');
+
+         }elseif (isset($request->school)) {
+            Personnel::where('user_id', $request->user()->id)
+            ->update([
+            'school' => $request->school,
+            'school_country' => $request->school_country,
+            'end_year' => $request->end_year,
+            ]);
+
+            return redirect('/profile');
+         }
+        
+    }
     public function news(Request $request)
     {
         // 圖片

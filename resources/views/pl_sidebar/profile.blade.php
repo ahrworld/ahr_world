@@ -21,14 +21,35 @@
   .update_1 .photo .update_bt_smile{
     margin-top: 110px;
   }
+  .btn_btom{
+    margin-top:20px;
+  }
 </style>
 <script>
   $(document).ready(function() {
-     
-
+     var ctx = $("#canvas").get(0).getContext("2d");
+     var radarChartData = {
+            labels: ["特定專門", "生活樣式", "挑戰客服", "奉仕貢獻", "創意創業", "安全安定", "自由自立", "縂合管理"],
+            datasets: [
+              {
+                label: "My Second dataset",
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [28,48,40,19,96,27,100,100]
+              }
+            ]
+          };
+     var myRadarChart = new Chart(ctx).Radar(radarChartData, {
+         pointDot: false
+     });
+  
     $('#myTabs a:last').click(function () {
-     myRadarChart();
-  });
+      myRadarChart();
+    });
     $('.default_summary .update_bt').click(function(){
       $('.default_summary').addClass('none');
       $('.update_summary').removeClass('none');
@@ -41,42 +62,7 @@
     $('.panel-default').hover(function(){
       $(this).find(".update_bt").toggleClass('none');
     });
-    // 基本情報
-    $('.panel_1 .update_bt').click(function(){
-      $(".panel_1").addClass('none');
-      $(".panel_1_update").removeClass('none');
-    });
-    // 学歴
-    $('.panel_2 .update_bt').click(function(){
-      $(".panel_2").addClass('none');
-      $(".panel_2_update").removeClass('none');
-    });
-    // スキル
-    $('.panel_3 .update_bt').click(function(){
-      $(".panel_3").addClass('none');
-      $(".panel_3_update").removeClass('none');
-    });
-    // 語學スキル
-    $('.panel_4 .update_bt').click(function(){
-      $(".panel_4").addClass('none');
-      $(".panel_4_update").removeClass('none');
-    });
-   // 職務經歷書
-    $('.panel_5 .update_bt').click(function(){
-      $(".panel_5").addClass('none');
-      $(".panel_5_update").removeClass('none');
-    });
-    // 海外經驗
-    $('.panel_6 .update_bt').click(function(){
-      $(".panel_6").addClass('none');
-      $(".panel_6_update").removeClass('none');
-    });
-    // 志望動機
-    $('.panel_7 .update_bt').click(function(){
-      $(".panel_7").addClass('none');
-      $(".panel_7_update").removeClass('none');
-    });
-
+    
     $('.update-panel1').hover(function() {
         $('.update_bt1').toggleClass('none');
     });
@@ -84,8 +70,22 @@
         $('.default_content').addClass('none');
         $('.update_content').removeClass('none');
     });
+    $(".js-example-templating").select2({
+      templateResult: formatState
+    });
   });
-
+function formatState (state) {
+  if (!state.id) { return state.text; }
+  
+  var $state = $(
+    '<span><img height="30" src="ahr/assets/flag/' + state.element.value.toLowerCase() + '.svg" class="img-flag" /> ' + state.text + '</span>'
+  );
+  return $state;
+};
+var update_panel = function(a,b){
+      $(a).addClass('animated fadeOut none').removeClass('animated fadeIn');
+      $(b).removeClass('animated fadeOut none').addClass('animated fadeIn');
+}
 </script>
 @foreach ($pl_image as $value)
 <style>
@@ -98,7 +98,6 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
      <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#p1" aria-controls="p1" role="tab" data-toggle="tab">プロフィール</a></li>
         <li role="presentation"><a href="#a2" aria-controls="p2" role="tab" data-toggle="tab">MY ポートフォリオ自己紹介・分析</a></li>
-        <li role="presentation"><a href="#a3" aria-controls="p3" role="tab" data-toggle="tab">面接日程</a></li>
     </ul>
     <!-- プロフィール Tab panes -->
     <div class="tab-content">
@@ -185,13 +184,16 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                 .user-view_table td {
                     padding-top: 10px;
                 }
+                .panel-default .update_bt , .panel-update .close_bt{
+                    margin-top: 10px;
+                }   
                 </style>
                 <!-- ■　基本情報 -->
                 <div class="panel panel-default panel_1">
 
                     <div class="panel-body" style="padding-top: 0px !important;">
                     <!-- EDIT BUTTON -->
-                    <a href="javascript:;" class="float-right update_bt none" >
+                    <a href="javascript:;" class="float-right update_bt none" onclick="update_panel('.panel_1','.panel_1_update');">
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>
                                 @foreach($personnels as $value)
@@ -253,23 +255,49 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                     <!-- ■　基本情報update -->
                      <div class="panel panel-update panel_1_update none">
                          <div class="panel-body" style="padding-top: 0px !important;">
+                              <!-- Close BUTTON -->
+                              <a href="javascript:;" class="float-right close_bt" onclick="update_panel('.panel_1_update','.panel_1');">
+                                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                              </a>
+
                               <h6 style="margin-bottom:0px !important;">■　基本情報</h6>
                                 <div class="panel-content">
+                                <form action="{{url('/personnels/update')}}" method="POST" style="text-align:center;">
+                                {{ csrf_field() }}
                                     <table class="user-view_table">
                                         <tbody>
                                             <tr>
-                                                <th width="80px">氏名：</th>
-                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->family_name.$value->surname}}"></td>
+                                                <th width="80px">姓：</th>
+                                                <td><input type="text" name="family_name" class="form-control ahr-input_1" value="{{ $value->family_name}}"></td>
                                             </tr>
                                             <tr>
+                                                <th width="80px">名：</th>
+                                                <td><input type="text" name="surname" class="form-control ahr-input_1" value="{{ $value->surname}}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="80px">英語姓：</th>
+                                                <td><input type="text" name="family_name_en" class="form-control ahr-input_1" value="{{ $value->family_name_en }}"></td>
+                                            </tr>
+                                             <tr>
                                                 <th width="80px">英語名：</th>
-                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->family_name_en.$value->surname_en }}"></td>
+                                                <td><input type="text" name="surname_en" class="form-control ahr-input_1" value="{{ $value->surname_en }}"></td>
                                             </tr>
                                             <tr>
                                                 <th width="80px">国籍：</th>
-                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->country }}"></td>
+                                                <td><select name="country" class="js-example-templating js-states" style="width: 100%">
+                                                  <option value="jp">日本</option>
+                                                  <option value="tw">台湾</option>
+                                                  <option value="vn">ベトナム</option>
+                                                  <option value="kr">韓国</option>
+                                                  <option value="hk">香港</option>
+                                                  <option value="cn">中国</option>
+                                                  <option value="in">インド</option>
+                                                  <option value="id">インドネシア</option>
+                                                  <option value="my">マレーシア</option>
+                                                </select>
+                                                </td>
                                             </tr>
-                                            <tr>
+                                           <!--  <tr>
                                                 <th width="80px">性別：</th>
                                                 @if($value->sex === 1)
                                                 <td>男</td>
@@ -277,34 +305,36 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                                                 @if($value->sex === 0)
                                                 <td>女</td>
                                                 @endif
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <th width="80px">生年月日</th>
-                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->birthday }}"></td>
+                                                <td><input type="text" name="birthday" class="form-control ahr-input_1" value="{{ $value->birthday }}"></td>
                                             </tr>
                                             <tr>
                                                 <th width="80px">現住所*：</th>
                                                 <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->post.$value->city.$value->address}}"></td>
                                             </tr>
-                                            <tr>
-                                                <th width="80px">E-mail*：</th>
-                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ Auth::user()->email }}"></td>
-                                            </tr>
+                                            
                                             <tr>
                                                 <th width="80px">Skype ID*：</th>
-                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->skype_id }}"></td>
+                                                <td><input type="text" name="skype_id" class="form-control ahr-input_1" value="{{ $value->skype_id }}"></td>
                                             </tr>
                                             <tr>
                                                 <th width="80px">Line ID*：</th>
-                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->line_id }}"></td>
+                                                <td><input type="text" name="line_id" class="form-control ahr-input_1" value="{{ $value->line_id }}"></td>
                                             </tr>
                                             <tr>
                                                 <th width="80px">電話番号*：</th>
-                                                <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->phone }}"></td>
+                                                <td><input type="text" name="phone" class="form-control ahr-input_1" value="{{ $value->phone }}"></td>
                                             </tr>
-
                                         </tbody>
+
                                     </table>
+                                    <button type="submit" class="btn btn-w-md btn-gap-v btn-primary  btn_btom">
+                                    變更
+                                    </button>
+                                </form>
+
                                 </div>
                         </div>
                     </div>
@@ -315,11 +345,12 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                             <!-- logo left -->
                             <div class="col-md-12">
                             <!-- EDIT BUTTON -->
-                            <a href="javascript:;" class="float-right update_bt none" >
+                            <a href="javascript:;" class="float-right update_bt none" onclick="update_panel('.panel_2','.panel_2_update');">
                               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
                                 <h6>■　学歴</h6>
                                 <div class="panel-content">
+                              
                                     <table class="user-view_table">
                                         <tbody>
                                             <tr>
@@ -340,6 +371,50 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                                             </tr>
                                         </tbody>
                                     </table>
+                               
+                                </div>
+                            </div>
+                        </div>
+                        <!-- row end -->
+                     
+                    </div>
+                </div>
+                <div class="panel panel-update panel_2_update none">
+                    <div class="panel-body" style="padding-top: 0px !important;">
+                        <div class="row">
+                            <!-- logo left -->
+                            <div class="col-md-12">
+                            <!-- Close BUTTON -->
+                            <a href="javascript:;" class="float-right close_bt" onclick="update_panel('.panel_2_update','.panel_2');">
+                              <i class="fa fa-times-circle" aria-hidden="true"></i>
+                            </a>
+                                <h6>■　学歴</h6>
+                                <div class="panel-content">
+                                <form action="{{url('/personnels/update')}}" method="POST" style="text-align:center;">
+                                {{ csrf_field() }}
+                                    <table class="user-view_table">
+                                        <tbody>
+                                             <tr>
+                                                <th width="100px">最終学歴：</th>
+                                                <td><input type="text" name="school" class="form-control ahr-input_1" value="{{ $value->school}}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="100px">学歴囯名：</th>
+                                                <td><input type="text" name="school_country" class="form-control ahr-input_1" value="{{ $value->school_country}}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="100px">専攻：</th>
+                                                <td><input type="text" name="subject" class="form-control ahr-input_1" value="{{ $value->subject}}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="100px">卒業年度(予定)：</th>
+                                                <td><input type="text" name="end_year" class="form-control ahr-input_1" value="{{ $value->end_year}}"></td>
+                                            </tr>
+                                           
+                                        </tbody>
+                                    </table>
+                                    <button type="submit" class="btn btn-w-md btn-gap-v btn-primary btn_btom">變更</button>
+                                 </form>
                                 </div>
                             </div>
                         </div>
@@ -354,8 +429,63 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                             <!-- logo left -->
                             <div class="col-md-12">
                             <!-- EDIT BUTTON -->
-                            <a href="javascript:;" class="float-right update_bt none" >
+                            <a href="javascript:;" class="float-right update_bt none" onclick="update_panel('.panel_3','.panel_3_update');">
                               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
+                                <h6>■　語学スキル</h6>
+                                <div class="panel-content">
+                                    <table class="user-view_table">
+                                        <tbody>
+                                            @foreach($languagelv as $value)
+                                            @if($value->lv == 3)
+                                            <tr>
+                                                <th width="100px"><span style="color:#000;">・母語レベル</span>
+                                                <td>：
+                                                {{ $value->languagelv_name }}
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @if($value->lv == 2)
+                                            <tr>
+                                                <th width="100px"><span style="color:#000;">・ビジネスレベル</span>
+                                                <td>：
+                                                {{ $value->languagelv_name }}
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @if($value->lv == 1)
+                                            <tr>
+                                                <th width="100px"><span style="color:#000;">・日常会話レベル</span>
+                                                <td>：
+                                                {{ $value->languagelv_name }}
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @if($value->lv == 0)
+                                            <tr>
+                                                <th width="100px"><span style="color:#000;">・初級レベル</span>
+                                                <td>：
+                                                {{ $value->languagelv_name }}
+                                                </td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- row end -->
+                    </div>
+                </div>
+                <div class="panel panel-update panel_3_update none">
+                    <div class="panel-body" style="padding-top: 0px !important;">
+                        <div class="row">
+                            <!-- logo left -->
+                            <div class="col-md-12">
+                            <!-- Close BUTTON -->
+                            <a href="javascript:;" class="float-right close_bt" onclick="update_panel('.panel_3_update','.panel_3');">
+                              <i class="fa fa-times-circle" aria-hidden="true"></i>
                             </a>
                                 <h6>■　語学スキル</h6>
                                 <div class="panel-content">
@@ -555,7 +685,7 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
             <div class="wrapper" style="margin-top:0px !important;">
                 <!-- 1 -->
                 <div class="panel panel-default">
-                <div id="canvas"></div>
+                <canvas id="canvas" width="400" height="400"></canvas>
                 </div>
             </div>
        </div>

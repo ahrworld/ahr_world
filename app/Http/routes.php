@@ -152,12 +152,14 @@ Route::group(['middleware' => 'web'], function () {
     // search
     Route::post('search','UserController@search');
     // user ger business view
+ 
     Route::get('posts/{id}',['as' => 'posts.show' , 'uses' => 'UserController@show']);
     Route::get('schedule/{id}',['as' => 'schedule.show' , 'uses' => 'UserController@schedule']);
     Route::post('schedule/check','UserController@schedule_check');
+    Route::post('personnels/update','UserController@personnels_update');
     Route::post('f','UserController@f');
     Route::post('g','UserController@g');
-
+    
 	Route::get('/bs_end', function(){
 	return view('auth/bs_signin-end');
 	});

@@ -345,6 +345,7 @@ class BusinessController extends Controller
             'member_count' =>  $request->member_count,
             'capital' => $request->capital,
             'amount_of_sales' => $request->amount_of_sales,
+            'school' => $request->school,
             ]);
         return redirect('/profile_b2');
 

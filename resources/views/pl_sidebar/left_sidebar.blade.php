@@ -42,16 +42,29 @@
     border-bottom: 0px !important;
     line-height: 25px;
   }
+  .open>.dropdown-menu {
+    display: block !important;
+  }
+  .custom_sidebar{
+    width:100%;
+    background: #FFF !important;
+  }
 </style>
 <div class="sidebar" style="width:200px; float:left; margin-left:30px;">
       <div id="nav-wrapper">
           <ul id="nav">
               <li><a href="{{ url('profile') }}" class="icon"><img src="{{ asset('ahr/assets/img/b_sidebar1.jpg')}}" height="40">プロフィール編集</a></li>
               <li><a href="{{ url('mail_box') }}" class="icon"><img src="{{ asset('ahr/assets/img/b_sidebar2.jpg')}}" height="40">チャット通知</a></li>
-              <li><a href="{{ url('news') }}" class="icon"><img src="{{ asset('ahr/assets/img/b_sidebar4.jpg')}}" height="40">企業檢索</a></li>
-              <li><a href="#" class="smile">企業檢索</a></li>
-              <li><a href="#" class="smile">お気に入り企業</a></li>
-              <li><a href="#" class="smile">面接日程</a></li>
+              <li class="dropdown">
+                  <a href="javascript:;" class="icon dropdown-toggle"  id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <img src="{{ asset('ahr/assets/img/b_sidebar4.jpg')}}" height="40">企業檢索
+                  </a>
+                  <ul class="dropdown-menu custom_sidebar" aria-labelledby="dropdownMenu1">
+                       <li><a href="{{ url('news') }}" class="smile">企業檢索</a></li>
+                       <li><a href="#" class="smile">お気に入り企業</a></li>
+                       <li><a href="#" class="smile">面接日程</a></li>
+                  </ul>
+              </li>
           </ul>
       </div>
 </div>
