@@ -154,12 +154,26 @@ class UserController extends Controller
                    ->get();
         // pl_image
         $pl_image = Pl_image::where('user_id', $request->user()->id)->get();
+        // skill
+        $skill_title = new skill_title;
+        $skill_category = new skill_category;
+        $skill_name = new skill_name;
+        $skill_datas = $skill_name::all();
+        $skill_titles = $skill_title::all();
+        $skill_categorys = $skill_category::all();
+        $subject = Subject::all();
+        $exp_job_category = Exp_job_category::all();
     	return view('pl_sidebar/profile',[
     		'personnels' => $personnels,
             'per_skill' => $per_skill,
             'languagelv' => $languagelv,
             'exp_job' => $exp_job,
             'pl_image' => $pl_image,
+            'skill_titles' => $skill_titles,
+            'skill_categorys' => $skill_categorys,
+            'skill_datas' => $skill_datas,
+            'exp_job_category' => $exp_job_category,
+            'subject' => $subject,
     	]);
     }
     public function personnels_update(Request $request)
@@ -275,10 +289,24 @@ class UserController extends Controller
                     'user_id' => $request->user()->id,
           ]);
         }
-        $notice = Notice::create([
-                    'notice_title' => $Personnel->family_name.$Personnel->surname.'さんが新着応募',
-                    'notice_content' => $request->content,
+        $notice = Mail_box::create([
+                    'mail_title' => $Personnel->family_name.$Personnel->surname.'さんが新着応募',
+                    'mail_content' => $request->content,
                     'status' => 0,
+                    'mail_status' => 1,
+                    'get_user_id' => $request->b_id,
+                    'post_user_id' => $request->user()->id,
+        ]);
+        return redirect('/news');
+    }
+    public function message(Request $request)
+    {
+        $Personnel = Personnel::where('user_id',$request->user()->id)->first();
+        $notice = Mail_box::create([
+                    'mail_title' => $Personnel->family_name.$Personnel->surname.'さんがリクエスト',
+                    'mail_content' => $request->content,
+                    'status' => 0,
+                    'mail_status' => 0,
                     'get_user_id' => $request->b_id,
                     'post_user_id' => $request->user()->id,
         ]);
@@ -286,11 +314,20 @@ class UserController extends Controller
     }
     public function like(Request $request)
     {
-        $Recruitments_status = Recruitments_status::create([
+        $Personnel = Personnel::where('user_id',$request->user()->id)->first();
+        $ReIf = Recruitments_status::where('recruitments_id',$request->id)->where('user_id',$request->user()->id)->get();
+
+        if ($ReIf->count() == true) {
+           Recruitments_status::where('recruitments_status.recruitments_id', $request->id)
+                            ->where('recruitments_status.user_id', $request->user()->id)
+                            ->update(['status' => 2]);
+        }else{
+           Recruitments_status::create([
                     'status' => 2,
                     'recruitments_id' => $request->id,
                     'user_id' => $request->user()->id,
-        ]);
+          ]);
+        }
         return response()->json('ok');
     }
     public function search(Request $request)

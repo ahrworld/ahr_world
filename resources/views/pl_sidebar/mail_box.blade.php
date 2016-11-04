@@ -47,6 +47,12 @@ $(document).ready(function() {
                 setTimeout(explode, 1100);
             },
             error: function(data) {
+                swal({
+                    title: "error",
+                    type: "error",
+                    timer:1000,
+                    showConfirmButton: false
+                });
 
             }
 
@@ -195,7 +201,7 @@ $(document).ready(function() {
                                             }
                                             </style>
                                             @foreach($mail_box as $value)
-                                                <tr class="mail-unread">
+                                                <tr class="mail-unread" mail="{{$value->mail_id}}">
                                                     <td width="100">
                                                         <label class="ui-checkbox">
                                                             <input class="mail-checkbox" name="checkbox1" type="checkbox" value="option1">

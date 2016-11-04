@@ -34,9 +34,19 @@ $( document ).ready(function() {
                     timer:1000,
                     showConfirmButton: false
                 });
+                var explode = function(){
+                   window.location.reload();
+                };
+                setTimeout(explode, 1100);
             },
             error: function(data) {
                 console.log('Error:', data);
+                swal({
+                    title: "error",
+                    type: "error",
+                    timer:1000,
+                    showConfirmButton: false
+                });
             }
 
         });
@@ -184,7 +194,7 @@ $( document ).ready(function() {
                                             }
                                             </style>
                                             @foreach($mail_box as $value)
-                                                <tr class="mail-unread">
+                                                <tr class="mail-unread" mail="{{$value->mail_id}}">
                                                     <td width="100">
                                                         <label class="ui-checkbox">
                                                             <input class="mail-checkbox" name="checkbox1" type="checkbox" value="option1">
@@ -199,7 +209,7 @@ $( document ).ready(function() {
                                                     <td width="25%">
                                                         <a href="{{ route('mail_bs.show', $value->mail_id) }}">
                                                             <p class="company_name"><i class="fa fa-circle color-info"></i>
-                                                            {{$value->company_name}}
+                                                            {{$value->family_name.$value->surname}}
                                                             </p>
                                                         </a>
                                                     </td>

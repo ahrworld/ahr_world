@@ -69,18 +69,21 @@ class BusinessController extends Controller
                             ->update(['status' => 10]);
         return redirect('news_b2');
     }
-    // maill box
+    // maill box,,
     public function mail_box(Request $request)
     {
         // mail_box
-        $mail_box  = Mail_box::select('mail_box.id as mail_id','mail_title','bsinformations.company_name')
-                 ->where('mail_box.get_user_id', $request->user()->id)
-                 ->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')
-        ->paginate(5);
+        $mail_box  = Mail_box::select('mail_box.id as mail_id','mail_title','personnels.surname','personnels.family_name','mail_box.status')
+                 ->where('mail_box.get_user_id', $request->user()->id)->where('mail_box.mail_status',0)
+                 ->join('personnels', 'mail_box.post_user_id', '=', 'personnels.user_id')
+                 ->orderBy('mail_box.id', 'desc')
+                 ->paginate(50);
         $mail_count = Mail_box::where('mail_box.get_user_id', $request->user()->id)->count();
+        // notice
         $notice = Mail_box::where('mail_box.mail_status',1)
                   ->where('mail_box.get_user_id', $request->user()->id)
-                  ->paginate(5);
+                  ->orderBy('mail_box.id', 'desc')
+                  ->paginate(50);
         $notice_count = Mail_box::where('mail_box.mail_status',1)->where('mail_box.get_user_id', $request->user()->id)->count();
         return view('bs_sidebar.mail_box', [
             'mail_box' => $mail_box,
@@ -91,10 +94,11 @@ class BusinessController extends Controller
     }
     public function mail_view(Request $request , $id)
     {
-        $mail_box  = Mail_box::where('mail_box.id', $id)->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')->first();
-
-        return view('bs_sidebar.mail_box', [
-            'mail_box' => $mail_box
+        $mail_view  = Mail_box::where('mail_box.id', $id)->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')->first();
+        $notice_count = Mail_box::where('mail_box.mail_status',1)->where('mail_box.get_user_id', $request->user()->id)->count();
+        return view('bs_sidebar.mail_view', [
+            'mail_view' => $mail_view,
+            'notice_count' => $notice_count,
         ]);
     }
   

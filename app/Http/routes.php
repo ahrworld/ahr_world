@@ -147,7 +147,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/setting','UserController@setting');
     Route::get('/profile','UserController@profile');
     Route::get('/news','UserController@news');
+    // 應徵
     Route::post('ttt','UserController@ttt');
+    // リクエスト
+    Route::post('message','UserController@message');
+    // お気に入り
     Route::post('like','UserController@like');
     // search
     Route::post('search','UserController@search');

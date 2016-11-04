@@ -20,6 +20,12 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		    $('#id').val(r_id);
 		    $('#b_id').val(b_id);
 		});
+		$('.bt_message').click(function(){
+		    var r_id = $(this).attr('attr');
+		    var b_id = $(this).attr('bs');
+		    $('.m_id').val(r_id);
+		    $('.m_b_id').val(b_id);
+		});
 		$('#news_modal_1 .skype_wrapper .yes').click(function(){
             $('#news_modal_1 .modal-body').removeClass('none');
             $('#news_modal_1 .skype_wrapper').addClass('none');

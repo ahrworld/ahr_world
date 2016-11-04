@@ -93,6 +93,31 @@
   </div>
 </div>
 <!-- modal end -->
+<!-- news_modal_2 modal -->
+<div class="modal fade" id="news_modal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">リクエスト</h4>
+      </div>
+
+      <div class="modal-body">
+      <form class="form_a" action="{{url('/message')}}" method="POST" >
+        {{ csrf_field() }}
+          <input type="hidden" name="id" class="m_id" value="">
+          <input type="hidden" name="b_id" class="m_b_id" value="">
+        <textarea name="content" class="form-control"  rows="5"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default back" data-dismiss="modal">NO</button>
+        <button type="submit" class="btn btn-primary" >送信する</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- modal end -->
 <div class="scorl" style="width:60%; float:left; margin-left:15px;">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -167,8 +192,6 @@
                       console.log('Error:', data);
                   }
             });
-
-
 
         });
 
@@ -254,7 +277,7 @@
                         <div class="img-right">
 
                             <div style="width:150px; float:left;">
-                                <button class="btn ahr-label-blue ahr-btn-lg">リクエストを送る</button>
+                             <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_message" attr="{{$value_r->r_id}}" bs="{{$value_r->user_id}}" data-toggle="modal" data-target="#news_modal_2" >リクエストを送る</a>
                             </div>
                         </div>
                     </div>
@@ -463,23 +486,28 @@
                 <!-- s2 end -->
                 <!-- お気に入り -->
                 <div class="s3 search none">
-                @foreach($Recruitment_like as $key_r => $value_r)
-                <div class="panel panel-default">
+               @foreach($Recruitment_like as $key_r => $value_r)
+                <div class="panel panel-default ">
                     <div class="panel-body">
                         <!-- photo left -->
+                        @if(isset($value_r->image_small))
                         <div class="img-left">
-
+                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </div>
+                        @else
+                        <div class="img-left">
                             <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
                         </div>
+                        @endif
                         <!-- content -->
                         <div class="panel-content">
-                            <a href="{{ route('posts.show', $value_r->id) }}">
+                            <a href="{{ route('posts.show', $value_r->r_id) }}">
+
                             <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
-
-                            <!-- <label>更新日時:<span>2015/12/11</span></label> -->
+                            <span style="padding:5px;background: #ffb61c;color: #FFF;">お気に入り</span>
                             <p>
-                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
+                                <label class="label-gray">業種</label><span class="job_name">{{$value_r->name}}</span></p>
                             <p>
                                 <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
@@ -487,13 +515,15 @@
                             <p>
                                 <label class="label-gray">言語</label><span>{{$value_r->languagelv_name}}</span></p>
                             <p>
-                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
+                                <label class="label-gray">給与</label><span>{{$value_r->monthly_income}}万円～{{$value_r->annual_income}}万円</span></p>
                             <p>
-                                <label class="label-gray">勤務地</label><span></span></p>
+                                <label class="label-gray">勤務地</label><span>{{$value_r->work_site}}</span></p>
                         </div>
+
                         <div class="img-right">
+
                             <div style="width:150px; float:left;">
-                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->id}}">応募する</a>
+                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->r_id}}" bs="{{$value_r->user_id}}" data-toggle="modal" data-target="#news_modal_1" >応募する</a>
                             </div>
                         </div>
                     </div>

@@ -13,7 +13,7 @@
                             <div class="mail-inbox">
                                 <div class="btn-group" dropdown is-open="status.isopen1" style="width:100%;">
                                     <!-- reply -->
-                                    <a href="{{url('/mail_box')}}" style="line-height:20px; margin-bottom:15px !important;" class="btn btn-default mail-refresh">
+                                    <a href="{{url('/mail_box_bs')}}" style="line-height:20px; margin-bottom:15px !important;" class="btn btn-default mail-refresh">
                                         <i class="fa fa-mail-reply"></i>
                                     </a>
                                 </div>
@@ -49,7 +49,7 @@
                                                     <p><i class="fa fa-paperclip"></i> 2 attachements | <a href="javascript:;">Save all attachements</a></p>
                                                 </div> -->
                                                 <div class="mail-actions">
-                                                    <a href="{{url('/mail_box')}}" class="btn btn-sm btn-primary">Reply <i class="fa fa-mail-reply"></i></a>
+                                                    <a href="{{url('/mail_box_bs')}}" class="btn btn-sm btn-primary">Reply <i class="fa fa-mail-reply"></i></a>
                                                 </div>
                                             </div>
                                         </section>

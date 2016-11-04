@@ -55,7 +55,7 @@
 
 	                    <li class="dropdown" dropdown is-open="isopenComment">
 	                        <a href="javascript:;" class="dropdown-toggle member-icon" dropdown-toggle ng-disabled="disabled">
-	                            <span class="badge badge-success">2</span>
+	                            <span class="badge badge-success"></span>
 	                        </a>
 	                        <div class="dropdown-menu with-arrow panel panel-default">
 	                            <div class="panel-heading">
@@ -63,7 +63,7 @@
 	                            </div>
 	                            <ul class="list-group">
 	                                <li class="list-group-item">
-	                                    <a href="javascript:;" class="media">
+	                                    <a href="http://ahr.world/mail_box#chat" class="media">
 	                                        <span class="media-left media-icon">
 	                                            <span class="round-icon sm bg-info"><i class="fa fa-comment-o"></i></span>
 	                                        </span>
@@ -74,7 +74,7 @@
 	                                    </a>
 	                                </li>
 	                                <li class="list-group-item">
-	                                    <a href="javascript:;" class="media">
+	                                    <a href="http://localhost:8000/mail_box#notice" class="media">
 	                                        <span class="media-left media-icon">
 	                                            <span class="round-icon sm bg-danger"><i class="fa fa-comment-o"></i></span>
 	                                        </span>
@@ -99,7 +99,7 @@
 	                    </li>
 	                    <li class="dropdown" dropdown is-open="isopeBell">
 	                        <a href="javascript:;" class="dropdown-toggle ie-icon" dropdown-toggle ng-disabled="disabled">
-	                            <span class="badge badge-warning">3</span>
+	                            <span class="badge badge-warning"></span>
 	                        </a>
 	                        <div class="dropdown-menu with-arrow panel panel-default">
 	                            <div class="panel-heading">
