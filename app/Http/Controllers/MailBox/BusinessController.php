@@ -78,6 +78,7 @@ class BusinessController extends Controller
                  ->join('personnels', 'mail_box.post_user_id', '=', 'personnels.user_id')
                  ->orderBy('mail_box.id', 'desc')
                  ->paginate(50);
+
         $mail_count = Mail_box::where('mail_box.get_user_id', $request->user()->id)->count();
         // notice
         $notice = Mail_box::where('mail_box.mail_status',1)
@@ -101,7 +102,7 @@ class BusinessController extends Controller
             'notice_count' => $notice_count,
         ]);
     }
-  
+
     public function delete(Request $request)
     {
         //delect

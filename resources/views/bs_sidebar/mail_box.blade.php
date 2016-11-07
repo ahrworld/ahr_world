@@ -16,7 +16,7 @@ $( document ).ready(function() {
               return $(this).attr('mail');
         }).get();
         console.log(delete_id);
-       
+
         $.ajax({
             type: "POST",
             url: "/mail_box_bs/delete",
@@ -54,7 +54,7 @@ $( document ).ready(function() {
   });
 
 });
-     
+
 </script>
 <div tyle="background:#FFF; height:100vh;">
     <div class="mail_box_wrapper" style="width:60%;  float:left; margin-left: 20px;  height:500px;">
@@ -98,7 +98,7 @@ $( document ).ready(function() {
                             <!-- mail-inbox -->
                             <div class="mail-inbox">
                                 <div class="btn-group" dropdown style="width:100%; margin-bottom: 20px;">
-                                    
+
                                     <button type="button" class="btn btn-default dropdown-toggle mail-select"  data-toggle="dropdown">
                                         <i class="fa fa-cog" aria-hidden="true"></i>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -165,13 +165,13 @@ $( document ).ready(function() {
                                     <li role="presentation">
                                     <a href="#important" aria-controls="important" role="tab" data-toggle="tab">
                                     <i class="fa fa-star"></i>&nbsp;
-                                    重要メール
+                                    重要
                                     </a>
                                     </li>
                                     <li role="presentation">
                                     <a href="#no_imp" aria-controls="no_imp" role="tab" data-toggle="tab">
                                     <i class="fa fa-pencil"></i>&nbsp;
-                                    非表示メール
+                                    非表示
                                     </a>
                                     </li>
                                 </ul>
@@ -285,7 +285,7 @@ $( document ).ready(function() {
 
                                                         <td width="20%"></td>
 
-                                                       
+
                                                     </tr>
                                                 @endforeach
 

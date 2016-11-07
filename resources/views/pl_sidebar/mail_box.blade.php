@@ -172,13 +172,13 @@ $(document).ready(function() {
                                     <li role="presentation">
                                     <a href="#important" aria-controls="important" role="tab" data-toggle="tab">
                                     <i class="fa fa-star"></i>&nbsp;
-                                    重要メール
+                                    重要
                                     </a>
                                     </li>
                                     <li role="presentation">
                                     <a href="#no_imp" aria-controls="no_imp" role="tab" data-toggle="tab">
                                     <i class="fa fa-pencil"></i>&nbsp;
-                                    非表示メール
+                                    非表示
                                     </a>
                                     </li>
                                 </ul>

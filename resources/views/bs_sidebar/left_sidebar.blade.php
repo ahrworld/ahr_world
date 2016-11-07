@@ -53,7 +53,7 @@
 <div class="sidebar" style="width:200px; float:left; margin-left:30px; ">
       <div id="nav-wrapper">
           <ul id="nav">
-              <li><a href="{{ url('profile_b2') }}" class="icon"><img src="{{ asset('ahr/assets/img/b_sidebar1.jpg')}}" height="40">プロフィール編集</a></li>
+              <li><a href="{{ url('profile_b2') }}" class="icon"><img src="{{ asset('ahr/assets/img/b_sidebar1.jpg')}}" height="40">企業情報</a></li>
               <li><a href="{{ url('mail_box_bs')}}" class="icon"><img src="{{ asset('ahr/assets/img/b_sidebar2.jpg')}}" height="40">チャット通知</a></li>
               <li><a href="#" class="icon"><img src="{{ asset('ahr/assets/img/b_sidebar3.jpg')}}" height="40">おすすめ人材</a></li>
               <li class="dropdown">

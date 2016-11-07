@@ -27,26 +27,26 @@
 </style>
 <script>
   $(document).ready(function() {
-     // var ctx = $("#canvas").get(0).getContext("2d");
-     // var radarChartData = {
-     //        labels: ["特定專門", "生活樣式", "挑戰客服", "奉仕貢獻", "創意創業", "安全安定", "自由自立", "縂合管理"],
-     //        datasets: [
-     //          {
-     //            label: "My Second dataset",
-     //            fillColor: "rgba(151,187,205,0.2)",
-     //            strokeColor: "rgba(151,187,205,1)",
-     //            pointColor: "rgba(151,187,205,1)",
-     //            pointStrokeColor: "#fff",
-     //            pointHighlightFill: "#fff",
-     //            pointHighlightStroke: "rgba(151,187,205,1)",
-     //            data: [28,48,40,19,96,27,100,100]
-     //          }
-     //        ]
-     //      };
-     // var myRadarChart = new Chart(ctx).Radar(radarChartData, {
-     //     pointDot: false
-     // });
-  
+     var ctx = $("#canvas").get(0).getContext("2d");
+     var radarChartData = {
+            labels: ["特定專門", "生活樣式", "挑戰客服", "奉仕貢獻", "創意創業", "安全安定", "自由自立", "縂合管理"],
+            datasets: [
+              {
+                label: "My Second dataset",
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [28,48,40,19,96,27,100,100]
+              }
+            ]
+          };
+     var myRadarChart = new Chart(ctx).Radar(radarChartData, {
+         pointDot: false
+     });
+
     $('#myTabs a:last').click(function () {
       myRadarChart();
     });
@@ -62,7 +62,7 @@
     $('.panel-default').hover(function(){
       $(this).find(".update_bt").toggleClass('none');
     });
-    
+
     $('.update-panel1').hover(function() {
         $('.update_bt1').toggleClass('none');
     });
@@ -76,7 +76,7 @@
   });
 function formatState (state) {
   if (!state.id) { return state.text; }
-  
+
   var $state = $(
     '<span><img height="30" src="ahr/assets/flag/' + state.element.value.toLowerCase() + '.svg" class="img-flag" /> ' + state.text + '</span>'
   );
@@ -97,7 +97,8 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
 <div class="scorl" style="width:60%;  float:left; margin-left:15px;">
      <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#p1" aria-controls="p1" role="tab" data-toggle="tab">プロフィール</a></li>
-        <li role="presentation"><a href="#a2" aria-controls="p2" role="tab" data-toggle="tab">MY ポートフォリオ自己紹介・分析</a></li>
+        <li role="presentation"><a href="#a2" aria-controls="p2" role="tab" data-toggle="tab">実績・作品</a></li>
+        <li role="presentation"><a href="#a2" aria-controls="p2" role="tab" data-toggle="tab">自己分析</a></li>
     </ul>
     <!-- プロフィール Tab panes -->
     <div class="tab-content">
@@ -186,7 +187,7 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                 }
                 .panel-default .update_bt , .panel-update .close_bt{
                     margin-top: 10px;
-                }   
+                }
                 </style>
                 <!-- ■　基本情報 -->
                 @include('pl_sidebar/profile_branch/base')
@@ -202,9 +203,9 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
         <div role="tabpanel" class="tab-pane ahr-panel fade in active" id="a2">
             <div class="wrapper" style="margin-top:0px !important;">
                 <!-- 1 -->
-               <!--  <div class="panel panel-default">
+                <div class="panel panel-default">
                 <canvas id="canvas" width="400" height="400"></canvas>
-                </div> -->
+                </div>
             </div>
        </div>
 
