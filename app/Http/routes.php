@@ -157,7 +157,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('search','UserController@search');
     // user ger business view
  
-    Route::get('posts/{id}',['as' => 'posts.show' , 'uses' => 'UserController@show']);
+    Route::get('posts/{id}/',['as' => 'posts.show' , 'uses' => 'UserController@show']);
     Route::get('schedule/{id}',['as' => 'schedule.show' , 'uses' => 'UserController@schedule']);
     Route::post('schedule/check','UserController@schedule_check');
     Route::post('personnels/update','UserController@personnels_update');

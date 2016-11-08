@@ -59,6 +59,26 @@
         <div class="row">
             <!-- logo left -->
             <div class="col-md-12">
+                   <div class="form-group language_append">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <h5>語言</h5>
+                            <input type="text" class="form-control" name="language[]" placeholder="language">
+                        </div>
+                        <div class="form-group">
+                            <h5>程度</h5>
+                            <select class="form-control" name="languagelv[]">
+                                <option value="3">母語</option>
+                                <option value="2">ビジネス</option>
+                                <option value="1">日常会話</option>
+                                <option value="0">初級</option>
+                            </select>
+                        </div>
+                         <div class="form-group" style="margin-top: 30px;">
+                            <label class="add"></label>
+                        </div>
+                    </div>
+                  </div>
             <!-- Close BUTTON -->
             <a href="javascript:;" class="float-right close_bt" onclick="update_panel('.panel_3_update','.panel_3');">
               <i class="fa fa-times-circle" aria-hidden="true"></i>
@@ -101,8 +121,10 @@
                             </tr>
                             @endif
                             @endforeach
+
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>

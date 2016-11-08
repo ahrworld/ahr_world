@@ -27,26 +27,31 @@
 </style>
 <script>
   $(document).ready(function() {
-     var ctx = $("#canvas").get(0).getContext("2d");
-     var radarChartData = {
-            labels: ["特定專門", "生活樣式", "挑戰客服", "奉仕貢獻", "創意創業", "安全安定", "自由自立", "縂合管理"],
-            datasets: [
-              {
-                label: "My Second dataset",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [28,48,40,19,96,27,100,100]
-              }
-            ]
-          };
-     var myRadarChart = new Chart(ctx).Radar(radarChartData, {
-         pointDot: false
-     });
-
+     // var ctx = $("#canvas").get(0).getContext("2d");
+     // var radarChartData = {
+     //        labels: ["特定專門", "生活樣式", "挑戰客服", "奉仕貢獻", "創意創業", "安全安定", "自由自立", "縂合管理"],
+     //        datasets: [
+     //          {
+     //            label: "My Second dataset",
+     //            fillColor: "rgba(151,187,205,0.2)",
+     //            strokeColor: "rgba(151,187,205,1)",
+     //            pointColor: "rgba(151,187,205,1)",
+     //            pointStrokeColor: "#fff",
+     //            pointHighlightFill: "#fff",
+     //            pointHighlightStroke: "rgba(151,187,205,1)",
+     //            data: [28,48,40,19,96,27,100,100]
+     //          }
+     //        ]
+     //      };
+     // var myRadarChart = new Chart(ctx).Radar(radarChartData, {
+     //     pointDot: false
+     // });
+     // 未修正
+   var id = 1;
+    $('.language_append .add').click(function(){
+      $('.language_append').append($('<div class="form-inline" id="div'+ id +'"> <div class="form-group" style="margin-right:3px;"> <input type="text" class="form-control" name="language[]" placeholder="language"> </div><div class="form-group" style="margin-right:3px;"> <select class="form-control" name="languagelv[]"> <option value="3">母語</option> <option value="2">ビジネス</option> <option value="1">日常会話</option> <option value="0">初級</option> </select> </div><div class="form-group" ><a href="#" class="float-right" style="font-size:25px;" onclick="del('+id+')"> <i class="fa fa-times-circle" aria-hidden="true"></i> </a> </div></div>'));
+      id++;
+    });
     $('#myTabs a:last').click(function () {
       myRadarChart();
     });
@@ -132,9 +137,7 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
 
                            <div class="row">
                                <div class="col-md-12">
-                                   <a href="javascript:;" class="float-right update_bt none" style="position: absolute; text-align: right; width: 96%;">
-                                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                   </a>
+                                 
                                    <div id="image-cropper">
                                        <div class="cropit_wrapper" style="width:70%; float:left;">
                                               <div class="cropit-preview"></div>
@@ -203,9 +206,9 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
         <div role="tabpanel" class="tab-pane ahr-panel fade in active" id="a2">
             <div class="wrapper" style="margin-top:0px !important;">
                 <!-- 1 -->
-                <div class="panel panel-default">
+               <!--  <div class="panel panel-default">
                 <canvas id="canvas" width="400" height="400"></canvas>
-                </div>
+                </div> -->
             </div>
        </div>
 

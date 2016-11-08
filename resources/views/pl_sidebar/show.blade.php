@@ -53,7 +53,7 @@
 
 <div class="wrapper" style="margin-top:0px !important;">
 <div class="s1 search">
-@foreach($res as $key_r => $value_r)
+
 <div class="panel panel-default">
     <div class="panel-body">
         <!-- photo left -->
@@ -68,12 +68,12 @@
         @endif
         <!-- content -->
         <div class="panel-content">
-            <label style="font-size:18px;">{{$value_r->company_name}}</label>
+            <label style="font-size:18px;">{{$res->company_name}}</label>
 
             <p>
-                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
+                <label class="label-gray">業種</label><span>{{$res->name}}</span></p>
             <p>
-                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
+                <label class="label-gray">仕事内容</label><span>{{$res->content}}</span></p>
             <p>
                 <label class="label-gray">応募条件</label><span></span></p>
             <p>
@@ -99,7 +99,7 @@
                   <label style="color:#FF0037;">※テンプレートを使用する場合はボタンを押してください。</label>
                   </div>
                   <input type="hidden" name="id" id="id" value="">
-                  <input type="hidden" name="b_id" id="b_id" value="{{$value_r->user_id}}">
+                  <input type="hidden" name="b_id" id="b_id" value="{{$res->user_id}}">
 
                 <textarea name="content" class="form-control"  rows="5">ご連絡頂き、ありがとうございます。
         ぜひ、「 」について、更にお話を伺えればと思っております。
@@ -121,13 +121,13 @@
         <!-- modal end -->
         <div class="img-right">
             <div style="width:150px; float:left;">
-                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$r_id->r_id}}" bs="{{$value_r->user_id}}" data-toggle="modal" data-target="#news_modal_1">応募する</a>
+                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$r_id->r_id}}" bs="{{$res->user_id}}" data-toggle="modal" data-target="#news_modal_1">応募する</a>
                 <a href="#" class="btn ahr-label-yellow ahr-btn-lg bt_2" attr="{{$r_id->r_id}}">お気に入り</a>
             </div>
         </div>
     </div>
 </div>
-@endforeach
+
 
 </div>
 </div>
@@ -162,11 +162,11 @@
                         </div>
                     </div>
                     <!-- 2 -->
-                    @foreach ($res as $task) @if($task->company_name)
+                    @if($res->company_name)
                     <div style="margin:30px auto;">
-                        <h4 style="font-weight:bold;">会社名:<span>{{$task->company_name}}</span></h4>
+                        <h4 style="font-weight:bold;">会社名:<span>{{$res->company_name}}</span></h4>
                     </div>
-                    @endif @endforeach
+                    @endif 
                     <style>
                     .summary_A .image {
                         width: 130px;
@@ -191,40 +191,38 @@
                         <h6>■会社概要</h6>
                         <table class="table table-bordered ahr-table">
                             <tbody>
-                                @foreach ($res as $task)
                                 <tr>
                                     <th scope="row" width="20%">担当者氏名</th>
-                                    <td>{{ $task->name }}</td>
+                                    <td>{{ $res->name }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" width="20%">本社所在地</th>
-                                    <td>{{ $task->address }}</td>
+                                    <td>{{ $res->address }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" width="20%">企業URL</th>
-                                    <td>{{ $task->web_url }}</td>
+                                    <td>{{ $res->web_url }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" width="20%">創業・設立</th>
-                                    <td>{{ $task->set_up }}</td>
+                                    <td>{{ $res->set_up }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" width="20%">社員国籍</th>
-                                    <td>{{ $task->nationality_members }}</td>
+                                    <td>{{ $res->nationality_members }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" width="20%">総従業員数</th>
-                                    <td>{{ $task->member_count }}</td>
+                                    <td>{{ $res->member_count }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" width="20%">資本金</th>
-                                    <td>{{ $task->capital }}</td>
+                                    <td>{{ $res->capital }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" width="20%">売上高</th>
-                                    <td>{{ $task->amount_of_sales }}</td>
+                                    <td>{{ $res->amount_of_sales }}</td>
                                 </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
