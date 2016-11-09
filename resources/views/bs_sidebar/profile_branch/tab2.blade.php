@@ -9,7 +9,21 @@
       $(".select22").select2({
         maximumSelectionLength: 5,
       });
-
+      var sampleTags = [
+      @foreach ($skill_data as $value)
+      '{{ $value->skill_name }}',
+      @endforeach
+      ];
+      $('#singleFieldTags1').tagit({
+                availableTags: sampleTags
+      });
+      $('#singleFieldTags2').tagit({
+                availableTags: sampleTags
+      });
+      $('#singleFieldTags3').tagit({
+                availableTags: sampleTags
+      });
+      
       $(".finish_sumbit").click(function(){
         $('.form_a').submit();
     });

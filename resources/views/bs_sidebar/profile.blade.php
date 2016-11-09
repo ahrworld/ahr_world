@@ -40,6 +40,9 @@ $(document).ready(function() {
             reader.readAsDataURL(file);
           }
     });
+    $('.nav-tabs li a').click(function(){
+      $('body').scrollTop('500');
+    });
     document.getElementById("uploadBtn").onchange = function () {
         document.getElementById("file-1").value = this.value;
     };

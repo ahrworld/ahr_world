@@ -86,7 +86,13 @@ $( document ).ready(function() {
 });
 </script>
 <div class="scorl" style="width:60%; float:left; margin-left:15px;">
-
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" ><a href="{{url('/profile_b2#a1')}}">企業情報</a></li>
+    <li role="presentation"><a href="{{url('/profile_b2#a2')}}">採用情報</a></li>
+    <li role="presentation"><a href="{{url('/profile_b2#a3')}}">企業カラー</a></li>
+    <li role="presentation" class="active"><a href="{{ url('/interview/edit')}}">面接日程</a></li>
+</ul>
 <div class="tab-content">
 <div role="tabpanel" class="tab-pane ahr-panel active" style="    padding-bottom: 50px;">
 <div class="panel panel-default">

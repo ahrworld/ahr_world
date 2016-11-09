@@ -465,7 +465,7 @@ class BusinessController extends Controller
                                     ->where('recruitments_status.status', 10)
                                     ->get();
         $history = Pl_history::select('personnels.surname','personnels.country',
-                                    'personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','pl_history.updated_at')
+                                    'personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','pl_history.updated_at','pl_history.user_id')
                                ->join('personnels','pl_history.user_id', '=', 'personnels.user_id')
                                ->where('pl_history.bs_user_id', $request->user()->id)
                                ->orderBy('pl_history.updated_at','desc')
