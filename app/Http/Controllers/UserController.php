@@ -19,6 +19,7 @@ use App\ModelBranch\Exp_job;
 use App\ModelBranch\Mail_box;
 use App\ModelBranch\Notice;
 use App\ModelBranch\Exp_job_category;
+use App\ModelBranch\Pl_portfolio;
 use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
 use App\PersonnelBranch\skill_title;
@@ -157,7 +158,9 @@ class UserController extends Controller
                    ->join('exp_job', 'experiences_job.experience', '=', 'exp_job.id')
                    ->get();
         // pl_image
-        $pl_image = Pl_image::where('user_id', $request->user()->id)->get();
+        $pl_image = Pl_image::where('user_id', $request->user()->id)->first();
+        // portfolio
+        $portfolio = Pl_portfolio::where('user_id', $request->user()->id)->orderBy('created_at','desc')->get();
         // skill
         $skill_title = new skill_title;
         $skill_category = new skill_category;
@@ -173,6 +176,7 @@ class UserController extends Controller
             'languagelv' => $languagelv,
             'exp_job' => $exp_job,
             'pl_image' => $pl_image,
+            'portfolio' => $portfolio,
             'skill_titles' => $skill_titles,
             'skill_categorys' => $skill_categorys,
             'skill_datas' => $skill_datas,
@@ -240,19 +244,17 @@ class UserController extends Controller
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
         // 檢索履歷
-        $history = Recruitment::select('recruitments.id as r_id','recruitments.created_at','exp_job.name',
-            'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
-            'content','need_skill','annual_income','monthly_income','work_site','image_small','languagelvs.languagelv_name','pl_history.updated_at')
-                        ->whereNotIn('recruitments.id', function($q){
-                        $q->select('recruitments_id')
-                        ->from('recruitments_status');
-                      })->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
-                        ->join('pl_history', 'recruitments.id', '=', 'pl_history.recruitments_id')
-                        ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-                        ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
-                        ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
-                        ->orderBy('pl_history.updated_at','desc')
-                        ->get();    
+        $history = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
+            'content','need_skill','annual_income','monthly_income','work_site','image_small','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
+                            ->where('recruitments_status.user_id', $request->user()->id)
+                            ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                            ->join('pl_history', 'recruitments.id', '=', 'pl_history.recruitments_id')
+                            ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
+                            ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
+                            ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
+                            ->orderBy('pl_history.updated_at','desc')
+                            ->get();  
         $history_ofa =  Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
             'content','need_skill','annual_income','monthly_income','work_site','image_small','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
                             ->where('recruitments_status.user_id', $request->user()->id)
@@ -394,7 +396,7 @@ class UserController extends Controller
         $r_id = Recruitment::select('recruitments.id as r_id')
                             ->where('recruitments.id', $id)
                             ->first();
-        $bs_id = $res->bsinformations_id;
+        $bs_id = $res->user_id;
        
         $bs_image = Bs_image::where('bs_image.user_id',$res->user_id)->first();
         $history = Pl_history::where('user_id',$request->user()->id)->where('recruitments_id',$id)->first();
@@ -405,7 +407,7 @@ class UserController extends Controller
         }else{
             Pl_history::create([
                'recruitments_id' => $id,
-               'bsinformations_id' => $bs_id,
+               'bs_user_id' => $bs_id,
                'user_id' => $request->user()->id
             ]);
         }
@@ -469,6 +471,20 @@ class UserController extends Controller
             }
         Pl_image::where('user_id',$request->user()->id)->update(['image_small' => $img]);
         return response()->json('update ok');
+       }
+
+    }
+    public function portfolio_add(Request $request){
+        $img = $request->p_file;
+        if(isset($img)){
+      
+        Pl_portfolio::create([
+           'p_title' => $request->p_title,
+           'p_content' => $request->p_content,
+           'p_file' => $img,
+           'user_id' => $request->user()->id,
+        ]);
+        return redirect('profile#p2');
        }
 
     }

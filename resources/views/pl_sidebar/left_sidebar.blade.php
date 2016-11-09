@@ -60,9 +60,9 @@
                   <img src="{{ asset('ahr/assets/img/b_sidebar4.jpg')}}" height="40">企業檢索
                   </a>
                   <ul class="dropdown-menu custom_sidebar" aria-labelledby="dropdownMenu1">
-                       <li><a href="{{ url('news') }}" class="smile">企業檢索</a></li>
-                       <li><a href="#" class="smile">お気に入り企業</a></li>
-                       <li><a href="#" class="smile">面接日程</a></li>
+                       <li><a href="{{ url('news#a1') }}" class="smile">企業檢索</a></li>
+                       <li><a href="{{ url('news#a2') }}" class="smile">お気に入り企業</a></li>
+                       <li><a href="{{ url('news#a3') }}" class="smile">面接日程</a></li>
                   </ul>
               </li>
           </ul>

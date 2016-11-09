@@ -244,7 +244,7 @@ $(document).ready(function() {
                 <div class="panel panel-default">
                     <div class="panel-body" style="padding:0px !important;">
                         <!-- photo left -->
-                         <?php $check = 0; $ok;?>
+                        <?php $check = 0; $ok;?>
                         @foreach($Recruitment_img as $va)
                         @if($va->u_id == $value->user_id)
                         <?php

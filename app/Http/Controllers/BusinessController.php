@@ -19,6 +19,8 @@ use App\ModelBranch\Exp_job;
 use App\ModelBranch\Exp_job_category;
 use App\ModelBranch\Subject;
 use App\ModelBranch\Interview_time;
+use App\ModelBranch\Bs_history;
+use App\ModelBranch\Pl_history;
 use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
 use App\PersonnelBranch\skill_title;
@@ -163,13 +165,13 @@ class BusinessController extends Controller
     }
     public function setting(Request $request)
     {
-        $notice_count = Notice::where('notice.get_user_id', $request->user()->id)->count();
+        $notice_count = Mail_box::where('mail_box.get_user_id', $request->user()->id)->count();
         return view('bs_sidebar.bs_setting', [
             'notice_count' => $notice_count
         ]);
     }
     public function profile(Request $request){
-        $notice_count = Notice::where('notice.get_user_id', $request->user()->id)->count();
+        $notice_count = Mail_box::where('mail_box.get_user_id', $request->user()->id)->count();
         if(Auth::user()->data_status == 0)
         {
             return redirect()->intended('bs_info');
@@ -374,7 +376,7 @@ class BusinessController extends Controller
        return $request->hasFile('image');
     }
     public function news(Request $request){
-        $notice_count = Notice::where('notice.get_user_id', $request->user()->id)->count();
+        $notice_count = Mail_box::where('mail_box.get_user_id', $request->user()->id)->count();
         $Recruitment_img = Recruitments_status::select('pl_image.image_small','pl_image.user_id as u_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('pl_image', 'recruitments_status.user_id', '=', 'pl_image.user_id')
@@ -396,9 +398,12 @@ class BusinessController extends Controller
                                     ->where('recruitments.user_id', $request->user()->id)
                                     ->get();
         // お気に入り登錄者
-        $Recruitment_like = Recruitment::where('recruitments.user_id', $request->user()->id)
-                                    ->join('recruitments_status', 'recruitments.id', '=', 'recruitments_status.recruitments_id')
+        $Recruitment_like = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
+                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
+                                    ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
+                                    ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                                    ->where('recruitments.user_id', $request->user()->id)
                                     ->where('recruitments_status.status', 2)
                                     ->get();
         // 面接調整中
@@ -459,7 +464,15 @@ class BusinessController extends Controller
                                     ->where('recruitments.user_id', $request->user()->id)
                                     ->where('recruitments_status.status', 10)
                                     ->get();
+        $history = Pl_history::select('personnels.surname','personnels.country',
+                                    'personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','pl_history.updated_at')
+                               ->join('personnels','pl_history.user_id', '=', 'personnels.user_id')
+                               ->where('pl_history.bs_user_id', $request->user()->id)
+                               ->orderBy('pl_history.updated_at','desc')
+                               ->groupBy('pl_history.user_id')
+                               ->get();
         return view('/bs_sidebar/news',[
+                'history' => $history,
                 'notice_count' => $notice_count,
                 'Recruitment_img' => $Recruitment_img,
                 'Recruitment' => $Recruitment,
@@ -475,6 +488,7 @@ class BusinessController extends Controller
     }
     public function bs_e(Request $request)
     {
+        $notice_count = Mail_box::where('mail_box.get_user_id', $request->user()->id)->count();
         $Recruitment_e = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
                                     'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.language_lv')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
@@ -485,13 +499,14 @@ class BusinessController extends Controller
                                     ->get();
         return view('/bs_sidebar/bs_e',[
                 'Recruitment_e' => $Recruitment_e,
+                'notice_count' => $notice_count
             ]);
     }
 
     public function interview(Request $request)
     {
         $a = Interview_time::where('bsinformations_id',$request->user()->id)->get();
-        $notice_count = Notice::where('notice.get_user_id', $request->user()->id)->count();
+        $notice_count = Mail_box::where('mail_box.get_user_id', $request->user()->id)->count();
         return view('bs_sidebar.interview_time', [
             'a' => $a,
             'notice_count' => $notice_count

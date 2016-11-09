@@ -1,12 +1,14 @@
+
 body{
 	background: #F1FAFE;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'Droid Sans', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ Pro W3', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', sans-serif;
 }
 .clearfix{
     width: 1250px !important;
 }
 td,tr,th,p,h1,h2,h3,h4,h5,h6,span,a,div,button,label,li,ul,table tbody tr th,table tbody tr td{
 	/*font-family: "小塚ゴシック Pr6N" !important;*/
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'Droid Sans', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ Pro W3', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', sans-serif;
 }
 blockquote{
 	font-size: 14px !important;

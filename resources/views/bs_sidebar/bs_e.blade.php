@@ -43,8 +43,8 @@ $(document).ready(function() {
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#b1" aria-controls="b1" role="tab" data-toggle="tab">応募者管理</a></li>
-        <li role="presentation"><a href="#b2" aria-controls="b2" role="tab" data-toggle="tab">選考管理</a></li>
-        <li role="presentation"><a href="#b3" aria-controls="b3" role="tab" data-toggle="tab">面接管理</a></li>
+        <li role="presentation"><a href="{{url('/news_b2#b2')}}">選考管理</a></li>
+        <li role="presentation"><a href="{{url('/news_b2#b3')}}">面接管理</a></li>
     </ul>
     <!-- 応募者管理 Tab panes -->
     <div class="tab-content">

@@ -489,91 +489,6 @@
                 <!-- s1 end -->
                 <!--  檢索履歷 -->
                 <div class="s2 search none">
-                @foreach($history_ofa as $key => $value)
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <!-- photo left -->
-                        @if(isset($value->image_small))
-                        <div class="img-left">
-                            <img height="175" src="data:image/png;base64,{{$value->image_small}}" alt="">
-                        </div>
-                        @else
-                        <div class="img-left">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
-                        </div>
-                        @endif
-                        <!-- content -->
-                        <div class="panel-content">
-
-                            <a href="{{ route('posts.show', $value->id) }}">
-                            <label style="font-size:18px;">{{$value->company_name}}</label>
-                            </a>
-                            <span style="padding:5px; border:1px solid #CCC;">応募済み</span>
-                         
-                            <p>
-                                <label class="label-gray">業種</label><span class="job_name">{{$value->name}}</span></p>
-                            <p>
-                                <label class="label-gray">仕事内容</label><span>{{$value->content}}</span></p>
-                            <p>
-                                <label class="label-gray">応募条件</label><span>{{$value->need_skill}}</span></p>
-                            <p>
-                                <label class="label-gray">言語</label><span>{{$value->languagelv_name}}</span></p>
-                            <p>
-
-                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
-                            <p>
-                                <label class="label-gray">勤務地</label><span></span></p>
-                        </div>
-                        <div class="img-right">
-                            <div style="width:150px; float:left;">
-                             <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_message" attr="{{$value->r_id}}" bs="{{$value->user_id}}" data-toggle="modal" data-target="#news_modal_2" >リクエストを送る</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-                @foreach($history_like as $key => $value)
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <!-- photo left -->
-                        @if(isset($value->image_small))
-                        <div class="img-left">
-                            <img height="175" src="data:image/png;base64,{{$value->image_small}}" alt="">
-                        </div>
-                        @else
-                        <div class="img-left">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
-                        </div>
-                        @endif
-                        <!-- content -->
-                        <div class="panel-content">
-
-                            <a href="{{ route('posts.show', $value->id) }}">
-                            <label style="font-size:18px;">{{$value->company_name}}</label>
-                            </a>
-                            <span style="padding:5px;background: #ffb61c;color: #FFF;">お気に入り</span>
-                            <p>
-                                <label class="label-gray">業種</label><span class="job_name">{{$value->name}}</span></p>
-                            <p>
-                                <label class="label-gray">仕事内容</label><span>{{$value->content}}</span></p>
-                            <p>
-                                <label class="label-gray">応募条件</label><span>{{$value->need_skill}}</span></p>
-                            <p>
-                                <label class="label-gray">言語</label><span>{{$value->languagelv_name}}</span></p>
-                            <p>
-
-                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
-                            <p>
-                                <label class="label-gray">勤務地</label><span></span></p>
-                        </div>
-                        <div class="img-right">
-                            <div style="width:150px; float:left;">
-                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value->r_id}}" bs="{{$value->user_id}}" data-toggle="modal" data-target="#news_modal_1" >応募する</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
                 @foreach($history as $key => $value)
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -588,12 +503,13 @@
                         </div>
                         @endif
                         <!-- content -->
-                        <div class="panel-content">
+                        <div class="panel-content" style="width:70%;">
 
                             <a href="{{ route('posts.show', $value->id) }}">
                             <label style="font-size:18px;">{{$value->company_name}}</label>
-                            </a>
 
+                            </a>
+                            <span style="float: right; color: #b13d31;">最後觀看:{{$value->updated_at->format('Y年m月d日- H時:i分')}}</span>
                             <p>
                                 <label class="label-gray">業種</label><span class="job_name">{{$value->name}}</span></p>
                             <p>
@@ -608,12 +524,7 @@
                             <p>
                                 <label class="label-gray">勤務地</label><span></span></p>
                         </div>
-                        <div class="img-right">
-                            <div style="width:150px; float:left;">
-                                <a href="#" class="btn ahr-label-blue ahr-btn-lg bt_1" attr="{{$value_r->r_id}}" bs="{{$value_r->user_id}}" data-toggle="modal" data-target="#news_modal_1" >応募する</a>
-                                <a href="#" class="btn ahr-label-yellow ahr-btn-lg bt_2" attr="{{$value_r->r_id}}">お気に入り</a>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 @endforeach
@@ -636,50 +547,7 @@
             <div class="wrapper">
                 <!-- 企業からオファー -->
                 <div class="s1 search">
-                @foreach($Recruitment_like as $key_r => $value_r)
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <!-- photo left -->
-                        @if(isset($value_r->image_small))
-                        <div class="img-left">
-                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
-                        </div>
-                        @else
-                        <div class="img-left">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
-                        </div>
-                        @endif
-                        <!-- content -->
-                        <div class="panel-content">
-
-                            <a href="{{ route('posts.show', $value_r->id) }}">
-                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
-                            </a>
-
-                            <!-- <label>更新日時:<span>{{$value_r->updated_at}}</span></label> -->
-                            <p>
-                                <label class="label-gray">業種</label><span class="job_name">{{$value_r->name}}</span></p>
-                            <p>
-                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
-                            <p>
-                                <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
-                            <p>
-                                <label class="label-gray">言語</label><span>{{$value_r->languagelv_name}}</span></p>
-                            <p>
-
-                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
-                            <p>
-                                <label class="label-gray">勤務地</label><span></span></p>
-                        </div>
-                        <div class="img-right">
-                            <div style="width:150px; float:left;">
-                                <button class="btn ahr-label-blue ahr-btn-lg">応募する</button>
-                                <button class="btn ahr-label-yellow ahr-btn-lg">お気に入り</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
+                
                 </div>
                 <!-- s1 end -->
 
@@ -778,43 +646,7 @@
                 <!-- s3 end -->
                 <!-- 足跡 -->
                 <div class="s4 search none">
-                @foreach($Recruitment_like as $key_r => $value_r)
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <!-- photo left -->
-                        <div class="img-left">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
-                        </div>
-                        <!-- content -->
-                        <div class="panel-content">
-
-                            <a href="{{ route('posts.show', $value_r->id) }}">
-                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
-                            </a>
-
-                            <label>更新日時:<span>{{$value_r->updated_at}}</span></label>
-                            <p>
-                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
-                            <p>
-                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
-                            <p>
-                                <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
-                            <p>
-                                <label class="label-gray">言語</label><span>{{$value_r->languagelv_name}}</span></p>
-                            <p>
-                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
-                            <p>
-                                <label class="label-gray">勤務地</label><span></span></p>
-                        </div>
-                        <div class="img-right">
-                            <div style="width:150px; float:left;">
-                                <button class="btn ahr-label-blue ahr-btn-lg">応募する</button>
-                                <button class="btn ahr-label-yellow ahr-btn-lg">お気に入り</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
+                
                 </div>
                 <!-- s4 end -->
             </div>
