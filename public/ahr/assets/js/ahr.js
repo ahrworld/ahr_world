@@ -4,7 +4,15 @@ $.ajaxSetup({
     }
 });
 var token = '{{ Session::token() }}';
+
 $(document).ready(function() {
+// 過場動畫
+$("#fakeLoader").fakeLoader({
+             timeToHide:300, //Time in milliseconds for fakeLoader disappear
+             zIndex:999, // Default zIndex
+             spinner:"spinner2",//Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7' 
+             bgColor:"#0094e5", //Hex, RGB or RGBA colors
+});
 // 修正tabs連結
 var url = document.location.toString();
 if (url.match('#')) {
@@ -25,6 +33,10 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		    var b_id = $(this).attr('bs');
 		    $('.m_id').val(r_id);
 		    $('.m_b_id').val(b_id);
+		});
+		$('.giveup').click(function(){
+		    var rs_id = $(this).attr('attr');
+		    $('.rs_id').val(rs_id);
 		});
 		$('#news_modal_1 .skype_wrapper .yes').click(function(){
             $('#news_modal_1 .modal-body').removeClass('none');
@@ -233,7 +245,7 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		      }
 		  });
 		});
-		$('.update_photo_smile #image-cropper .ok-btn').click(function() {
+		$('.update_photo_smile_bs #image-cropper .ok-btn').click(function() {
 		  var imageData = $('.update_photo_smile #image-cropper').cropit('export');
 		  $('.update_photo_smile #image-cropper .hidden_image_data').val(imageData);
 		  $.ajax({
@@ -261,6 +273,7 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		$('#p1 .update_photo_smile #image-cropper .ok-btn').click(function() {
 		  var imageData = $('#p1 .update_photo_smile #image-cropper').cropit('export');
 		  $('#p1 .update_photo_smile #image-cropper .hidden_image_data').val(imageData);
+
 		  $.ajax({
 		      type: "POST",
 		      url: "/image_small",
@@ -268,14 +281,16 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		      dataType: "json",
 		      data:  $('#p1 .update_photo_smile #image-cropper .cropit_form').serialize(),
 		      success: function(data) {
-		           console.log(JSON.stringify(data));
 		           swal({
 		               title: "完成",
 		               type: "success",
 		               timer:1000,
 		               showConfirmButton: false
 		           })
-		           setTimeout("location.reload();", 1000);
+		           $('.update_photo_smile').addClass('none');
+		           $('.update_1').removeClass('none');
+		           $('.photo').css('background-image','url(' + "data:image/png;base64," + data['image_small'] + ')');
+		           // setTimeout("location.reload();", 1000);
 		      },
 		      error: function(data) {
 		          console.log('Error:', data);

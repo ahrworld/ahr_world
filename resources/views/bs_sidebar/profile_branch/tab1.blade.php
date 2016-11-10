@@ -140,7 +140,7 @@ background-image:url(data:image/png;base64,{{$value->image_small}});
                </div>
        </div>
        <!-- smile photo -->
-       <div class="panel-body update_photo_smile none">
+       <div class="panel-body update_photo_smile_bs none">
 
               <div class="row">
                   <div class="col-md-12">

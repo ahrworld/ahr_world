@@ -121,9 +121,13 @@ var update_panel = function(a,b){
 </script>
 
 <style>
+@if(isset($pl_image->image_small))
+
 .photo{
 background-image:url(data:image/png;base64,{{$pl_image->image_small}});
 }
+
+@endif
 </style>
 
 <div class="scorl" style="width:60%;  float:left; margin-left:15px;">
@@ -134,6 +138,7 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
     </ul>
     <!-- プロフィール Tab panes -->
     <div class="tab-content">
+    
         <div role="tabpanel" class="tab-pane ahr-panel fade in active" id="p1">
             <div class="wrapper" style="margin-top:0px !important;">
                 <!-- 1 -->
@@ -235,7 +240,7 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
             <!-- wrapper end -->
         </div>
         <!-- 作品 tab-panel end -->
-        <div role="tabpanel" class="tab-pane ahr-panel fade in active" id="p2">
+        <div role="tabpanel" class="tab-pane ahr-panel fade in" id="p2">
             @include('pl_sidebar/profile_branch/portfolio')
         </div>
  

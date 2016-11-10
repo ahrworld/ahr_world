@@ -83,7 +83,6 @@
     </div>
   </div>
 </div>
-<!-- modal end -->
 <!-- news_modal_2 modal -->
 <div class="modal fade" id="news_modal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -101,14 +100,34 @@
         <textarea name="content" class="form-control"  rows="5"></textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default back" data-dismiss="modal">NO</button>
+        <button type="button" class="btn btn-default back" data-dismiss="modal">キャンセル</button>
         <button type="submit" class="btn btn-primary" >送信する</button>
       </div>
       </form>
     </div>
   </div>
 </div>
-<!-- modal end -->
+<!-- giveup modal -->
+<div class="modal fade" id="giveup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="top:150px;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">辭退しますか？</h4>
+      </div>
+      
+      <div class="modal-footer">
+        <form action="{{url('/giveup')}}" method="POST" >
+        {{ csrf_field() }}
+        <input type="hidden" name="rs_id" class="rs_id" value="">
+        <button type="button" class="btn btn-default back" data-dismiss="modal">キャンセル</button>
+        <button type="submit" class="btn btn-primary" >辭退する</button>
+      </div>
+       </form>
+    </div>
+  </div>
+</div>
+
 <div class="scorl" style="width:60%; float:left; margin-left:15px;">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -397,7 +416,9 @@
                         </div>
                     </div>
                 </div>
+
                 @endforeach
+                 
                 @foreach($Recruitment_like as $key_r => $value_r)
                 <div class="panel panel-default ">
                     <div class="panel-body">
@@ -661,7 +682,7 @@
                 <button class="btn btn-default ahr-button_5 s3_btn">内定企業</button>
             </div>
             <div class="wrapper">
-                <!-- 1 -->
+                <!-- 面接日程 -->
                 <div class="s1 search">
                 @foreach($Recruitment_a as $key_r => $value_r)
                 <div class="panel panel-default">
@@ -678,9 +699,6 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-
-
-
                             <a href="#">
                             <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
@@ -703,12 +721,118 @@
                             <div style="width:160px; float:left;">
                                 <!-- <button class="btn ahr-label-blue ahr-btn-lg">スケジュールを選ぶ</button> -->
                                       <a href="{{ route('schedule.show', $value_r->r_id) }}" class="btn ahr-label-blue ahr-btn-lg">スケジュールを選ぶ</a>
+                               
+                                      <button type="button" class="btn ahr-label-yellow ahr-btn-lg giveup" attr="{{$value_r->r_id}}" data-toggle="modal" data-target="#giveup">辞退する</button>
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                </div>
+                <!-- 選考進行中 -->
+                <div class="s2 search none">
+                  <!-- 解決空白狀況 -->
+                  <!-- <div class="row">
+                    <div class="col-sm-12">
+                      <div class="panel panel-default">
+                          <div class="panel-body" style="height: 300px;">
+                          </div>
+                      </div>
+                    </div>
+                  </div> -->
+                @foreach($Recruitment_check as $key_r => $value_r)
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- photo left -->
+                        @if(isset($value_r->image_small))
+                        <div class="img-left">
+                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </div>
+                        @else
+                        <div class="img-left">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        </div>
+                        @endif
+                        <!-- content -->
+                        <div class="panel-content">
+                            <a href="#">
+                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
+                            </a>
+                            <span style="padding:4px 15px; border: 1px #2ec1cc solid; color: #2ec1cc;">進行中</span>
+
+                            <p>
+                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
+                            <p>
+                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
+                            <p>
+                                <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
+                            <p>
+                                <label class="label-gray">言語</label><span>{{$value_r->languagelv_name}}</span></p>
+                            <p>
+                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
+                            <p>
+                                <label class="label-gray">勤務地</label><span></span></p>
+                        </div>
+                        <div class="img-right">
+                            <div style="width:160px; float:left;">
+                                      <button class="btn ahr-label-blue ahr-btn-lg" >メールBOXへ</button>
                                 <form action="{{url('/g')}}" method="POST" >
                                       {{ csrf_field() }}
                                       <input type="hidden" name="rs_id" class="rs_id" value="{{$value_r->r_id}}">
-                                      <button class="btn ahr-label-yellow ahr-btn-lg">辞退する</button>
+                                      <button type="button" class="btn ahr-label-yellow ahr-btn-lg giveup" attr="{{$value_r->r_id}}" data-toggle="modal" data-target="#giveup">辞退する</button>
                                 </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                </div>
+                <!-- 內定企業 -->
+                <div class="s3 search none">
+                @foreach($Recruitment_ok as $key_r => $value_r)
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- photo left -->
+                        @if(isset($value_r->image_small))
+                        <div class="img-left">
+                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </div>
+                        @else
+                        <div class="img-left">
+                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        </div>
+                        @endif
+                        <!-- content -->
+                        <div class="panel-content">
+                            <a href="#">
+                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
+                            </a>
+                            <span style="padding:4px 15px; color: #FFF; background: #0094e5;">內定</span>
+
+                            <p>
+                                <label class="label-gray">業種</label><span>{{$value_r->name}}</span></p>
+                            <p>
+                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
+                            <p>
+                                <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
+                            <p>
+                                <label class="label-gray">言語</label><span>{{$value_r->languagelv_name}}</span></p>
+                            <p>
+                                <label class="label-gray">給与</label><span>000万円～000万円</span></p>
+                            <p>
+                                <label class="label-gray">勤務地</label><span></span></p>
+                        </div>
+                        <div class="img-right">
+                            <div style="width:160px; float:left;">
+                                      <button class="btn ahr-label-blue ahr-btn-lg">內定報告する</button>
+                                      <button class="btn ahr-label-blue ahr-btn-lg">メールBOXへ</button>
+                                      <form action="{{url('/g')}}" method="POST" >
+                                            {{ csrf_field() }}
+                                            <input type="hidden" name="rs_id" class="rs_id" value="{{$value_r->r_id}}">
+                                            <button type="button" class="btn ahr-label-yellow ahr-btn-lg giveup" attr="{{$value_r->r_id}}" data-toggle="modal" data-target="#giveup">辞退する</button>
+                                      </form>
 
                             </div>
                         </div>

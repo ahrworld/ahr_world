@@ -34,6 +34,7 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -303,6 +304,30 @@ class UserController extends Controller
                             ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
+        // 選考進行
+        $Recruitment_check = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','image_small','exp_job.name',
+            'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.user_id as b_user_id',
+            'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
+                            ->where('recruitments_status.user_id', $request->user()->id)
+                            ->where('recruitments_status.status',9)
+                            ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                            ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
+                            ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
+                            ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
+                            ->get();
+        // 內定
+        $Recruitment_ok = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','image_small','exp_job.name',
+            'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.user_id as b_user_id',
+            'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
+                            ->where('recruitments_status.user_id', $request->user()->id)
+                            ->where('recruitments_status.status',10)
+                            ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                            ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
+                            ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
+                            ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
+                            ->get();
         return view('pl_sidebar/news',[
           'bs_image' => $bs_image,
           'Recruitment' => $Recruitment,
@@ -311,6 +336,8 @@ class UserController extends Controller
           'history_like' => $history_like,
           'Recruitment_ofa' => $Recruitment_ofa,
           'Recruitment_like' => $Recruitment_like,
+          'Recruitment_check' => $Recruitment_check,
+          'Recruitment_ok' => $Recruitment_ok,
           'Recruitment_a' => $Recruitment_a,
         ]);
     }
@@ -333,7 +360,7 @@ class UserController extends Controller
         $notice = Mail_box::create([
                     'mail_title' => $Personnel->family_name.$Personnel->surname.'さんが新着応募',
                     'mail_content' => $request->content,
-                    'status' => 0,
+                    'status' => 1,
                     'mail_status' => 1,
                     'get_user_id' => $request->b_id,
                     'post_user_id' => $request->user()->id,
@@ -463,14 +490,16 @@ class UserController extends Controller
         $img = $request->image_small;
         $img = str_replace('data:image/png;base64,', '', $img);
            if (is_null($where)) {
-                Pl_image::create([
+                $image = Pl_image::create([
                    'image_small' => $img,
                    'user_id' => $request->user()->id,
                 ]);
-                return response()->json('new ok');
+                $image =  Pl_image::where('user_id',$request->user()->id)->first();
+                return response()->json($image);
             }
         Pl_image::where('user_id',$request->user()->id)->update(['image_small' => $img]);
-        return response()->json('update ok');
+        $update =  Pl_image::where('user_id',$request->user()->id)->first();
+        return response()->json($update);
        }
 
     }
@@ -498,11 +527,12 @@ class UserController extends Controller
             'notice_count' => $notice_count
         ]);
     }
-    public function g(Request $request)
+    public function giveup(Request $request)
     {
-        Recruitments_status::where('recruitments_status.id', $request->rs_id)
-                            ->update(['status' => 0]);
-        return redirect('news');
+       
+        Recruitments_status::where('recruitments_status.recruitments_id', $request->rs_id)
+                            ->delete();
+        return redirect('news#a3');
     }
 
 
