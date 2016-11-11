@@ -458,6 +458,12 @@ class UserController extends Controller
             'id' => $id,
         ]);
     }
+    // analysis
+    public function analysis(Request $request)
+    {
+        return $request->all();
+
+    }
     // 確認行程時間
     public function schedule_check(Request $request)
     {

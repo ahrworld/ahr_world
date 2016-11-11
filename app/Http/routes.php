@@ -149,6 +149,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/mail_box/delete','MailBox\UserController@delete');
     Route::get('/setting','UserController@setting');
     Route::get('/profile','UserController@profile');
+    // 分析
+    Route::post('/analysis','UserController@analysis');
     Route::get('/news','UserController@news');
     // 應徵
     Route::post('ttt','UserController@ttt');
@@ -160,6 +162,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('search','UserController@search');
     // 辭退
     Route::post('giveup','UserController@giveup');
+
     // user ger business view
  
     Route::get('posts/{id}/',['as' => 'posts.show' , 'uses' => 'UserController@show']);

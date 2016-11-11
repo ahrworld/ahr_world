@@ -15,6 +15,9 @@
     <!-- fakeLoader  -->
     <link rel="stylesheet" href="{{ asset('assets/css/fakeLoader.css')}}">
     <script src="{{ asset('assets/js/fakeLoader.min.js')}}"></script>
+    <!-- jquery step -->
+<script src="ahr/bower_components/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
+
     <!-- bootstrap-sweetalert -->
     <script src="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.css')}}">
