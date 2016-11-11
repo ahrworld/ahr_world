@@ -359,7 +359,7 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
                                                        </div>
                                                        <div class="panel-body">
                                                            <div class="dl-horizontal">
-                                                           <input type="hidden" name="status" value="a"> 
+                                                           <input type="hidden" name="status[]" value="a"> 
                                                                    <label class="ui-radio"><input  class="as" status="a" name="radio1" type="radio" value="1"><span>Option 1</span></label>
                                                                    <label class="ui-radio"><input  name="radio1" type="radio" value="2"><span>Option 2</span></label>
                                                                    <label class="ui-radio"><input name="radio1" type="radio" value="3"><span>Option 3</span></label>
@@ -377,7 +377,7 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
                                                               </div>
                                                               <div class="panel-body">
                                                                   <div class="dl-horizontal">
-                                                                  <input type="hidden" name="status" value="b"> 
+                                                                  <input type="hidden" name="status[]" value="b"> 
                                                                           <label class="ui-radio"><input name="radio2" type="radio" value="1"><span>Option 1</span></label>
                                                                           <label class="ui-radio"><input  class="as" status="b" name="radio2" type="radio" value="2"><span>Option 2</span></label>
                                                                           <label class="ui-radio"><input name="radio2" type="radio" value="3"><span>Option 3</span></label>

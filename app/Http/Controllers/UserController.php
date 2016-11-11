@@ -461,7 +461,8 @@ class UserController extends Controller
     // analysis
     public function analysis(Request $request)
     {
-        return $request->all();
+        
+        return $request->radio1;
 
     }
     // 確認行程時間
