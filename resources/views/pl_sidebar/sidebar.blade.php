@@ -12,9 +12,6 @@
     <!-- ahr -->
     <script src="{{ asset('ahr/assets/js/ahr.js')}}"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/ahr.css')}}">
-    <!-- fakeLoader  -->
-    <link rel="stylesheet" href="{{ asset('assets/css/fakeLoader.css')}}">
-    <script src="{{ asset('assets/js/fakeLoader.min.js')}}"></script>
     <!-- jquery step -->
     <script src="ahr/bower_components/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
     <!-- bootstrap-sweetalert -->
@@ -43,8 +40,6 @@
 	}
 </style>
 <body style="min-width:1260px;">
-<!-- fakeLoader -->
-<div id="fakeLoader"></div>
 
 		<!-- header -->
 		<section id="header" class="top-header" style="position:fixed; top:0px; width:100% margin:auto; box-shadow: 0px 6px 10px -3px #9B9B9B;">

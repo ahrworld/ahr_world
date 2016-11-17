@@ -518,6 +518,7 @@ class UserController extends Controller
            'p_title' => $request->p_title,
            'p_content' => $request->p_content,
            'p_file' => $img,
+           'p_url' => $request->p_url,
            'user_id' => $request->user()->id,
         ]);
         return redirect('profile#p2');

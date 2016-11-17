@@ -389,7 +389,7 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-                            <a href="{{ route('posts.show', $value_r->r_id) }}">
+                            <a href="{{ route('business.show', $value_r->r_id) }}">
 
                             <label style="font-size:18px;">{{$value_r->company_name}}
                            </label>
@@ -434,7 +434,7 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-                            <a href="{{ route('posts.show', $value_r->r_id) }}">
+                            <a href="{{ route('business.show', $value_r->r_id) }}">
 
                             <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
@@ -477,7 +477,7 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-                            <a href="{{ route('posts.show', $value_r->r_id) }}">
+                            <a href="{{ route('business.show', $value_r->r_id) }}">
 
                             <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
@@ -526,7 +526,7 @@
                         <!-- content -->
                         <div class="panel-content" style="width:70%;">
 
-                            <a href="{{ route('posts.show', $value->id) }}">
+                            <a href="{{ route('business.show', $value->id) }}">
                             <label style="font-size:18px;">{{$value->company_name}}</label>
 
                             </a>
@@ -590,7 +590,7 @@
                         <!-- content -->
                         <div class="panel-content">
 
-                            <a href="{{ route('posts.show', $value_r->id) }}">
+                            <a href="{{ route('business.show', $value_r->id) }}">
                             <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
 
@@ -635,7 +635,7 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-                            <a href="{{ route('posts.show', $value_r->r_id) }}">
+                            <a href="{{ route('business.show', $value_r->r_id) }}">
 
                             <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>

@@ -242,3 +242,26 @@
         <!-- row end -->
     </div>
 </div>
+<div class="panel panel-default panel_4_1">
+    <div class="panel-body" style="padding-top: 0px !important;">
+        <div class="row">
+            <!-- logo left -->
+            <div class="col-md-12">
+            <!-- EDIT BUTTON -->
+            <a href="javascript:;" class="float-right update_bt none" onclick="update_panel('.panel_4_1','.panel_4_1_update');">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </a>
+                <h6>■　資格/免許</h6>
+                <div class="panel-content">
+                    <table class="user-view_table">
+                        <tbody>
+
+                       
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- row end -->
+    </div>
+</div>

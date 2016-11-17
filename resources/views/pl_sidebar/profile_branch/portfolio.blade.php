@@ -19,6 +19,12 @@
                      <textarea class="form-control" required="required" name="p_content" placeholder="例：サイトリニューアルのデザインを担当させて頂きました。画像は納品したときのトップページのデザイン案です。" name="blog_content" rows="3"></textarea>
                    </div>
                  </div>
+                 <div class="form-group" style="height: 75px;">
+                   <label for="p_content" class="col-sm-3 control-label">ビデオURL</label>
+                   <div class="col-sm-9">
+                      <input type="text" class="form-control" name="p_url" id="p_url" placeholder="例：http://www.youtube.com。">
+                   </div>
+                 </div>
                  <div class="form-group">
                     <label for="p_File" class="col-sm-3">ポートフォリオ画像</label>
                     <div  class="col-sm-9">
@@ -37,11 +43,12 @@
     <div class="row">
     @foreach($portfolio as $value)
     <div class="col-sm-6">
-        <div class="thumbnail portfolio_view" title="{{$value->p_title}}" content="{{$value->p_content}}" data-toggle="modal" data-target="#portfolio_modal">
+        <div class="thumbnail portfolio_view" title="{{$value->p_title}}" content="{{$value->p_content}}" p_url="{{$value->p_url}}" data-toggle="modal" data-target="#portfolio_modal">
             <img alt="{{$value->p_title}}" src="{{$value->p_file}}">
             <div class="caption">
                 <h3>{{$value->p_title}}</h3>
                 <p>{{$value->p_content}}</p>
+                <p><a href="{{$value->p_url}}" style="color:#1c7ebb;">{{$value->p_url}}</a></p>
             </div>
         </div>    
     </div>
@@ -62,6 +69,8 @@
         <img src="" alt="" class="portfolio_img" width="100%"> 
         <h3 class="portfolio_title"></h3>
         <h5 class="portfolio_content"></h5>
+        <h5><a href="" style="color:#1c7ebb;" class="portfolio_url"></a></h5>
+      
       </div>
     </div>
   </div>

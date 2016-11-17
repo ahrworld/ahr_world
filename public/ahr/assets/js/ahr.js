@@ -6,13 +6,7 @@ $.ajaxSetup({
 var token = '{{ Session::token() }}';
 
 $(document).ready(function() {
-// 過場動畫
-$("#fakeLoader").fakeLoader({
-             timeToHide:300, //Time in milliseconds for fakeLoader disappear
-             zIndex:999, // Default zIndex
-             spinner:"spinner2",//Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7' 
-             bgColor:"#0094e5", //Hex, RGB or RGBA colors
-});
+
 // 修正tabs連結
 var url = document.location.toString();
 if (url.match('#')) {

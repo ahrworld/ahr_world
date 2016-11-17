@@ -104,6 +104,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/bs_info', 'BusinessController@bs_info');
     Route::get('/test', 'BusinessController@test');
+
     Route::post('/business_a', 'BusinessController@business_a');
     Route::post('/business_b', 'BusinessController@business_b');
 
@@ -117,7 +118,7 @@ Route::group(['middleware' => 'web'], function () {
     // bs_summary
     Route::post('/business/summary', 'BusinessController@summary');
     Route::post('/business/recruitments_add', 'BusinessController@recruitments_add');
-
+    
     // bs_blog
     Route::get('/blog', function(){
          return view('bs_sidebar/profile_branch/tab3');
@@ -129,7 +130,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/business/blog','BusinessController@blog');
     Route::post('/business/preview','BusinessController@preview');
     Route::get('/news_b2', 'BusinessController@news');
-
+    Route::get('personnel/{id}/',['as' => 'personnels.show' , 'uses' => 'BusinessController@show']);
     // bs mail_box
     Route::get('/mail_box_bs','MailBox\BusinessController@mail_box');
     Route::get('/mail_box_bs/{id}',['as' => 'mail_bs.show' , 'uses' => 'MailBox\BusinessController@mail_view']);
@@ -165,7 +166,7 @@ Route::group(['middleware' => 'web'], function () {
 
     // user ger business view
  
-    Route::get('posts/{id}/',['as' => 'posts.show' , 'uses' => 'UserController@show']);
+    Route::get('business/company/{id}/',['as' => 'business.show' , 'uses' => 'UserController@show']);
     Route::get('schedule/{id}',['as' => 'schedule.show' , 'uses' => 'UserController@schedule']);
     Route::post('schedule/check','UserController@schedule_check');
     Route::post('personnels/update','UserController@personnels_update');

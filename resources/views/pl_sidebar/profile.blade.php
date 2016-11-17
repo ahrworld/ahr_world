@@ -84,6 +84,7 @@ var token = '{{ Session::token() }}';
     $(".js-example-templating").select2({
       templateResult: formatState
     });
+
     // 上傳作品圖轉base64
     $("#p_File").change(function(){
       readImage( this );
@@ -92,11 +93,15 @@ var token = '{{ Session::token() }}';
        var img = $(this).find('img').attr('src');
        var title = $(this).attr('title');
        var content = $(this).attr('content');
+       var p_url = $(this).attr('p_url');
        $('#portfolio_modal .portfolio_img').attr('src',img);
        $('#portfolio_modal .portfolio_title').html(title);
        $('#portfolio_modal .portfolio_content').html(content);
+       $('#portfolio_modal .portfolio_url').html(p_url);
+       $('#portfolio_modal .portfolio_url').attr('href',p_url);
     });
     // analysis_wizard
+
     $('#analysis_wizard').bootstrapWizard({onNext: function(tab, navigation, index) {
       $('#analysis_wizard .navbar .navbar-tab li').eq(index).addClass('done');
       // Set the name for the next tab
@@ -105,12 +110,18 @@ var token = '{{ Session::token() }}';
     var $total = navigation.find('li').length;
     var $current = index+1;
     var $percent = ($current/$total) * 100;
+    // 判斷總數
+    var count = $('.number').size();
+    var done = $('.number.done.active').text();
+    $('.number_count').html(count);
+    $('.number_done').html(done);
 
     $('#analysis_wizard').find('.bar').html($percent + '%');
     if($current >= $total) {
       $('#analysis_wizard').find('.pager .next').hide();
       $('#analysis_wizard').find('.pager .finish').show();
       $('#analysis_wizard').find('.pager .finish').removeClass('disabled');
+
     } else {
       $('#analysis_wizard').find('.pager .next').show();
       $('#analysis_wizard').find('.pager .finish').hide();
@@ -182,7 +193,8 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
      <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#p1" aria-controls="p1" role="tab" data-toggle="tab">プロフィール</a></li>
         <li role="presentation"><a href="#p2" aria-controls="p2" role="tab" data-toggle="tab">実績・作品</a></li>
-        <li role="presentation"><a href="#p3" aria-controls="p3" role="tab" data-toggle="tab">自己分析</a></li>
+        <li role="presentation"><a href="#p3" aria-controls="p3" role="tab" data-toggle="tab">自己PR</a></li>
+        <li role="presentation"><a href="#p4" aria-controls="p4" role="tab" data-toggle="tab">自己分析</a></li>
     </ul>
     <!-- プロフィール Tab panes -->
     <div class="tab-content">
@@ -291,51 +303,61 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
         <div role="tabpanel" class="tab-pane ahr-panel fade in" id="p2">
             @include('pl_sidebar/profile_branch/portfolio')
         </div>
-         <!-- 自己分析 -->
         <div role="tabpanel" class="tab-pane ahr-panel fade in" id="p3">
-<style>
-  .analysis_form .number{
-      list-style: none;
-      float: left;
-      padding: 7px 10px 7px 10px;
-      margin-right: 5px;
-      border-radius: 20px;
-      background: #ACCFF1;
-      margin-top: 20px;
-      display: block;
-      border: 3px double #EEE;
-      color: #FFF !important;
-  }
-  .analysis_form .number.done{
-    background: #3197FA;
-  }
-  .analysis_form .number.active{
-    background: #FFF !important;
-    border: 3px double #CCC;
-    color: #000 !important;
-  }
-  .analysis_form .wizard{
-    display: inline-block;
-    padding: 5px 14px;
-    background-color: #f6f6f6;
-    border: 1px solid #f6f6f6;
-    border-radius: 15px;
-  }
-  .analysis_form .wizard li a{
-    background-color: #FFF !important;
-    border: 1px #CCC solid;
-  }
-  .analysis_form .wizard li a:hover{
-    background-color: #1c7ebb !important;
-    color: #FFF;
-  }
-</style>
+           
+        </div>
+         <!-- 自己分析 -->
+        <div role="tabpanel" class="tab-pane ahr-panel fade in" id="p4">
+        <style>
+          .analysis_form .number{
+              list-style: none;
+              float: left;
+              padding: 7px 10px 7px 10px;
+              margin-right: 5px;
+              border-radius: 20px;
+              background: #ACCFF1;
+              margin-top: 20px;
+              display: block;
+              border: 3px double #EEE;
+              color: #FFF !important;
+          }
+          .analysis_form .number.done{
+            background: #3197FA;
+          }
+          .analysis_form .number.active{
+            background: #FFF !important;
+            border: 3px double #CCC;
+            color: #000 !important;
+          }
+          .analysis_form .wizard{
+            display: inline-block;
+            padding: 5px 14px;
+            background-color: #f6f6f6;
+            border: 1px solid #f6f6f6;
+            border-radius: 15px;
+          }
+          .analysis_form .wizard li a{
+            background-color: #FFF !important;
+            border: 1px #CCC solid;
+          }
+          .analysis_form .wizard li a:hover{
+            background-color: #1c7ebb !important;
+            color: #FFF;
+          }
+        </style>
             <div class="wrapper" style="margin-top:0px !important;">
-                <!-- 分析開始-->
+                <!-- 分析開始 -->
                 <div class="panel panel-primary">
                         <div class="panel-heading"><strong><i class="fa fa-pie-chart" aria-hidden="true"></i>&nbsp;自己分析</strong></div>
                         <div class="panel-body">
                            <form class="analysis_form" method="POST">
+                           <!-- 總數 -->
+                           <div class="float-right" style="font-weight: bold; color: #1c7ebb;">
+                           <span class="number_count"></span>
+                           /
+                           <span class="number_done"></span>
+                           </div>
+                           <!-- 題目 -->
                            <div id="analysis_wizard">
                                       <div class="navbar" style="margin-bottom: 20px !important;">
                                         <div class="navbar-tab">
@@ -383,7 +405,7 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
                                                                           <label class="ui-radio"><input name="radio2" type="radio" value="3"><span>Option 3</span></label>
                                                                           <label class="ui-radio"><input name="radio2" type="radio" value="4"><span>Option 4</span></label>
                                                                           <label class="ui-radio"><input name="radio2" type="radio" value="5" checked=""><span>Option 5</span></label>
-                                                                          <label class="ui-radio"><input name="radio2" type="radio" value="6"><span>Option 6</span></label>
+                                                                          <label class="ui-radio"><input name="radio2" type="radio" value="7"><span>Option 6</span></label>
                                                                   </div>
                                                               </div>
                                                </div>
