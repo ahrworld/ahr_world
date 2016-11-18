@@ -25,35 +25,10 @@
     margin-top:20px;
   }
 </style>
+
 <script>
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-var token = '{{ Session::token() }}';
   $(document).ready(function() {
-     // var ctx = $("#canvas").get(0).getContext("2d");
-     // var radarChartData = {
-     //        labels: ["特定專門", "生活樣式", "挑戰客服", "奉仕貢獻", "創意創業", "安全安定", "自由自立", "縂合管理"],
-     //        datasets: [
-     //          {
-     //            label: "My Second dataset",
-     //            fillColor: "rgba(151,187,205,0.2)",
-     //            strokeColor: "rgba(151,187,205,1)",
-     //            pointColor: "rgba(151,187,205,1)",
-     //            pointStrokeColor: "#fff",
-     //            pointHighlightFill: "#fff",
-     //            pointHighlightStroke: "rgba(151,187,205,1)",
-     //            data: [28,48,40,19,96,27,100,100]
-     //          }
-     //        ]
-     //      };
-     // var myRadarChart = new Chart(ctx).Radar(radarChartData, {
-     //     pointDot: false
-     // });
-     // 未修正
-   var id = 1;
+    var id = 1;
     $('.language_append .add').click(function(){
       $('.language_append').append($('<div class="form-inline" id="div'+ id +'"> <div class="form-group" style="margin-right:3px;"> <input type="text" class="form-control" name="language[]" placeholder="language"> </div><div class="form-group" style="margin-right:3px;"> <select class="form-control" name="languagelv[]"> <option value="3">母語</option> <option value="2">ビジネス</option> <option value="1">日常会話</option> <option value="0">初級</option> </select> </div><div class="form-group" ><a href="#" class="float-right" style="font-size:25px;" onclick="del('+id+')"> <i class="fa fa-times-circle" aria-hidden="true"></i> </a> </div></div>'));
       id++;
@@ -101,8 +76,9 @@ var token = '{{ Session::token() }}';
        $('#portfolio_modal .portfolio_url').attr('href',p_url);
     });
     // analysis_wizard
-
+    
     $('#analysis_wizard').bootstrapWizard({onNext: function(tab, navigation, index) {
+      $('#analysis_wizard .navbar .navbar-tab li').first().addClass('done');
       $('#analysis_wizard .navbar .navbar-tab li').eq(index).addClass('done');
       // Set the name for the next tab
      
@@ -127,30 +103,35 @@ var token = '{{ Session::token() }}';
       $('#analysis_wizard').find('.pager .finish').hide();
     }
     }});
+
     // analysis_form
     $('.analysis_form .finish_sumbit').click(function(){
-        var br = $('.analysis_form').serialize();
-        var s = $('.as').map(function(){
-            return $(this).attr('status');
+        var status = $('.as_v:checked').map(function(){
+            return {status:$(this).attr('status'), value:$(this).val()};
         }).get();
-         $.ajax({
+        $.ajax({
             type: "POST",
             url: "/analysis",
             async: false,
             dataType: "json",
-            data: br,
+            data: {data:status},
             success: function(data) {
                 console.log(JSON.stringify(data));
+                $('.analysis_form').addClass('none').removeClass('animated fadeIn');
+                $('.as_view').removeClass('none').addClass('animated flash');
             },
             error: function(data) {
                 console.log('Error:', data);
-
             }
         });
-          console.log(s);
-      
+    });
+    // analysis_again
+    $('.as_view #as_again').click(function(){
+        $('.analysis_form').removeClass('none').addClass('animated fadeIn');
+        $('.as_view').addClass('none').removeClass('animated flash');
     });
   });
+  
   // 上傳作品圖轉base64
   function readImage(input) {
     if ( input.files && input.files[0] ) {
@@ -304,130 +285,11 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
             @include('pl_sidebar/profile_branch/portfolio')
         </div>
         <div role="tabpanel" class="tab-pane ahr-panel fade in" id="p3">
-           
         </div>
          <!-- 自己分析 -->
         <div role="tabpanel" class="tab-pane ahr-panel fade in" id="p4">
-        <style>
-          .analysis_form .number{
-              list-style: none;
-              float: left;
-              padding: 7px 10px 7px 10px;
-              margin-right: 5px;
-              border-radius: 20px;
-              background: #ACCFF1;
-              margin-top: 20px;
-              display: block;
-              border: 3px double #EEE;
-              color: #FFF !important;
-          }
-          .analysis_form .number.done{
-            background: #3197FA;
-          }
-          .analysis_form .number.active{
-            background: #FFF !important;
-            border: 3px double #CCC;
-            color: #000 !important;
-          }
-          .analysis_form .wizard{
-            display: inline-block;
-            padding: 5px 14px;
-            background-color: #f6f6f6;
-            border: 1px solid #f6f6f6;
-            border-radius: 15px;
-          }
-          .analysis_form .wizard li a{
-            background-color: #FFF !important;
-            border: 1px #CCC solid;
-          }
-          .analysis_form .wizard li a:hover{
-            background-color: #1c7ebb !important;
-            color: #FFF;
-          }
-        </style>
-            <div class="wrapper" style="margin-top:0px !important;">
-                <!-- 分析開始 -->
-                <div class="panel panel-primary">
-                        <div class="panel-heading"><strong><i class="fa fa-pie-chart" aria-hidden="true"></i>&nbsp;自己分析</strong></div>
-                        <div class="panel-body">
-                           <form class="analysis_form" method="POST">
-                           <!-- 總數 -->
-                           <div class="float-right" style="font-weight: bold; color: #1c7ebb;">
-                           <span class="number_count"></span>
-                           /
-                           <span class="number_done"></span>
-                           </div>
-                           <!-- 題目 -->
-                           <div id="analysis_wizard">
-                                      <div class="navbar" style="margin-bottom: 20px !important;">
-                                        <div class="navbar-tab">
-                                            <ul style="padding:0px;">
-                                              <li class="number done">1<a href="#tab1" data-toggle="tab"></a></li>
-                                              <li class="number">2<a href="#tab2" data-toggle="tab"></a></li>
-                                              <li class="number">3<a href="#tab3" data-toggle="tab"></a></li>
-                                              <li class="number">4<a href="#tab4" data-toggle="tab"></a></li>
-                                              <li class="number">5<a href="#tab5" data-toggle="tab"></a></li>
-                                              <li class="number">6<a href="#tab6" data-toggle="tab"></a></li>
-                                              <li class="number">7<a href="#tab7" data-toggle="tab"></a></li>
-                                            </ul>
-                                        </div>
-                                      </div><!-- end navbar -->
-
-                                    <div class="tab-content">
-                                     <div class="tab-pane" id="tab1">
-                                       <div class="panel panel-warning">
-                                                       <div class="panel-heading">
-                                                           <h3 class="panel-title"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;&nbsp;ある分野ある分野ある分野ある分野ある分野ある分野</h3>
-                                                       </div>
-                                                       <div class="panel-body">
-                                                           <div class="dl-horizontal">
-                                                           <input type="hidden" name="status[]" value="a"> 
-                                                                   <label class="ui-radio"><input  class="as" status="a" name="radio1" type="radio" value="1"><span>Option 1</span></label>
-                                                                   <label class="ui-radio"><input  name="radio1" type="radio" value="2"><span>Option 2</span></label>
-                                                                   <label class="ui-radio"><input name="radio1" type="radio" value="3"><span>Option 3</span></label>
-                                                                   <label class="ui-radio"><input name="radio1" type="radio" value="4"><span>Option 4</span></label>
-                                                                   <label class="ui-radio"><input name="radio1" type="radio" value="5" checked=""><span>Option 5</span></label>
-                                                                   <label class="ui-radio"><input name="radio1" type="radio" value="6"><span>Option 6</span></label>
-                                                           </div>
-                                                       </div>
-                                        </div>
-                                     </div>
-                                           <div class="tab-pane" id="tab2">
-                                              <div class="panel panel-warning">
-                                                              <div class="panel-heading">
-                                                                  <h3 class="panel-title"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;&nbsp;ある分野ある分野ある分野ある分野ある分野ある分野</h3>
-                                                              </div>
-                                                              <div class="panel-body">
-                                                                  <div class="dl-horizontal">
-                                                                  <input type="hidden" name="status[]" value="b"> 
-                                                                          <label class="ui-radio"><input name="radio2" type="radio" value="1"><span>Option 1</span></label>
-                                                                          <label class="ui-radio"><input  class="as" status="b" name="radio2" type="radio" value="2"><span>Option 2</span></label>
-                                                                          <label class="ui-radio"><input name="radio2" type="radio" value="3"><span>Option 3</span></label>
-                                                                          <label class="ui-radio"><input name="radio2" type="radio" value="4"><span>Option 4</span></label>
-                                                                          <label class="ui-radio"><input name="radio2" type="radio" value="5" checked=""><span>Option 5</span></label>
-                                                                          <label class="ui-radio"><input name="radio2" type="radio" value="7"><span>Option 6</span></label>
-                                                                  </div>
-                                                              </div>
-                                               </div>
-                                           </div>
-                                              <ul class="pager wizard">
-                                                  <li class="previous first" style="display:none;"><a href="javascript:;">第一題</a></li>
-                                                  <li class="previous"><a href="javascript:;"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
-                                                 
-                                                  <li class="next"><a href="javascript:;"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
-                                                  <li class="next finish finish_sumbit" style="display:none;"><a href="javascript:;">分析開始</a></li>
-                                              </ul>
-                                           </div><!-- end tab-content -->
-
-                                    </div><!-- end analysis_wizard -->
-                                    </form>
-                        </div>
-                </div>
-            </div>
+            @include('pl_sidebar/profile_branch/analysis')
         </div>
-       <!--  <div class="panel panel-default">
-        <canvas id="canvas" width="400" height="400"></canvas>
-        </div> -->
     </div>
     <!-- tab-content end -->
 </div>

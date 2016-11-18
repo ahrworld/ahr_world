@@ -23,6 +23,8 @@ use App\ModelBranch\Pl_portfolio;
 use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
 use App\PersonnelBranch\skill_title;
+use App\PersonnelBranch\Analysis_topic;
+use App\PersonnelBranch\Analysis_answer;
 use App\ModelBranch\Interview_time;
 use App\PersonnelBranch\Experiences_job;
 use App\PersonnelBranch\Personnels_skill;
@@ -171,6 +173,10 @@ class UserController extends Controller
         $skill_categorys = $skill_category::all();
         $subject = Subject::all();
         $exp_job_category = Exp_job_category::all();
+        // 分析題目
+        $Analysis_topic = Analysis_topic::all();
+        // 分析結果
+        $Analysis_answer = Analysis_answer::where('user_id',$request->user()->id)->first();
     	return view('pl_sidebar/profile',[
     		'personnels' => $personnels,
             'per_skill' => $per_skill,
@@ -183,6 +189,8 @@ class UserController extends Controller
             'skill_datas' => $skill_datas,
             'exp_job_category' => $exp_job_category,
             'subject' => $subject,
+            'Analysis_topic' => $Analysis_topic,
+            'Analysis_answer' => $Analysis_answer,
     	]);
     }
     public function personnels_update(Request $request)
@@ -328,6 +336,8 @@ class UserController extends Controller
                             ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
+       
+
         return view('pl_sidebar/news',[
           'bs_image' => $bs_image,
           'Recruitment' => $Recruitment,
@@ -460,10 +470,78 @@ class UserController extends Controller
     }
     // analysis
     public function analysis(Request $request)
-    {
-        
-        return $request->radio1;
+    {    
+         // 總和
+         foreach ($request->data as $key => $value) {
+                $status = $request->data[$key];
+             
+                switch ($status['status']) {
+                    case "1":
+                          $array1[] = $status['value'];
+                    break;
+                    case "2":
+                          $array2[] = $status['value'];
+                    break;
+                    case "3":
+                          $array3[] = $status['value'];
+                    break;
+                    case "4":
+                          $array4[] = $status['value'];
+                    break;
+                    case "5":
+                          $array5[] = $status['value'];
+                    break;
+                    case "6":
+                          $array6[] = $status['value'];
+                    break;
+                    case "7":
+                          $array7[] = $status['value'];
+                    break;
+                    case "8":
+                          $array8[] = $status['value'];
+                    break;
+                   
+                }
+            }
+        $as_sum1 = array_sum($array1);
+        $as_sum2 = array_sum($array2);
+        $as_sum3 = array_sum($array3);
+        $as_sum4 = array_sum($array4);
+        $as_sum5 = array_sum($array5);
+        $as_sum6 = array_sum($array6);
+        $as_sum7 = array_sum($array7);
+        $as_sum8 = array_sum($array8);
+        // if has
+        $user_as = Analysis_answer::where('user_id', $request->user()->id)->first();
+        if (is_null($user_as)) {
+            // create
+            Analysis_answer::create([
+                'user_id' => $request->user()->id,
+                'as_value_1' => $as_sum1,
+                'as_value_2' => $as_sum2,
+                'as_value_3' => $as_sum3,
+                'as_value_4' => $as_sum4,
+                'as_value_5' => $as_sum5,
+                'as_value_6' => $as_sum6,
+                'as_value_7' => $as_sum7,
+                'as_value_8' => $as_sum8,
 
+            ]);
+        }else{
+            // update
+             Analysis_answer::where('user_id', $request->user()->id)
+                                ->update([
+                                    'as_value_1' => $as_sum1,
+                                    'as_value_2' => $as_sum2,
+                                    'as_value_3' => $as_sum3,
+                                    'as_value_4' => $as_sum4,
+                                    'as_value_5' => $as_sum5,
+                                    'as_value_6' => $as_sum6,
+                                    'as_value_7' => $as_sum7,
+                                    'as_value_8' => $as_sum8,
+                                    ]);
+        }
+        return response()->json('ok');
     }
     // 確認行程時間
     public function schedule_check(Request $request)
