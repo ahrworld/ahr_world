@@ -1,27 +1,27 @@
 @if(isset($Analysis_answer))
 <script>
-  $(document).ready(function() {
+  // $(document).ready(function() {
 
-     var ctx = $("#analysis_view").get(0).getContext("2d");
-     var radarChartData = {
-            labels: ["特定專門", "生活樣式", "挑戰客服", "奉仕貢獻", "創意創業", "安全安定", "自由自立", "縂合管理"],
-            datasets: [
-              {
-                label: "My Second dataset",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [{{$Analysis_answer->as_value_1}},{{$Analysis_answer->as_value_2}},{{$Analysis_answer->as_value_3}},{{$Analysis_answer->as_value_4}},{{$Analysis_answer->as_value_5}},{{$Analysis_answer->as_value_6}},{{$Analysis_answer->as_value_7}},{{$Analysis_answer->as_value_8}}]
-              }
-            ]
-          };
-     var myRadarChart = new Chart(ctx).Radar(radarChartData, {
-         pointDot: false
-     });
-  });
+  //    var ctx = $("#analysis_view").get(0).getContext("2d");
+  //    var radarChartData = {
+  //           labels: ["特定專門", "生活樣式", "挑戰客服", "奉仕貢獻", "創意創業", "安全安定", "自由自立", "縂合管理"],
+  //           datasets: [
+  //             {
+  //               label: "My Second dataset",
+  //               fillColor: "rgba(151,187,205,0.2)",
+  //               strokeColor: "rgba(151,187,205,1)",
+  //               pointColor: "rgba(151,187,205,1)",
+  //               pointStrokeColor: "#fff",
+  //               pointHighlightFill: "#fff",
+  //               pointHighlightStroke: "rgba(151,187,205,1)",
+  //               data: [{{$Analysis_answer->as_value_1}},{{$Analysis_answer->as_value_2}},{{$Analysis_answer->as_value_3}},{{$Analysis_answer->as_value_4}},{{$Analysis_answer->as_value_5}},{{$Analysis_answer->as_value_6}},{{$Analysis_answer->as_value_7}},{{$Analysis_answer->as_value_8}}]
+  //             }
+  //           ]
+  //         };
+  //    var myRadarChart = new Chart(ctx).Radar(radarChartData, {
+  //        pointDot: false
+  //    });
+  // });
 </script>
 @endif
 <div class="wrapper" style="margin-top:0px !important;">

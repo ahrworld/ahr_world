@@ -118,7 +118,7 @@ Route::group(['middleware' => 'web'], function () {
     // bs_summary
     Route::post('/business/summary', 'BusinessController@summary');
     Route::post('/business/recruitments_add', 'BusinessController@recruitments_add');
-    
+
     // bs_blog
     Route::get('/blog', function(){
          return view('bs_sidebar/profile_branch/tab3');
@@ -144,7 +144,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/image_small', 'UserController@image_small');
     // user portfolio
     Route::post('/portfolio/add', 'UserController@portfolio_add');
-    // 
+    //
     Route::get('/mail_box','MailBox\UserController@mail_box');
     Route::get('/mail_box/{id}',['as' => 'mail.show' , 'uses' => 'MailBox\UserController@mail_view']);
     Route::post('/mail_box/delete','MailBox\UserController@delete');
@@ -152,6 +152,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/profile','UserController@profile');
     // 分析
     Route::post('/analysis','UserController@analysis');
+    Route::get('/view/analysis','UserController@analysis_view');
     Route::get('/news','UserController@news');
     // 應徵
     Route::post('ttt','UserController@ttt');
@@ -165,14 +166,14 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('giveup','UserController@giveup');
 
     // user ger business view
- 
+
     Route::get('business/company/{id}/',['as' => 'business.show' , 'uses' => 'UserController@show']);
     Route::get('schedule/{id}',['as' => 'schedule.show' , 'uses' => 'UserController@schedule']);
     Route::post('schedule/check','UserController@schedule_check');
     Route::post('personnels/update','UserController@personnels_update');
-   
-    
-    
+
+
+
 	Route::get('/bs_end', function(){
 	return view('auth/bs_signin-end');
 	});

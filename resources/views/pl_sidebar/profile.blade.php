@@ -76,12 +76,12 @@
        $('#portfolio_modal .portfolio_url').attr('href',p_url);
     });
     // analysis_wizard
-    
+
     $('#analysis_wizard').bootstrapWizard({onNext: function(tab, navigation, index) {
       $('#analysis_wizard .navbar .navbar-tab li').first().addClass('done');
       $('#analysis_wizard .navbar .navbar-tab li').eq(index).addClass('done');
       // Set the name for the next tab
-     
+
     },onTabShow: function(tab, navigation, index) {
     var $total = navigation.find('li').length;
     var $current = index+1;
@@ -119,6 +119,49 @@
                 console.log(JSON.stringify(data));
                 $('.analysis_form').addClass('none').removeClass('animated fadeIn');
                 $('.as_view').removeClass('none').addClass('animated flash');
+                // ajax
+                $.ajax({
+                    type: "GET",
+                    url: "/view/analysis",
+                    async: false,
+                    dataType: "json",
+                    success: function(data) {
+                      var as_value = data;
+
+                      console.log(JSON.stringify(data['as_value_1']));
+                      var ctx = $("#analysis_view").get(0).getContext("2d");
+                      var radarChartData = {
+                             labels: ["特定專門", "生活樣式", "挑戰客服", "奉仕貢獻", "創意創業", "安全安定", "自由自立", "縂合管理"],
+                             datasets: [
+                               {
+                                 label: "My Second dataset",
+                                 fillColor: "rgba(151,187,205,0.2)",
+                                 strokeColor: "rgba(151,187,205,1)",
+                                 pointColor: "rgba(151,187,205,1)",
+                                 pointStrokeColor: "#fff",
+                                 pointHighlightFill: "#fff",
+                                 pointHighlightStroke: "rgba(151,187,205,1)",
+                                 data: [
+                                 as_value['as_value_1'],
+                                 as_value['as_value_2'],
+                                 as_value['as_value_3'],
+                                 as_value['as_value_4'],
+                                 as_value['as_value_5'],
+                                 as_value['as_value_6'],
+                                 as_value['as_value_7'],
+                                 as_value['as_value_8']
+                                 ]
+                               }
+                             ]
+                           };
+                      var myRadarChart = new Chart(ctx).Radar(radarChartData, {
+                          pointDot: false
+                      });
+                    },
+                    error: function(data) {
+                        console.log('Error:', data);
+                    }
+                });
             },
             error: function(data) {
                 console.log('Error:', data);
@@ -131,7 +174,7 @@
         $('.as_view').addClass('none').removeClass('animated flash');
     });
   });
-  
+
   // 上傳作品圖轉base64
   function readImage(input) {
     if ( input.files && input.files[0] ) {
@@ -139,7 +182,7 @@
       FR.onload = function(e) {
         //e.target.result = base64 format picture
         $('.p_file').val(e.target.result);
-      };       
+      };
       FR.readAsDataURL( input.files[0] );
     }
   }
@@ -179,7 +222,7 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
     </ul>
     <!-- プロフィール Tab panes -->
     <div class="tab-content">
-    
+
         <div role="tabpanel" class="tab-pane ahr-panel fade in active" id="p1">
             <div class="wrapper" style="margin-top:0px !important;">
                 <!-- 1 -->
@@ -210,7 +253,7 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
 
                            <div class="row">
                                <div class="col-md-12">
-                                 
+
                                    <div id="image-cropper">
                                        <div class="cropit_wrapper" style="width:70%; float:left;">
                                               <div class="cropit-preview"></div>
@@ -265,8 +308,8 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
                     margin-top: 10px;
                 }
                 .portfolio_view{
-                  padding:0px !important; 
-                  background-color:#FFF !important; 
+                  padding:0px !important;
+                  background-color:#FFF !important;
                   cursor:zoom-in;
                 }
                 </style>

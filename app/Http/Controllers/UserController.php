@@ -220,7 +220,7 @@ class UserController extends Controller
 
             return redirect('/profile');
          }
-        
+
     }
     public function news(Request $request)
     {
@@ -263,7 +263,7 @@ class UserController extends Controller
                             ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->orderBy('pl_history.updated_at','desc')
-                            ->get();  
+                            ->get();
         $history_ofa =  Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
             'content','need_skill','annual_income','monthly_income','work_site','image_small','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
                             ->where('recruitments_status.user_id', $request->user()->id)
@@ -287,7 +287,7 @@ class UserController extends Controller
                             ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->orderBy('pl_history.updated_at','desc')
-                            ->get();                                      
+                            ->get();
         // お気に入り
         $Recruitment_like = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
             'content','need_skill','annual_income','monthly_income','work_site','image_small','bsinformations.company_name','languagelvs.languagelv_name')
@@ -336,7 +336,7 @@ class UserController extends Controller
                             ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
-       
+
 
         return view('pl_sidebar/news',[
           'bs_image' => $bs_image,
@@ -419,7 +419,7 @@ class UserController extends Controller
                         ->where('languagelvs.languagelv_name', 'like', '%'.$request->language.'%')
                         ->where('recruitments.need_skill', 'like', '%'.$request->skill.'%')
                         ->get();
-            
+
            return response()->json($query);
     }
     public function show(Request $request , $id)
@@ -434,7 +434,7 @@ class UserController extends Controller
                             ->where('recruitments.id', $id)
                             ->first();
         $bs_id = $res->user_id;
-       
+
         $bs_image = Bs_image::where('bs_image.user_id',$res->user_id)->first();
         $history = Pl_history::where('user_id',$request->user()->id)->where('recruitments_id',$id)->first();
         if (isset($history)) {
@@ -448,7 +448,7 @@ class UserController extends Controller
                'user_id' => $request->user()->id
             ]);
         }
-      
+
         return view('pl_sidebar.show', [
             'bs_image' => $bs_image,
             'res' => $res,
@@ -470,11 +470,11 @@ class UserController extends Controller
     }
     // analysis
     public function analysis(Request $request)
-    {    
+    {
          // 總和
          foreach ($request->data as $key => $value) {
                 $status = $request->data[$key];
-             
+
                 switch ($status['status']) {
                     case "1":
                           $array1[] = $status['value'];
@@ -500,7 +500,7 @@ class UserController extends Controller
                     case "8":
                           $array8[] = $status['value'];
                     break;
-                   
+
                 }
             }
         $as_sum1 = array_sum($array1);
@@ -542,6 +542,11 @@ class UserController extends Controller
                                     ]);
         }
         return response()->json('ok');
+    }
+    public function analysis_view(Request $request)
+    {
+        $query = Analysis_answer::where('user_id', $request->user()->id)->first();
+        return response()->json($query);
     }
     // 確認行程時間
     public function schedule_check(Request $request)
@@ -591,7 +596,7 @@ class UserController extends Controller
     public function portfolio_add(Request $request){
         $img = $request->p_file;
         if(isset($img)){
-      
+
         Pl_portfolio::create([
            'p_title' => $request->p_title,
            'p_content' => $request->p_content,
@@ -615,7 +620,7 @@ class UserController extends Controller
     }
     public function giveup(Request $request)
     {
-       
+
         Recruitments_status::where('recruitments_status.recruitments_id', $request->rs_id)
                             ->delete();
         return redirect('news#a3');
