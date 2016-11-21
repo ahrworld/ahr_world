@@ -202,17 +202,17 @@ var update_panel = function(a,b){
       $(b).removeClass('animated fadeOut none').addClass('animated fadeIn');
 }
 </script>
+@if(isset($pl_image->image_small))
 
 <style>
-@if(isset($pl_image->image_small))
 
 .photo{
 background-image:url(data:image/png;base64,{{$pl_image->image_small}});
 }
 
-@endif
-</style>
 
+</style>
+@endif
 <div class="scorl" style="width:60%;  float:left; margin-left:15px;">
      <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#p1" aria-controls="p1" role="tab" data-toggle="tab">プロフィール</a></li>

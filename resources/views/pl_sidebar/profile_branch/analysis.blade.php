@@ -58,7 +58,7 @@
                                            </div>
                                            <div class="panel-body">
                                                <div class="dl-horizontal">
-                                                       <label class="ui-radio"><input class="as_v" status="{{$value->as_status}}" name="radio{{$key+1}}" type="radio" value="1"  checked=""><span>Option 1</span></label>
+                                                       <label class="ui-radio"><input class="as_v" status="{{$value->as_status}}" name="radio{{$key+1}}" type="radio" value="1"  ><span>Option 1</span></label>
                                                        <label class="ui-radio"><input class="as_v" status="{{$value->as_status}}" name="radio{{$key+1}}" type="radio" value="2"><span>Option 2</span></label>
                                                        <label class="ui-radio"><input class="as_v" status="{{$value->as_status}}" name="radio{{$key+1}}" type="radio" value="3"><span>Option 3</span></label>
                                                        <label class="ui-radio"><input class="as_v" status="{{$value->as_status}}" name="radio{{$key+1}}" type="radio" value="4"><span>Option 4</span></label>
@@ -69,12 +69,12 @@
                             </div>
                          </div>
                          @endforeach
-                               
-                           
+
+
                                   <ul class="pager wizard">
                                       <li class="previous first" style="display:none;"><a href="javascript:;">第一題</a></li>
                                       <li class="previous"><a href="javascript:;"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
-                                     
+
                                       <li class="next"><a href="javascript:;"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
                                       <li class="next finish finish_sumbit" style="display:none;"><a href="javascript:;">分析開始</a></li>
                                   </ul>
@@ -89,7 +89,7 @@
                             <a id="as_again" class="btn btn-success" role="button" style="width:50%">もう一回</a>
                             </div>
                         </div>
-                       
+
             </div>
     </div>
     <!-- panel end -->
