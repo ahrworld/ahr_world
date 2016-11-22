@@ -189,12 +189,7 @@ $(document).ready(function() {
 	    	padding: 30px 65px;
 	    }
 		</style>
-		<footer style="width:100%; float:left; margin:auto;">
-		    <div class="line"></div>
-		    <ul>
-
-		    </ul>
-		</footer>
+		
 
 
 </body>

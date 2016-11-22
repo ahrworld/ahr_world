@@ -203,7 +203,9 @@ class BusinessController extends Controller
         // bs_image
         $bs_image = Bs_image::where('user_id', $request->user()->id)->get();
         // bs_blog
-        $bs_blog = Bs_blog::where('user_id' ,$request->user()->id)->orderBy('id','desc')->get();
+        $bs_blog = Bs_blog::join('bsinformations', 'bs_blog.user_id', '=', 'bsinformations.user_id')
+                            ->where('bs_blog.user_id' ,$request->user()->id)
+                            ->orderBy('bs_blog.id','desc')->get();
         // 面接
         $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
         $prev_date = date('Y-m-d', strtotime($date .' -1 week'));

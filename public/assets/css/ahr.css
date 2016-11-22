@@ -700,23 +700,12 @@ blockquote{
  .analysis_form .number{
      list-style: none;
      float: left;
-     padding: 7px 10px 7px 10px;
-     margin-right: 5px;
-     border-radius: 20px;
-     background: #ACCFF1;
-     margin-top: 20px;
-     display: block;
-     border: 3px double #EEE;
+     padding: 0px;
+     margin: 0px;
+     background: #FFF;
      color: #FFF !important;
  }
- .analysis_form .number.done{
-   background: #3197FA;
- }
- .analysis_form .number.active{
-   background: #FFF !important;
-   border: 3px double #CCC;
-   color: #000 !important;
- }
+
  .analysis_form .wizard{
    display: inline-block;
    padding: 5px 14px;

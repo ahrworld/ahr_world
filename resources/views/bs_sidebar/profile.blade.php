@@ -27,9 +27,9 @@ $(document).ready(function() {
     $('.default_summary').hover(function() {
         $('.default_summary .update_bt').toggleClass('none');
     });
-    $('.dass').click(function(){
-          var preview = document.querySelector('.img');
-          var file    = document.querySelector('#uploadBtn').files[0];
+    $('#uploadBtn_blog').change(function(){
+          var preview = document.querySelector('.img_view');
+          var file    = document.querySelector('#uploadBtn_blog').files[0];
           var reader  = new FileReader();
 
           reader.addEventListener("load", function () {
@@ -43,7 +43,7 @@ $(document).ready(function() {
     $('.nav-tabs li a').click(function(){
       $('body').scrollTop('500');
     });
-    document.getElementById("uploadBtn").onchange = function () {
+    document.getElementById("uploadBtn_blog").onchange = function () {
         document.getElementById("file-1").value = this.value;
     };
 });
@@ -139,23 +139,17 @@ pre{
                             <div class="form-group">
                                 <div class="fileUpload btn btn-warning">
                                     <span><i class="fa fa-picture-o"></i></span>
-                                    <input id="uploadBtn" name="image" type="file" accept="image/*" class="upload upl" />
-
-                                </div>
-
-                                <!-- preview image -->
-                                    <div>
-                                        <img class="preview" style="max-width: 150px; max-height: 150px;">
-                                        <div class="size"></div>
-                                    </div>
-                                      <hr>
-                                <div class="preview_wrapper">
-                                    <pre></pre>
-                                    <img class="img" src="" style="max-width: 150px; max-height: 150px;">
+                                    <input id="uploadBtn_blog" name="image" type="file" accept="image/*" class="upload upl" />
                                 </div>
                                 <button type="submit" class="btn btn-primary float-right">投槁</button>
                                 <span class="float-right">&nbsp;</span>
                                 <button type="button"  class="btn btn-info float-right preview_btn dass" >預覽</button>
+                                <hr>
+                                <div class="preview_wrapper">
+                                    <pre></pre>
+                                    <img src="" class="img_view" style="max-width: 200px;">
+                                </div>
+                               
                             </div>
                             </form>
                         </div>
@@ -169,13 +163,26 @@ pre{
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="row">
-
+                            <style>
+                                .blog_name{
+                                    line-height: 40px;
+                                    padding-left: 5px;
+                                    float: left;
+                                    color: rgba(28, 126, 187, 0.79);
+                                    height: 0px;
+                                    font-size: 21px;
+                                }
+                                .blog_time{
+                                    line-height: 107px; padding-left:5px; float: left; height: 0px;
+                                }
+                            </style>
                             <!-- video -->
                             <div class="col-md-12">
                             <div class="col-sm-3 img-thumbnail dsa_s bs_photo" style="width:60px; height:60px;"></div>
-                            <span style="line-height: 107px; padding-left:5px;">30分前</span>
-                                <div class="panel-content" style="width:100%; font-size:18px; padding-right:50px;">
-                                        <pre>{{ $value->blog_content }}</pre>
+                            <a href="javascritp:;" class="blog_name">{{ $value->company_name }}</a>
+                            <span class="blog_time">{{ $value->created_at }}</span>
+                                <div class="panel-content" style="width:100%; font-size:25px; padding-right:50px;">
+                                        <pre style="font-size: 16px;">{{ $value->blog_content }}</pre>
                                 </div>
                                 <div style="width:100%;">
                                 <img src="ahr/business_blog/{{$value->blog_image}}" width="100%">
