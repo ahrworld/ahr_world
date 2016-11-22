@@ -294,5 +294,19 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		});
 		/////  image update end
 
+		// blog_upload 
+		$('#uploadBtn_blog').change(function(){
+		      var preview = document.querySelector('.img_view');
+		      var file    = document.querySelector('#uploadBtn_blog').files[0];
+		      var reader  = new FileReader();
+
+		      reader.addEventListener("load", function () {
+		        preview.src = reader.result;
+		      }, false);
+
+		      if (file) {
+		        reader.readAsDataURL(file);
+		      }
+	   });
 });
 

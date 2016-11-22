@@ -319,7 +319,6 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
                 @include('pl_sidebar/profile_branch/skill')
                 <!-- ■　職務経歴書 -->
                 @include('pl_sidebar/profile_branch/experience')
-
             </div>
             <!-- wrapper end -->
         </div>
@@ -328,6 +327,7 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
             @include('pl_sidebar/profile_branch/portfolio')
         </div>
         <div role="tabpanel" class="tab-pane ahr-panel fade in" id="p3">
+            @include('pl_sidebar/profile_branch/blog')
         </div>
          <!-- 自己分析 -->
         <div role="tabpanel" class="tab-pane ahr-panel fade in" id="p4">
