@@ -12,6 +12,7 @@ use App\ModelBranch\Bs_image;
 use App\ModelBranch\Subject;
 use App\ModelBranch\Bs_history;
 use App\ModelBranch\Pl_history;
+use App\ModelBranch\Pl_blog;
 use App\Recruitment;
 use App\Recruitments_status;
 use App\Personnel;
@@ -164,6 +165,7 @@ class UserController extends Controller
         $pl_image = Pl_image::where('user_id', $request->user()->id)->first();
         // portfolio
         $portfolio = Pl_portfolio::where('user_id', $request->user()->id)->orderBy('created_at','desc')->get();
+
         // skill
         $skill_title = new skill_title;
         $skill_category = new skill_category;
@@ -177,6 +179,10 @@ class UserController extends Controller
         $Analysis_topic = Analysis_topic::all();
         // 分析結果
         $Analysis_answer = Analysis_answer::where('user_id',$request->user()->id)->first();
+        // blog
+        $pl_blog = Pl_blog::join('personnels', 'pl_blog.user_id', '=', 'personnels.user_id')
+                            ->where('pl_blog.user_id' ,$request->user()->id)
+                            ->orderBy('pl_blog.id','desc')->get();
     	return view('pl_sidebar/profile',[
     		'personnels' => $personnels,
             'per_skill' => $per_skill,
@@ -191,7 +197,27 @@ class UserController extends Controller
             'subject' => $subject,
             'Analysis_topic' => $Analysis_topic,
             'Analysis_answer' => $Analysis_answer,
+            'pl_blog' => $pl_blog,
     	]);
+    }
+    public function blog(Request $request){
+        if(isset($request->p_file)){
+            Pl_blog::create([
+               'title' => $request->title,
+               'sub_title' => $request->sub_title,
+               'blog_content' => $request->blog_content,
+               'blog_image' => $request->p_file,
+               'user_id' => $request->user()->id
+            ]);
+            return redirect('profile#p3');
+       }
+       Pl_blog::create([
+          'title' => $request->title,
+          'sub_title' => $request->sub_title,
+          'blog_content' => $request->blog_content,
+          'user_id' => $request->user()->id
+       ]);
+       return redirect('profile#p3');
     }
     public function personnels_update(Request $request)
     {

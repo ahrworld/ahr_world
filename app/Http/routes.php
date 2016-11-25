@@ -22,22 +22,13 @@ Route::get('/mail-box', function(){
 	return view('mail-box');
 });
 
-Route::get('/view', function(){
-	return view('view');
-});
-Route::get('/test_m', function(){
-    return view('test_m');
-});
+
 Route::get('/hot-user', function(){
 	return view('hot_user');
 });
 Route::get('/filys', function(){
 	return view('index');
 });
-//m
-// Route::get('/login', function(){
-// 	return view('auth/m_login');
-// });
 
 
 Route::get('/portfolio', function(){
@@ -60,9 +51,7 @@ Route::get('/portfolio_b', function(){
 Route::get('/company', function(){
 	return view('company');
 });
-Route::get('/interview/show', function(){
-    return view('pl_sidebar/test_interview');
-});
+
 //form
 
 
@@ -142,6 +131,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/step', 'UserController@step');
     Route::post('personnel_in', 'UserController@personnel_in');
     Route::post('/image_small', 'UserController@image_small');
+    // user blog
+    Route::post('/personnel/blog','UserController@blog');
     // user portfolio
     Route::post('/portfolio/add', 'UserController@portfolio_add');
     //

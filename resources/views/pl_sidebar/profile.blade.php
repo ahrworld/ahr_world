@@ -64,6 +64,9 @@
     $("#p_File").change(function(){
       readImage( this );
     });
+    $("#uploadBtn_blog").change(function(){
+      readImage( this );
+    });
     $('.portfolio_view').click(function(){
        var img = $(this).find('img').attr('src');
        var title = $(this).attr('title');
@@ -81,7 +84,6 @@
       $('#analysis_wizard .navbar .navbar-tab li').first().addClass('done');
       $('#analysis_wizard .navbar .navbar-tab li').eq(index).addClass('done');
       // Set the name for the next tab
-
     },onTabShow: function(tab, navigation, index) {
     var $total = navigation.find('li').length;
     var $current = index+1;
@@ -203,14 +205,10 @@ var update_panel = function(a,b){
 }
 </script>
 @if(isset($pl_image->image_small))
-
 <style>
-
 .photo{
 background-image:url(data:image/png;base64,{{$pl_image->image_small}});
 }
-
-
 </style>
 @endif
 <div class="scorl" style="width:60%;  float:left; margin-left:15px;">

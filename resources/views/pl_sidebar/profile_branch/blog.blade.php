@@ -4,21 +4,18 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <form action="{{url('/business/blog')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                                <form action="{{url('/personnel/blog')}}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                             </div>
-
-                                <style>
-                            
-                            </style>
                             <div class="form-group">
-                                 <div class="col-sm-3 img-thumbnail dsa_s bs_photo"></div>
+                                 <div class="col-sm-3 img-thumbnail dsa_s photo"></div>
                                  <textarea class="col-sm-10 text_rd" required="required" placeholder="上がります！" name="blog_content" rows="3" style="border-left:none; margin-bottom:20px; height:100px;"></textarea>
                             </div>
                             <div class="form-group">
                                 <div class="fileUpload btn btn-warning">
                                     <span><i class="fa fa-picture-o"></i></span>
                                     <input id="uploadBtn_blog" name="image" type="file" accept="image/*" class="upload upl" />
+                                    <input type="hidden" name="p_file" class="p_file">
                                 </div>
                                 <button type="submit" class="btn btn-primary float-right">投槁</button>
                                 <span class="float-right">&nbsp;</span>
@@ -38,26 +35,26 @@
             </div>
 
             <div class="wrapper">
-               
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                           
-                            <!-- video -->
-                            <div class="col-md-12">
-                            <div class="col-sm-3 img-thumbnail dsa_s bs_photo" style="width:60px; height:60px;"></div>
-                            <a href="javascritp:;" class="blog_name"></a>
-                            <span class="blog_time"></span>
-                                <div class="panel-content" style="width:100%; font-size:25px; padding-right:50px;">
-                                        <pre style="font-size: 16px;"></pre>
-                                </div>
-                                <div style="width:100%;">
-                                <img src="ahr/business_blog/{{$value->blog_image}}" width="100%">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  @foreach($pl_blog as $value)
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                          <div class="row">
+                              <!-- video -->
+                              <div class="col-md-12">
+                              <div class="col-sm-3 img-thumbnail dsa_s photo" style="width:60px; height:60px;"></div>
+                              <a href="javascritp:;" class="blog_name">{{ $value->surname.$value->family_name }}</a>
+                              <span class="blog_time">{{ $value->created_at }}</span>
+                                  <div class="panel-content" style="width:100%; font-size:25px; padding-right:50px;">
+                                          <pre style="font-size: 16px;">{{ $value->blog_content }}</pre>
+                                  </div>
+                                  <div style="width:100%;">
+                                  <img src="{{$value->blog_image}}" width="100%">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  @endforeach
                
             </div>
             <!-- wrapper end -->
