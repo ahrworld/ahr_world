@@ -105,8 +105,7 @@ class UserController extends Controller
             $b = $languagelv::create([
                     'languagelv_name' => $value,
                     'lv' => $request->languagelv[$key],
-                    'personnels_id' => $a->id,
-                    'languagelvs.user_id' => $request->user()->id,
+                    'personnels_id' => $a->id
             ]);
         }
 
@@ -152,7 +151,7 @@ class UserController extends Controller
                     ->join('skill_category', 'skill_name.skill_category_id', '=', 'skill_category.id')
                     ->get();
         // 語言
-        $languagelv = $personnel::select('languagelvs.lv','languagelvs.languagelv_name')
+        $languagelv = $personnel::select('languagelvs.lv','languagelvs.languagelv_name','languagelvs.id')
                       ->where('personnels.user_id', $request->user()->id)
                       ->join('languagelvs', 'personnels.id', '=', 'languagelvs.personnels_id')
                       ->get();
@@ -165,7 +164,7 @@ class UserController extends Controller
         $pl_image = Pl_image::where('user_id', $request->user()->id)->first();
         // portfolio
         $portfolio = Pl_portfolio::where('user_id', $request->user()->id)->orderBy('created_at','desc')->get();
-
+        
         // skill
         $skill_title = new skill_title;
         $skill_category = new skill_category;
@@ -221,7 +220,10 @@ class UserController extends Controller
     }
     public function personnels_update(Request $request)
     {
+
+         $P_id = Personnel::select('id')->where('user_id', $request->user()->id)->first();
          if (isset($request->family_name)) {
+            // base
             Personnel::where('user_id', $request->user()->id)
             ->update([
             'family_name' =>  $request->family_name,
@@ -237,6 +239,7 @@ class UserController extends Controller
             return redirect('/profile');
 
          }elseif (isset($request->school)) {
+            // school
             Personnel::where('user_id', $request->user()->id)
             ->update([
             'school' => $request->school,
@@ -244,6 +247,33 @@ class UserController extends Controller
             'end_year' => $request->end_year,
             ]);
 
+            return redirect('/profile');
+         }elseif (isset($request->language)) {
+            // skill
+            foreach ($request->language as $key => $value) {
+               if (isset($request->id[$key])) {
+                  Languagelv::where('id', $request->id[$key])
+                        ->update([
+                                'languagelv_name' => $value,
+                                'lv' => $request->languagelv[$key],
+                                'personnels_id' => $P_id->id
+                        ]);
+               }else{
+                  Languagelv::create([
+                                   'languagelv_name' => $value,
+                                   'lv' => $request->languagelv[$key],
+                                   'personnels_id' => $P_id->id
+                           ]);
+               }
+              
+            }
+            //delete
+            if (isset($request->delete_language)) {
+                foreach ($request->delete_language as $key => $value) {
+                      Languagelv::where('id', $value)
+                            ->delete();
+                }
+            }
             return redirect('/profile');
          }
 

@@ -491,19 +491,19 @@ blockquote{
 }
 /* add */
 .add{
-	background-image: url('/ahr/assets/img/add.png');
-	background-size:cover;
-	background-position:center;
-	height: 20px;
-	width: 20px;
-	position: relative;
-	top: 5px;
+	color: #1c7ebb;
+	height: 23px;
+	font-size: 25px;
 	cursor: pointer;
 }
 .add:hover{
-	background-image: url('/ahr/assets/img/add_b.png');
-	background-size:cover;
-	height: 20px;
+	color: #0094e5;
+}
+.close_bt_small{
+	color: #CCC;
+}
+.close_bt_small:hover{
+	color:#e94b3b;
 }
 /* accordion */
 #accordion .panel-heading{

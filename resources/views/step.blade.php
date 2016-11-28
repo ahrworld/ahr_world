@@ -35,9 +35,7 @@
 	  );
 	  return $state;
 	};
-	function del(id) {
-	  $("#div"+id).remove();
-	}
+	
 	$(document).ready(function() {
 
 

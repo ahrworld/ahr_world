@@ -18,7 +18,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary float-right">投槁</button>
                     <span class="float-right">&nbsp;</span>
-                    <button type="button"  class="btn btn-info float-right preview_btn dass" >預覽</button>
+                  <!--   <button type="button"  class="btn btn-info float-right preview_btn dass" >預覽</button> -->
                     <hr>
                     <div class="preview_wrapper">
                         <pre></pre>

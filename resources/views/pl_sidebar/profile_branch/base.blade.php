@@ -37,23 +37,23 @@
                                 <td>：{{ $value->birthday }}</td>
                             </tr>
                             <tr>
-                                <th width="80px">現住所*</th>
+                                <th width="80px">現住所</th>
                                 <td>：{{ $value->post.$value->city.$value->address}}</td>
                             </tr>
                             <tr>
-                                <th width="80px">E-mail*</th>
+                                <th width="80px">E-mail</th>
                                 <td>：{{ Auth::user()->email }}</td>
                             </tr>
                             <tr>
-                                <th width="80px">Skype ID*</th>
+                                <th width="80px">Skype ID</th>
                                 <td>：{{ $value->skype_id }}</td>
                             </tr>
                             <tr>
-                                <th width="80px">Line ID*</th>
+                                <th width="80px">Line ID</th>
                                 <td>：{{ $value->line_id }}</td>
                             </tr>
                             <tr>
-                                <th width="80px">電話番号*</th>
+                                <th width="80px">電話番号</th>
                                 <td>：{{ $value->phone }}</td>
                             </tr>
 
@@ -77,11 +77,11 @@
                     <table class="user-view_table">
                         <tbody>
                             <tr>
-                                <th width="80px">姓：</th>
+                                <th width="80px">姓<span style="color:red;">*</span>：</th>
                                 <td><input type="text" name="family_name" class="form-control ahr-input_1" value="{{ $value->family_name}}"></td>
                             </tr>
                             <tr>
-                                <th width="80px">名：</th>
+                                <th width="80px">名<span style="color:red;">*</span>：</th>
                                 <td><input type="text" name="surname" class="form-control ahr-input_1" value="{{ $value->surname}}"></td>
                             </tr>
                             <tr>
@@ -93,7 +93,7 @@
                                 <td><input type="text" name="surname_en" class="form-control ahr-input_1" value="{{ $value->surname_en }}"></td>
                             </tr>
                             <tr>
-                                <th width="80px">国籍：</th>
+                                <th width="80px">国籍<span style="color:red;">*</span>：</th>
                                 <td><select name="country" class="js-example-templating js-states" style="width: 100%">
                                   <option value="jp">日本</option>
                                   <option value="tw">台湾</option>
@@ -117,24 +117,24 @@
                                 @endif
                             </tr> -->
                             <tr>
-                                <th width="80px">生年月日</th>
+                                <th width="80px">生年月日<span style="color:red;">*</span></th>
                                 <td><input type="text" name="birthday" class="form-control ahr-input_1" value="{{ $value->birthday }}"></td>
                             </tr>
                             <tr>
-                                <th width="80px">現住所*：</th>
+                                <th width="80px">現住所 <span style="color:red;">*</span>：</th>
                                 <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->post.$value->city.$value->address}}"></td>
                             </tr>
                             
                             <tr>
-                                <th width="80px">Skype ID*：</th>
+                                <th width="80px">Skype ID <span style="color:red;">*</span>：</th>
                                 <td><input type="text" name="skype_id" class="form-control ahr-input_1" value="{{ $value->skype_id }}"></td>
                             </tr>
                             <tr>
-                                <th width="80px">Line ID*：</th>
+                                <th width="80px">Line ID ：</th>
                                 <td><input type="text" name="line_id" class="form-control ahr-input_1" value="{{ $value->line_id }}"></td>
                             </tr>
                             <tr>
-                                <th width="80px">電話番号*：</th>
+                                <th width="80px">電話番号 <span style="color:red;">*</span>：</th>
                                 <td><input type="text" name="phone" class="form-control ahr-input_1" value="{{ $value->phone }}"></td>
                             </tr>
                         </tbody>
@@ -213,8 +213,14 @@
                                 <td><input type="text" name="school_country" class="form-control ahr-input_1" value="{{ $value->school_country}}"></td>
                             </tr>
                             <tr>
-                                <th width="100px">専攻：</th>
-                                <td><input type="text" name="subject" class="form-control ahr-input_1" value="{{ $value->subject}}"></td>
+                                <th width="100px">学科：</th>
+                                <td>
+                                <select name="subject" class="js-example-templating3 js-states" style="width: 100%">
+                                    @foreach($subject as $value)
+                                    <option value="{{$value->id}}">{{$value->subject}}</option>
+                                    @endforeach
+                                </select>
+                                </td>
                             </tr>
                             <tr>
                                 <th width="100px">卒業年度(予定)：</th>

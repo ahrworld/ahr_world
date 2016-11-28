@@ -32,7 +32,7 @@
 			       	    </select>
 			     	</div>
 			     	 <div class="form-group" style="margin-top: 30px;">
-	  		      	    <label class="add"></label>
+	  		      	    <label class="add"><i class="fa fa-plus-circle" aria-hidden="true"></i></label>
 	  		        </div>
 
 		        </div>

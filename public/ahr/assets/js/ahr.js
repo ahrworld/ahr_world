@@ -4,7 +4,13 @@ $.ajaxSetup({
     }
 });
 var token = '{{ Session::token() }}';
-
+function del(id) {
+  $("#div"+id).remove();
+}
+function dels(id) {
+  $("#divs"+id).remove();
+  $('.language_append').append($('<input  type="hidden" name="delete_language[]" value="'+id+'">'));
+}
 $(document).ready(function() {
 
 // 修正tabs連結
