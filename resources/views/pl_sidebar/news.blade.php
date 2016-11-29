@@ -363,6 +363,17 @@
         });
     });
     </script>
+    <style>
+      .show_vi{
+        cursor: pointer;
+        font-size: 18px;
+        display: inline-block;
+        font-weight: bold;
+        margin-bottom: 20px;
+        margin-right: 20px;
+      }
+
+    </style>
     <div class="wrappers"></div>
     <!-- 応募者管理 Tab panes -->
     <div class="tab-content">
@@ -380,7 +391,9 @@
                         <!-- photo left -->
                         @if(isset($value_r->image_small))
                         <div class="img-left">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
                             <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </a>
                         </div>
                         @else
                         <div class="img-left">
@@ -389,10 +402,8 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-                            <a href="{{ route('business.show', $value_r->r_id) }}">
-
-                            <label style="font-size:18px;">{{$value_r->company_name}}
-                           </label>
+                            <a class="show_vi" href="{{ route('business.show', $value_r->r_id) }}">
+                            {{$value_r->company_name}}
                             </a>
                             <span style="padding:5px; border:1px solid #CCC;">応募済み</span>
                             <p>
@@ -425,7 +436,9 @@
                         <!-- photo left -->
                         @if(isset($value_r->image_small))
                         <div class="img-left">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
                             <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </a>
                         </div>
                         @else
                         <div class="img-left">
@@ -434,9 +447,8 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-                            <a href="{{ route('business.show', $value_r->r_id) }}">
-
-                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
+                            <a class="show_vi" href="{{ route('business.show', $value_r->r_id) }}">
+                            {{$value_r->company_name}}
                             </a>
                             <span style="padding:5px;background: #ffb61c;color: #FFF;">お気に入り</span>
                             <p>
@@ -462,6 +474,7 @@
                     </div>
                 </div>
                 @endforeach
+                
                  @foreach($Recruitment as $key_r => $value_r)
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -477,9 +490,8 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-                            <a href="{{ route('business.show', $value_r->r_id) }}">
-
-                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
+                            <a class="show_vi" href="{{ route('business.show', $value_r->r_id) }}">
+                            {{$value_r->company_name}}
                             </a>
 
                             <p>
@@ -516,7 +528,9 @@
                         <!-- photo left -->
                         @if(isset($value->image_small))
                         <div class="img-left">
-                            <img height="175" src="data:image/png;base64,{{$value->image_small}}" alt="">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
+                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </a>
                         </div>
                         @else
                         <div class="img-left">
@@ -580,7 +594,9 @@
                         <!-- photo left -->
                         @if(isset($value_r->image_small))
                         <div class="img-left">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
                             <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </a>
                         </div>
                         @else
                         <div class="img-left">
@@ -590,8 +606,8 @@
                         <!-- content -->
                         <div class="panel-content">
 
-                            <a href="{{ route('business.show', $value_r->id) }}">
-                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
+                            <a class="show_vi" href="{{ route('business.show', $value_r->r_id) }}">
+                            {{$value_r->company_name}}
                             </a>
 
                             <!-- <label>更新日時:<span>{{$value_r->updated_at}}</span></label> -->
@@ -626,7 +642,9 @@
                         <!-- photo left -->
                         @if(isset($value_r->image_small))
                         <div class="img-left">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
                             <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </a>
                         </div>
                         @else
                         <div class="img-left">
@@ -635,9 +653,8 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-                            <a href="{{ route('business.show', $value_r->r_id) }}">
-
-                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
+                            <a class="show_vi" href="{{ route('business.show', $value_r->r_id) }}">
+                            {{$value_r->company_name}}
                             </a>
                             <span style="padding:5px;background: #ffb61c;color: #FFF;">お気に入り</span>
                             <p>
@@ -690,7 +707,9 @@
                         <!-- photo left -->
                         @if(isset($value_r->image_small))
                         <div class="img-left">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
                             <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </a>
                         </div>
                         @else
                         <div class="img-left">
@@ -699,8 +718,8 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-                            <a href="#">
-                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
+                            <a class="show_vi" href="{{ route('business.show', $value_r->r_id) }}">
+                            {{$value_r->company_name}}
                             </a>
                             <span style="padding:4px 15px; background:#F0844A; color: #FFF;">日程決定</span>
 
@@ -747,7 +766,9 @@
                         <!-- photo left -->
                         @if(isset($value_r->image_small))
                         <div class="img-left">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
                             <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </a>
                         </div>
                         @else
                         <div class="img-left">
@@ -756,8 +777,8 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-                            <a href="#">
-                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
+                            <a class="show_vi" href="{{ route('business.show', $value_r->r_id) }}">
+                            {{$value_r->company_name}}
                             </a>
                             <span style="padding:4px 15px; border: 1px #2ec1cc solid; color: #2ec1cc;">進行中</span>
 
@@ -797,7 +818,9 @@
                         <!-- photo left -->
                         @if(isset($value_r->image_small))
                         <div class="img-left">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
                             <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        </a>
                         </div>
                         @else
                         <div class="img-left">
@@ -806,8 +829,8 @@
                         @endif
                         <!-- content -->
                         <div class="panel-content">
-                            <a href="#">
-                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
+                            <a class="show_vi" href="{{ route('business.show', $value_r->r_id) }}">
+                            {{$value_r->company_name}}
                             </a>
                             <span style="padding:4px 15px; color: #FFF; background: #0094e5;">內定</span>
 

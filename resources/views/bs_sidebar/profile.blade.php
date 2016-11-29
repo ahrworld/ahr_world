@@ -31,17 +31,28 @@ $(document).ready(function() {
     $('.nav-tabs li a').click(function(){
       $('body').scrollTop('500');
     });
+    // 上傳作品圖轉base64
+    $("#uploadBtn_blog").change(function(){
+      readImage( this );
+    });
     document.getElementById("uploadBtn").onchange = function () {
         document.getElementById("file-1").value = this.value;
     };
 });
-
-
+// 上傳作品圖轉base64
+function readImage(input) {
+  if ( input.files && input.files[0] ) {
+    var FR= new FileReader();
+    FR.onload = function(e) {
+      //e.target.result = base64 format picture
+      $('.p_file').val(e.target.result);
+    };
+    FR.readAsDataURL( input.files[0] );
+  }
+}
 </script>
 
-<script>
 
-</script>
 <div class="scorl" style="width:60%; float:left; margin-left:15px;">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">

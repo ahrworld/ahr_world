@@ -15,6 +15,7 @@
                     <div class="fileUpload btn btn-warning">
                         <span><i class="fa fa-picture-o"></i></span>
                         <input id="uploadBtn_blog" name="image" type="file" accept="image/*" class="upload upl" />
+                        <input type="hidden" name="p_file" class="p_file">
                     </div>
                     <button type="submit" class="btn btn-primary float-right">投槁</button>
                     <span class="float-right">&nbsp;</span>
@@ -48,7 +49,7 @@
                             <pre style="font-size: 16px;">{{ $value->blog_content }}</pre>
                     </div>
                     <div style="width:100%;">
-                    <img src="ahr/business_blog/{{$value->blog_image}}" width="100%">
+                    <img src="{{$value->blog_image}}" width="100%">
                     </div>
                 </div>
             </div>

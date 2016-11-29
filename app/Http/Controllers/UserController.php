@@ -8,7 +8,9 @@ use App\BSinformations;
 use App\ModelBranch\Employment;
 use App\ModelBranch\Experience;
 use App\ModelBranch\Languagelv;
+use App\ModelBranch\Bs_blog;
 use App\ModelBranch\Bs_image;
+use App\ModelBranch\Bs_summary;
 use App\ModelBranch\Subject;
 use App\ModelBranch\Bs_history;
 use App\ModelBranch\Pl_history;
@@ -483,16 +485,33 @@ class UserController extends Controller
         $res  = Recruitment::where('recruitments.id', $id)
                             ->join('bsinformations', 'recruitments.bsinformations_id', '=', 'bsinformations.id')
                             ->first();
-        if (is_null($res)) {
-            return redirect()->back()->with('message', '找不到該文章');
-        }
+        // if (is_null($res)) {
+        //     return redirect()->back()->with('message', '找不到該文章');
+        // }
         $r_id = Recruitment::select('recruitments.id as r_id')
                             ->where('recruitments.id', $id)
                             ->first();
         $bs_id = $res->user_id;
-
+        $bs_summary_A = Bs_summary::where('user_id', $bs_id)
+        ->join('bs_summary_image', 'bs_summary.id', '=', 'bs_summary_image.bs_summary_id')
+        ->get();                 
+        $recruitments = Recruitment::where('recruitments.id', $id)
+        ->join('subject', 'recruitments.subject_id', '=', 'subject.id')
+        ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+        ->get();   
+        $employments = Recruitment::where('recruitments.id', $id)
+        ->join('employments', 'recruitments.id', '=', 'employments.recruitments_id')
+        ->get();
+        $experiences = Recruitment::where('recruitments.id', $id)
+        ->join('experiences', 'recruitments.id', '=', 'experiences.recruitments_id')
+        ->get();
+        // bs_blog
+        $bs_blog = Bs_blog::join('bsinformations', 'bs_blog.user_id', '=', 'bsinformations.user_id')
+                            ->where('bs_blog.user_id' ,$bs_id)
+                            ->orderBy('bs_blog.id','desc')->get();
         $bs_image = Bs_image::where('bs_image.user_id',$res->user_id)->first();
         $history = Pl_history::where('user_id',$request->user()->id)->where('recruitments_id',$id)->first();
+        // 足跡
         if (isset($history)) {
             Pl_history::where('user_id',$request->user()->id)
                         ->where('recruitments_id',$id)
@@ -504,9 +523,13 @@ class UserController extends Controller
                'user_id' => $request->user()->id
             ]);
         }
-
         return view('pl_sidebar.show', [
             'bs_image' => $bs_image,
+            'bs_summary_A' =>$bs_summary_A,
+            'recruitments' => $recruitments,
+            'employments' => $employments,
+            'experiences' => $experiences,
+            'bs_blog' => $bs_blog,
             'res' => $res,
             'r_id' =>$r_id,
         ]);
