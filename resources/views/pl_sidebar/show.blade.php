@@ -377,7 +377,7 @@ background-image:url(data:image/png;base64,{{$bs_image->image_small}});
                                        <pre style="font-size: 16px;">{{ $value->blog_content }}</pre>
                                </div>
                                <div style="width:100%;">
-                               <img src="ahr/business_blog/{{$value->blog_image}}" width="100%">
+                               <img src="{{$value->blog_image}}" width="100%">
                                </div>
                            </div>
                        </div>

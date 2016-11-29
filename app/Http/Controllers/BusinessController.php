@@ -355,21 +355,23 @@ class BusinessController extends Controller
 
     }
     public function blog(Request $request){
-       $date = date('ymdhis');
-       if($request->hasFile('image'))
-       {
-         $photoname_m = $date.$request->user()->id.'.'.'png';
-         $photo_upload = $request->file('image')->move(public_path().'/ahr/business_blog',$photoname_m);
-         Bs_blog::create([
-            'title' => $request->title,
-            'sub_title' => $request->sub_title,
-            'blog_content' => $request->blog_content,
-            'blog_image' => $photoname_m,
-            'user_id' => $request->user()->id,
-         ]);
+       if(isset($request->p_file)){
+            Bs_blog::create([
+               'title' => $request->title,
+               'sub_title' => $request->sub_title,
+               'blog_content' => $request->blog_content,
+               'blog_image' => $request->p_file,
+               'user_id' => $request->user()->id
+            ]);
+            return redirect('/profile_b2#a3');
        }
-
-       return redirect('/profile_b2');
+       Bs_blog::create([
+          'title' => $request->title,
+          'sub_title' => $request->sub_title,
+          'blog_content' => $request->blog_content,
+          'user_id' => $request->user()->id
+       ]);
+       return redirect('/profile_b2#a3');
     }
     public function preview(Request $request){
        $date = date('ymdhis');
