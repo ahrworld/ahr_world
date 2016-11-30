@@ -288,77 +288,69 @@ class UserController extends Controller
         //応募default
         $Recruitment = Recruitment::select('recruitments.id as r_id','recruitments.created_at','exp_job.name',
             'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
-            'content','need_skill','annual_income','monthly_income','work_site','image_small','languagelvs.languagelv_name')
+            'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
                         ->whereNotIn('recruitments.id', function($q){
                         $q->select('recruitments_id')
                         ->from('recruitments_status');
                       })->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-                        ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                         ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                         ->get();
                    //orWhere作法不好，只有或，沒有和的條件，所以user id一旦錯了就全錯了
 
         // 応募した
         $Recruitment_ofa = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
-            'content','need_skill','annual_income','monthly_income','work_site','image_small','bsinformations.company_name','languagelvs.languagelv_name')
+            'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',1)
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
         // 檢索履歷
-        $history = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
-            'content','need_skill','annual_income','monthly_income','work_site','image_small','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
-                            ->where('recruitments_status.user_id', $request->user()->id)
-                            ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+        $history = Recruitment::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
+            'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
                             ->join('pl_history', 'recruitments.id', '=', 'pl_history.recruitments_id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->orderBy('pl_history.updated_at','desc')
                             ->get();
         $history_ofa =  Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
-            'content','need_skill','annual_income','monthly_income','work_site','image_small','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
+            'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',1)
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->join('pl_history', 'recruitments.id', '=', 'pl_history.recruitments_id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->orderBy('pl_history.updated_at','desc')
                             ->get();
         $history_like = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
-            'content','need_skill','annual_income','monthly_income','work_site','image_small','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
+            'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',2)
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->join('pl_history', 'recruitments.id', '=', 'pl_history.recruitments_id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->orderBy('pl_history.updated_at','desc')
                             ->get();
         // お気に入り
         $Recruitment_like = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
-            'content','need_skill','annual_income','monthly_income','work_site','image_small','bsinformations.company_name','languagelvs.languagelv_name')
+            'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',2)
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
         // 面接調整
-        $Recruitment_a = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','image_small','exp_job.name',
+        $Recruitment_a = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name',
             'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.user_id as b_user_id',
             'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
@@ -367,11 +359,10 @@ class UserController extends Controller
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
         // 選考進行
-        $Recruitment_check = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','image_small','exp_job.name',
+        $Recruitment_check = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name',
             'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.user_id as b_user_id',
             'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
@@ -379,11 +370,10 @@ class UserController extends Controller
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
         // 內定
-        $Recruitment_ok = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','image_small','exp_job.name',
+        $Recruitment_ok = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name',
             'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.user_id as b_user_id',
             'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
@@ -391,10 +381,9 @@ class UserController extends Controller
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-                            ->join('bs_image', 'bs_image.user_id', '=', 'recruitments.user_id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
-
+     
 
         return view('pl_sidebar/news',[
           'bs_image' => $bs_image,
@@ -482,16 +471,21 @@ class UserController extends Controller
     }
     public function show(Request $request , $id)
     {
-        $res  = Recruitment::where('recruitments.id', $id)
-                            ->join('bsinformations', 'recruitments.bsinformations_id', '=', 'bsinformations.id')
+        $res  = Recruitment::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
+            'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name')
+                            ->where('recruitments.id', $id)
+                            ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
+                            ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                            ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->first();
-        // if (is_null($res)) {
-        //     return redirect()->back()->with('message', '找不到該文章');
-        // }
+       
         $r_id = Recruitment::select('recruitments.id as r_id')
                             ->where('recruitments.id', $id)
                             ->first();
+
         $bs_id = $res->user_id;
+        $res_status = Recruitments_status::where('recruitments_id',$id)->first();
+        // tab1
         $bs_summary_A = Bs_summary::where('user_id', $bs_id)
         ->join('bs_summary_image', 'bs_summary.id', '=', 'bs_summary_image.bs_summary_id')
         ->get();                 
@@ -524,6 +518,7 @@ class UserController extends Controller
             ]);
         }
         return view('pl_sidebar.show', [
+            'res_status' => $res_status,
             'bs_image' => $bs_image,
             'bs_summary_A' =>$bs_summary_A,
             'recruitments' => $recruitments,

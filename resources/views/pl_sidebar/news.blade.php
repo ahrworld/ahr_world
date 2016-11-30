@@ -389,15 +389,27 @@
                 <div class="panel panel-default ">
                     <div class="panel-body">
                         <!-- photo left -->
-                        @if(isset($value_r->image_small))
+                        <?php $check = 0; $ok;?>
+                        @foreach($bs_image as $va)
+                        @if($va->user_id == $value_r->user_id)
+                        <?php
+                              $check = 1;
+                              $ok = $va->image_small;
+                           ?>
+                          @break 
+                        @endif
+                        @endforeach
+                        @if($check == 1)
                         <div class="img-left">
                         <a href="{{ route('business.show', $value_r->r_id) }}">
-                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                            <img height="175" src="data:image/png;base64,{{$ok}}" alt="">
                         </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
+                            <img height="175" src="{{ asset('assets/img/b-icon-c.png')}}" alt="" style="opacity: 0.5;">
+                        </a>
                         </div>
                         @endif
                         <!-- content -->
@@ -434,15 +446,27 @@
                 <div class="panel panel-default ">
                     <div class="panel-body">
                         <!-- photo left -->
-                        @if(isset($value_r->image_small))
+                        <?php $check = 0; $ok;?>
+                        @foreach($bs_image as $va)
+                        @if($va->user_id == $value_r->user_id)
+                        <?php
+                              $check = 1;
+                              $ok = $va->image_small;
+                           ?>
+                          @break 
+                        @endif
+                        @endforeach
+                        @if($check == 1)
                         <div class="img-left">
                         <a href="{{ route('business.show', $value_r->r_id) }}">
-                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                            <img height="175" src="data:image/png;base64,{{$ok}}" alt="">
                         </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
+                            <img height="175" src="{{ asset('assets/img/b-icon-c.png')}}" alt="" style="opacity: 0.5;">
+                        </a>
                         </div>
                         @endif
                         <!-- content -->
@@ -479,13 +503,27 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <!-- photo left -->
-                        @if(isset($value_r->image_small))
+                        <?php $check = 0; $ok;?>
+                        @foreach($bs_image as $va)
+                        @if($va->user_id == $value_r->user_id)
+                        <?php
+                              $check = 1;
+                              $ok = $va->image_small;
+                           ?>
+                          @break 
+                        @endif
+                        @endforeach
+                        @if($check == 1)
                         <div class="img-left">
-                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
+                            <img height="175" src="data:image/png;base64,{{$ok}}" alt="">
+                        </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
+                            <img height="175" src="{{ asset('assets/img/b-icon-c.png')}}" alt="" style="opacity: 0.5;">
+                        </a>
                         </div>
                         @endif
                         <!-- content -->
@@ -522,37 +560,48 @@
                 <!-- s1 end -->
                 <!--  檢索履歷 -->
                 <div class="s2 search none">
-                @foreach($history as $key => $value)
+                @foreach($history as $key => $value_r)
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <!-- photo left -->
-                        @if(isset($value->image_small))
+                        <?php $check = 0; $ok;?>
+                        @foreach($bs_image as $va)
+                        @if($va->user_id == $value_r->user_id)
+                        <?php
+                              $check = 1;
+                              $ok = $va->image_small;
+                           ?>
+                          @break 
+                        @endif
+                        @endforeach
+                        @if($check == 1)
                         <div class="img-left">
                         <a href="{{ route('business.show', $value_r->r_id) }}">
-                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                            <img height="175" src="data:image/png;base64,{{$ok}}" alt="">
                         </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
+                            <img height="175" src="{{ asset('assets/img/b-icon-c.png')}}" alt="" style="opacity: 0.5;">
+                        </a>
                         </div>
                         @endif
                         <!-- content -->
                         <div class="panel-content" style="width:70%;">
 
-                            <a href="{{ route('business.show', $value->id) }}">
-                            <label style="font-size:18px;">{{$value->company_name}}</label>
-
+                            <a href="{{ route('business.show', $value_r->id) }}">
+                            <label style="font-size:18px;">{{$value_r->company_name}}</label>
                             </a>
-                            <span style="float: right; color: #b13d31;">最後觀看:{{$value->updated_at->format('Y年m月d日- H時:i分')}}</span>
+                            <span style="float: right; color: #b13d31;">最後觀看:{{$value_r->updated_at->format('Y年m月d日- H時:i分')}}</span>
                             <p>
-                                <label class="label-gray">業種</label><span class="job_name">{{$value->name}}</span></p>
+                                <label class="label-gray">業種</label><span class="job_name">{{$value_r->name}}</span></p>
                             <p>
-                                <label class="label-gray">仕事内容</label><span>{{$value->content}}</span></p>
+                                <label class="label-gray">仕事内容</label><span>{{$value_r->content}}</span></p>
                             <p>
-                                <label class="label-gray">応募条件</label><span>{{$value->need_skill}}</span></p>
+                                <label class="label-gray">応募条件</label><span>{{$value_r->need_skill}}</span></p>
                             <p>
-                                <label class="label-gray">言語</label><span>{{$value->languagelv_name}}</span></p>
+                                <label class="label-gray">言語</label><span>{{$value_r->languagelv_name}}</span></p>
                             <p>
 
                                 <label class="label-gray">給与</label><span>000万円～000万円</span></p>
@@ -592,15 +641,27 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <!-- photo left -->
-                        @if(isset($value_r->image_small))
+                        <?php $check = 0; $ok;?>
+                        @foreach($bs_image as $va)
+                        @if($va->user_id == $value_r->user_id)
+                        <?php
+                              $check = 1;
+                              $ok = $va->image_small;
+                           ?>
+                          @break 
+                        @endif
+                        @endforeach
+                        @if($check == 1)
                         <div class="img-left">
                         <a href="{{ route('business.show', $value_r->r_id) }}">
-                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                            <img height="175" src="data:image/png;base64,{{$ok}}" alt="">
                         </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
+                            <img height="175" src="{{ asset('assets/img/b-icon-c.png')}}" alt="" style="opacity: 0.5;">
+                        </a>
                         </div>
                         @endif
                         <!-- content -->
@@ -640,15 +701,27 @@
                 <div class="panel panel-default ">
                     <div class="panel-body">
                         <!-- photo left -->
-                        @if(isset($value_r->image_small))
+                        <?php $check = 0; $ok;?>
+                        @foreach($bs_image as $va)
+                        @if($va->user_id == $value_r->user_id)
+                        <?php
+                              $check = 1;
+                              $ok = $va->image_small;
+                           ?>
+                          @break 
+                        @endif
+                        @endforeach
+                        @if($check == 1)
                         <div class="img-left">
                         <a href="{{ route('business.show', $value_r->r_id) }}">
-                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                            <img height="175" src="data:image/png;base64,{{$ok}}" alt="">
                         </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
+                            <img height="175" src="{{ asset('assets/img/b-icon-c.png')}}" alt="" style="opacity: 0.5;">
+                        </a>
                         </div>
                         @endif
                         <!-- content -->
@@ -705,15 +778,27 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <!-- photo left -->
-                        @if(isset($value_r->image_small))
+                        <?php $check = 0; $ok;?>
+                        @foreach($bs_image as $va)
+                        @if($va->user_id == $value_r->user_id)
+                        <?php
+                              $check = 1;
+                              $ok = $va->image_small;
+                           ?>
+                          @break 
+                        @endif
+                        @endforeach
+                        @if($check == 1)
                         <div class="img-left">
                         <a href="{{ route('business.show', $value_r->r_id) }}">
-                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                            <img height="175" src="data:image/png;base64,{{$ok}}" alt="">
                         </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
+                            <img height="175" src="{{ asset('assets/img/b-icon-c.png')}}" alt="" style="opacity: 0.5;">
+                        </a>
                         </div>
                         @endif
                         <!-- content -->
@@ -738,9 +823,7 @@
                         </div>
                         <div class="img-right">
                             <div style="width:160px; float:left;">
-                                <!-- <button class="btn ahr-label-blue ahr-btn-lg">スケジュールを選ぶ</button> -->
                                       <a href="{{ route('schedule.show', $value_r->r_id) }}" class="btn ahr-label-blue ahr-btn-lg">スケジュールを選ぶ</a>
-                               
                                       <button type="button" class="btn ahr-label-yellow ahr-btn-lg giveup" attr="{{$value_r->r_id}}" data-toggle="modal" data-target="#giveup">辞退する</button>
 
                             </div>
@@ -764,15 +847,27 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <!-- photo left -->
-                        @if(isset($value_r->image_small))
+                        <?php $check = 0; $ok;?>
+                        @foreach($bs_image as $va)
+                        @if($va->user_id == $value_r->user_id)
+                        <?php
+                              $check = 1;
+                              $ok = $va->image_small;
+                           ?>
+                          @break 
+                        @endif
+                        @endforeach
+                        @if($check == 1)
                         <div class="img-left">
                         <a href="{{ route('business.show', $value_r->r_id) }}">
-                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                            <img height="175" src="data:image/png;base64,{{$ok}}" alt="">
                         </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
+                            <img height="175" src="{{ asset('assets/img/b-icon-c.png')}}" alt="" style="opacity: 0.5;">
+                        </a>
                         </div>
                         @endif
                         <!-- content -->
@@ -816,15 +911,27 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <!-- photo left -->
-                        @if(isset($value_r->image_small))
+                        <?php $check = 0; $ok;?>
+                        @foreach($bs_image as $va)
+                        @if($va->user_id == $value_r->user_id)
+                        <?php
+                              $check = 1;
+                              $ok = $va->image_small;
+                           ?>
+                          @break 
+                        @endif
+                        @endforeach
+                        @if($check == 1)
                         <div class="img-left">
                         <a href="{{ route('business.show', $value_r->r_id) }}">
-                            <img height="175" src="data:image/png;base64,{{$value_r->image_small}}" alt="">
+                            <img height="175" src="data:image/png;base64,{{$ok}}" alt="">
                         </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                        <a href="{{ route('business.show', $value_r->r_id) }}">
+                            <img height="175" src="{{ asset('assets/img/b-icon-c.png')}}" alt="" style="opacity: 0.5;">
+                        </a>
                         </div>
                         @endif
                         <!-- content -->

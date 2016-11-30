@@ -167,6 +167,7 @@ $(document).ready(function() {
 		<!-- main -->
 
         <main style="width:1260px; margin:50px auto;">
+        
         		  @yield('line_menu')
 				  @include('bs_sidebar/left_sidebar')
 				  @yield('content')
@@ -188,8 +189,10 @@ $(document).ready(function() {
 	    	list-style: none;
 	    	padding: 30px 65px;
 	    }
+
 		</style>
 		
+
 
 
 </body>
