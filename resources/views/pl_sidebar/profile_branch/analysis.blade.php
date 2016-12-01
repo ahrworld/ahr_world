@@ -1,29 +1,47 @@
-@if(isset($Analysis_answer))
+
 <script>
   $(document).ready(function() {
-
-     var ctx = $("#analysis_view").get(0).getContext("2d");
-     var radarChartData = {
-            labels: ["特定專門", "生活樣式", "挑戰客服", "奉仕貢獻", "創意創業", "安全安定", "自由自立", "縂合管理"],
-            datasets: [
-              {
-                label: "My Second dataset",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-               
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [{{$Analysis_answer->as_value_1}},{{$Analysis_answer->as_value_2}},{{$Analysis_answer->as_value_3}},{{$Analysis_answer->as_value_4}},{{$Analysis_answer->as_value_5}},{{$Analysis_answer->as_value_6}},{{$Analysis_answer->as_value_7}},{{$Analysis_answer->as_value_8}}]
-              }
-            ]
-          };
-     var myRadarChart = new Chart(ctx).Radar(radarChartData, {
-         pointDot: false
-     });
+  @if(isset($Analysis_answer))
+        $('.analysis_form').addClass('none');
+        var ctx = $("#analysis_view").get(0).getContext("2d");
+        var radarChartData = {
+               labels: ["特定專門", "生活樣式", "挑戰客服", "奉仕貢獻", "創意創業", "安全安定", "自由自立", "縂合管理"],
+               datasets: [
+                 {
+                   label: "My Second dataset",
+                  
+                   scaleSteps : 10,
+                   scaleStepWidth : 500,
+                   scaleStartValue : 500,
+                   fillColor: "rgba(151,187,205,0.2)",
+                   strokeColor: "rgba(151,187,205,1)",
+                   pointColor: "rgba(151,187,205,1)",
+                   pointStrokeColor: "#fff",
+                   pointHighlightFill: "#fff",
+                  
+                   pointHighlightStroke: "rgba(151,187,205,1)",
+                   data: [{{$Analysis_answer->as_value_1}},{{$Analysis_answer->as_value_2}},{{$Analysis_answer->as_value_3}},{{$Analysis_answer->as_value_4}},{{$Analysis_answer->as_value_5}},{{$Analysis_answer->as_value_6}},{{$Analysis_answer->as_value_7}},{{$Analysis_answer->as_value_8}}]
+                 }
+               ]
+             };
+        var myRadarChart = new Chart(ctx).Radar(radarChartData, {
+             scaleLineWidth :1, // 区切りの太さ(px)
+             scaleOverride: true, // 区切りを絶対値で指定
+             scaleSteps : 5, // 区切りの数
+             scaleStepWidth : 20, // 区切りの間隔(100％がMAXのグラフなら、100/scaleSteps)
+             scaleStartValue : 0, // 区切りの開始値(100%がMAXのグラフなら、0％の0)
+             pointLabelFontStyle: '900', // 各項目名のスタイル類
+             pointLabelFontSize: 13,
+             pointLabelFontColor: '#5b4f30'
+        });
+        // analysis_again
+        $('.as_view #as_again').click(function(){
+            $('.analysis_form').removeClass('none').addClass('animated fadeIn');
+            $('.as_view').addClass('none').removeClass('animated flash');
+            $('.as_v').attr('checked',false);
+        });
+  @endif
       // analysis_wizard
-      
       $('#analysis_wizard').bootstrapWizard({onNext: function(tab, navigation, index) {
         $('#analysis_wizard .navbar .navbar-tab li').first().addClass('done');
         $('#analysis_wizard .navbar .navbar-tab li').eq(index).addClass('done');
@@ -74,35 +92,18 @@
               dataType: "json",
               data: {data:status},
               success: function(data) {
-                  console.log(JSON.stringify(data));
-                  $('.analysis_form').addClass('none').removeClass('animated fadeIn');
-                  $('.as_view').removeClass('none').addClass('animated flash');
-                  $('.as_v').attr('checked',false);
-                  myRadarChart();
+                  window.location.reload();
               },
               error: function(data) {
                   console.log('Error:', data);
               }
           });
       });
-      // analysis_again
-      $('.as_view #as_again').click(function(){
-          $('.analysis_form').removeClass('none').addClass('animated fadeIn');
-          $('.as_view').addClass('none').removeClass('animated flash');
-          $('.as_v').attr('checked',false);
-          $('#analysis_wizard').bootstrapWizard('first');
-
-
-      });
-     // if
-     if ($('.as_view').has() ) {
-        $('.analysis_form').addClass('none');
-     }else{
-        return false;
-     }
+      
+    
   });
 </script>
-@endif
+
 <div class="wrapper" style="margin-top:0px !important;">
     <!-- 分析開始 -->
     <div class="panel panel-primary">
@@ -111,12 +112,31 @@
                 @if(isset($Analysis_answer))
                 <!-- analysis_view -->
                 <div class="as_view" style="text-align: center;">
-                   <canvas id="analysis_view" width="400" height="400"></canvas>
+                   <style>
+                     .as_nice_content{
+                      overflow : hidden;
+                      text-overflow: ellipsis;
+                      display: -webkit-box;
+                      -webkit-line-clamp: 10;
+                      -webkit-box-orient: vertical;
+                      word-break: break-all;
+                     }
+                   </style>
+                   <div class="row">
+                     <div class="col-xs-8">
+                        <canvas id="analysis_view" width="400" height="400"></canvas>
+                     </div>
+                     <div class="col-xs-4">
+                        <h3 class="as_nice_title">特定專門</h3>
+                        <h6 class="as_nice_content">dsadwqdwqdwqdwqdwqdwqdwqdwqdwdsadsadsadsadsasdadsadsadsadsadsadsaqdwewqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrqrwqrwqrwqrwqrwqrwqrwqqdwqdwqdwqdsadwqdwqdwqdwqdwqdwqdwqdwqdwdsadsadsadsadsasdadsadsadsadsadsadsaqdwewqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrqrwqrwqrwqrwqrwqrwqrwqqdwqdwqdwq</h6>
+                        <a class="btn btn-info" role="button" style="width:50%;" data-toggle="modal" data-target="#as_nice">詳細</a>
+                     </div>
+                   </div>
                     <div class="panel-footer">
-                    <a id="as_again" class="btn btn-success" role="button" style="width:50%">もう一回</a>
+                      <a id="as_again" class="btn btn-success" role="button" style="width:50%;">もう一回</a>
                     </div>
                 </div>  
-                @endif
+               @endif
                <form class="analysis_form" method="POST">
                <!-- 總數 -->
                <div class="float-right" style="font-weight: bold; color: #1c7ebb;">
@@ -157,21 +177,40 @@
                             </div>
                          </div>
                          @endforeach
+                              <ul class="pager wizard">
+                                  <li class="previous first" style="display:none;"><a href="javascript:;">第一題</a></li>
+                                  <li class="previous"><a href="javascript:;"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
 
-
-                                  <ul class="pager wizard">
-                                      <li class="previous first" style="display:none;"><a href="javascript:;">第一題</a></li>
-                                      <li class="previous"><a href="javascript:;"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
-
-                                      <li class="next"><a href="javascript:;"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
-                                      <li class="next finish finish_sumbit" style="display:none;"><a href="javascript:;">分析開始</a></li>
-                                  </ul>
-                               </div><!-- end tab-content -->
-
+                                  <li class="next"><a href="javascript:;"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                                  <li class="next finish finish_sumbit" style="display:none;"><a href="javascript:;">分析開始</a></li>
+                              </ul>
+                           </div><!-- end tab-content -->
                         </div><!-- end analysis_wizard -->
                         </form>
                        
             </div>
     </div>
     <!-- panel end -->
+</div>
+
+<!-- as_nice modal -->
+<div class="modal fade" id="as_nice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">分析</h4>
+      </div>
+      <div class="modal-body">
+        <pre>
+            ぜひ、「 」について、更にお話を伺えればと思っております。
+            お忙しいところ恐縮ですが、よろしくお願い致します。
+        </pre>
+      </div>
+      <div class="modal-footer rk_wrapper">
+        <button type="button" class="btn btn-default back" data-dismiss="modal">キャンセル</button>
+        <button type="submit" class="btn btn-primary" >わかりました</button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -107,15 +107,6 @@
                                 </select>
                                 </td>
                             </tr>
-                           <!--  <tr>
-                                <th width="80px">性別：</th>
-                                @if($value->sex === 1)
-                                <td>男</td>
-                                @endif
-                                @if($value->sex === 0)
-                                <td>女</td>
-                                @endif
-                            </tr> -->
                             <tr>
                                 <th width="80px">生年月日<span style="color:red;">*</span></th>
                                 <td><input type="text" name="birthday" class="form-control ahr-input_1" value="{{ $value->birthday }}"></td>

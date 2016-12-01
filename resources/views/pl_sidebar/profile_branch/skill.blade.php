@@ -172,15 +172,17 @@
               <i class="fa fa-times-circle" aria-hidden="true"></i>
             </a>
                 <h6>■　スキル</h6>
+                <form action="{{url('/personnels/update')}}" method="POST">
+                {{ csrf_field() }}
                           @foreach($skill_titles as $key_title => $value_title)
                           <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="heading{{ $key_title }}" style="color:#FFF; background:#9ED8F6;">
                                <h4 class="panel-title">
-                                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $key_title }}" aria-expanded="true" aria-controls="collapse{{ $key_title }}">
-                                         &nbsp;{{ $value_title->skill_title }}
-                                       </a>
-                                       <i class="fa fa-caret-up float-right"></i>
-                                     </h4>
+                                   <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $key_title }}" aria-expanded="true" aria-controls="collapse{{ $key_title }}">
+                                     &nbsp;{{ $value_title->skill_title }}
+                                   </a>
+                                   <i class="fa fa-caret-up float-right"></i>
+                               </h4>
                             </div>
 
                             <div id="collapse{{ $key_title }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ $key_title }}">
@@ -206,7 +208,7 @@
                                 <tr>
                                 <th width="30%" scope="row"><input type="hidden" name="per_skill[]" value="{{ $value->id }}">{{ $value->skill_name }}</th>
 
-                                <td align="center" class="in_value"><input type="radio" class="in" name="value_{{ $key+1 }}" value="no"></td>
+                                <td align="center" class="in_value"><input type="radio" class="in" name="value_{{ $key+1 }}" value=""></td>
                                 <td align="center"><input type="radio" class="in" name="value_{{ $key+1 }}" value="1"></td>
                                 <td align="center"><input type="radio" class="in" name="value_{{ $key+1 }}" value="2"></td>
                                 <td align="center"><input type="radio" class="in" name="value_{{ $key+1 }}" value="3"></td>
@@ -215,6 +217,7 @@
                                 </tr>
                                 @endif
                                 @endforeach
+
                                 </tbody>
                                 </table>
                                 @endif
@@ -224,6 +227,11 @@
                             </div>
                           </div>
                           @endforeach
+                          <button type="submit" class="btn btn-w-md btn-gap-v btn-primary btn_btom">
+                            變更
+                          </button>
+                    </form>
+
             </div>
         </div>
         <!-- row end -->

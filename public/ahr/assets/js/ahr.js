@@ -314,5 +314,10 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		        reader.readAsDataURL(file);
 		      }
 	   });
+	   // step7
+	   $('.in').click(function(){
+	   	var value = $(this).val();
+	   	$(this).parents().siblings('.in_value').val(value);
+	   });
 });
 

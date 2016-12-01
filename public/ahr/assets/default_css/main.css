@@ -1368,7 +1368,7 @@ p {
     line-height: 1.4
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .lead {
         font-size: 21px
     }
@@ -1569,7 +1569,7 @@ dd {
     clear: both
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .dl-horizontal dt {
         float: left;
         width: 160px;
@@ -1732,7 +1732,7 @@ pre code {
     clear: both
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .container {
         width: 750px
     }
@@ -2237,7 +2237,7 @@ pre code {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .col-sm-1,
     .col-sm-2,
     .col-sm-3,
@@ -3588,7 +3588,7 @@ select[multiple].input-lg,
     color: #b6b6b6
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .form-inline .form-group {
         display: inline-block;
         margin-bottom: 0;
@@ -3668,7 +3668,7 @@ select[multiple].input-lg,
     clear: both
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .form-horizontal .control-label {
         text-align: right;
         margin-bottom: 0;
@@ -3680,13 +3680,13 @@ select[multiple].input-lg,
     right: 15px
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .form-horizontal .form-group-lg .control-label {
         padding-top: 14.3px
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .form-horizontal .form-group-sm .control-label {
         padding-top: 6px
     }
@@ -4316,7 +4316,7 @@ tbody.collapse.in {
     margin-bottom: 1px
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .navbar-right .dropdown-menu {
         right: 0;
         left: auto
@@ -4838,7 +4838,7 @@ tbody.collapse.in {
     left: auto
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .nav-justified>li,
     .nav-tabs.nav-justified>li {
         display: table-cell;
@@ -4870,7 +4870,7 @@ tbody.collapse.in {
     border: 1px solid #ddd
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .nav-tabs-justified>li>a,
     .nav-tabs.nav-justified>li>a {
         border-bottom: 1px solid #ddd;
@@ -4919,7 +4919,7 @@ tbody.collapse.in {
     clear: both
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .navbar {
         border-radius: 2px
     }
@@ -4935,7 +4935,7 @@ tbody.collapse.in {
     clear: both
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .navbar-header {
         float: left
     }
@@ -4964,7 +4964,7 @@ tbody.collapse.in {
     overflow-y: auto
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .navbar-collapse {
         width: auto;
         border-top: 0;
@@ -5008,7 +5008,7 @@ tbody.collapse.in {
     margin-left: -15px
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .container>.navbar-header,
     .container>.navbar-collapse,
     .container-fluid>.navbar-header,
@@ -5023,7 +5023,7 @@ tbody.collapse.in {
     border-width: 0 0 1px
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .navbar-static-top {
         border-radius: 0
     }
@@ -5037,7 +5037,7 @@ tbody.collapse.in {
     z-index: 1030
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .navbar-fixed-top,
     .navbar-fixed-bottom {
         border-radius: 0
@@ -5072,7 +5072,7 @@ tbody.collapse.in {
     display: block
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .navbar>.container .navbar-brand,
     .navbar>.container-fluid .navbar-brand {
         margin-left: -15px
@@ -5107,7 +5107,7 @@ tbody.collapse.in {
     margin-top: 4px
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .navbar-toggle {
         display: none
     }
@@ -5146,7 +5146,7 @@ tbody.collapse.in {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .navbar-nav {
         float: left;
         margin: 0
@@ -5172,7 +5172,7 @@ tbody.collapse.in {
     margin-bottom: 8px
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .navbar-form .form-group {
         display: inline-block;
         margin-bottom: 0;
@@ -5232,7 +5232,7 @@ tbody.collapse.in {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .navbar-form {
         width: auto;
         border: 0;
@@ -5278,7 +5278,7 @@ tbody.collapse.in {
     margin-bottom: 15px
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .navbar-text {
         float: left;
         margin-left: 15px;
@@ -5286,7 +5286,7 @@ tbody.collapse.in {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .navbar-left {
         float: left !important
     }
@@ -5880,7 +5880,7 @@ a.badge:focus {
     max-width: 100%
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 500px) {
     .jumbotron {
         padding: 48px 0
     }
@@ -7007,7 +7007,7 @@ button.close {
     overflow: scroll
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .modal-dialog {
         width: 600px;
         margin: 30px auto
@@ -7496,7 +7496,7 @@ button.close {
     text-shadow: none
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 500px) {
     .carousel-control .glyphicon-chevron-left,
     .carousel-control .glyphicon-chevron-right,
     .carousel-control .icon-prev,
@@ -7637,7 +7637,7 @@ button.close {
     }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 400px) and (max-width: 991px) {
     .visible-sm {
         display: block !important
     }
@@ -7653,19 +7653,19 @@ button.close {
     }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 400px) and (max-width: 991px) {
     .visible-sm-block {
         display: block !important
     }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 400px) and (max-width: 991px) {
     .visible-sm-inline {
         display: inline !important
     }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 400px) and (max-width: 991px) {
     .visible-sm-inline-block {
         display: inline-block !important
     }
@@ -7745,7 +7745,7 @@ button.close {
     }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 400px) and (max-width: 991px) {
     .hidden-sm {
         display: none !important
     }
@@ -10297,19 +10297,19 @@ img.img80_80 {
     left: 0
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .ui-timline-left .ui-timeline .tl-item:before {
         display: none
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .ui-timline-left .ui-timeline .tl-item .tl-caption {
         margin-left: -55px
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .ui-timline-left .ui-timeline .tl-item .tl-body .tl-time {
         left: auto;
         right: 15px;
@@ -10337,7 +10337,7 @@ img.img80_80 {
     z-index: 0
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .ui-timeline:before {
         left: 50%
     }
@@ -10353,7 +10353,7 @@ img.img80_80 {
     content: ""
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .ui-timeline .tl-item:before {
         display: block;
         width: 50%
@@ -10365,13 +10365,13 @@ img.img80_80 {
     margin-left: -55px
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .ui-timeline .tl-item .tl-caption {
         margin-left: -110px
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .ui-timeline .tl-item.alt {
         text-align: right
     }
@@ -10426,7 +10426,7 @@ img.img80_80 {
     text-align: right
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .ui-timeline .tl-item .tl-body .tl-time {
         left: -220px;
         right: auto;
@@ -11552,7 +11552,7 @@ button.toast-close-button {
     margin-top: -65px
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 500px) {
     .page-lock .lock-centered {
         margin-top: -75px
     }
@@ -11597,7 +11597,7 @@ button.toast-close-button {
     background: #fff
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 500px) {
     .page-lock .lock-box .lock-img img {
         left: 33%;
         width: 150px;
@@ -11623,7 +11623,7 @@ button.toast-close-button {
     color: #1C7EBB
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 500px) {
     .page-lock .lock-box .lock-pwd {
         padding: 0 0 0 80px
     }
@@ -11920,7 +11920,7 @@ button.toast-close-button {
     transition: all .3s ease-in-out
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .weather-icons .example {
         width: 15%
     }
@@ -11986,7 +11986,7 @@ button.toast-close-button {
     border: 1px solid #ddd
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .bs-glyphicons li {
         width: 12.5%
     }
@@ -12033,7 +12033,7 @@ button.toast-close-button {
     -webkit-overflow-scrolling: -blackberry-touch
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     #nav-container {
         left: 0
     }
@@ -12211,7 +12211,7 @@ button.toast-close-button {
     margin-left: 220px
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .on-canvas .top-header .top-nav {
         margin-left: 0
     }
@@ -12221,7 +12221,7 @@ button.toast-close-button {
     left: 220px
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .nav-min #nav-container {
         width: 50px
     }
@@ -12277,7 +12277,7 @@ button.toast-close-button {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .top-header {
         height: 50px;
         background-color: #0094E5
@@ -12309,7 +12309,7 @@ button.toast-close-button {
     color: #ccc
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .top-header .toggle-min {
         display: block
     }
@@ -12324,7 +12324,7 @@ button.toast-close-button {
     background-color: #0094E5
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .top-header .logo {
         display: inline-block;
         width: 220px
@@ -12369,7 +12369,7 @@ button.toast-close-button {
     margin-top: 4px
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .top-header .menu-button {
         display: none
     }
@@ -12402,7 +12402,7 @@ button.toast-close-button {
     padding: 60px 0 0
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .top-header .top-nav {
         padding: 10px 0 0 150px
     }
@@ -12454,7 +12454,7 @@ button.toast-close-button {
     border-radius: 22px
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .top-header .top-nav .nav-left>li>.btn-group>a,
     .top-header .top-nav .nav-left>li>a,
     .top-header .top-nav .nav-right>li>.btn-group>a,
@@ -12532,7 +12532,7 @@ button.toast-close-button {
     transition: none
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     #content {
         top: 50px;
         width: auto;

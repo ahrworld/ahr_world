@@ -277,6 +277,30 @@ class UserController extends Controller
                 }
             }
             return redirect('/profile');
+         }elseif (isset($request->skill_value)) {
+             $P_skill  = Personnels_skill::select('personnel_skill')
+                                            ->where('user_id',$request->user()->id)
+                                            ->where('personnel_skill',$request->skill_value)
+                                            ->get();
+             foreach ($P_skill as $key => $value) {
+                    
+                     print_r($value);
+                     return 'pk';
+             }
+            
+             // per_skill
+             foreach ($request->skill_value as $key => $value) {
+
+                 if ($value !== 'no') {
+                     $c = Personnels_skill::create([
+                         'personnel_skill' => $request->per_skill[$key],
+                         'year' => $value,
+                         'personnels_id' => $P_id->id,
+                         'user_id' => $request->user()->id,
+                     ]);
+                 }
+             }
+             // return redirect('/profile');
          }
 
     }
@@ -577,42 +601,75 @@ class UserController extends Controller
 
                 }
             }
+        // 1
         $as_sum1 = array_sum($array1);
+        $head_count1 = count($array1);
+        $average1 = round($as_sum1 / $head_count1);
+        $a_1 = $average1 * 100 / 7;
+        // 2
         $as_sum2 = array_sum($array2);
+        $head_count2 = count($array2);
+        $average2 = round($as_sum2 / $head_count2);
+        $a_2 = $average2 * 100 / 7;
+        // 3
         $as_sum3 = array_sum($array3);
+        $head_count3 = count($array3);
+        $average3 = round($as_sum3 / $head_count3);
+        $a_3 = $average3 * 100 / 7;
+        // 4
         $as_sum4 = array_sum($array4);
+        $head_count4 = count($array4);
+        $average4 = round($as_sum4 / $head_count4);
+        $a_4 = $average4 * 100 / 7;
+        // 5
         $as_sum5 = array_sum($array5);
+        $head_count5 = count($array5);
+        $average5 = round($as_sum5 / $head_count5);
+        $a_5 = $average5 * 100 / 7;
+        // 6
         $as_sum6 = array_sum($array6);
+        $head_count6 = count($array6);
+        $average6 = round($as_sum6 / $head_count6);
+        $a_6 = $average6 * 100 / 7;
+        // 7
         $as_sum7 = array_sum($array7);
+        $head_count7 = count($array7);
+        $average7 = round($as_sum7 / $head_count7);
+        $a_7 = $average7 * 100 / 7;
+        // 8
         $as_sum8 = array_sum($array8);
+        $head_count8 = count($array8);
+        $average8 = round($as_sum8 / $head_count8);
+        $a_8 = $average8 * 100 / 7;
+
         // if has
         $user_as = Analysis_answer::where('user_id', $request->user()->id)->first();
         if (is_null($user_as)) {
             // create
             Analysis_answer::create([
                 'user_id' => $request->user()->id,
-                'as_value_1' => $as_sum1,
-                'as_value_2' => $as_sum2,
-                'as_value_3' => $as_sum3,
-                'as_value_4' => $as_sum4,
-                'as_value_5' => $as_sum5,
-                'as_value_6' => $as_sum6,
-                'as_value_7' => $as_sum7,
-                'as_value_8' => $as_sum8,
+                'as_value_1' => $a_1,
+                'as_value_2' => $a_2,
+                'as_value_3' => $a_3,
+                'as_value_4' => $a_4,
+                'as_value_5' => $a_5,
+                'as_value_6' => $a_6,
+                'as_value_7' => $a_7,
+                'as_value_8' => $a_8,
 
             ]);
         }else{
             // update
              Analysis_answer::where('user_id', $request->user()->id)
                                 ->update([
-                                    'as_value_1' => $as_sum1,
-                                    'as_value_2' => $as_sum2,
-                                    'as_value_3' => $as_sum3,
-                                    'as_value_4' => $as_sum4,
-                                    'as_value_5' => $as_sum5,
-                                    'as_value_6' => $as_sum6,
-                                    'as_value_7' => $as_sum7,
-                                    'as_value_8' => $as_sum8,
+                                    'as_value_1' => $a_1,
+                                    'as_value_2' => $a_2,
+                                    'as_value_3' => $a_3,
+                                    'as_value_4' => $a_4,
+                                    'as_value_5' => $a_5,
+                                    'as_value_6' => $a_6,
+                                    'as_value_7' => $a_7,
+                                    'as_value_8' => $a_8,
                                     ]);
         }
         return response()->json('ok');

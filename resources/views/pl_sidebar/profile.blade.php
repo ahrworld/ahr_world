@@ -80,7 +80,7 @@
        $('#portfolio_modal .portfolio_url').html(p_url);
        $('#portfolio_modal .portfolio_url').attr('href',p_url);
     });
-   
+  
   });
 
   // 上傳作品圖轉base64
@@ -117,6 +117,7 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
 }
 </style>
 @endif
+
 <div class="scorl" style="width:60%;  float:left; margin-left:15px;">
      <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#p1" aria-controls="p1" role="tab" data-toggle="tab">プロフィール</a></li>
@@ -128,7 +129,7 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
     <div class="tab-content">
 
         <div role="tabpanel" class="tab-pane ahr-panel fade in active" id="p1">
-            <div class="wrapper" style="margin-top:0px !important;">
+            <div  id="dsa" class="wrapper dsadwrwqrwq" style="margin-top:0px !important;">
                 <!-- 1 -->
                 <div class="panel panel-default">
                     <div class="panel-body  update_1">
@@ -141,7 +142,7 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
                          </div>
                         <!-- content -->
                         <div class="panel-content">
-                            <button class="btn btn-default">履歴書ダウンロード</button>
+                            <button type="button" class="btn btn-default pdf_dw">履歴書ダウンロード</button>
                             <div>&nbsp;</div>
                             @foreach($personnels as $value)
                             <p><span>{{ $value->character }}</span></p>
