@@ -208,7 +208,7 @@
                                 <tr>
                                 <th width="30%" scope="row"><input type="hidden" name="per_skill[]" value="{{ $value->id }}">{{ $value->skill_name }}</th>
 
-                                <td align="center" class="in_value"><input type="radio" class="in" name="value_{{ $key+1 }}" value=""></td>
+                                <td align="center" class="in_value"><input type="radio" class="in" name="value_{{ $key+1 }}" value="no"></td>
                                 <td align="center"><input type="radio" class="in" name="value_{{ $key+1 }}" value="1"></td>
                                 <td align="center"><input type="radio" class="in" name="value_{{ $key+1 }}" value="2"></td>
                                 <td align="center"><input type="radio" class="in" name="value_{{ $key+1 }}" value="3"></td>

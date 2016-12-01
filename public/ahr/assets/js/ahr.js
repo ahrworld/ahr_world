@@ -314,6 +314,18 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		        reader.readAsDataURL(file);
 		      }
 	   });
+		// step6
+		
+		
+		$(".js-exp1").select2({
+		   placeholder: "職種を選択してください。",
+		   allowClear: true
+		});
+		$(".js-exp2").select2({
+		   placeholder: "年数",
+		   allowClear: true
+		});
+
 	   // step7
 	   $('.in').click(function(){
 	   	var value = $(this).val();

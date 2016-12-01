@@ -14,25 +14,25 @@
 			<div class="col-md-3">
 			  <div class="form-group">
 			    <label for="">郵便番号<span style="color:red;">※</span></label>
-			    <input type="text" name="post" class="form-control"  placeholder="">
+			    <input type="text" name="post" class="form-control" required>
 			  </div>
 		    </div>
 			<div class="col-md-3">
 			  <div class="form-group">
 			    <label for="">市町村<span style="color:red;">※</span></label>
-			    <input type="text" name="city" class="form-control" placeholder="">
+			    <input type="text" name="city" class="form-control" required>
 			  </div>
 			</div>
 			<div class="col-md-3">
 			  <div class="form-group">
 			    <label for="exampleInputName">番地<span style="color:red;">※</span></label>
-			    <input type="text" name="address" class="form-control" id="exampleInputName" placeholder="">
+			    <input type="text" name="address" class="form-control" id="exampleInputName" required>
 			  </div>
 		    </div>
 		    <div class="col-md-3">
 			  <div class="form-group">
 			    <label for="">電話番号<span style="color:red;">※</span></label>
-			    <input type="text" name="phone" class="form-control" id="exampleInputName" placeholder="例：0112223333">
+			    <input type="text" name="phone" class="form-control" id="exampleInputName" required>
 			  </div>
 			</div>
 			<div class="col-md-3">

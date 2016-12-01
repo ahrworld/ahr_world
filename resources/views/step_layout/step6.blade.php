@@ -13,7 +13,7 @@
 			<div class="col-md-12">
 			  <div class="form-group">
 			    <label for="namefield" style="display:block;">勤務経験</label>
-			     <input type="text" class="form-control number" name="points" min="1" max="3" style="width:70px; display: inline;"/>
+			     <input type="text" class="form-control number" name="points" min="1" max="3" style="width:70px; display: inline;" required>
 			     <span>社</span>
 			  </div>
 			</div>
@@ -22,7 +22,7 @@
 				<div class="col-md-7">
 				  <div class="form-group number_exp_job">
 				    <label for="namefield">経験職種</label>
-				    	<select class="js-example1 js-states" name="experience[]" style="width: 100%">
+				    	<select class="js-exp1 js-states" name="experience[]" style="width: 100%">
 						      @foreach($exp_job_category as $key_category => $value_category)
 			      		          <optgroup label="{{ $value_category->category }}" style="background: #ebebee; color: #888888; font-weight: normal; font-style: normal; ">
 	   		      		          @foreach($exp_job as $key => $value)
@@ -39,7 +39,7 @@
 				<div class="col-md-5">
 				  <div class="form-group">
 				    <label for="namefield">年数</label>
-				    	<select class="js-example2 js-states" name="year[]" style="width: 100%">
+				    	<select class="js-exp2 js-states" name="year[]" style="width: 100%">
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
 				    		<option value="3">3</option>

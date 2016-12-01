@@ -173,24 +173,20 @@ $(document).ready(function() {
 				  @yield('content')
 	          	  @include('bs_sidebar/right_sidebar')
         </main>
-		<style>
-	    footer .line{
-	   		width: 1000px;
-	   	    margin:auto;
-	   	    margin-top: 50px;
-	   	    border-bottom: 3px solid #CCC;
-	    }
-	    footer ul{
-			width: 1000px;
-			margin: auto;
-	    }
-	    footer li{
-	    	float: left;
-	    	list-style: none;
-	    	padding: 30px 65px;
-	    }
-
-		</style>
+		<footer class="user_lp_footer">
+		    	<ul>
+		    		<li><a href="#">公式ブログ</a></li>
+		    		<li><a href="#">ヘルプ</a></li>
+		    		<li><a href="#">採用情報</a></li>
+		    		<li><a href="#">規約</a></li>
+		    		<li><a href="#">プライバシーポリシー</a></li>
+		    		<li><a href="#">ご意見・ご要望</a></li>
+		    		<li><a href="#">採用成功例</a></li>
+		    		<li><a href="#">サイトマップ</a></li>　
+		    		<li><a href="#">言語</a></li>　
+		    	</ul>
+			<p>Copyright © AHR Inc. ALL RIGHTS RESERVED.</p>
+	    </footer>
 		
 
 

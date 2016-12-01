@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>ahr</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="{{url('ahr/assets/js/jquery.validate.js')}}"></script>
     <!-- bootstrap -->
     <link rel="stylesheet" href="ahr/bower_components/bootstrap/dist/css/bootstrap.css" media="screen,projection" />
     <script src="ahr/bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -77,7 +77,6 @@
 
 				};
 			};
-
 			$(".js-example_add1").select2({
 			   placeholder: "職種を選択してください。",
 			   allowClear: true
@@ -103,11 +102,7 @@
 			   allowClear: true
 			});
 		});
-		// step7
-		$('.in').click(function(){
-			var value = $(this).val();
-			$(this).parents().siblings('.in_value').val(value);
-		});
+		
 		// step3 sex
 		$('.ahr-button_boy').click(function(){
 			$('.army').removeClass('none');
@@ -125,16 +120,7 @@
     	$(".finish_sumbit").click(function(){
     	     $('.pl_form').submit();
 		});
-		// select2
-		$(".js-example1").select2({
-		   placeholder: "職種を選択してください。",
-		   allowClear: true
-		});
-		$(".js-example2").select2({
-		   placeholder: "年数",
-		   allowClear: true
-		});
-
+	
 		$(".js-example-templating").select2({
 		  templateResult: formatState
 		});

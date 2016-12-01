@@ -1,10 +1,80 @@
+<script>
+    
+$(document).ready(function() {
+        var $validator = $(".exp_form").validate({
+          rules: {
+            emailfield: {
+              required: true,
+              email: true,
+              minlength: 3
+            },
+            namefield: {
+              required: true,
+              minlength: 3
+            },
+            urlfield: {
+              required: true,
+              minlength: 3,
+              url: true
+            }
+          }
+        });
+        $('.number').keyup(function(){
+            var moreArray = new Array();
+            if ($('.number').val() == 1) {
+                for (var i = 1; i <= 1; i++) {
+                    moreArray.push('<div class="col-md-7"> <div class="form-group number_exp_job"> <label for="namefield">経験職種</label> <select class="js-example_add'+ i +' js-states" name="experience[]" style="width: 100%"> @foreach($exp_job_category as $key_category=> $value_category) <optgroup label="{{$value_category->category}}" style="background: #ebebee; color: #888888; font-weight: normal; font-style: normal; "> @foreach($exp_jobs as $key=> $values) @if ($value_category->id==$values->exp_job_category_id) <option value="{{$values->id}}" style="background: #ffffff; color: #000000;">&nbsp;└&nbsp;{{$values->name}}</option> @endif @endforeach </optgroup> @endforeach </select> </div></div><div class="col-md-5"> <div class="form-group"> <label for="namefield">年数</label> <select class="js-example_year'+ i +' js-states" name="year[]" style="width: 100%"> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> </select> </div></div><div>&nbsp;</div>');
+                    $('.exp_job_wrapper').html(moreArray.join(""));
+
+                };
+            }else if ($('.number').val() == 2) {
+                for (var i = 1; i <= 2; i++) {
+                    moreArray.push('<div class="col-md-7"> <div class="form-group number_exp_job"> <label for="namefield">経験職種</label> <select class="js-example_add'+ i +' js-states" name="experience[]" style="width: 100%"> @foreach($exp_job_category as $key_category=> $value_category) <optgroup label="{{$value_category->category}}" style="background: #ebebee; color: #888888; font-weight: normal; font-style: normal; "> @foreach($exp_jobs as $key=> $values) @if ($value_category->id==$values->exp_job_category_id) <option value="{{$values->id}}" style="background: #ffffff; color: #000000;">&nbsp;└&nbsp;{{$values->name}}</option> @endif @endforeach </optgroup> @endforeach </select> </div></div><div class="col-md-5"> <div class="form-group"> <label for="namefield">年数</label> <select class="js-example_year'+ i +' js-states" name="year[]" style="width: 100%"> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> </select> </div></div><div>&nbsp;</div>');
+                    $('.exp_job_wrapper').html(moreArray.join(""));
+
+                };
+            }else if($('.number').val() == 3){
+                for (var i = 1; i <= 3; i++) {
+                    moreArray.push('<div class="col-md-7"> <div class="form-group number_exp_job"> <label for="namefield">経験職種</label> <select class="js-example_add'+ i +' js-states" name="experience[]" style="width: 100%"> @foreach($exp_job_category as $key_category=> $value_category) <optgroup label="{{$value_category->category}}" style="background: #ebebee; color: #888888; font-weight: normal; font-style: normal; "> @foreach($exp_jobs as $key=> $values) @if ($value_category->id==$values->exp_job_category_id) <option value="{{$values->id}}" style="background: #ffffff; color: #000000;">&nbsp;└&nbsp;{{$values->name}}</option> @endif @endforeach </optgroup> @endforeach </select> </div></div><div class="col-md-5"> <div class="form-group"> <label for="namefield">年数</label> <select class="js-example_year'+ i +' js-states" name="year[]" style="width: 100%"> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> </select> </div></div><div>&nbsp;</div>');
+                    $('.exp_job_wrapper').html(moreArray.join(""));
+
+                };
+            };
+            $(".js-example_add1").select2({
+               placeholder: "職種を選択してください。",
+               allowClear: true
+            });
+            $(".js-example_year1").select2({
+               placeholder: "年数",
+               allowClear: true
+            });
+            $(".js-example_add2").select2({
+               placeholder: "職種を選択してください。",
+               allowClear: true
+            });
+            $(".js-example_year2").select2({
+               placeholder: "年数",
+               allowClear: true
+            });
+            $(".js-example_add3").select2({
+               placeholder: "職種を選択してください。",
+               allowClear: true
+            });
+            $(".js-example_year3").select2({
+               placeholder: "年数",
+               allowClear: true
+            });
+        });
+
+});
+</script>
 <div class="panel panel-default panel_5">
     <div class="panel-body" style="padding-top: 0px !important;">
         <div class="row">
             <!-- logo left -->
             <div class="col-md-12">
             <!-- EDIT BUTTON -->
-            <a href="javascript:;" class="float-right update_bt none" >
+            <a href="javascript:;" class="float-right update_bt none" onclick="update_panel('.panel_5','.panel_5_update');">
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </a>
                 <h6>■　職務経歴書</h6>
@@ -16,10 +86,7 @@
                                 <th width="150px" style="color:#000;">【經歷】</th>
                                 <td></td>
                             </tr>
-                           <!--  <tr>
-                                <th width="150px">会社名</th>
-                                <td>：○○○○○○○</td>
-                            </tr> -->
+                          
                             <tr>
                                 <th width="150px">職種</th>
                                 <td>：{{ $value->name }}</td>
@@ -28,18 +95,7 @@
                                 <th width="150px">期間</th>
                                 <td>：{{ $value->year }}年</td>
                             </tr>
-                            <!-- <tr>
-                                <th width="150px">勤務地</th>
-                                <td>：○○○○○○○</td>
-                            </tr> -->
-                            <!-- <tr>
-                                <th width="150px">業務内容</th>
-                                <td>：</td>
-                            </tr> -->
-                            <!-- <tr>
-                                <th width="150px">給料（NTD）/月</th>
-                                <td>：○○○○○○○</td>
-                            </tr> -->
+                          
                         @endforeach
                         </tbody>
                     </table>
@@ -47,6 +103,69 @@
             </div>
         </div>
         <!-- row end -->
+    </div>
+</div>
+<!-- update -->
+ <div class="panel panel-update panel_5_update none">
+     <div class="panel-body" style="padding-top: 0px !important;">
+          <!-- Close BUTTON -->
+          <a href="javascript:;" class="float-right close_bt" onclick="update_panel('.panel_5_update','.panel_5');">
+            <i class="fa fa-times-circle" aria-hidden="true"></i>
+          </a>
+
+          <h6 style="margin-bottom:0px !important;">■　勤務経験</h6>
+            <div class="panel-content">
+            <form class="exp_form" action="{{url('/personnels/update')}}" method="POST" style="text-align:center;">
+            {{ csrf_field() }}
+                        @foreach($exp_job as $s)
+                            <div class="col-md-12">
+                              <div class="form-group" style="text-align: left; margin-top: 30px;">
+                                 <input type="text" class="form-control number" name="points" min="1" max="3" style="width:70px; display: inline;" value="{{count($s)}}">
+                                 <span>社</span>
+                              </div>
+                            </div>
+
+                            <div class="exp_job_wrapper">
+                                <div class="col-md-7">
+                                  <div class="form-group number_exp_job">
+                                    <label for="namefield">経験職種</label>
+                                        <select class="js-exp1 js-states" name="experience[]" style="width: 100%">
+                                              @foreach($exp_job_category as $key_category => $value_category)
+                                                  <optgroup label="{{ $value_category->category }}" style="background: #ebebee; color: #888888; font-weight: normal; font-style: normal; ">
+                                                  @foreach($exp_jobs as $key => $values)
+                                                      @if ($value_category->id == $values->exp_job_category_id)
+                                                            <option value="{{ $values->id }}" style="background: #ffffff; color: #000000;">&nbsp;└&nbsp;{{ $values->name }}</option>
+                                                      @endif
+                                                  @endforeach
+                                              </optgroup>
+                                              @endforeach
+                                        </select>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                  <div class="form-group">
+                                    <label for="namefield">年数</label>
+                                        <select class="js-exp2 js-states" name="year[]" style="width: 100%">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                        </select>
+                                  </div>
+                                </div>
+                            </div>
+                        @endforeach
+                <button type="submit" class="btn btn-w-md btn-gap-v btn-primary  btn_btom">
+                變更
+                </button>
+            </form>
+            </div>
     </div>
 </div>
 <!-- ■　海外経験 -->

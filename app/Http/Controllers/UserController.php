@@ -159,7 +159,7 @@ class UserController extends Controller
                       ->get();
 
         // 職務經歷
-        $exp_job = Experiences_job::where('experiences_job.user_id', $request->user()->id)
+        $exp_job = Experiences_job::select('experiences_job.id','exp_job.name','experiences_job.year','experiences_job.user_id','experiences_job.personnels_id')->where('experiences_job.user_id', $request->user()->id)
                    ->join('exp_job', 'experiences_job.experience', '=', 'exp_job.id')
                    ->get();
         // pl_image
@@ -167,6 +167,7 @@ class UserController extends Controller
         // portfolio
         $portfolio = Pl_portfolio::where('user_id', $request->user()->id)->orderBy('created_at','desc')->get();
         
+
         // skill
         $skill_title = new skill_title;
         $skill_category = new skill_category;
@@ -175,6 +176,7 @@ class UserController extends Controller
         $skill_titles = $skill_title::all();
         $skill_categorys = $skill_category::all();
         $subject = Subject::all();
+        $exp_jobs = Exp_job::all();
         $exp_job_category = Exp_job_category::all();
         // 分析題目
         $Analysis_topic = Analysis_topic::all();
@@ -194,6 +196,7 @@ class UserController extends Controller
             'skill_titles' => $skill_titles,
             'skill_categorys' => $skill_categorys,
             'skill_datas' => $skill_datas,
+            'exp_jobs' => $exp_jobs,
             'exp_job_category' => $exp_job_category,
             'subject' => $subject,
             'Analysis_topic' => $Analysis_topic,
@@ -277,30 +280,62 @@ class UserController extends Controller
                 }
             }
             return redirect('/profile');
-         }elseif (isset($request->skill_value)) {
-             $P_skill  = Personnels_skill::select('personnel_skill')
-                                            ->where('user_id',$request->user()->id)
-                                            ->where('personnel_skill',$request->skill_value)
-                                            ->get();
-             foreach ($P_skill as $key => $value) {
-                    
-                     print_r($value);
-                     return 'pk';
-             }
-            
-             // per_skill
-             foreach ($request->skill_value as $key => $value) {
 
-                 if ($value !== 'no') {
-                     $c = Personnels_skill::create([
-                         'personnel_skill' => $request->per_skill[$key],
-                         'year' => $value,
-                         'personnels_id' => $P_id->id,
-                         'user_id' => $request->user()->id,
-                     ]);
-                 }
+         }elseif (isset($request->skill_value)) {
+             // per_skill trouble
+             foreach ($request->skill_value as $key => $value) {
+                $P_skill  = Personnels_skill::select('personnel_skill')
+                                            ->where('user_id',$request->user()->id)
+                                            ->where('personnel_skill',$value)
+                                            ->get();
+                if($P_skill == null){
+                    if ($value !== 'no') {
+                         $c = Personnels_skill::create([
+                             'personnel_skill' => $request->per_skill[$key],
+                             'year' => $value,
+                             'personnels_id' => $P_id->id,
+                             'user_id' => $request->user()->id,
+                         ]);
+                    }
+                    return '1';
+                }else{
+                    if ($value !== 'no') {
+                         $b = Personnels_skill::where('personnel_skill',$value)->where('user_id',$request->user()->id)->update([
+                             'personnel_skill' => $request->per_skill[$key],
+                             'year' => $value,
+                             'personnels_id' => $P_id->id,
+                             'user_id' => $request->user()->id,
+                         ]);
+                    }
+                    return $P_skill;
+                }
+                 
              }
-             // return redirect('/profile');
+             return redirect('/profile');
+         }elseif (isset($request->experience)) {
+                    // experience
+                    foreach ($request->experience as $key => $value) {
+                        $exp = Experiences_job::where('experience',$value)
+                                        ->where('user_id',$request->user()->id)
+                                        ->first();
+                        if (isset($exp)) {
+                            Experiences_job::where('experience',$value)
+                                            ->where('user_id',$request->user()->id)
+                                            ->update([
+                                    'experience' => $value,
+                                    'year' => $request->year[$key],
+                                    'personnels_id' => $P_id->id,
+                                    'user_id' => $request->user()->id,
+                            ]);
+                        }else {
+                            Experiences_job::create([
+                                    'experience' => $value,
+                                    'year' => $request->year[$key],
+                                    'personnels_id' => $P_id->id,
+                                    'user_id' => $request->user()->id,
+                            ]);
+                        }
+                    }
          }
 
     }

@@ -13,13 +13,13 @@
 			<div class="col-md-6">
 			  <div class="form-group">
 			    <label for="namefield">氏名:姓</label>
-			    <input type="text" name="surname" class="form-control" placeholder="">
+			    <input type="text" name="surname" class="form-control" required>
 			  </div>
 			</div>
 			<div class="col-md-6">
 			  <div class="form-group">
 			    <label for="exampleInputName">氏名:名</label>
-			    <input type="text"  name="family_name" class="form-control" placeholder="">
+			    <input type="text"  name="family_name" class="form-control" required>
 			  </div>
 		    </div>
 
@@ -29,13 +29,13 @@
 			<div class="col-md-6">
 			  <div class="form-group">
 			    <label for="exampleInputName">Family Name</label>
-			    <input type="text" name="family_name_en" class="form-control" placeholder="">
+			    <input type="text" name="family_name_en" class="form-control">
 			  </div>
 		    </div>
 			<div class="col-md-6">
 			  <div class="form-group">
 			    <label for="exampleInputName">Surname</label>
-			    <input type="text"  name="surname_en" class="form-control" placeholder="">
+			    <input type="text"  name="surname_en" class="form-control">
 			  </div>
 			</div>
 
