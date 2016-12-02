@@ -65,7 +65,7 @@ $(document).ready(function() {
                allowClear: true
             });
         });
-
+       $('.input-daterange').datepicker({ format: "yyyy/mm/dd" });
 });
 </script>
 <div class="panel panel-default panel_5">
@@ -117,14 +117,13 @@ $(document).ready(function() {
             <div class="panel-content">
             <form class="exp_form" action="{{url('/personnels/update')}}" method="POST" style="text-align:center;">
             {{ csrf_field() }}
-                        @foreach($exp_job as $s)
+                        
                             <div class="col-md-12">
                               <div class="form-group" style="text-align: left; margin-top: 30px;">
-                                 <input type="text" class="form-control number" name="points" min="1" max="3" style="width:70px; display: inline;" value="{{count($s)}}">
+                                 <input type="text" class="form-control number" name="points" min="1" max="3" style="width:70px; display: inline;" value="">
                                  <span>社</span>
                               </div>
                             </div>
-
                             <div class="exp_job_wrapper">
                                 <div class="col-md-7">
                                   <div class="form-group number_exp_job">
@@ -160,7 +159,6 @@ $(document).ready(function() {
                                   </div>
                                 </div>
                             </div>
-                        @endforeach
                 <button type="submit" class="btn btn-w-md btn-gap-v btn-primary  btn_btom">
                 變更
                 </button>
@@ -175,7 +173,7 @@ $(document).ready(function() {
             <!-- logo left -->
             <div class="col-md-12">
             <!-- EDIT BUTTON -->
-            <a href="javascript:;" class="float-right update_bt none" >
+            <a href="javascript:;" class="float-right update_bt none" onclick="update_panel('.panel_6','.panel_6_update');">
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </a>
                 <h6>■　海外経験</h6>
@@ -187,24 +185,24 @@ $(document).ready(function() {
                                 <td></td>
                             </tr>
                             <tr>
-                                <th width="150px">目的</th>
-                                <td>：○○○○○○○</td>
+                                <th width="150px">目的：</th>
+                                <td>{{$abroad_exp->main}}</td>
                             </tr>
                             <tr>
-                                <th width="150px">機関名</th>
-                                <td>：○○○○○○○</td>
+                                <th width="150px">機関名：</th>
+                                <td>{{$abroad_exp->gear}}</td>
                             </tr>
                             <tr>
-                                <th width="150px">学年、学部、業務内容</th>
-                                <td>：○○○○○○○</td>
+                                <th width="150px">学年、学部、業務内容：</th>
+                                <td>{{$abroad_exp->content}}</td>
                             </tr>
                             <tr>
-                                <th width="150px">国名・地方名</th>
-                                <td>：○○○○○○○</td>
+                                <th width="150px">国名・地方名：</th>
+                                <td>{{$abroad_exp->place}}</td>
                             </tr>
                             <tr>
-                                <th width="120px">期間</th>
-                                <td>：○○○○年　○○月　～　○○○○年　○○月</td>
+                                <th width="120px">期間：</th>
+                                <td>{{$abroad_exp->gotime}}　～　{{$abroad_exp->backtime}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -212,5 +210,60 @@ $(document).ready(function() {
             </div>
         </div>
         <!-- row end -->
+    </div>
+</div>
+
+<!-- update -->
+<div class="panel panel-update panel_6_update none">
+     <div class="panel-body" style="padding-top: 0px !important;">
+          <!-- Close BUTTON -->
+          <a href="javascript:;" class="float-right close_bt" onclick="update_panel('.panel_6_update','.panel_6');">
+            <i class="fa fa-times-circle" aria-hidden="true"></i>
+          </a>
+
+          <h6 style="margin-bottom:0px !important;">■　海外経験</h6>
+            <div class="panel-content">
+            <form class="exp_form" action="{{url('/personnels/update')}}" method="POST" style="text-align:center;">
+            {{ csrf_field() }}
+                <table class="user-view_table">
+                    <tbody>
+                        <tr>
+                            <th width="80px">目的:</th>
+                            <td><input type="text" name="main" class="form-control ahr-input_1" value="{{ $abroad_exp->main}}"></td>
+                        </tr>
+                        <tr>
+                            <th width="80px">機関名:</th>
+                            <td><input type="text" name="gear" class="form-control ahr-input_1" value="{{ $abroad_exp->gear}}"></td>
+                        </tr>
+                        <tr>
+                            <th width="80px">学年、学部、業務内容:</th>
+                            <td><input type="text" name="content" class="form-control ahr-input_1" value="{{ $abroad_exp->content }}"></td>
+                        </tr>
+                         <tr>
+                            <th width="80px">国名・地方名:</th>
+                            <td><input type="text" name="place" class="form-control ahr-input_1" value="{{ $abroad_exp->place }}"></td>
+                        </tr>
+                        <tr>
+                            <th width="80px">期間:</th>
+                            <td><div class="input-daterange input-group" id="datepicker">
+                            <input type="text" class="input-sm form-control" name="start" value="{{ $abroad_exp->gotime }}"/>
+                            <span class="input-group-addon">to</span>
+                            <input type="text" class="input-sm form-control" name="end" value="{{ $abroad_exp->backtime }}"/>
+                        </div></td>
+                        </tr>
+                         <style>
+                             .datepicker-dropdown{
+                                 top:1597px !important;
+                             }
+                         </style>
+                    </tbody>
+
+                </table>        
+             
+                <button type="submit" class="btn btn-w-md btn-gap-v btn-primary  btn_btom">
+                變更
+                </button>
+            </form>
+            </div>
     </div>
 </div>

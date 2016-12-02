@@ -5,6 +5,7 @@ use Gate;
 use Auth;
 use App\User;
 use App\BSinformations;
+use App\Abroad_exp;
 use App\ModelBranch\Employment;
 use App\ModelBranch\Experience;
 use App\ModelBranch\Languagelv;
@@ -167,7 +168,7 @@ class UserController extends Controller
         // portfolio
         $portfolio = Pl_portfolio::where('user_id', $request->user()->id)->orderBy('created_at','desc')->get();
         
-
+        $abroad_exp = Abroad_exp::where('user_id', $request->user()->id)->first();
         // skill
         $skill_title = new skill_title;
         $skill_category = new skill_category;
@@ -190,6 +191,7 @@ class UserController extends Controller
     		'personnels' => $personnels,
             'per_skill' => $per_skill,
             'languagelv' => $languagelv,
+            'abroad_exp' => $abroad_exp,
             'exp_job' => $exp_job,
             'pl_image' => $pl_image,
             'portfolio' => $portfolio,
@@ -315,13 +317,11 @@ class UserController extends Controller
          }elseif (isset($request->experience)) {
                     // experience
                     foreach ($request->experience as $key => $value) {
-                        $exp = Experiences_job::where('experience',$value)
-                                        ->where('user_id',$request->user()->id)
-                                        ->first();
-                        if (isset($exp)) {
-                            Experiences_job::where('experience',$value)
-                                            ->where('user_id',$request->user()->id)
-                                            ->update([
+                        $exp = Experiences_job::where('user_id',$request->user()->id)
+                                        ->count();
+                        if ($exp >= 3) {
+                            Experiences_job::where('user_id',$request->user()->id)->delete();
+                            Experiences_job::create([
                                     'experience' => $value,
                                     'year' => $request->year[$key],
                                     'personnels_id' => $P_id->id,
@@ -336,6 +336,32 @@ class UserController extends Controller
                             ]);
                         }
                     }
+                     return redirect('/profile');
+         }elseif (isset($request->main)) {
+             $abroad_exp = Abroad_exp::where('user_id',$request->user()->id)->first();
+             if (isset($abroad_exp)) {
+                Abroad_exp::where('user_id',$request->user()->id)
+                            ->update([
+                                    'main' => $request->main,
+                                    'gear' => $request->gear,
+                                    'content' => $request->content,
+                                    'place' => $request->place,
+                                    'gotime' => $request->start,
+                                    'backtime' => $request->end,
+                                    'user_id' => $request->user()->id,
+                            ]);
+             }else{
+                Abroad_exp::create([
+                                    'main' => $request->main,
+                                    'gear' => $request->gear,
+                                    'content' => $request->content,
+                                    'place' => $request->place,
+                                    'gotime' => $request->start,
+                                    'backtime' => $request->end,
+                                    'user_id' => $request->user()->id,
+                            ]);
+             }
+             return redirect('/profile');
          }
 
     }

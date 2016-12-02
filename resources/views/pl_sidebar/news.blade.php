@@ -374,9 +374,9 @@
       }
 
     </style>
-    <div class="wrappers"></div>
+    <div class="wrappers" ></div>
     <!-- 応募者管理 Tab panes -->
-    <div class="tab-content">
+    <div class="tab-content" style="min-height: 450px;">
         <div role="tabpanel" class="tab-pane ahr-panel active" id="a1">
             <div class="">
                 <button class="btn btn-default ahr-button_5 active s1_btn">企業検索</button>

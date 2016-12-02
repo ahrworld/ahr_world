@@ -8,13 +8,16 @@
     <script type="text/javascript" src="{{url('ahr/assets/js/jquery.validate.js')}}"></script>
     <!-- bootstrap -->
     <script src="{{ asset('ahr/bower_components/bootstrap/dist/js/bootstrap.js')}}"></script>
+    <!-- datetimepicker -->
+    <script src="{{ asset('ahr/bower_components/bootstrap-datepicke/js/bootstrap-datepicker.min.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('ahr/bower_components/bootstrap-datepicke/css/bootstrap-datepicker.css')}}">
     <!-- cropit -->
     <script src="{{ asset('ahr/bower_components/cropit/dist/jquery.cropit.js')}}"></script>
     <!-- ahr -->
     <script src="{{ asset('ahr/assets/js/ahr.js')}}"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/ahr.css')}}">
     <!-- jquery step -->
-    <script src="ahr/bower_components/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
+	<script src="{{ asset('ahr/bower_components/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js')}}"></script>
     <!-- bootstrap-sweetalert -->
     <script src="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.css')}}">
