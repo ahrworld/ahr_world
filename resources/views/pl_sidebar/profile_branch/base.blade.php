@@ -115,7 +115,7 @@
                                 <th width="80px">現住所 <span style="color:red;">*</span>：</th>
                                 <td><input type="text" name="name" class="form-control ahr-input_1" value="{{ $value->post.$value->city.$value->address}}"></td>
                             </tr>
-                            
+
                             <tr>
                                 <th width="80px">Skype ID <span style="color:red;">*</span>：</th>
                                 <td><input type="text" name="skype_id" class="form-control ahr-input_1" value="{{ $value->skype_id }}"></td>
@@ -151,7 +151,7 @@
             </a>
                 <h6>■　学歴</h6>
                 <div class="panel-content">
-              
+
                     <table class="user-view_table">
                         <tbody>
                             <tr>
@@ -172,12 +172,12 @@
                             </tr>
                         </tbody>
                     </table>
-               
+
                 </div>
             </div>
         </div>
         <!-- row end -->
-     
+
     </div>
 </div>
 <div class="panel panel-update panel_2_update none">
@@ -217,7 +217,7 @@
                                 <th width="100px">卒業年度(予定)：</th>
                                 <td><input type="text" name="end_year" class="form-control ahr-input_1" value="{{ $value->end_year}}"></td>
                             </tr>
-                           
+
                         </tbody>
                     </table>
                     <button type="submit" class="btn btn-w-md btn-gap-v btn-primary btn_btom">變更</button>

@@ -5,6 +5,8 @@ use Gate;
 use Auth;
 use App\User;
 use App\Language;
+use App\Personnel;
+use App\Abroad_exp;
 use App\BSinformations;
 use App\ModelBranch\Employment;
 use App\ModelBranch\Experience;
@@ -13,6 +15,7 @@ use App\ModelBranch\Bs_image;
 use App\ModelBranch\Bs_summary;
 use App\ModelBranch\Bs_summary_image;
 use App\ModelBranch\Bs_blog;
+use App\ModelBranch\Pl_blog;
 use App\ModelBranch\Mail_box;
 use App\ModelBranch\Notice;
 use App\ModelBranch\Exp_job;
@@ -21,6 +24,11 @@ use App\ModelBranch\Subject;
 use App\ModelBranch\Interview_time;
 use App\ModelBranch\Bs_history;
 use App\ModelBranch\Pl_history;
+use App\ModelBranch\Pl_portfolio;
+use App\PersonnelBranch\Experiences_job;
+use App\PersonnelBranch\Pl_image;
+use App\PersonnelBranch\Personnels_skill;
+use App\PersonnelBranch\Analysis_answer;
 use App\PersonnelBranch\skill_category;
 use App\PersonnelBranch\skill_name;
 use App\PersonnelBranch\skill_title;
@@ -168,6 +176,74 @@ class BusinessController extends Controller
         $notice_count = Mail_box::where('mail_box.get_user_id', $request->user()->id)->count();
         return view('bs_sidebar.bs_setting', [
             'notice_count' => $notice_count
+        ]);
+    }
+    public function show(Request $request , $id)
+    {
+        $notice_count = Mail_box::where('mail_box.get_user_id', $request->user()->id)->count();
+        $res  = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
+                                    'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
+                                    ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
+                                    ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
+                                    ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
+                                    ->where('recruitments_status.id', $id)
+                                    ->first();
+        $res_status = Recruitments_status::where('recruitments_id',$id)->first();
+        $pl_image = Pl_image::where('pl_image.user_id',$res->user_id)->first();
+        // tab1
+        $personnels = Personnel::where('personnels.user_id', $res->user_id)
+                      ->join('subject', 'personnels.subject_id', '=', 'subject.id')
+                      ->get();
+        // 語言
+        $languagelv = Personnel::select('languagelvs.lv','languagelvs.languagelv_name','languagelvs.id')
+                      ->where('personnels.user_id', $res->user_id)
+                      ->join('languagelvs', 'personnels.id', '=', 'languagelvs.personnels_id')
+                      ->get();
+        // skill
+        $per_skill = Personnels_skill::where('personnels_skill.user_id', $res->user_id)
+                    ->join('skill_name', 'personnels_skill.personnel_skill', '=', 'skill_name.id')
+                    ->join('skill_category', 'skill_name.skill_category_id', '=', 'skill_category.id')
+                    ->get();
+        // 職務經歷
+        $exp_job = Experiences_job::select('experiences_job.id','exp_job.name','experiences_job.year','experiences_job.user_id','experiences_job.personnels_id')
+                   ->where('experiences_job.user_id', $res->user_id)
+                   ->join('exp_job', 'experiences_job.experience', '=', 'exp_job.id')
+                   ->get();
+        // 海外經驗
+        $abroad_exp = Abroad_exp::where('user_id', $res->user_id)->first();
+        // portfolio
+        $portfolio = Pl_portfolio::where('user_id', $res->user_id)->orderBy('created_at','desc')->get();
+        // blog
+        $pl_blog = Pl_blog::join('personnels', 'pl_blog.user_id', '=', 'personnels.user_id')
+                            ->where('pl_blog.user_id' ,$res->user_id)
+                            ->orderBy('pl_blog.id','desc')->get();
+        // 分析結果
+        $Analysis_answer = Analysis_answer::where('user_id',$res->user_id)->first();
+
+        // $history = Pl_history::where('user_id',$request->user()->id)->where('recruitments_id',$id)->first();
+        // 足跡
+        // if (isset($history)) {
+        //     Pl_history::where('user_id',$request->user()->id)
+        //                 ->where('recruitments_id',$id)
+        //                 ->update([]);
+        // }else{
+        //     Pl_history::create([
+        //        'recruitments_id' => $id,
+        //        'user_id' => $request->user()->id
+        //     ]);
+        // }
+        return view('bs_sidebar.show', [
+            'notice_count' => $notice_count,
+            'exp_job' => $exp_job,
+            'portfolio' => $portfolio,
+            'abroad_exp' => $abroad_exp,
+            'languagelv' => $languagelv,
+            'personnels' => $personnels,
+            'per_skill' => $per_skill,
+            'res' => $res,
+            'pl_image' => $pl_image,
+            'pl_blog' => $pl_blog,
+            'Analysis_answer' => $Analysis_answer
         ]);
     }
     public function profile(Request $request){

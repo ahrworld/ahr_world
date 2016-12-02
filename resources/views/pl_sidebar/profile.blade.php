@@ -80,7 +80,7 @@
        $('#portfolio_modal .portfolio_url').html(p_url);
        $('#portfolio_modal .portfolio_url').attr('href',p_url);
     });
-  
+
   });
 
   // 上傳作品圖轉base64

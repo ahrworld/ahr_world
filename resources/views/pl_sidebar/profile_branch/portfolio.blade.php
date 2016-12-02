@@ -50,7 +50,7 @@
                 <p>{{$value->p_content}}</p>
                 <p><a href="{{$value->p_url}}" style="color:#1c7ebb;">{{$value->p_url}}</a></p>
             </div>
-        </div>    
+        </div>
     </div>
     @endforeach
     </div>
@@ -66,11 +66,11 @@
         <h4 class="modal-title" id="myModalLabel">ポートフォリオ</h4>
       </div>
       <div class="modal-body">
-        <img src="" alt="" class="portfolio_img" width="100%"> 
+        <img src="" alt="" class="portfolio_img" width="100%">
         <h3 class="portfolio_title"></h3>
         <h5 class="portfolio_content"></h5>
         <h5><a href="" style="color:#1c7ebb;" class="portfolio_url"></a></h5>
-      
+
       </div>
     </div>
   </div>

@@ -16,7 +16,7 @@
       <div class="modal-body">
       <form class="form_a" action="{{url('/ttt')}}" method="POST" >
         {{ csrf_field() }}
-       
+
           <input type="hidden" name="id" id="id" value="">
           <input type="hidden" name="b_id" id="b_id" value="">
 
@@ -65,7 +65,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">辭退しますか？</h4>
       </div>
-      
+
       <div class="modal-footer">
         <form action="{{url('/giveup')}}" method="POST" >
         {{ csrf_field() }}
@@ -116,7 +116,7 @@
             <p>
                 <label class="label-gray">勤務地</label><span></span></p>
         </div>
-       
+
         <div class="img-right">
             @if(isset($res_status->status) == false)
             <div style="width:150px; float:left;">
@@ -176,8 +176,8 @@
                     <div style="margin:30px auto;">
                         <h4 style="font-weight:bold;">会社名:<span>{{$res->company_name}}</span></h4>
                     </div>
-                    @endif 
-                    
+                    @endif
+
                     <!-- 3 -->
                     @foreach ($bs_summary_A as $value_summary)
                     @if($value_summary->summary_title)
@@ -253,7 +253,7 @@
                 </div>
             <!-- wrapper end -->
         </div>
- 
+
         <!-- 採用情報 Tab panes -->
         <div role="tabpanel" class="tab-pane ahr-panel" id="a2">
             <div class="panel-group" id="accordion" role="tablist" >
@@ -380,7 +380,7 @@
                <div class="panel panel-default">
                    <div class="panel-body">
                        <div class="row">
-                          
+
                            <!-- video -->
                            <div class="col-md-12">
                            <div class="col-sm-3 img-thumbnail dsa_s bs_photo" style="width:60px; height:60px;"></div>
@@ -400,7 +400,7 @@
             </div>
             <!-- wrapper end -->
         </div>
-        
+
     </div>
     <!-- tab-content end -->
 </div>

@@ -66,7 +66,7 @@
       <div class="modal-body">
       <form class="form_a" action="{{url('/ttt')}}" method="POST" >
         {{ csrf_field() }}
-       
+
           <input type="hidden" name="id" id="id" value="">
           <input type="hidden" name="b_id" id="b_id" value="">
 
@@ -115,7 +115,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">辭退しますか？</h4>
       </div>
-      
+
       <div class="modal-footer">
         <form action="{{url('/giveup')}}" method="POST" >
         {{ csrf_field() }}
@@ -142,7 +142,7 @@
         }
     });
     var token = '{{ Session::token() }}';
-  
+
    (function(WIN) {
   var DAY, DEFAULT_FORMAT, HOUR, MINUTE, MONTH, SECOND, YEAR, angularApp, entry, exports, getFullTime, map, replace, time, two, unify;
   YEAR = "year";
@@ -396,7 +396,7 @@
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)
@@ -441,7 +441,7 @@
                 </div>
 
                 @endforeach
-                 
+
                 @foreach($Recruitment_like as $key_r => $value_r)
                 <div class="panel panel-default ">
                     <div class="panel-body">
@@ -453,7 +453,7 @@
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)
@@ -498,7 +498,7 @@
                     </div>
                 </div>
                 @endforeach
-                
+
                  @foreach($Recruitment as $key_r => $value_r)
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -510,7 +510,7 @@
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)
@@ -571,7 +571,7 @@
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)
@@ -608,7 +608,7 @@
                             <p>
                                 <label class="label-gray">勤務地</label><span></span></p>
                         </div>
-                        
+
                     </div>
                 </div>
                 @endforeach
@@ -631,7 +631,7 @@
             <div class="wrapper">
                 <!-- 企業からオファー -->
                 <div class="s1 search">
-                
+
                 </div>
                 <!-- s1 end -->
 
@@ -648,7 +648,7 @@
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)
@@ -708,7 +708,7 @@
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)
@@ -757,7 +757,7 @@
                 <!-- s3 end -->
                 <!-- 足跡 -->
                 <div class="s4 search none">
-                
+
                 </div>
                 <!-- s4 end -->
             </div>
@@ -785,7 +785,7 @@
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)
@@ -854,7 +854,7 @@
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)
@@ -918,7 +918,7 @@
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)

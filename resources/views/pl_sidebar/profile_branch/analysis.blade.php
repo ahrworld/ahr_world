@@ -9,7 +9,7 @@
                datasets: [
                  {
                    label: "My Second dataset",
-                  
+
                    scaleSteps : 10,
                    scaleStepWidth : 500,
                    scaleStartValue : 500,
@@ -18,7 +18,7 @@
                    pointColor: "rgba(151,187,205,1)",
                    pointStrokeColor: "#fff",
                    pointHighlightFill: "#fff",
-                  
+
                    pointHighlightStroke: "rgba(151,187,205,1)",
                    data: [{{$Analysis_answer->as_value_1}},{{$Analysis_answer->as_value_2}},{{$Analysis_answer->as_value_3}},{{$Analysis_answer->as_value_4}},{{$Analysis_answer->as_value_5}},{{$Analysis_answer->as_value_6}},{{$Analysis_answer->as_value_7}},{{$Analysis_answer->as_value_8}}]
                  }
@@ -99,8 +99,8 @@
               }
           });
       });
-      
-    
+
+
   });
 </script>
 
@@ -135,7 +135,7 @@
                     <div class="panel-footer">
                       <a id="as_again" class="btn btn-success" role="button" style="width:50%;">もう一回</a>
                     </div>
-                </div>  
+                </div>
                @endif
                <form class="analysis_form" method="POST">
                <!-- 總數 -->
@@ -156,7 +156,7 @@
                                 </ul>
                             </div>
                           </div><!-- end navbar -->
-                        
+
                         <div class="tab-content">
                         @foreach($Analysis_topic as $key => $value)
                          <div class="tab-pane" id="tab{{$key+1}}">
@@ -187,7 +187,7 @@
                            </div><!-- end tab-content -->
                         </div><!-- end analysis_wizard -->
                         </form>
-                       
+
             </div>
     </div>
     <!-- panel end -->

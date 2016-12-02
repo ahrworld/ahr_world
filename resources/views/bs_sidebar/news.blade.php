@@ -78,7 +78,7 @@ $(document).ready(function() {
        $('#assess_modal .rs_content').text(content);
        $('#assess_modal .rs_title').val(title);
     });
-    
+
     $('.check_button').click(function(){
         var id = $(this).attr('attr');
         var status = $(this).attr('status');
@@ -134,15 +134,15 @@ $(document).ready(function() {
       </div>
       <div class="modal-body">
           <div class="assess_btn" style="margin:15px; height: 100px;">
-            <button type="submit" style="background:#00B9EF;" class="btn btn-default" status="3" 
+            <button type="submit" style="background:#00B9EF;" class="btn btn-default" status="3"
             title="企業様から評価「A」が届いています" content="この度はぜひ面接をさせていただきたいと思います。つきましては、面接時に「」について詳しくお聞かせ願いたいと思っておりますので、ご準備お願いいたします。">A</button>
-            <button type="submit" style="background:#00B9EF;" class="btn btn-default" status="4" 
+            <button type="submit" style="background:#00B9EF;" class="btn btn-default" status="4"
             title="企業様から評価「B」が届いています" content="この度はぜひ面接をさせていただきたいと思います。つきましては、面接時に「」について詳しくお聞かせ願いたいと思っておりますので、ご準備お願いいたします。">B</button>
-            <button type="submit" style="background:#BAE3F9;" class="btn btn-default" status="5" 
+            <button type="submit" style="background:#BAE3F9;" class="btn btn-default" status="5"
             title="企業様から評価「C」が届いています" content="残念ながら、「」が当社の募集基準を満たしていないため、保留中とさせていただきます。「」の追加がありましたら、履歴書の更新をお願いいたします。">C</button>
-            <button type="submit" style="background:#BAE3F9;" class="btn btn-default" status="6" 
+            <button type="submit" style="background:#BAE3F9;" class="btn btn-default" status="6"
             title="企業様から評価「D」が届いています" content="残念ながら、「」が当社の募集基準を満たしていないため、保留中とさせていただきます。「」の追加がありましたら、履歴書の更新をお願いいたします。">D</button>
-            <button type="submit" style="background:#999D9C;" class="btn btn-default" status="7" 
+            <button type="submit" style="background:#999D9C;" class="btn btn-default" status="7"
             title="企業様から評価「E」が届いています" content="残念ながら、基礎情報が不足しているため、不採用とさせていただきます。基礎情報の追加がありましたら、履歴書の更新をお願いいたします。">E</button>
               <div class="tag">
                   <span>A:面接調整へ</span>
@@ -154,7 +154,7 @@ $(document).ready(function() {
           </div>
           <form action="{{url('/assess')}}" method="POST">
             {{ csrf_field() }}
-            
+
             <input type="hidden" name="rs_id" class="rs_id" value="">
             <input type="hidden" name="rs_status" class="rs_status" value="">
             <input type="hidden" name="rs_title" class="rs_title" value="">
@@ -226,11 +226,11 @@ $(document).ready(function() {
         .s{
             border:none !important;
         }
-        
+
     </style>
     <!-- 応募者管理 Tab panes -->
     <div class="tab-content">
-        
+
         @include('bs_sidebar/new_branch/tab1')
         <!-- 選考管理 Tab panes -->
         <div role="tabpanel" class="tab-pane ahr-panel" id="b2">
@@ -251,28 +251,34 @@ $(document).ready(function() {
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)
                         <div class="img-left">
-                            <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                            </a>
                         </div>
                         @endif
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                            <label class="ahr-label_bs" style="font-size:16px;">氏名:
-                            <span>{{ $value->family_name.$value->surname }}</span>
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                            <label class="ahr-label_bs" style="cursor: pointer; font-size: 16px;">
+                            氏名:{{ $value->family_name.$value->surname }}
                             @if($value->sex == 1)
                             <span>♂</span>
                             @else
                             <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
                             @endif
                             </label>
+                            </a>
                             <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
                             <p><label class="label-gray" style="width:80px;">最終学歴</label><span>{{ $value->school }}</span></p>
                             <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
@@ -299,28 +305,34 @@ $(document).ready(function() {
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)
                         <div class="img-left">
-                            <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                            </a>
                         </div>
                         @endif
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                            <label class="ahr-label_bs" style="font-size:16px;">氏名:
-                            <span>{{ $value->family_name.$value->surname }}</span>
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                            <label class="ahr-label_bs" style="cursor: pointer; font-size: 16px;">
+                            氏名:{{ $value->family_name.$value->surname }}
                             @if($value->sex == 1)
                             <span>♂</span>
                             @else
                             <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
                             @endif
                             </label>
+                            </a>
                             <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
                             <p><label class="label-gray" style="width:80px;">最終学歴</label><span>{{ $value->school }}</span></p>
                             <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
@@ -362,28 +374,34 @@ $(document).ready(function() {
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)
                         <div class="img-left">
-                            <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                            </a>
                         </div>
                         @endif
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                            <label class="ahr-label_bs" style="font-size:16px;">氏名:
-                            <span>{{ $value->family_name.$value->surname }}</span>
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                            <label class="ahr-label_bs" style="cursor: pointer; font-size: 16px;">
+                            氏名:{{ $value->family_name.$value->surname }}
                             @if($value->sex == 1)
                             <span>♂</span>
                             @else
                             <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
                             @endif
                             </label>
+                            </a>
                             <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
                             <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
                             <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
@@ -436,28 +454,34 @@ $(document).ready(function() {
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)
                         <div class="img-left">
-                            <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                            </a>
                         </div>
                         @endif
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                            <label class="ahr-label_bs" style="font-size:16px;">氏名:
-                            <span>{{ $value->family_name.$value->surname }}</span>
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                            <label class="ahr-label_bs" style="cursor: pointer; font-size: 16px;">
+                            氏名:{{ $value->family_name.$value->surname }}
                             @if($value->sex == 1)
                             <span>♂</span>
                             @else
                             <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
                             @endif
                             </label>
+                            </a>
                             <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
                             <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
                             <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
@@ -509,28 +533,34 @@ $(document).ready(function() {
                               $check = 1;
                               $ok = $va->image_small;
                            ?>
-                          @break 
+                          @break
                         @endif
                         @endforeach
                         @if($check == 1)
                         <div class="img-left">
-                            <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            </a>
                         </div>
                         @else
                         <div class="img-left">
-                            <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                            </a>
                         </div>
                         @endif
                         <!-- content -->
                         <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                            <label class="ahr-label_bs" style="font-size:16px;">氏名:
-                            <span>{{ $value->family_name.$value->surname }}</span>
+                            <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                            <label class="ahr-label_bs" style="cursor: pointer; font-size: 16px;">
+                            氏名:{{ $value->family_name.$value->surname }}
                             @if($value->sex == 1)
                             <span>♂</span>
                             @else
                             <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
                             @endif
                             </label>
+                            </a>
                             <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
                             <p><label class="label-gray" style="width:80px;">学部</label><span>{{ $value->school }}</span></p>
                             <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>

@@ -67,14 +67,14 @@
                 <div class="panel-content">
                 <form action="{{url('/personnels/update')}}" method="POST">
                 {{ csrf_field() }}
-                   
-                    
+
+
                                <div class="form-group language_append" >
                                 <h5 style="width: 195px; display: inline-block; text-align: center; margin-bottom: 0px;">語言</h5>
                                 <h5 style="width: 104px; display: inline-block; text-align: center; margin-bottom: 0px;">程度</h5>
                                 @foreach($languagelv as $value)
                                 <div class="form-inline" id="divs{{$value->id}}">
-                                <script type="text/javascript"> 
+                                <script type="text/javascript">
                                 $(document).ready(function() {
                                     $("#languagelvs{{$value->id}} option[value='{{$value->lv}}']").attr('selected', 'selected');
                                 });
@@ -84,7 +84,7 @@
                                         <input type="text" class="form-control" name="language[]" placeholder="language" value="{{$value->languagelv_name}}">
                                     </div>
                                     <div class="form-group">
-                                       
+
                                         <select id="languagelvs{{$value->id}}" class="form-control" name="languagelv[]">
                                             <option value="3">母語</option>
                                             <option value="2">ビジネス</option>
@@ -97,15 +97,9 @@
                                         <label class="add"><i class="fa fa-plus-circle" aria-hidden="true"></i></label>
                                         <a href="javascript:;" class="float-right close_bt_small" style="font-size:25px;" onclick="dels('{{$value->id}}')"> <i class="fa fa-times-circle" aria-hidden="true"></i> </a>
                                     </div>
-
                                 </div>
-                                
                                 @endforeach
                               </div>
-                              
-                    
-
-                    
                     <div style="text-align: center;">
                      <button type="submit" class="btn btn-w-md btn-gap-v btn-primary btn_btom">
                        變更
@@ -251,7 +245,7 @@
                     <table class="user-view_table">
                         <tbody>
 
-                       
+
                         </tbody>
                     </table>
                 </div>

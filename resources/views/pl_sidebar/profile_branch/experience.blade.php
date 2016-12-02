@@ -1,5 +1,5 @@
 <script>
-    
+
 $(document).ready(function() {
         var $validator = $(".exp_form").validate({
           rules: {
@@ -86,7 +86,7 @@ $(document).ready(function() {
                                 <th width="150px" style="color:#000;">【經歷】</th>
                                 <td></td>
                             </tr>
-                          
+
                             <tr>
                                 <th width="150px">職種</th>
                                 <td>：{{ $value->name }}</td>
@@ -95,7 +95,7 @@ $(document).ready(function() {
                                 <th width="150px">期間</th>
                                 <td>：{{ $value->year }}年</td>
                             </tr>
-                          
+
                         @endforeach
                         </tbody>
                     </table>
@@ -117,7 +117,7 @@ $(document).ready(function() {
             <div class="panel-content">
             <form class="exp_form" action="{{url('/personnels/update')}}" method="POST" style="text-align:center;">
             {{ csrf_field() }}
-                        
+
                             <div class="col-md-12">
                               <div class="form-group" style="text-align: left; margin-top: 30px;">
                                  <input type="text" class="form-control number" name="points" min="1" max="3" style="width:70px; display: inline;" value="">
@@ -180,6 +180,7 @@ $(document).ready(function() {
                 <div class="panel-content">
                     <table class="user-view_table">
                         <tbody>
+                        @if(isset($abroad_exp))
                             <tr>
                                 <th width="150px" style="color:#000;">【現在・最新】</th>
                                 <td></td>
@@ -204,6 +205,7 @@ $(document).ready(function() {
                                 <th width="120px">期間：</th>
                                 <td>{{$abroad_exp->gotime}}　～　{{$abroad_exp->backtime}}</td>
                             </tr>
+                        @endif
                         </tbody>
                     </table>
                 </div>
@@ -227,6 +229,7 @@ $(document).ready(function() {
             {{ csrf_field() }}
                 <table class="user-view_table">
                     <tbody>
+                        @if(isset($abroad_exp))
                         <tr>
                             <th width="80px">目的:</th>
                             <td><input type="text" name="main" class="form-control ahr-input_1" value="{{ $abroad_exp->main}}"></td>
@@ -251,6 +254,31 @@ $(document).ready(function() {
                             <input type="text" class="input-sm form-control" name="end" value="{{ $abroad_exp->backtime }}"/>
                         </div></td>
                         </tr>
+                        @endif
+                        <tr>
+                            <th width="80px">目的:</th>
+                            <td><input type="text" name="main" class="form-control ahr-input_1" ></td>
+                        </tr>
+                        <tr>
+                            <th width="80px">機関名:</th>
+                            <td><input type="text" name="gear" class="form-control ahr-input_1" ></td>
+                        </tr>
+                        <tr>
+                            <th width="80px">学年、学部、業務内容:</th>
+                            <td><input type="text" name="content" class="form-control ahr-input_1" ></td>
+                        </tr>
+                         <tr>
+                            <th width="80px">国名・地方名:</th>
+                            <td><input type="text" name="place" class="form-control ahr-input_1" ></td>
+                        </tr>
+                        <tr>
+                            <th width="80px">期間:</th>
+                            <td><div class="input-daterange input-group" id="datepicker">
+                            <input type="text" class="input-sm form-control" name="start" />
+                            <span class="input-group-addon">to</span>
+                            <input type="text" class="input-sm form-control" name="end" />
+                        </div></td>
+                        </tr>
                          <style>
                              .datepicker-dropdown{
                                  top:1597px !important;
@@ -258,8 +286,8 @@ $(document).ready(function() {
                          </style>
                     </tbody>
 
-                </table>        
-             
+                </table>
+
                 <button type="submit" class="btn btn-w-md btn-gap-v btn-primary  btn_btom">
                 變更
                 </button>

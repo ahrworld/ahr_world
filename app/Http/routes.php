@@ -52,7 +52,12 @@ Route::get('/company', function(){
 	return view('company');
 });
 
-//form
+Route::get('/ahr/privacy', function(){
+    return view('privacy');
+});
+Route::get('/ahr/policy', function(){
+    return view('policy');
+});
 
 
 /*

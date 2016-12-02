@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="{{ asset('ahr/assets/tag_it/jquery.tagit.css')}}">
 	<link rel="stylesheet" href="{{ asset('ahr/assets/tag_it/tagit.ui-zendesk.css')}}">
 	<script src="{{ asset('ahr/assets/tag_it/tag-it.js')}}"></script>
-	
+
 	<!-- select2 -->
 	<link href="{{ asset('ahr/assets/select2/css/select2.css')}}" rel="stylesheet" />
 	<script src="{{ asset('ahr/assets/select2/js/select2.js')}}"></script>
@@ -44,7 +44,7 @@ $(document).ready(function() {
     $('#myTabs a:last').click(function () {
 		 myRadarChart();
 	});
-	 
+
 });
 </script>
 <style>
@@ -167,27 +167,14 @@ $(document).ready(function() {
 		<!-- main -->
 
         <main style="width:1260px; margin:50px auto;">
-        
+
         		  @yield('line_menu')
 				  @include('bs_sidebar/left_sidebar')
 				  @yield('content')
 	          	  @include('bs_sidebar/right_sidebar')
         </main>
-		<footer class="user_lp_footer">
-		    	<ul>
-		    		<li><a href="#">公式ブログ</a></li>
-		    		<li><a href="#">ヘルプ</a></li>
-		    		<li><a href="#">採用情報</a></li>
-		    		<li><a href="#">規約</a></li>
-		    		<li><a href="#">プライバシーポリシー</a></li>
-		    		<li><a href="#">ご意見・ご要望</a></li>
-		    		<li><a href="#">採用成功例</a></li>
-		    		<li><a href="#">サイトマップ</a></li>　
-		    		<li><a href="#">言語</a></li>　
-		    	</ul>
-			<p>Copyright © AHR Inc. ALL RIGHTS RESERVED.</p>
-	    </footer>
-		
+		@include('layouts/footer')
+
 
 
 

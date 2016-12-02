@@ -25,7 +25,7 @@
                                     <pre></pre>
                                     <img src="" class="img_view" style="max-width: 200px;">
                                 </div>
-                               
+
                             </div>
                             </form>
                         </div>
@@ -55,7 +55,7 @@
                       </div>
                   </div>
                   @endforeach
-               
+
             </div>
             <!-- wrapper end -->
             <style>
