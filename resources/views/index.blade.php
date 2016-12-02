@@ -123,27 +123,6 @@
 		float: left;
 		text-align: right;
 	}
-	.user_lp_footer{
-		margin-top: 150px;
-		background: #6CC9F3;
-		height: 180px;
-		width: 100%;
-		text-align: center;
-		color: #FFF;
-	}
-	.user_lp_footer ul{
-		padding-top: 5px;
-	}
-	.user_lp_footer li{
-		display: inline-block;
-		list-style: none;
-		padding: 20px;
-
-	}
-	.user_lp_footer li a{
-		color: #FFF;
-		font-weight: 600;
-	}
 </style>
     <main class="user_lp_main">
     	<div class="wrapper">
