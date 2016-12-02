@@ -91,7 +91,7 @@
         </div>
         @else
         <div class="img-left">
-            <img height="175" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+            <img height="175" src="{{ asset('assets/img/b-icon-c.png')}}" alt="" style="opacity: 0.5;">
         </div>
         @endif
         <!-- content -->
