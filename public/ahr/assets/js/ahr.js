@@ -17,7 +17,7 @@ $(document).ready(function() {
 var url = document.location.toString();
 if (url.match('#')) {
     $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
-} 
+}
 // Change hash for page-reload
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
     window.location.hash = e.target.hash;
@@ -183,12 +183,12 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		// smile
 		$('.default_photo .update_bt_smile').click(function(){
 		  $('.default_photo').addClass('none');
-		  $('.update_photo_smile').removeClass('none');
+		  $('.update_photo_smile_bs').removeClass('none');
 		});
 
 		// smile close  business and user
-		$('.update_photo_smile #image-cropper .column .close').click(function(){
-		  $('.update_photo_smile').addClass('none');
+		$('.update_photo_smile_bs #image-cropper .column .close').click(function(){
+		  $('.update_photo_smile_bs').addClass('none');
 		  $('.default_photo').removeClass('none');
 		  $('.update_1').removeClass('none');
 		});
@@ -205,6 +205,10 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 
 		// cropit
 		$('.update_photo_big #image-cropper').cropit({
+		  imageBackground: true,
+		  imageBackgroundBorderWidth: 30 // Width of background border
+		});
+		$('.update_photo_smile_bs #image-cropper').cropit({
 		  imageBackground: true,
 		  imageBackgroundBorderWidth: 30 // Width of background border
 		});
@@ -246,14 +250,14 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		  });
 		});
 		$('.update_photo_smile_bs #image-cropper .ok-btn').click(function() {
-		  var imageData = $('.update_photo_smile #image-cropper').cropit('export');
-		  $('.update_photo_smile #image-cropper .hidden_image_data').val(imageData);
+		  var imageData = $('.update_photo_smile_bs #image-cropper').cropit('export');
+		  $('.update_photo_smile_bs #image-cropper .hidden_image_data').val(imageData);
 		  $.ajax({
 		      type: "POST",
 		      url: "/business/image_small",
 		      async: false,
 		      dataType: "json",
-		      data:  $('.update_photo_smile #image-cropper .cropit_form').serialize(),
+		      data:  $('.update_photo_smile_bs #image-cropper .cropit_form').serialize(),
 		      success: function(data) {
 		           console.log(JSON.stringify(data));
 		           swal({
@@ -300,7 +304,7 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		});
 		/////  image update end
 
-		// blog_upload 
+		// blog_upload
 		$('#uploadBtn_blog').change(function(){
 		      var preview = document.querySelector('.img_view');
 		      var file    = document.querySelector('#uploadBtn_blog').files[0];
@@ -315,8 +319,8 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		      }
 	   });
 		// step6
-		
-		
+
+
 		$(".js-exp1").select2({
 		   placeholder: "職種を選択してください。",
 		   allowClear: true

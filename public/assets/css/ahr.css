@@ -676,6 +676,12 @@ blockquote{
    height: 200px;
    margin: auto;
  }
+  .update_photo_smile_bs .cropit-preview {
+   /* You can specify preview size in CSS */
+   width: 200px;
+   height: 200px;
+   margin: auto;
+ }
  /* Translucent background image */
  .cropit-preview-background {
    opacity: .2;

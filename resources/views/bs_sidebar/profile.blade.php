@@ -27,7 +27,7 @@ $(document).ready(function() {
     $('.default_summary').hover(function() {
         $('.default_summary .update_bt').toggleClass('none');
     });
-    
+
     $('.nav-tabs li a').click(function(){
       $('body').scrollTop('500');
     });
