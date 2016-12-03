@@ -411,7 +411,7 @@ class BusinessController extends Controller
                     'recruitments_id' => $c->id,
             ]);
         }
-        return redirect('/profile_b2');
+        return redirect('/profile_b2#a2');
     }
     public function update(Request $request){
         $BSinformation = new BSinformations;

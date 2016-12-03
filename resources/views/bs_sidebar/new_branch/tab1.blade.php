@@ -27,28 +27,34 @@
                           $check = 1;
                           $ok = $va->image_small;
                        ?>
-                      @break 
+                      @break
                     @endif
                     @endforeach
                     @if($check == 1)
                     <div class="img-left">
-                        <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                        <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            </a>
                     </div>
                     @else
                     <div class="img-left">
+                        <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
                         <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                    </a>
                     </div>
                     @endif
                     <!-- content -->
                     <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                        <label class="ahr-label_bs" style="font-size:16px;">氏名:
-                        <span>{{ $value->family_name.$value->surname }}</span>
-                        @if($value->sex == 1)
-                        <span>♂</span>
-                        @else
-                        <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
-                        @endif
-                        </label>
+                       <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                            <label class="ahr-label_bs" style="cursor: pointer; font-size: 16px;">
+                            氏名:{{ $value->family_name.$value->surname }}
+                            @if($value->sex == 1)
+                            <span>♂</span>
+                            @else
+                            <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
+                            @endif
+                            </label>
+                            </a>
                         <p><label class="label-gray" style="width:80px;">技能</label><span></span></p>
                         <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
                         <p><label class="label-gray" style="width:80px;">最終学歴</label><span>{{ $value->school }}</span><span>({{$value->school_country}})</span></p>
@@ -63,10 +69,10 @@
                     </div>
                 </div>
             </div>
-            
+
             @endforeach
             </div>
-           
+
             </div>
      </div>
      <div role="tabpanel" class="tab-pane ahr-panel s" id="b1s2">
@@ -84,28 +90,34 @@
                       $check = 1;
                       $ok = $va->image_small;
                    ?>
-                  @break 
+                  @break
                 @endif
                 @endforeach
                 @if($check == 1)
                 <div class="img-left">
-                    <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                    <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            </a>
                 </div>
                 @else
                 <div class="img-left">
-                    <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                    <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                        <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                    </a>
                 </div>
                 @endif
                 <!-- content -->
                 <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                    <label class="ahr-label_bs" style="font-size:16px;">氏名:
-                    <span>{{ $value->family_name.$value->surname }}</span>
-                    @if($value->sex == 1)
-                    <span>♂</span>
-                    @else
-                    <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
-                    @endif
-                    </label>
+                    <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                            <label class="ahr-label_bs" style="cursor: pointer; font-size: 16px;">
+                            氏名:{{ $value->family_name.$value->surname }}
+                            @if($value->sex == 1)
+                            <span>♂</span>
+                            @else
+                            <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
+                            @endif
+                            </label>
+                            </a>
                     <p><label class="label-gray" style="width:80px;">技能</label><span></span></p>
                     <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
                     <p><label class="label-gray" style="width:80px;">最終学歴</label><span>{{ $value->school }}</span></p>
@@ -141,28 +153,34 @@
                       $check = 1;
                       $ok = $va->image_small;
                    ?>
-                  @break 
+                  @break
                 @endif
                 @endforeach
                 @if($check == 1)
                 <div class="img-left">
-                    <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                    <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            </a>
                 </div>
                 @else
                 <div class="img-left">
-                    <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                    <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                        <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                    </a>
                 </div>
                 @endif
                 <!-- content -->
                 <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                    <label class="ahr-label_bs" style="font-size:16px;">氏名:
-                    <span>{{ $value->family_name.$value->surname }}</span>
-                    @if($value->sex == 1)
-                    <span>♂</span>
-                    @else
-                    <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
-                    @endif
-                    </label>
+                    <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                            <label class="ahr-label_bs" style="cursor: pointer; font-size: 16px;">
+                            氏名:{{ $value->family_name.$value->surname }}
+                            @if($value->sex == 1)
+                            <span>♂</span>
+                            @else
+                            <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
+                            @endif
+                            </label>
+                            </a>
                     <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
                     <p><label class="label-gray" style="width:80px;">最終学歴</label><span>{{ $value->school }}</span></p>
                     <p><label class="label-gray" style="width:80px;">SKILL</label><span></span></p>
@@ -190,28 +208,34 @@
                       $check = 1;
                       $ok = $va->image_small;
                    ?>
-                  @break 
+                  @break
                 @endif
                 @endforeach
                 @if($check == 1)
                 <div class="img-left">
-                    <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                    <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            </a>
                 </div>
                 @else
                 <div class="img-left">
-                    <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                    <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                        <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                    </a>
                 </div>
                 @endif
                 <!-- content -->
                 <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                    <label class="ahr-label_bs" style="font-size:16px;">氏名:
-                    <span>{{ $value->family_name.$value->surname }}</span>
-                    @if($value->sex == 1)
-                    <span>♂</span>
-                    @else
-                    <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
-                    @endif
-                    </label>
+                    <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                            <label class="ahr-label_bs" style="cursor: pointer; font-size: 16px;">
+                            氏名:{{ $value->family_name.$value->surname }}
+                            @if($value->sex == 1)
+                            <span>♂</span>
+                            @else
+                            <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
+                            @endif
+                            </label>
+                            </a>
                     <p><label class="label-gray" style="width:80px;">応募職位</label><span>{{ $value->job_name }}</span></p>
                     <p><label class="label-gray" style="width:80px;">最終学歴</label><span>{{ $value->school }}</span></p>
                     <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
@@ -245,28 +269,34 @@
                           $check = 1;
                           $ok = $va->image_small;
                        ?>
-                      @break 
+                      @break
                     @endif
                     @endforeach
                     @if($check == 1)
                     <div class="img-left">
-                        <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                        <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                                <img height="208" src="data:image/png;base64,{{$ok}}" alt="">
+                            </a>
                     </div>
                     @else
                     <div class="img-left">
+                        <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
                         <img height="208" src="{{ asset('ahr/assets/user_img/default_user.png')}}" alt="">
+                    </a>
                     </div>
                     @endif
                     <!-- content -->
                     <div class="panel-content" style="margin:15px 0px 0px 15px;">
-                        <label class="ahr-label_bs" style="font-size:16px;">氏名:
-                        <span>{{ $value->family_name.$value->surname }}</span>
-                        @if($value->sex == 1)
-                        <span>♂</span>
-                        @else
-                        <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
-                        @endif
-                        </label>
+                       <a class="show_pl_vi" href="{{ route('personnels.show', $value->rs_id) }}">
+                            <label class="ahr-label_bs" style="cursor: pointer; font-size: 16px;">
+                            氏名:{{ $value->family_name.$value->surname }}
+                            @if($value->sex == 1)
+                            <span>♂</span>
+                            @else
+                            <span style="font-weight:bold; color:rgba(233, 75, 59, 0.64) !important;">♀</span>
+                            @endif
+                            </label>
+                            </a>
                         <p><label class="label-gray" style="width:80px;">技能</label><span></span></p>
                         <p><label class="label-gray" style="width:80px;">最終学歴</label><span>{{ $value->school }}</span><span>({{$value->school_country}})</span></p>
                         <p><label class="label-gray" style="width:80px;">言語レベル</label><span>{{ $value->language_lv }}</span></p>
@@ -281,13 +311,13 @@
                     </div>
                 </div>
             </div>
-            
+
             @endforeach
             </div>
-           
+
             </div>
      </div>
-  
+
      </div>
      <!-- tab-content -->
 </div>

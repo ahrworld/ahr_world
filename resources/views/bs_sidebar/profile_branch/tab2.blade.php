@@ -23,7 +23,7 @@
       $('#singleFieldTags3').tagit({
                 availableTags: sampleTags
       });
-      
+
       $(".finish_sumbit").click(function(){
         $('.form_a').submit();
     });
@@ -157,7 +157,9 @@
            @endforeach
 
            <div style="text-align:right;">
-              <label class="add add_recruitment"  data-toggle="modal" data-target="#recruitment" style="width:30px; height:30px;"></label>
+              <label class="add add_recruitment"  data-toggle="modal" data-target="#recruitment" style="width:30px; height:30px;">
+               <i class="fa fa-plus-circle" aria-hidden="true"></i>
+              </label>
            </div>
            <!-- Modal -->
            <div class="modal fade" id="recruitment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
