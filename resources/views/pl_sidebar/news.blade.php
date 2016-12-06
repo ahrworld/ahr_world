@@ -577,13 +577,13 @@
                         @if($check == 1)
                         <div class="img-left">
                         <a href="{{ route('business.show', $value_r->r_id) }}">
-                            <img height="175" src="data:image/png;base64,{{$ok}}" alt="">
+                            <img height="150" src="data:image/png;base64,{{$ok}}" alt="">
                         </a>
                         </div>
                         @else
                         <div class="img-left">
                         <a href="{{ route('business.show', $value_r->r_id) }}">
-                            <img height="175" src="{{ asset('assets/img/b-icon-c.png')}}" alt="" style="opacity: 0.5;">
+                            <img height="150" src="{{ asset('assets/img/b-icon-c.png')}}" alt="" style="opacity: 0.5;">
                         </a>
                         </div>
                         @endif

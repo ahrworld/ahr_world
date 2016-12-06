@@ -1,7 +1,7 @@
 
 @extends('bs_sidebar/sidebar')
 @section('line_menu')
-@include('bs_sidebar/line_menu')
+<div style="height:50px;">&nbsp;</div>
 @endsection
 @section('content')
 

@@ -254,7 +254,7 @@ $(document).ready(function() {
                             <input type="text" class="input-sm form-control" name="end" value="{{ $abroad_exp->backtime }}"/>
                         </div></td>
                         </tr>
-                        @endif
+                        @else
                         <tr>
                             <th width="80px">目的:</th>
                             <td><input type="text" name="main" class="form-control ahr-input_1" ></td>
@@ -279,6 +279,7 @@ $(document).ready(function() {
                             <input type="text" class="input-sm form-control" name="end" />
                         </div></td>
                         </tr>
+                         @endif
                          <style>
                              .datepicker-dropdown{
                                  top:1597px !important;
