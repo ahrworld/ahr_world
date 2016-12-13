@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="../../scripts/jquery.xdomainajax.js"></script>
+</head>
+<script>
+ $(document).ready(function(){
+	
+
+	// function ajaxCall(target){
+
+	// 	//發出 ajax call
+	// 	var data = $.ajax({
+	// 		type: "POST",
+	// 		url: target,
+	// 	});
+
+	// 	//成功得到資料
+	// 	data.success(function( msg ) {
+	// 		$("#result").html(msg);
+	// 	});
+
+	// 	//取得資料失敗
+	// 	data.error(function( msg ) {
+	// 		$("#result").html("fail getting data");
+	// 	});
+ //     }
+
+  
+ 
+ $("#getDifferentDomainData").click(function(){
+ 		$.getJSON("http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=?", function(data) {
+ 			
+ 			var html = '<ul>';
+ 			for(var i = 0; i < data.length; i++)
+ 			{
+ 				html += '<li>' + data[i] + '</li>';
+ 			}
+ 			html += '</ul>';
+ 			
+ 			$('#result').html(html); 
+ 		});
+ 		
+ 	});
+  });
+</script>
+<body>
+	
+	<button id="getDifferentDomainData">點我抓資料</button>
+	<div id="result"></div>
+</body>
+</html>

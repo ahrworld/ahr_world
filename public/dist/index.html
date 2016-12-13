@@ -1,0 +1,80 @@
+<!doctype html>
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Web Application</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link href="scripts/googleapis.css" rel="stylesheet" type="text/css">
+        <!-- needs images, font... therefore can not be part of ui.css -->
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="bower_components/weather-icons/css/weather-icons.min.css">
+      
+        <!-- end needs images -->
+        <link rel="stylesheet" href="styles/main.css">
+
+    </head>
+    <body data-ng-app="app" id="app" data-custom-background data-off-canvas-nav>
+        <!--[if lt IE 9]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div data-ng-controller="AppCtrl">
+            <div data-ng-hide="isSpecificPage()" data-ng-cloak>
+                <section data-ng-include=" 'app/layout/header.html' " id="header" class="top-header"></section>
+
+                <aside data-ng-include=" 'app/layout/nav.html' " id="nav-container"></aside>
+            </div>
+
+            <div class="view-container">
+                <section data-ng-view id="content" class="animate-fade-up"></section>
+            </div>
+        </div>
+
+        <script src="scripts/vendor.js"></script>
+
+        <script src="scripts/ui.js"></script>
+
+        <script src="scripts/app.js"></script>
+
+        <!-- jqwidgets -->
+       <link rel="stylesheet" href="jqx/jqwidgets/styles/jqx.base.css" type="text/css" />
+       <link rel="stylesheet" href="jqx/jqwidgets/styles/jqx.arctic.css" type="text/css" />
+       <link rel="stylesheet" href="jqx/jqwidgets/styles/jqx.metro.css" type="text/css" />
+       <script src="jqx/jqwidgets/jqxcore.js"></script>
+       <script src="jqx/jqwidgets/jqxdata.js"></script>
+       <script src="jqx/jqwidgets/jqxbuttons.js"></script>
+       <script src="jqx/jqwidgets/jqxscrollbar.js"></script>
+       <script src="jqx/jqwidgets/jqxlistbox.js"></script>
+       <script src="jqx/jqwidgets/jqxdropdownlist.js"></script>
+       <script src="jqx/jqwidgets/jqxmenu.js"></script>
+       <script src="jqx/jqwidgets/jqxgrid.js"></script>
+       <script src="jqx/jqwidgets/jqxgrid.filter.js"></script>
+       <script src="jqx/jqwidgets/jqxgrid.sort.js"></script>
+       <script src="jqx/jqwidgets/jqxgrid.edit.js"></script>
+       <script src="jqx/jqwidgets/jqxgrid.selection.js"></script>
+       <script src="jqx/jqwidgets/jqxpanel.js"></script>
+       <script src="jqx/jqwidgets/jqxcalendar.js"></script>
+       <script src="jqx/jqwidgets/jqxdatetimeinput.js"></script>
+       <script src="jqx/jqwidgets/jqxgrid.pager.js"></script>
+       <script src="jqx/jqwidgets/jqxnumberinput.js"></script>
+       <script src="jqx/jqwidgets/jqxwindow.js"></script>
+       <script src="jqx/jqwidgets/jqxinput.js"></script>
+       <script src="jqx/scripts/gettheme.js"></script>
+       <script src="jqx/jqwidgets/jqxcore.js"></script>
+       <script src="jqx/jqwidgets/jqxdata.export.js"></script> 
+       <script src="jqx/jqwidgets/jqxgrid.export.js"></script>
+       <script src="jqx/jqwidgets/globalization/globalize.js"></script>
+       <script src="jqx/jqwidgets/globalization/globalize.culture.tw-TW.js"></script>
+       <script src="jqx/jqwidgets/jqxcheckbox.js"></script>
+       <script src="jqx/jqwidgets/jqxgrid.columnsresize.js"></script>
+       <script src="jqx/jqwidgets/jqxgrid.aggregates.js"></script>
+       <script src="jqx/scripts/demos.js"></script>
+       <script src="jqx/jqwidgets/jqxmaskedinput.js"></script> 
+       <script src="jqx/jqwidgets/jqxvalidator.js"></script>
+       
+
+    </body>
+</html>
