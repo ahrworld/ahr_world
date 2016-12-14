@@ -41,8 +41,9 @@ class UserController extends Controller
         // mail_box
         $mail_box  = Mail_box::select('mail_box.id as mail_id','mail_title','bsinformations.company_name')
                  ->where('mail_box.get_user_id', $request->user()->id)
-                 ->join('bsinformations', 'mail_box.get_user_id', '=', 'bsinformations.user_id')
-        ->paginate(5);
+                 ->where('mail_box.mail_status',0)
+                 ->join('bsinformations', 'mail_box.post_user_id', '=', 'bsinformations.user_id')
+                 ->paginate(5);
         $mail_count = Mail_box::where('mail_box.post_user_id', $request->user()->id)->count();
         $notice = Mail_box::where('mail_box.mail_status',1)
                   ->where('mail_box.get_user_id', $request->user()->id)

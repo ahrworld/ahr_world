@@ -6,6 +6,15 @@
 	    		<li><a href="{{url('/ahr/policy')}}">利用規約</a></li>
 	    		<li><a href="{{url('/ahr/privacy')}}">プライバシーポリシー</a></li>
 	    		<li><a href="#">ご意見・ご要望</a></li>
+	    		<li><form action="language" method="post">
+	    		{{ csrf_field() }}
+	    			<select name="locale">
+	    				<option value="en">en</option>
+	    				<option value="jp">jp</option>
+	    			</select>
+	    			<input type="submit" value="submit">
+	    		</form></li>
+	    		<li>{{ trans('menu.failed') }}</li>
 	    		<li><a href="#">採用成功例</a></li>
 	    		<li><a href="#">サイトマップ</a></li>　
 	    		<li><a href="#">言語</a></li>　

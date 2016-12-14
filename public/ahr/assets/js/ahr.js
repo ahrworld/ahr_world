@@ -34,6 +34,12 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		    $('.m_id').val(r_id);
 		    $('.m_b_id').val(b_id);
 		});
+		$('.bt_chat').click(function(){
+		    var r_id = $(this).attr('attr');
+		    var b_id = $(this).attr('bs');
+		    $('.c_id').val(r_id);
+		    $('.c_b_id').val(b_id);
+		});
 		$('.giveup').click(function(){
 		    var rs_id = $(this).attr('attr');
 		    $('.rs_id').val(rs_id);

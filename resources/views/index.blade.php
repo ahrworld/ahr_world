@@ -127,7 +127,7 @@
     <main class="user_lp_main">
     	<div class="wrapper">
     		<label class="label1"><span>グローバル人材</span> として <span>グローバル就職・転職</span> をしよう！</label>
-    			<h3>今日から気軽に始める、ライフワークとしての就職・転職活動</h3>
+    			<h3>今日から気軽に始める、ライフワークとしての就職・転職活動{{ trans('menu.failed') }}</h3>
     			<img src="{{ asset('ahr/assets/img/2.png')}}" height="300" style="margin-top:80px;">
     		<div>
     			<img src="{{ asset('ahr/assets/img/user_lp_test.png')}}" height="400" style="margin-top:80px;">

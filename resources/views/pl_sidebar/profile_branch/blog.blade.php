@@ -33,10 +33,25 @@
                     </div>
                 </div>
             </div>
-
+<style> 
+.blog_panel .panel-content pre.more{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    white-space: pre-wrap;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    font-size: 16px;
+    height: 75px;
+}
+.blog_panel .panel-content .more_bt{
+    font-size: 14px;
+    color:#03A9F4;
+}
+</style>
             <div class="wrapper">
                   @foreach($pl_blog as $value)
-                  <div class="panel panel-default">
+                  <div class="panel panel-default blog_panel">
                       <div class="panel-body">
                           <div class="row">
                               <!-- video -->
@@ -45,7 +60,8 @@
                               <a href="javascritp:;" class="blog_name">{{ $value->surname.$value->family_name }}</a>
                               <span class="blog_time">{{ $value->created_at }}</span>
                                   <div class="panel-content" style="width:100%; font-size:25px; padding-right:50px;">
-                                          <pre style="font-size: 16px;">{{ $value->blog_content }}</pre>
+                                               <pre class="more">{{ $value->blog_content }}</pre>
+                                               <a href="javascript:;" class="more_bt">(more)</a>
                                   </div>
                                   <div style="width:100%;">
                                   <img src="{{$value->blog_image}}" width="100%">

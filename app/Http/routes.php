@@ -58,8 +58,10 @@ Route::get('/ahr/privacy', function(){
 Route::get('/ahr/policy', function(){
     return view('policy');
 });
-
-
+Route::post('/language', array(
+        'Middleware' => 'LanguageSwitcher',
+        'uses' => 'LanguageController@index'
+));
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -94,7 +96,7 @@ Route::group(['middleware' => 'web'], function () {
 	// });
 
 	Route::delete('/task/{task}', 'TaskController@destroy');
-    Route::get('/home', 'HomeController@index');
+    Route::get('home', 'HomeController@index');
 
     Route::get('/bs_info', 'BusinessController@bs_info');
     Route::get('/test', 'BusinessController@test');
@@ -154,6 +156,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('ttt','UserController@ttt');
     // リクエスト
     Route::post('message','UserController@message');
+    // メールBOXへ
+    Route::post('chat','UserController@chat');
     // お気に入り
     Route::post('like','UserController@like');
     // search

@@ -107,6 +107,30 @@
     </div>
   </div>
 </div>
+<!-- news_modal_3 modal -->
+<div class="modal fade" id="news_modal_3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">メールを届く</h4>
+      </div>
+
+      <div class="modal-body">
+      <form class="form_a" action="{{url('/chat')}}" method="POST" >
+        {{ csrf_field() }}
+          <input type="hidden" name="id" class="c_id" value="">
+          <input type="hidden" name="b_id" class="c_b_id" value="">
+        <textarea name="content" class="form-control"  rows="5"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default back" data-dismiss="modal">キャンセル</button>
+        <button type="submit" class="btn btn-primary" >送信する</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 <!-- giveup modal -->
 <div class="modal fade" id="giveup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="top:150px;">
   <div class="modal-dialog" role="document">
@@ -892,7 +916,7 @@
                         </div>
                         <div class="img-right">
                             <div style="width:160px; float:left;">
-                                      <button class="btn ahr-label-blue ahr-btn-lg" >メールBOXへ</button>
+                                <a href="javascript:;" class="btn ahr-label-blue ahr-btn-lg bt_chat" attr="{{$value_r->r_id}}" bs="{{$value_r->user_id}}" data-toggle="modal" data-target="#news_modal_3">メールBOXへ</a>
                                 <form action="{{url('/g')}}" method="POST" >
                                       {{ csrf_field() }}
                                       <input type="hidden" name="rs_id" class="rs_id" value="{{$value_r->r_id}}">
@@ -957,7 +981,7 @@
                         <div class="img-right">
                             <div style="width:160px; float:left;">
                                       <button class="btn ahr-label-blue ahr-btn-lg">內定報告する</button>
-                                      <button class="btn ahr-label-blue ahr-btn-lg">メールBOXへ</button>
+                                      <a href="javascript:;" class="btn ahr-label-blue ahr-btn-lg bt_chat" attr="{{$value_r->r_id}}" bs="{{$value_r->user_id}}" data-toggle="modal" data-target="#news_modal_3">メールBOXへ</a>
                                       <form action="{{url('/g')}}" method="POST" >
                                             {{ csrf_field() }}
                                             <input type="hidden" name="rs_id" class="rs_id" value="{{$value_r->r_id}}">

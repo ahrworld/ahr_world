@@ -140,6 +140,8 @@ class UserController extends Controller
     }
     public function profile(Request $request)
     {
+        // ¶àÕZÑÔ
+        // app()->setLocale($local);
         if(Auth::user()->data_status == 0)
         {
             return redirect()->intended('step');
@@ -153,13 +155,13 @@ class UserController extends Controller
                     ->join('skill_name', 'personnels_skill.personnel_skill', '=', 'skill_name.id')
                     ->join('skill_category', 'skill_name.skill_category_id', '=', 'skill_category.id')
                     ->get();
-        // èªžè¨€
+        // ÕZÑÔ
         $languagelv = $personnel::select('languagelvs.lv','languagelvs.languagelv_name','languagelvs.id')
                       ->where('personnels.user_id', $request->user()->id)
                       ->join('languagelvs', 'personnels.id', '=', 'languagelvs.personnels_id')
                       ->get();
 
-        // è·å‹™ç¶“æ­·
+        // Âš„Õ½›šv
         $exp_job = Experiences_job::select('experiences_job.id','exp_job.name','experiences_job.year','experiences_job.user_id','experiences_job.personnels_id')->where('experiences_job.user_id', $request->user()->id)
                    ->join('exp_job', 'experiences_job.experience', '=', 'exp_job.id')
                    ->get();
@@ -179,9 +181,9 @@ class UserController extends Controller
         $subject = Subject::all();
         $exp_jobs = Exp_job::all();
         $exp_job_category = Exp_job_category::all();
-        // åˆ†æžé¡Œç›®
+        // ·ÖÎöî}Ä¿
         $Analysis_topic = Analysis_topic::all();
-        // åˆ†æžçµæžœ
+        // ·ÖÎö½Y¹û
         $Analysis_answer = Analysis_answer::where('user_id',$request->user()->id)->first();
         // blog
         $pl_blog = Pl_blog::join('personnels', 'pl_blog.user_id', '=', 'personnels.user_id')
@@ -367,10 +369,10 @@ class UserController extends Controller
     }
     public function news(Request $request)
     {
-        // åœ–ç‰‡
+        // ˆDÆ¬
         $bs_image = Bs_image::all();
 
-        //å¿œå‹Ÿdefault
+        //êÄ¼default
         $Recruitment = Recruitment::select('recruitments.id as r_id','recruitments.created_at','exp_job.name',
             'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
             'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
@@ -381,9 +383,9 @@ class UserController extends Controller
                         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                         ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                         ->get();
-                   //orWhereä½œæ³•ä¸å¥½ï¼Œåªæœ‰æˆ–ï¼Œæ²’æœ‰å’Œçš„æ¢ä»¶ï¼Œæ‰€ä»¥user idä¸€æ—¦éŒ¯äº†å°±å…¨éŒ¯äº†
+                   //orWhere×÷·¨²»ºÃ£¬Ö»ÓÐ»ò£¬›]ÓÐºÍµÄ—l¼þ£¬ËùÒÔuser idÒ»µ©åeÁË¾ÍÈ«åeÁË
 
-        // å¿œå‹Ÿã—ãŸ
+        // êÄ¼¤·¤¿
         $Recruitment_ofa = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
             'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
@@ -393,7 +395,7 @@ class UserController extends Controller
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
-        // æª¢ç´¢å±¥æ­·
+        // ™zË÷ÂÄšv
         $history = Recruitment::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
             'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
                             ->join('pl_history', 'recruitments.id', '=', 'pl_history.recruitments_id')
@@ -424,7 +426,7 @@ class UserController extends Controller
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->orderBy('pl_history.updated_at','desc')
                             ->get();
-        // ãŠæ°—ã«å…¥ã‚Š
+        // ¤ªšÝ¤ËÈë¤ê
         $Recruitment_like = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
             'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
@@ -434,7 +436,7 @@ class UserController extends Controller
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
-        // é¢æŽ¥èª¿æ•´
+        // Ãæ½ÓÕ{Õû
         $Recruitment_a = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name',
             'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.user_id as b_user_id',
             'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
@@ -446,7 +448,7 @@ class UserController extends Controller
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
-        // é¸è€ƒé€²è¡Œ
+        // ßx¿¼ßMÐÐ
         $Recruitment_check = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name',
             'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.user_id as b_user_id',
             'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
@@ -457,7 +459,7 @@ class UserController extends Controller
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->get();
-        // å…§å®š
+        // ƒÈ¶¨
         $Recruitment_ok = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name',
             'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.user_id as b_user_id',
             'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
@@ -500,7 +502,7 @@ class UserController extends Controller
           ]);
         }
         $notice = Mail_box::create([
-                    'mail_title' => $Personnel->family_name.$Personnel->surname.'ã•ã‚“ãŒæ–°ç€å¿œå‹Ÿ',
+                    'mail_title' => $Personnel->family_name.$Personnel->surname.'¤µ¤ó¤¬ÐÂ×ÅêÄ¼',
                     'mail_content' => $request->content,
                     'status' => 1,
                     'mail_status' => 1,
@@ -513,7 +515,20 @@ class UserController extends Controller
     {
         $Personnel = Personnel::where('user_id',$request->user()->id)->first();
         $notice = Mail_box::create([
-                    'mail_title' => $Personnel->family_name.$Personnel->surname.'ã•ã‚“ãŒãƒªã‚¯ã‚¨ã‚¹ãƒˆ',
+                    'mail_title' => $Personnel->family_name.$Personnel->surname.'¤µ¤ó¤¬¥ê¥¯¥¨¥¹¥È',
+                    'mail_content' => $request->content,
+                    'status' => 0,
+                    'mail_status' => 0,
+                    'get_user_id' => $request->b_id,
+                    'post_user_id' => $request->user()->id,
+        ]);
+        return redirect('/news');
+    }
+    public function chat(Request $request)
+    {
+        $Personnel = Personnel::where('user_id',$request->user()->id)->first();
+        $chat = Mail_box::create([
+                    'mail_title' => $Personnel->family_name.$Personnel->surname.'¤µ¤ó¤¬¥á©`¥ë',
                     'mail_content' => $request->content,
                     'status' => 0,
                     'mail_status' => 0,
@@ -590,7 +605,7 @@ class UserController extends Controller
                             ->orderBy('bs_blog.id','desc')->get();
         $bs_image = Bs_image::where('bs_image.user_id',$res->user_id)->first();
         $history = Pl_history::where('user_id',$request->user()->id)->where('recruitments_id',$id)->first();
-        // è¶³è·¡
+        // ×ãÛE
         if (isset($history)) {
             Pl_history::where('user_id',$request->user()->id)
                         ->where('recruitments_id',$id)
@@ -614,7 +629,7 @@ class UserController extends Controller
             'r_id' =>$r_id,
         ]);
     }
-    // ç§€é¢æŽ¥æ—¥ç¨‹
+    // ÐãÃæ½ÓÈÕ³Ì
     public function schedule(Request $request , $id)
     {
         $res  = Recruitment::where('recruitments.id', $id)
@@ -630,7 +645,7 @@ class UserController extends Controller
     // analysis
     public function analysis(Request $request)
     {
-         // ç¸½å’Œ
+         // ¿‚ºÍ
          foreach ($request->data as $key => $value) {
                 $status = $request->data[$key];
 
@@ -740,7 +755,7 @@ class UserController extends Controller
         $query = Analysis_answer::where('user_id', $request->user()->id)->first();
         return response()->json($query);
     }
-    // ç¢ºèªè¡Œç¨‹æ™‚é–“
+    // ´_ÕJÐÐ³Ì•rég
     public function schedule_check(Request $request)
     {
          Interview_time::where('bsinformations_id',$request->bs_id)
@@ -753,11 +768,11 @@ class UserController extends Controller
          Recruitments_status::where('recruitments_status.recruitments_id', $request->rs_id)
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->update(['status' => 8]);
-         // å¾…è¿½åŠ Notice
+         // ´ý×·¼ÓNotice
          $Personnel = Personnel::where('user_id',$request->user()->id)->first();
 
          Notice::create([
-                    'notice_title' => $Personnel->family_name.$Personnel->surname.'å¿œå‹Ÿè€…æ§˜ã¨ã®ã€é¢æŽ¥èª¿æ•´ãŒå®Œäº†ã—ã¾ã—ãŸã€‚',
+                    'notice_title' => $Personnel->family_name.$Personnel->surname.'êÄ¼Õß˜”¤È¤Î¡¢Ãæ½ÓÕ{Õû¤¬ÍêÁË¤·¤Þ¤·¤¿¡£',
                     'notice_content' => $request->value,
                     'status' => 8,
                     'get_user_id' => $request->bs_id,

@@ -213,10 +213,11 @@ $(document).ready(function() {
                                                             </span>
                                                         </label>
                                                     </td>
+
                                                     <td width="25%">
-                                                        <a href="{{ route('mail_bs.show', $value->mail_id) }}">
+                                                        <a href="{{ route('mail.show', $value->mail_id) }}">
                                                             <p class="company_name"><i class="fa fa-circle color-info"></i>
-                                                            {{$value->company_name}}
+                                                            {{$value->company_name}}企業
                                                             </p>
                                                         </a>
                                                     </td>
