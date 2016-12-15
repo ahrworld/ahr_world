@@ -11,13 +11,12 @@ use App\Http\Controllers\Controller;
 
 class LanguageController extends Controller
 {
-   public function index(){
-
-        if(Session::has('locale'))
+   public function index(Request $request){
+        if($request->locale)
         {
-            Session::put('locale',Input::get('locale'));
+            Session::put('locale',$request->locale);
         }else{
-            Session::get('locale', Input::get('locale'));
+            Session::get('locale',$request->locale);
         }
         return Redirect::back();
    }

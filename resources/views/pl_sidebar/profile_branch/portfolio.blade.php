@@ -1,7 +1,7 @@
 <div class="wrapper" style="margin-top:0px !important;">
     <!-- add 作品 -->
     <div class="panel panel-info">
-            <div class="panel-heading"><strong><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp;ポートフォリオ</strong></div>
+            <div class="panel-heading"><strong><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp;{{ trans('menu.portfolio') }}</strong></div>
             <div class="panel-body">
             <form method="POST" action="{{url('/portfolio/add')}}" accept-charset="UTF-8" enctype="multipart/form-data">
                  <input type="hidden" name="_token" value="{{ csrf_token()}}">

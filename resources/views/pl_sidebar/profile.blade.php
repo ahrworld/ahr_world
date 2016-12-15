@@ -120,10 +120,10 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
 
 <div class="scorl" style="width:60%;  float:left; margin-left:15px;">
      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#p1" aria-controls="p1" role="tab" data-toggle="tab">プロフィール</a></li>
-        <li role="presentation"><a href="#p2" aria-controls="p2" role="tab" data-toggle="tab">実績・作品</a></li>
-        <li role="presentation"><a href="#p3" aria-controls="p3" role="tab" data-toggle="tab">自己PR</a></li>
-        <li role="presentation"><a href="#p4" aria-controls="p4" role="tab" data-toggle="tab">自己分析</a></li>
+        <li role="presentation" class="active"><a href="#p1" aria-controls="p1" role="tab" data-toggle="tab">{{ trans('menu.profile') }}</a></li>
+        <li role="presentation"><a href="#p2" aria-controls="p2" role="tab" data-toggle="tab">{{ trans('menu.portfolio') }}</a></li>
+        <li role="presentation"><a href="#p3" aria-controls="p3" role="tab" data-toggle="tab">{{ trans('menu.p_blog') }}</a></li>
+        <li role="presentation"><a href="#p4" aria-controls="p4" role="tab" data-toggle="tab">{{ trans('menu.analysis') }}</a></li>
     </ul>
     <!-- プロフィール Tab panes -->
     <div class="tab-content">

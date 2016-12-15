@@ -7,24 +7,24 @@
       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
     </a>
                 @foreach($personnels as $value)
-                <h6 style="margin-bottom:0px !important;">■　基本情報</h6>
+                <h6 style="margin-bottom:0px !important;">■　{{ trans('menu.p_base') }}</h6>
                 <div class="panel-content">
                     <table class="user-view_table">
                         <tbody>
                             <tr>
-                                <th width="80px">氏名</th>
+                                <th width="80px">{{ trans('menu.name') }}</th>
                                 <td>：{{ $value->family_name.$value->surname}}</td>
                             </tr>
                             <tr>
-                                <th width="80px">英語名</th>
+                                <th width="80px">{{ trans('menu.en_name') }}</th>
                                 <td>：{{ $value->family_name_en.$value->surname_en }}</td>
                             </tr>
                             <tr>
-                                <th width="80px">国籍</th>
+                                <th width="80px">{{ trans('menu.nationality') }}</th>
                                 <td>：{{ $value->country }}</td>
                             </tr>
                             <tr>
-                                <th width="80px">性別</th>
+                                <th width="80px">{{ trans('menu.sex') }}</th>
                                 @if($value->sex === 1)
                                 <td>：男</td>
                                 @endif
@@ -33,27 +33,27 @@
                                 @endif
                             </tr>
                             <tr>
-                                <th width="80px">生年月日</th>
+                                <th width="80px">{{ trans('menu.birthday') }}</th>
                                 <td>：{{ $value->birthday }}</td>
                             </tr>
                             <tr>
-                                <th width="80px">現住所</th>
+                                <th width="80px">{{ trans('menu.address') }}</th>
                                 <td>：{{ $value->post.$value->city.$value->address}}</td>
                             </tr>
                             <tr>
-                                <th width="80px">E-mail</th>
+                                <th width="80px">{{ trans('menu.email') }}</th>
                                 <td>：{{ Auth::user()->email }}</td>
                             </tr>
                             <tr>
-                                <th width="80px">Skype ID</th>
+                                <th width="80px">{{ trans('menu.skype') }}</th>
                                 <td>：{{ $value->skype_id }}</td>
                             </tr>
                             <tr>
-                                <th width="80px">Line ID</th>
+                                <th width="80px">{{ trans('menu.line') }}</th>
                                 <td>：{{ $value->line_id }}</td>
                             </tr>
                             <tr>
-                                <th width="80px">電話番号</th>
+                                <th width="80px">{{ trans('menu.phone') }}</th>
                                 <td>：{{ $value->phone }}</td>
                             </tr>
 
@@ -70,7 +70,7 @@
                 <i class="fa fa-times-circle" aria-hidden="true"></i>
               </a>
 
-              <h6 style="margin-bottom:0px !important;">■　基本情報</h6>
+              <h6 style="margin-bottom:0px !important;">■　{{ trans('menu.p_base') }}</h6>
                 <div class="panel-content">
                 <form action="{{url('/personnels/update')}}" method="POST" style="text-align:center;">
                 {{ csrf_field() }}
@@ -149,25 +149,25 @@
             <a href="javascript:;" class="float-right update_bt none" onclick="update_panel('.panel_2','.panel_2_update');">
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </a>
-                <h6>■　学歴</h6>
+                <h6>■　{{ trans('menu.educational_background') }}</h6>
                 <div class="panel-content">
 
                     <table class="user-view_table">
                         <tbody>
                             <tr>
-                                <th width="100px">最終学歴</th>
+                                <th width="100px">{{ trans('menu.educational_last') }}</th>
                                 <td>：{{ $value->school}}</td>
                             </tr>
                             <tr>
-                                <th width="100px">学歴囯名</th>
+                                <th width="100px">{{ trans('menu.educational_country') }}</th>
                                 <td>：{{ $value->school_country}}</td>
                             </tr>
                             <tr>
-                                <th width="100px">専攻</th>
+                                <th width="100px">{{ trans('menu.educational_skill') }}</th>
                                 <td>：{{ $value->subject}}</td>
                             </tr>
                             <tr>
-                                <th width="100px">卒業年度(予定)</th>
+                                <th width="100px">{{ trans('menu.educational_graduation') }}</th>
                                 <td>：{{ $value->end_year}}</td>
                             </tr>
                         </tbody>

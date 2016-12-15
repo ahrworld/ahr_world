@@ -80,11 +80,11 @@
 	                <ul class="nav navbar-nav navbar-right">
 	                    <!-- Authentication Links -->
 	                    @if (Auth::guest())
-	                    	<li><a class="user_lp_blog" href="#">ブログ</a></li>
-	                        <li><button type="button" class="btn btn-default user_lp_btn1"><a href="{{ url('/login') }}" style="padding: 20px 40px;">ログイン</a></button></li>
-	                        <li><button type="button" class="btn btn-default user_lp_btn1"><a href="{{ url('/register') }}" style="padding: 20px 20px;">アカウント作成</a></button></li>
+	                    	<li><a class="user_lp_blog" href="#">{{ trans('menu.blog') }}</a></li>
+	                        <li><button type="button" class="btn btn-default user_lp_btn1"><a href="{{ url('/login') }}" style="padding: 20px 40px;">{{ trans('menu.login') }}</a></button></li>
+	                        <li><button type="button" class="btn btn-default user_lp_btn1"><a href="{{ url('/register') }}" style="padding: 20px 20px;">{{ trans('menu.register') }}</a></button></li>
 	                    @else
-	                        <li><button type="button" class="btn btn-default user_lp_btn1"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></button></li>
+	                        <li><button type="button" class="btn btn-default user_lp_btn1"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ trans('menu.logout') }}</a></button></li>
 	                    @endif
 
 	                </ul>
@@ -127,13 +127,15 @@
     <main class="user_lp_main">
     	<div class="wrapper">
     		<label class="label1"><span>グローバル人材</span> として <span>グローバル就職・転職</span> をしよう！</label>
-    			<h3>今日から気軽に始める、ライフワークとしての就職・転職活動{{ trans('menu.failed') }}</h3>
+    			<h3>今日から気軽に始める、ライフワークとしての就職・転職活動</h3>
     			<img src="{{ asset('ahr/assets/img/2.png')}}" height="300" style="margin-top:80px;">
     		<div>
     			<img src="{{ asset('ahr/assets/img/user_lp_test.png')}}" height="400" style="margin-top:80px;">
 			</div>
    		</div>
     </main>
+
+
 
     @include('layouts/footer')
 
