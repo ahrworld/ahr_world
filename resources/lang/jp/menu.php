@@ -23,6 +23,13 @@ return [
     'portfolio' => '実績・作品',
     'p_blog' => '自己PR',
     'analysis' => '自己分析',
+    // left sidebar
+    'profile_edit' => 'プロフィール編集',
+    'chat_notice' => 'チャット通知',
+    'search_company' => '企業檢索',
+    'like_company' => 'お気に入り企業',
+    'Interview_time' => '面接日程',
+    // profile content
     'p_base' => '基本情報',
     'name' => '氏名',
     'en_name' => '英語名',

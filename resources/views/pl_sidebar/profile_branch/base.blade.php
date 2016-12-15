@@ -189,22 +189,22 @@
             <a href="javascript:;" class="float-right close_bt" onclick="update_panel('.panel_2_update','.panel_2');">
               <i class="fa fa-times-circle" aria-hidden="true"></i>
             </a>
-                <h6>■　学歴</h6>
+                <h6>■　{{ trans('menu.educational_background') }}</h6>
                 <div class="panel-content">
                 <form action="{{url('/personnels/update')}}" method="POST" style="text-align:center;">
                 {{ csrf_field() }}
                     <table class="user-view_table">
                         <tbody>
                              <tr>
-                                <th width="100px">最終学歴：</th>
+                                <th width="100px">{{ trans('menu.educational_last') }}：</th>
                                 <td><input type="text" name="school" class="form-control ahr-input_1" value="{{ $value->school}}"></td>
                             </tr>
                             <tr>
-                                <th width="100px">学歴囯名：</th>
+                                <th width="100px">{{ trans('menu.educational_country') }}：</th>
                                 <td><input type="text" name="school_country" class="form-control ahr-input_1" value="{{ $value->school_country}}"></td>
                             </tr>
                             <tr>
-                                <th width="100px">学科：</th>
+                                <th width="100px">{{ trans('menu.educational_skill') }}：</th>
                                 <td>
                                 <select name="subject" class="js-example-templating3 js-states" style="width: 100%">
                                     @foreach($subject as $value)
@@ -214,7 +214,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th width="100px">卒業年度(予定)：</th>
+                                <th width="100px">{{ trans('menu.educational_graduation') }}：</th>
                                 <td><input type="text" name="end_year" class="form-control ahr-input_1" value="{{ $value->end_year}}"></td>
                             </tr>
 

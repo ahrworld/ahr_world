@@ -23,9 +23,13 @@ return [
     'portfolio' => 'Portfolio',
     'p_blog' => 'Blog',
     'analysis' => 'Analysis',
-    'portfolio' => 'Portfolio',
-    'p_blog' => 'Blog',
-    'analysis' => 'Analysis',
+    // left sidebar
+    'profile_edit' => 'Profil Edit',
+    'chat_notice' => 'Chat Notice',
+    'search_company' => 'Search Company',
+    'like_company' => 'Like Company',
+    'Interview_time' => 'Interview Time',
+    // profile content
     'p_base' => 'Information',
     'name' => 'Name',
     'en_name' => 'English Name',

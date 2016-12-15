@@ -18,7 +18,6 @@
 	    		</form>
 
 	    		</li>
-	    		<li>{{ trans('menu.failed') }}</li>
 	    		<li><a href="#">採用成功例</a></li>
 	    		<li><a href="#">サイトマップ</a></li>　
 	    		<li><a href="#">言語</a></li>　
