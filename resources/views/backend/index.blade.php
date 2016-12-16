@@ -65,7 +65,7 @@
                                               <li>
                                                   <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ trans('menu.logout') }}</a>
                                               </li>
-                                          </ul>
+                                          </ul> 
                               </li>
                           </ul>
                       </div>
