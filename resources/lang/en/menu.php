@@ -39,7 +39,7 @@ return [
     'address' => 'Address',
     'email' => 'E-mail',
     'skype' => 'Skype',
-    'Line' => 'Line',
+    'line' => 'Line',
     'phone' => 'Phone',
     'educational_background' => 'Educational Background',
     'educational_last' => 'Educational Last',

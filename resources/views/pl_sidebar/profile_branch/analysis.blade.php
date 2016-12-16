@@ -36,9 +36,20 @@
         });
         // analysis_again
         $('.as_view #as_again').click(function(){
+          swal({
+            title: "やり直しますか?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "はい",
+            cancelButtonText: "いいえ",
+          },
+          function(){
             $('.analysis_form').removeClass('none').addClass('animated fadeIn');
             $('.as_view').addClass('none').removeClass('animated flash');
             $('.as_v').attr('checked',false);
+          });
+            
         });
   @endif
       // analysis_wizard

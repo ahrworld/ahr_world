@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
     <!-- bootstrap -->
     <script src="ahr/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="{{ asset('ahr/assets/js/ahr.js')}}"></script>
     <!-- test fily -->
     <link rel="stylesheet" href="{{ asset('ahr/assets/default_css/main.css')}}">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">

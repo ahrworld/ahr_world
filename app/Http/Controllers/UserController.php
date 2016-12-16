@@ -33,6 +33,7 @@ use App\ModelBranch\Interview_time;
 use App\PersonnelBranch\Experiences_job;
 use App\PersonnelBranch\Personnels_skill;
 use App\PersonnelBranch\Pl_image;
+use App\PersonnelBranch\P_license;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -169,7 +170,9 @@ class UserController extends Controller
         $pl_image = Pl_image::where('user_id', $request->user()->id)->first();
         // portfolio
         $portfolio = Pl_portfolio::where('user_id', $request->user()->id)->orderBy('created_at','desc')->get();
-        
+        // license
+        $license = P_license::where('user_id', $request->user()->id)->get();
+
         $abroad_exp = Abroad_exp::where('user_id', $request->user()->id)->first();
         // skill
         $skill_title = new skill_title;
@@ -206,6 +209,7 @@ class UserController extends Controller
             'Analysis_topic' => $Analysis_topic,
             'Analysis_answer' => $Analysis_answer,
             'pl_blog' => $pl_blog,
+            'license' => $license,
     	]);
     }
     public function blog(Request $request){
@@ -363,6 +367,15 @@ class UserController extends Controller
                                     'user_id' => $request->user()->id,
                             ]);
              }
+             return redirect('/profile');
+         }elseif (isset($request->license)) {
+             foreach ($request->license as $key => $value) {
+                 P_license::create([
+                            'license' => $value,
+                            'user_id' => $request->user()->id,
+                 ]);
+               
+             };
              return redirect('/profile');
          }
 

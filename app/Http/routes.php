@@ -73,6 +73,7 @@ Route::post('/language', array(
 |
 */
 
+Route::get('ahr/admin','AdminController@index');
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', function () {

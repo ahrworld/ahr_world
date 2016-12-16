@@ -39,7 +39,7 @@ return [
     'address' => '現住所',
     'email' => 'メール',
     'skype' => 'スカイプ',
-    'Line' => 'ライン',
+    'line' => 'ライン',
     'phone' => '電話番号',
     'educational_background' => '学歴',
     'educational_last' => '最終学歴',

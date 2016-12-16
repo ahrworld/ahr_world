@@ -378,7 +378,9 @@ class Router implements RegistrarContract
         $this->post('login_bs', 'Auth\BsAuthController@authenticate');
         $this->get('signin_bs', 'Auth\BsAuthController@showRegistrationForm_bs');
         $this->post('signin_bs', 'Auth\BsAuthController@register_bs');
-
+        // AHR側
+        $this->get('ahr/admin/login', 'Auth\AdminAuthController@showLoginForm_admin');
+        $this->post('login_admin', 'Auth\AdminAuthController@authenticate');
         // Password Reset Routes...
         $this->get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
         $this->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');

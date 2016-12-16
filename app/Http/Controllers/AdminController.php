@@ -45,4 +45,12 @@ class AdminController extends Controller
         $this->middleware('auth');
         $this->middleware('role.admin');
     }
+    public function index()
+    {
+    	return view('backend/index');
+    }
+    public function signin()
+    {
+    	return view('backend/signin');
+    }
 }

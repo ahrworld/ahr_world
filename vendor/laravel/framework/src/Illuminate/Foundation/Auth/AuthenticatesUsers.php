@@ -48,7 +48,17 @@ trait AuthenticatesUsers
 
         return view('auth.bs_login');
     }
+    public function showLoginForm_admin()
+    {
+        $view = property_exists($this, 'loginView')
+                    ? $this->loginView : 'auth.authenticate';
 
+        if (view()->exists($view)) {
+            return view($view);
+        }
+
+        return view('backend.signin');
+    }
     /**
      * Handle a login request to the application.
      *

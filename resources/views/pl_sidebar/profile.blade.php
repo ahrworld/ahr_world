@@ -33,6 +33,11 @@
       $('.language_append').append($('<div class="form-inline" id="div'+ id +'" style="margin-top:13px;"> <div class="form-group" style="margin-right:3px;"> <input type="text" class="form-control" name="language[]" placeholder="language"> </div><div class="form-group" style="margin-right:3px;"> <select class="form-control" name="languagelv[]"> <option value="3">母語</option> <option value="2">ビジネス</option> <option value="1">日常会話</option> <option value="0">初級</option> </select> </div><div class="form-group" ><a href="javascript:;" class="float-right close_bt_small" style="font-size:25px;" onclick="del('+id+')"> <i class="fa fa-times-circle" aria-hidden="true"></i> </a> </div></div>'));
       id++;
     });
+    var l_id = 21;
+     $('.license_append .add').click(function(){
+      $('.license_append').append($('<div id="div'+ l_id +'" class="form-inline " style="margin-bottom:10px;"><div class="form-group"><input type="text" class="form-control" name="license[]" placeholder="免許" value=""></div><div class="form-group" style="margin-left: 3px;"><a href="javascript:;" class="float-right close_bt_small" style="font-size:25px;" onclick="del('+ l_id +')"><i class="fa fa-times-circle" aria-hidden="true"></i></a></div></div>'));
+       l_id++;
+    });
     $('#myTabs a:last').click(function () {
       myRadarChart();
     });

@@ -839,7 +839,7 @@
         };
       };
       $scope.main = {
-        brand: 'TravelDays',
+        brand: 'AHR',
         name: 'Lisa Doe'
       };
       return $rootScope.$on("$routeChangeSuccess", function(event, currentRoute, previousRoute) {

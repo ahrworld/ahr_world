@@ -244,11 +244,72 @@
                 <div class="panel-content">
                     <table class="user-view_table">
                         <tbody>
-
+                            @foreach($license as $value)
+                                <tr>
+                                    <th width="160px">・資格/免許</th>
+                                    <td>：{{$value->license }}</td>
+                                </tr>
+                            @endforeach
 
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+        <!-- row end -->
+    </div>
+</div>
+<div class="panel panel-update panel_4_1_update none">
+    <div class="panel-body" style="padding-top: 0px !important;">
+        <div class="row">
+            <!-- logo left -->
+            <div class="col-md-12">
+            <!-- Close BUTTON -->
+            <a href="javascript:;" class="float-right close_bt" onclick="update_panel('.panel_4_1_update','.panel_4_1');">
+              <i class="fa fa-times-circle" aria-hidden="true"></i>
+            </a>
+                <h6>■　資格/免許</h6>
+               <div class="panel-content">
+                               <form action="{{url('/personnels/update')}}" method="POST">
+                               {{ csrf_field() }}
+                                              <div class="form-group license_append">
+                                               <h5>資格/免許</h5>
+                                               @if(count($license) < 1)
+                                               <div class="form-inline">
+                                                   <div class="form-group">
+                                                       <input type="text" class="form-control" name="license[]" placeholder="免許" value="">
+                                                   </div>
+                                                  
+                                                   <div class="form-group" style="margin-top: 13px;">
+                                                       <label class="add">
+                                                       <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                                       </label>
+                                                   </div>
+                                               </div>
+                                               @else
+                                               @foreach($license as $key => $value)
+                                                   <div id="div{{$key}}" class="form-inline" style="margin-bottom: 10px;">
+                                                       <div class="form-group">
+                                                           <input type="text" class="form-control" name="license[]" placeholder="免許" value="{{$value->license}}">
+                                                       </div>
+                                                      
+                                                       <div class="form-group" style="margin-top: 13px;">
+                                                          <label class="add">
+                                                          <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                                          </label>
+                                                          <a href="javascript:;" class="float-right close_bt_small" style="font-size:25px; " onclick="del('{{$key}}')"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                                                       </div>
+                                                   </div>
+                                               @endforeach
+                                               @endif
+                                             </div>
+                                   <div style="text-align: center;">
+                                    <button type="submit" class="btn btn-w-md btn-gap-v btn-primary btn_btom">
+                                      變更
+                                    </button>
+                                   </div>
+                               </form>
+                           </div>
             </div>
         </div>
         <!-- row end -->

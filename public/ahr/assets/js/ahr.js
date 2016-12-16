@@ -119,6 +119,8 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		$('.td-star').click(function(){
 			$(this).find('i').toggleClass('active');
 		});
+	
+
 		// bs_info button
 		// $('.ahr-button_2').click(function(){
 		// 	$(this).addClass('active').siblings('.active').removeClass('active');
@@ -210,136 +212,136 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 		// end user
 
 		// cropit
-		$('.update_photo_big #image-cropper').cropit({
-		  imageBackground: true,
-		  imageBackgroundBorderWidth: 30 // Width of background border
-		});
-		$('.update_photo_smile_bs #image-cropper').cropit({
-		  imageBackground: true,
-		  imageBackgroundBorderWidth: 30 // Width of background border
-		});
-		$('.update_photo_smile #image-cropper').cropit({
-		  imageBackground: true,
-		  imageBackgroundBorderWidth: 30 // Width of background border
-		});
+		// $('.update_photo_big #image-cropper').cropit({
+		//   imageBackground: true,
+		//   imageBackgroundBorderWidth: 30 // Width of background border
+		// });
+		// $('.update_photo_smile_bs #image-cropper').cropit({
+		//   imageBackground: true,
+		//   imageBackgroundBorderWidth: 30 // Width of background border
+		// });
+		// $('.update_photo_smile #image-cropper').cropit({
+		//   imageBackground: true,
+		//   imageBackgroundBorderWidth: 30 // Width of background border
+		// });
 		// Handle rotation
-		$('.rotate-cw-btn').click(function() {
-		  $('#image-cropper').cropit('rotateCW');
-		});
-		$('.rotate-ccw-btn').click(function() {
-		  $('#image-cropper').cropit('rotateCCW');
-		});
-		$('.update_photo_big #image-cropper .ok-btn').click(function() {
-		  var imageData = $('.update_photo_big #image-cropper').cropit('export');
-		  $('.update_photo_big #image-cropper .hidden_image_data').val(imageData);
-		  $.ajax({
-		      type: "POST",
-		      url: "/business/image_big",
-		      async: false,
-		      dataType: "json",
-		      data:  $('.update_photo_big #image-cropper .cropit_form').serialize(),
-		      success: function(data) {
-		           console.log(JSON.stringify(data));
-		           setTimeout("location.reload();", 1000);
-		           swal({
-		               title: "完成",
-		               type: "success",
-		               timer:1000,
-		               showConfirmButton: false
-		           })
-		           setTimeout("location.reload();", 1000);
-		      },
-		      error: function(data) {
-		          console.log('Error:', data);
+		// $('.rotate-cw-btn').click(function() {
+		//   $('#image-cropper').cropit('rotateCW');
+		// });
+		// $('.rotate-ccw-btn').click(function() {
+		//   $('#image-cropper').cropit('rotateCCW');
+		// });
+		// $('.update_photo_big #image-cropper .ok-btn').click(function() {
+		//   var imageData = $('.update_photo_big #image-cropper').cropit('export');
+		//   $('.update_photo_big #image-cropper .hidden_image_data').val(imageData);
+		//   $.ajax({
+		//       type: "POST",
+		//       url: "/business/image_big",
+		//       async: false,
+		//       dataType: "json",
+		//       data:  $('.update_photo_big #image-cropper .cropit_form').serialize(),
+		//       success: function(data) {
+		//            console.log(JSON.stringify(data));
+		//            setTimeout("location.reload();", 1000);
+		//            swal({
+		//                title: "完成",
+		//                type: "success",
+		//                timer:1000,
+		//                showConfirmButton: false
+		//            })
+		//            setTimeout("location.reload();", 1000);
+		//       },
+		//       error: function(data) {
+		//           console.log('Error:', data);
 
-		      }
-		  });
-		});
-		$('.update_photo_smile_bs #image-cropper .ok-btn').click(function() {
-		  var imageData = $('.update_photo_smile_bs #image-cropper').cropit('export');
-		  $('.update_photo_smile_bs #image-cropper .hidden_image_data').val(imageData);
-		  $.ajax({
-		      type: "POST",
-		      url: "/business/image_small",
-		      async: false,
-		      dataType: "json",
-		      data:  $('.update_photo_smile_bs #image-cropper .cropit_form').serialize(),
-		      success: function(data) {
-		           console.log(JSON.stringify(data));
-		           swal({
-		               title: "完成",
-		               type: "success",
-		               timer:1000,
-		               showConfirmButton: false
-		           })
-		           setTimeout("location.reload();", 1000);
-		      },
-		      error: function(data) {
-		          console.log('Error:', data);
+		//       }
+		//   });
+		// });
+		// $('.update_photo_smile_bs #image-cropper .ok-btn').click(function() {
+		//   var imageData = $('.update_photo_smile_bs #image-cropper').cropit('export');
+		//   $('.update_photo_smile_bs #image-cropper .hidden_image_data').val(imageData);
+		//   $.ajax({
+		//       type: "POST",
+		//       url: "/business/image_small",
+		//       async: false,
+		//       dataType: "json",
+		//       data:  $('.update_photo_smile_bs #image-cropper .cropit_form').serialize(),
+		//       success: function(data) {
+		//            console.log(JSON.stringify(data));
+		//            swal({
+		//                title: "完成",
+		//                type: "success",
+		//                timer:1000,
+		//                showConfirmButton: false
+		//            })
+		//            setTimeout("location.reload();", 1000);
+		//       },
+		//       error: function(data) {
+		//           console.log('Error:', data);
 
-		      }
-		  });
-		});
-		$('#p1 .update_photo_smile #image-cropper .ok-btn').click(function() {
-		  var imageData = $('#p1 .update_photo_smile #image-cropper').cropit('export');
-		  $('#p1 .update_photo_smile #image-cropper .hidden_image_data').val(imageData);
+		//       }
+		//   });
+		// });
+		// $('#p1 .update_photo_smile #image-cropper .ok-btn').click(function() {
+		//   var imageData = $('#p1 .update_photo_smile #image-cropper').cropit('export');
+		//   $('#p1 .update_photo_smile #image-cropper .hidden_image_data').val(imageData);
 
-		  $.ajax({
-		      type: "POST",
-		      url: "/image_small",
-		      async: false,
-		      dataType: "json",
-		      data:  $('#p1 .update_photo_smile #image-cropper .cropit_form').serialize(),
-		      success: function(data) {
-		           swal({
-		               title: "完成",
-		               type: "success",
-		               timer:1000,
-		               showConfirmButton: false
-		           })
-		           $('.update_photo_smile').addClass('none');
-		           $('.update_1').removeClass('none');
-		           $('.photo').css('background-image','url(' + "data:image/png;base64," + data['image_small'] + ')');
-		           // setTimeout("location.reload();", 1000);
-		      },
-		      error: function(data) {
-		          console.log('Error:', data);
+		//   $.ajax({
+		//       type: "POST",
+		//       url: "/image_small",
+		//       async: false,
+		//       dataType: "json",
+		//       data:  $('#p1 .update_photo_smile #image-cropper .cropit_form').serialize(),
+		//       success: function(data) {
+		//            swal({
+		//                title: "完成",
+		//                type: "success",
+		//                timer:1000,
+		//                showConfirmButton: false
+		//            })
+		//            $('.update_photo_smile').addClass('none');
+		//            $('.update_1').removeClass('none');
+		//            $('.photo').css('background-image','url(' + "data:image/png;base64," + data['image_small'] + ')');
+		//            // setTimeout("location.reload();", 1000);
+		//       },
+		//       error: function(data) {
+		//           console.log('Error:', data);
 
-		      }
-		  });
-		});
-		/////  image update end
+		//       }
+		//   });
+		// });
+		// /////  image update end
 
-		// blog_upload
-		$('#uploadBtn_blog').change(function(){
-		      var preview = document.querySelector('.img_view');
-		      var file    = document.querySelector('#uploadBtn_blog').files[0];
-		      var reader  = new FileReader();
+		// // blog_upload
+		// $('#uploadBtn_blog').change(function(){
+		//       var preview = document.querySelector('.img_view');
+		//       var file    = document.querySelector('#uploadBtn_blog').files[0];
+		//       var reader  = new FileReader();
 
-		      reader.addEventListener("load", function () {
-		        preview.src = reader.result;
-		      }, false);
+		//       reader.addEventListener("load", function () {
+		//         preview.src = reader.result;
+		//       }, false);
 
-		      if (file) {
-		        reader.readAsDataURL(file);
-		      }
-	   });
-		// step6
+		//       if (file) {
+		//         reader.readAsDataURL(file);
+		//       }
+	 //   });
+		// // step6
 
 
-		$(".js-exp1").select2({
-		   placeholder: "職種を選択してください。",
-		   allowClear: true
-		});
-		$(".js-exp2").select2({
-		   placeholder: "年数",
-		   allowClear: true
-		});
+		// $(".js-exp1").select2({
+		//    placeholder: "職種を選択してください。",
+		//    allowClear: true
+		// });
+		// $(".js-exp2").select2({
+		//    placeholder: "年数",
+		//    allowClear: true
+		// });
 
-	   // step7
-	   $('.in').click(function(){
-	   	var value = $(this).val();
-	   	$(this).parents().siblings('.in_value').val(value);
-	   });
+	 //   // step7
+	 //   $('.in').click(function(){
+	 //   	var value = $(this).val();
+	 //   	$(this).parents().siblings('.in_value').val(value);
+	 //   });
 });
 

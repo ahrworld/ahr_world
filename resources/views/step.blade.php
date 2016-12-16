@@ -37,8 +37,6 @@
 	};
 	
 	$(document).ready(function() {
-
-
 		// step4
 		$('.school_ct .other').click(function(){
 			$(".school_ct input[type='radio']").attr("checked", false);
