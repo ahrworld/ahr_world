@@ -29,13 +29,13 @@
 <script>
     function formatState (state) {
 	  if (!state.id) { return state.text; }
-	  
+
 	  var $state = $(
 	    '<span><img height="30" src="ahr/assets/flag/' + state.element.value.toLowerCase() + '.svg" class="img-flag" /> ' + state.text + '</span>'
 	  );
 	  return $state;
 	};
-	
+
 	$(document).ready(function() {
 		// step4
 		$('.school_ct .other').click(function(){
@@ -56,7 +56,9 @@
 
 		$('.number').keyup(function(){
 			var moreArray = new Array();
-			if ($('.number').val() == 1) {
+			if ($('.number').val() == 0) {
+				$('.exp_job_wrapper').html("");
+			}else if ($('.number').val() == 1) {
 				for (var i = 1; i <= 1; i++) {
 					moreArray.push('<div class="col-md-7"> <div class="form-group number_exp_job"> <label for="namefield">経験職種</label> <select class="js-example_add'+ i +' js-states" name="experience[]" style="width: 100%"> @foreach($exp_job_category as $key_category=> $value_category) <optgroup label="{{$value_category->category}}" style="background: #ebebee; color: #888888; font-weight: normal; font-style: normal; "> @foreach($exp_job as $key=> $value) @if ($value_category->id==$value->exp_job_category_id) <option value="{{$value->id}}" style="background: #ffffff; color: #000000;">&nbsp;└&nbsp;{{$value->name}}</option> @endif @endforeach </optgroup> @endforeach </select> </div></div><div class="col-md-5"> <div class="form-group"> <label for="namefield">年数</label> <select class="js-example_year'+ i +' js-states" name="year[]" style="width: 100%"> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> </select> </div></div><div>&nbsp;</div>');
 					$('.exp_job_wrapper').html(moreArray.join(""));
@@ -100,7 +102,7 @@
 			   allowClear: true
 			});
 		});
-		
+
 		// step3 sex
 		$('.ahr-button_boy').click(function(){
 			$('.army').removeClass('none');
@@ -118,7 +120,7 @@
     	$(".finish_sumbit").click(function(){
     	     $('.pl_form').submit();
 		});
-	
+
 		$(".js-example-templating").select2({
 		  templateResult: formatState
 		});

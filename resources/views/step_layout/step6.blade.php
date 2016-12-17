@@ -13,7 +13,7 @@
 			<div class="col-md-12">
 			  <div class="form-group">
 			    <label for="namefield" style="display:block;">勤務経験</label>
-			     <input type="text" class="form-control number" name="points" min="1" max="3" style="width:70px; display: inline;" required>
+			     <input type="text" class="form-control number" name="points" min="0" max="3" style="width:70px; display: inline;" required>
 			     <span>社</span>
 			  </div>
 			</div>

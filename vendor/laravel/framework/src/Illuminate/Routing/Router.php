@@ -371,7 +371,7 @@ class Router implements RegistrarContract
         $this->post('login', 'Auth\AuthController@authenticate');
         $this->get('signin', 'Auth\AuthController@showRegistrationForm');
         $this->post('signin', 'Auth\AuthController@register');
-        
+
         $this->get('logout', 'Auth\AuthController@logout');
         // 企業側
         $this->get('login_bs', 'Auth\BsAuthController@showLoginForm_bs');
