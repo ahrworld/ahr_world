@@ -39,12 +39,13 @@
             </form>
             </div>
     </div>
+
     <!-- show portfolio -->
-    <div class="row">
+    <div class="protfolio_panel">
     @foreach($portfolio as $value)
-    <div class="col-sm-6">
+    <div class="wrapper_p">
         <div class="thumbnail portfolio_view" title="{{$value->p_title}}" content="{{$value->p_content}}" p_url="{{$value->p_url}}" data-toggle="modal" data-target="#portfolio_modal">
-            <img alt="{{$value->p_title}}" src="{{$value->p_file}}">
+            <img  src="{{$value->p_file}}">
             <div class="caption">
                 <h3>{{$value->p_title}}</h3>
                 <p>{{$value->p_content}}</p>

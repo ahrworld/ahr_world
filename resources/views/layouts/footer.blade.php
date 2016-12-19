@@ -8,16 +8,7 @@
 	    		<li><a href="#">ご意見・ご要望</a></li>
 	    		<li><a href="#">採用成功例</a></li>
 	    		<li><a href="#">サイトマップ</a></li>　
-	    		<li><form id="languages" action="language" method="post">
-	    		{{ csrf_field() }}
-	    			  <select name="locale" class="form-control" onchange="this.form.submit()">
-	    			   <option value="" disabled selected>言語</option>
-	    			    <option value="jp">日本</option>
-	    			    <option value="tw">繁體中文</option>
-			    		<option value="en">English</option>
-	    			  </select>
-	    		</form>
-				</li>　
+	    		
 	    	</ul>
 		<p>Copyright © AHR Inc. ALL RIGHTS RESERVED.</p>
     </footer>

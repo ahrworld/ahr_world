@@ -129,14 +129,16 @@
 	               @yield('search')
 					<!-- right -->
 	                <ul class="nav-right pull-right list-unstyled">
-	                    <li class="dropdown langs text-normal" dropdown is-open="status.isopenLang" data-ng-controller="LangCtrl">
-	                         <!--  <form class="navbar-form navbar-right" role="search" style="margin-top:0px;">
-				    	        <div class="form-group">
-				    	          <input type="text" class="form-control" placeholder="Search" style="width:100px;">
-				    	        </div>
-				    	        <button type="submit" class="btn btn-default">Submit</button>
-				    	      </form> -->
-	                    </li>
+	                    <li><form id="languages" action="language" method="post">
+			    		{{ csrf_field() }}
+			    			  <select name="locale" class="form-control" onchange="this.form.submit()">
+			    			   <option value="" disabled selected>言語</option>
+			    			    <option value="jp">日本</option>
+			    			    <option value="tw">繁體中文</option>
+					    		<option value="en">English</option>
+			    			  </select>
+			    		</form>
+						</li>　
 	                    <li class="dropdown" dropdown is-open="status.isopenLang" data-ng-controller="LangCtrl">
 		    	            <a href="javascript:;" class="dropdown-toggle history-icon">
 		    	            </a>

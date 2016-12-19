@@ -133,7 +133,7 @@ background-image:url(data:image/png;base64,{{$pl_image->image_small}});
     <!-- プロフィール Tab panes -->
     <div class="tab-content">
 
-        <div role="tabpanel" class="tab-pane ahr-panel fade in active" id="p1">
+        <div role="tabpanel" class="tab-pane ahr-panel fade in active p_profile_panel" id="p1">
             <div  id="dsa" class="wrapper dsadwrwqrwq" style="margin-top:0px !important;">
                 <!-- 1 -->
                 <div class="panel panel-default">

@@ -29,6 +29,10 @@ blockquote{
 	padding: 15px;
 	background: #f3f3f3;
 }
+.p_profile_panel .panel-default:hover{
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: box-shadow 0.3s ease-in-out;
+}
 .wrapper{
 	margin-top: 20px;
 }
@@ -569,7 +573,11 @@ blockquote{
 	color:#CBD343;
 }
 
-
+.protfolio_panel {
+     -webkit-column-count: 2; /* Chrome, Safari, Opera */
+      -moz-column-count: 2; /* Firefox */
+      column-count: 2;
+}
 /* base */
 
 .close_bt ,.update_bt ,.update_bt_smile , .update_bt_big , .update_bt1,.update_bt2{

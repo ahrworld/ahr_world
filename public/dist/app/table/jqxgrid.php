@@ -1,5 +1,5 @@
 <script>
-	   $(document).ready(function () {
+$(document).ready(function () {
 	        // prepare the data
 	var theme = 'metro';
 
@@ -197,6 +197,16 @@
   });
 
 </script>
+
+<div class="page page-table">
+  <section class="panel panel-default table-dynamic">
+  	<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span>職種管理</strong></div>
+		<div>
+			<div id="jqxgrid" style="margin-top:10px;"></div>
+			<div id="ordersGrid" style="margin:10px auto;"></div>
+		</div>
+  </section>
+</div>
 <style>
 	#jqxgrid{
 
@@ -209,15 +219,3 @@
 		height: 30%;
 	}
 </style>
-<div class="page page-table">
-  <section class="panel panel-default table-dynamic">
-
-  	<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span>應收帳款單</strong></div>
-
-		<div>
-			<div id="jqxgrid" style="margin-top:10px;"></div>
-			<div id="ordersGrid" style="margin:10px auto;"></div>
-		</div>
-  </section>
-</div>
-
