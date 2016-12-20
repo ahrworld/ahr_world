@@ -44,10 +44,7 @@
 		padding-left:0px !important;
 	}
 </style>
-<script>
-	
-	
-</script>
+
 <body style="min-width:1260px;">
 
 		<!-- header -->
@@ -131,8 +128,8 @@
 	                <ul class="nav-right pull-right list-unstyled">
 	                    <li><form id="languages" action="language" method="post">
 			    		{{ csrf_field() }}
-			    			  <select name="locale" class="form-control" onchange="this.form.submit()">
-			    			   <option value="" disabled selected>言語</option>
+			    			  <select name="locale" class="form-control locale" onchange="this.form.submit()">
+			    			    <option value="" disabled selected>語言</option>
 			    			    <option value="jp">日本</option>
 			    			    <option value="tw">繁體中文</option>
 					    		<option value="en">English</option>

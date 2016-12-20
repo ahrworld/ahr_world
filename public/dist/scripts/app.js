@@ -868,7 +868,7 @@
             routes = [
                 'dashboard',
                 'ui/typography', 'ui/buttons', 'ui/icons', 'ui/grids', 'ui/widgets', 'ui/components', 'ui/boxes', 'ui/timeline', 'ui/nested-lists', 'ui/pricing-tables', 'ui/maps',
-                'table/static', 'table/dynamic','table/jqxgrid', 'table/responsive',
+                'table/personnels','table/exp_job', 'table/subject','table/jqxgrid', 'table/exp_job_category',
                 'form/elements', 'form/layouts', 'form/validation', 'form/wizard',
                 'chart/charts', 'chart/flot', 'chart/morris',
                 'page/404', 'page/500', 'page/blank', 'page/forgot-password', 'page/invoice', 'page/lock-screen', 'page/profile', 'page/invoice', 'page/signin', 'page/signup',

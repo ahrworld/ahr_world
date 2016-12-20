@@ -74,6 +74,10 @@ Route::post('/language', array(
 */
 
 Route::get('ahr/admin','AdminController@index');
+Route::get('ahr/admin/exp_job_category','AdminController@exp_job_category');
+Route::get('ahr/admin/exp_job','AdminController@exp_job');
+Route::get('ahr/admin/subject','AdminController@subject');
+Route::get('ahr/admin/personnels','AdminController@personnels');
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', function () {

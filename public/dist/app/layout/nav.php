@@ -8,10 +8,13 @@
         <li>
             <a href="#/table"><i class="fa fa-table"><span class="icon-bg bg-warning"></span></i><span data-i18n="管理"></span></a>
             <ul>
-                <li><a href="#/form/validation"><i class="fa fa-caret-right"></i><span data-i18n="職種管理"></span></a></li>
-                 <li><a href="#/table/static"><i class="fa fa-caret-right"></i><span data-i18n="学科管理"></span></a></li>
-                 <li><a href="#/table/static"><i class="fa fa-caret-right"></i><span data-i18n="スキル管理"></span></a></li>
-                 <li><a href="#/table/dynamic"><i class="fa fa-caret-right"></i><span data-i18n="求職者と企業管理"></span></a></li>
+                 <li><a href="#/table/personnels"><i class="fa fa-caret-right"></i><span data-i18n="求職者管理"></span></a></li>
+                 <li><a href="#/table/jqxgrid"><i class="fa fa-caret-right"></i><span data-i18n="企業者管理"></span></a></li>
+                 <li><a href="#/table/exp_job_category"><i class="fa fa-caret-right"></i><span data-i18n="カテゴリ職種管理"></span></a></li>
+                 <li><a href="#/table/exp_job"><i class="fa fa-caret-right"></i><span data-i18n="職種管理"></span></a></li>
+                 <li><a href="#/table/subject"><i class="fa fa-caret-right"></i><span data-i18n="学科管理"></span></a></li>
+               <!--   <li><a href="#/table/static"><i class="fa fa-caret-right"></i><span data-i18n="スキル管理"></span></a></li> -->
+                 
             </ul>
         </li>
          <li>

@@ -152,7 +152,7 @@
 			                <button type="button" class="btn ahr-button-cancel">キャンセル</button>
 			            </td>
 			        </tr>
-			        <tr>
+			        <!-- <tr>
 			            <th scope="row" width="150">内定報告（お祝い金)</th>
 			            <td width="500">OOOOOOOOOOO</td>
 			            <td class="edit" width="100" align="right">編集</td>
@@ -162,7 +162,7 @@
 			                <button type="button" class="btn ahr-button-default">変更</button>
 			                <button type="button" class="btn ahr-button-cancel">キャンセル</button>
 			            </td>
-			        </tr>
+			        </tr> -->
 			    </tbody>
 			</table>
 

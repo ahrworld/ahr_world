@@ -42,7 +42,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth.admin');
         $this->middleware('role.admin');
     }
     public function index()
@@ -52,5 +52,26 @@ class AdminController extends Controller
     public function signin()
     {
     	return view('backend/signin');
+    }
+    public function exp_job_category()
+    {
+        $exp_job_category = Exp_job_category::all();
+        return response()->json($exp_job_category);
+    }
+    public function exp_job(Request $request)
+    {
+        $exp_job = Exp_job_category::join('exp_job','exp_job.exp_job_category_id','=','exp_job_category.id')->get();
+        return response()->json($exp_job);
+    }
+    public function subject()
+    {
+        $subject = Subject::all();
+        return response()->json($subject);
+    }
+
+    public function personnels()
+    {
+        $personnels = Personnel::join('users','personnels.user_id','=','users.id')->get();
+        return response()->json($personnels);
     }
 }

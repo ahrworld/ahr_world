@@ -1,7 +1,7 @@
 @extends('pl_sidebar/sidebar')
 
 @section('search')
-<div class="row " style="width:650px; float:left; margin-left:50px; ">
+<div class="row " style="width:620px; float:left; margin-left:50px; ">
   <div class="col-lg-12">
     <form class="search" method="POST" >
      <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
