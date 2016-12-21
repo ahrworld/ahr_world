@@ -1,0 +1,103 @@
+<script>
+
+$( document ).ready(function() {
+    $('.mail-checkbox').click(function(){
+        alert('dsa');
+    });
+ $('.delete_notice').click(function() {
+        var delete_id = $('.mail-hightlight').map(function(){
+              return $(this).attr('mail');
+        }).get();
+        console.log(delete_id);
+        $.ajax({
+            type: "POST",
+            url: "admin/contact/delete",
+            async: false,
+            dataType: "json",
+            data: {
+                delete: delete_id,
+            },
+            success: function(data) {
+                console.log(JSON.stringify(data));
+            },
+            error: function(data) {
+                console.log('Error:', data);
+               
+            }
+
+        });
+
+  });
+
+});
+
+</script>
+
+<div class="page"  data-ng-controller="mainController">
+
+    <div class="row">
+        <div class="col-sm-3">
+            <section class="panel panel-default mail-categories">
+                <div class="panel-heading">
+                    <a href="#/mail/compose" class="btn btn-block btn-lg btn-primary">Compose</a>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item active"><a href="javascript:;">
+                        <i class="fa fa-inbox"></i>Inbox
+                        <span class="badge badge-info pull-right">6</span>
+                    </a></li>
+                    <li class="list-group-item"><a href="javascript:;">
+                        <i class="fa fa-envelope-o"></i>Send mail
+                    </a></li>
+                    <li class="list-group-item"><a href="javascript:;">
+                        <i class="fa fa-star"></i>Starred
+                        <span class="badge badge-danger pull-right">3</span>
+                    </a></li>
+                    <li class="list-group-item"><a href="javascript:;">
+                        <i class="fa fa-comment-o"></i>Chat
+                        <span class="badge badge-success pull-right">9</span>
+                    </a></li>
+                    <li class="list-group-item"><a href="javascript:;">
+                        <i class="fa fa-pencil"></i>Draft
+                        <span class="badge badge-warning pull-right">1</span>
+                    </a></li>
+                    <li class="list-group-item delete_notice">
+                            <a href="javascript:;">
+                        <i class="fa fa-trash-o"></i>Spam
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            
+        </div>
+        <div class="col-sm-9">
+            <form>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                  <input type="text" class="form-control" placeholder="Search da Fish" ng-model="searchFish">
+                </div>      
+              </div>
+            </form>
+            <section class="panel panel-default mail-container">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> お問い合わせ</strong></div>
+                <div class="mail-options">
+                    <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option1" ><span>すべて選択</span></label>
+                </div>
+                <table class="table table-hover">
+                   
+                    <tr class="mail-unread" mail="{{roll.id}}" ng-repeat="roll in banner | orderBy:sortType:sortReverse | filter:searchFish">
+                        <td><label class="ui-checkbox"><input class="checkbox"  type="checkbox" value="option1" ><span></span></label></td>
+                        <td>{{ roll.name }}</td>
+                        <td>{{ roll.email }}</td>
+                        <td>{{ roll.phone }}</td>
+                        <td>{{ roll.contact }}</td>
+                        <td>{{ roll.created_at }}</td>
+                    </tr>
+
+                </table>
+            </section>
+        </div>
+    </div>
+</div>

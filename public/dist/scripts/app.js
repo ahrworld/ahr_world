@@ -868,11 +868,11 @@
             routes = [
                 'dashboard',
                 'ui/typography', 'ui/buttons', 'ui/icons', 'ui/grids', 'ui/widgets', 'ui/components', 'ui/boxes', 'ui/timeline', 'ui/nested-lists', 'ui/pricing-tables', 'ui/maps',
-                'table/personnels','table/exp_job', 'table/subject','table/jqxgrid', 'table/exp_job_category',
+                'table/personnels','table/business','table/exp_job', 'table/subject','table/jqxgrid', 'table/exp_job_category',
                 'form/elements', 'form/layouts', 'form/validation', 'form/wizard',
                 'chart/charts', 'chart/flot', 'chart/morris',
                 'page/404', 'page/500', 'page/blank', 'page/forgot-password', 'page/invoice', 'page/lock-screen', 'page/profile', 'page/invoice', 'page/signin', 'page/signup',
-                'mail/compose', 'mail/inbox', 'mail/single',
+                'mail/contact', 'mail/inbox', 'mail/single',
                 'app/tasks', 'app/calendar'
             ]
 
@@ -1257,7 +1257,25 @@ angular.module('app.ui.form').controller('DatepickerDemoCtrl', function ($scope)
         return $scope.form_constraints.$valid && !angular.equals($scope.form, original);
       };
     }
-  ]).controller('signinCtrl', [
+  ]).controller('mainController', function($scope,$http,$element) {
+      $scope.sortType     = 'name'; // set the default sort type
+      $scope.sortReverse  = false;  // set the default sort order
+      $scope.searchFish   = '';     // set the default search/filter term
+      $scope.banner=[];
+      $http.get('/ahr/admin/contact').success(function (data, status) {
+         $scope.banner = data;
+      });
+      // create the list of sushi rolls 
+     
+      $(".table-hover").on("click", ".checkbox", function() {
+            $(this).parents('tr').toggleClass('mail-hightlight');
+      });
+
+      // $scope.checkbox = function(id){
+      //    $element.addClass('dsa');
+      //     alert(element);
+      // }
+  }).controller('signinCtrl', [
     '$scope', function($scope) {
       var original;
       $scope.user = {

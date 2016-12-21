@@ -78,6 +78,10 @@ Route::get('ahr/admin/exp_job_category','AdminController@exp_job_category');
 Route::get('ahr/admin/exp_job','AdminController@exp_job');
 Route::get('ahr/admin/subject','AdminController@subject');
 Route::get('ahr/admin/personnels','AdminController@personnels');
+Route::get('ahr/admin/business','AdminController@business');
+Route::get('ahr/admin/contact','AdminController@contact');
+Route::post('ahr/admin/contact/delete','AdminController@contact_delete');
+
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', function () {
@@ -92,16 +96,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('auth/google', 'GoogleController@redirectToProvider');
 	Route::get('auth/google/callback', 'GoogleController@handleProviderCallback');
 
-    Route::get('/tasks', 'TaskController@index');
-    Route::post('/task', 'TaskController@store');
-    Route::get('/date', 'TaskController@testdate');
-	// Route::post('/task',function(){
-	//    // return response()->json(['name' => 'Abigail', 'state' => 'CA']);
-	// 	return 'bruce';
-	// });
-
-	Route::delete('/task/{task}', 'TaskController@destroy');
-    Route::get('home', 'HomeController@index');
+    Route::post('/business/contact/us','HomeController@contact');
 
     Route::get('/bs_info', 'BusinessController@bs_info');
     Route::get('/test', 'BusinessController@test');

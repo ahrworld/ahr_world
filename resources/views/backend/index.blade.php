@@ -21,22 +21,22 @@
         <![endif]-->
 
         <div data-ng-controller="AppCtrl">
-            <div data-ng-hide="isSpecificPage()" data-ng-cloak>
-                <section  id="header" class="top-header">
-                  <header class="clearfix">
-                      <a href="#/" data-toggle-min-nav
+            <div  data-ng-hide="isSpecificPage()" data-ng-cloak> 
+                <section  id="header" class="top-header" >
+                  <header class="clearfix"  style="background: #0094E5 !important;">
+                      <a style="color:#FFF;" href="#/" data-toggle-min-nav
                                    class="toggle-min"
-                                   ><i class="fa fa-bars"></i></a>
+                                   ><i class="fa fa-bars" ></i></a>
 
                       <!-- Logo -->
-                      <div class="logo">
-                          <a href="#/">
-                              <span>@{{main.brand}}</span>
+                      <div class="logo"  style="background: #0094E5 !important;">
+                          <a href="#/" >
+                              <span><img src="{{asset('assets/img/logo.png')}}" height="35"></span>
                           </a>
                       </div>
 
                       <!-- needs to be put after logo to make it working-->
-                      <div class="menu-button" toggle-off-canvas>
+                      <div class="menu-button" toggle-off-canvas >
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
@@ -45,9 +45,8 @@
                       <div class="top-nav">
                           <ul class="nav-left list-unstyled">
                               <li class="dropdown" dropdown is-open="isopeBell">
-                                  <a href="javascript:;" class="dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                                      <i class="fa fa-bell-o nav-icon"></i>
-                                      <span class="badge badge-warning"></span>
+                                  <a href="javascript:;" class="dropdown-toggle" dropdown-toggle ng-disabled="disabled" >
+                                      &nbsp;
                                   </a>
                                   
                               </li>

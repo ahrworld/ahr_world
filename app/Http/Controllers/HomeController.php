@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Contact;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -12,10 +12,8 @@ class HomeController extends Controller
      *
      * @return void
      */
-    protected $loginPath = '/login_bs';
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -25,9 +23,18 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        
         $email = $request->user();
         return view('/',$email);
+    }
+    public function contact(Request $request)
+    {
+        Contact::create([
+               'name' => $request->name,
+               'email' => $request->email,
+               'phone' => $request->phone,
+               'contact' => $request->contact,
+        ]);
+        return redirect('business');
     }
 
 }

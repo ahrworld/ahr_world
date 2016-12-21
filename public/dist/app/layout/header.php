@@ -17,7 +17,7 @@
         <span class="icon-bar"></span>
     </div>
 
-    <div class="top-nav">
+    <div class="top-nav" >
         <ul class="nav-left list-unstyled">
             <li class="dropdown" dropdown is-open="isopenComment">
                 <a href="javascript:;" class="dropdown-toggle" dropdown-toggle ng-disabled="disabled">

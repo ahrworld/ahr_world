@@ -9,26 +9,26 @@ $(document).ready(function () {
 	             datafields: [
 
 	                 { name:'id', type: 'string'},
-	                 { name:'surname', type: 'string'},
-	                 { name:'family_name', type: 'string'},
-	                 { name:'birthday', type: 'date'},
-	                 { name:'post', type: 'string'},
-	                 { name:'city', type: 'string'},
+	                 { name:'company_name', type: 'string'},
+	                 { name:'name', type: 'string'},
+	                 { name:'web_url', type: 'string'},
 	                 { name:'address', type: 'string'},
-	                 { name:'phone', type: 'string'},
-	                 { name:'line_id', type: 'string'},
-	                 { name:'skype_id', type: 'string'},
+	                 { name:'interview', type: 'string'},
+	                 { name:'test_process1', type: 'string'},
+	                 { name:'test_process2', type: 'string'},
+	                 { name:'test_process3', type: 'string'},
+	                 { name:'capital', type: 'string'},
+	                 { name:'amount_of_sales', type: 'string'},
+	                 { name:'nationality_members', type: 'string'},
+	                 { name:'set_up', type: 'string'},
 	                 { name:'email', type: 'string'},
-	                 { name:'character', type: 'string'},
-	                 { name:'address', type: 'string'},
-	                 { name:'country', type: 'string'},
+	                 { name:'member_count', type: 'string'},
 	                 { name:'created_at', type: 'date'},
-	                 { name:'updated_at', type: 'date'},
-	                 { name:'school', type: 'string'},
-	                 { name:'school_country', type: 'string'}
+	                 { name:'updated_at', type: 'date'}
+	                
 	            ],
 	          id: 'id',
-	          url: '/ahr/admin/personnels',
+	          url: '/ahr/admin/business',
 	          root: 'Rows'
 	      };
 	        var wdapter = new $.jqx.dataAdapter(source, {
@@ -54,14 +54,13 @@ $(document).ready(function () {
                     "<div style='float:left; width:40%; white-space: normal; margin: 10px; font-size:14px;'>"
                     +
                    
-                    "<p>現住所："+ datarecord.post + "&nbsp;" +datarecord.city +  "&nbsp;" + datarecord.address +" </p>"+
-					"<p>性格："+ datarecord.character +" </p>"
+                    "<p>創業・設立："+ datarecord.set_up +" </p>"+
+					"<p>社員国籍："+ datarecord.nationality_members +" </p>"
                     +
                     "</div>"+
                     "<div style='float:left; white-space: normal; margin: 10px; font-size:14px;'>"
                     +
-                    "<p>学歴："+ datarecord.school +" </p>"+
-                    "<p>学歴囯名："+ datarecord.school_country +" </p>"+
+                    "<p>総従業員数："+ datarecord.member_count +" </p>"
                    
                     "</div>";
 
@@ -117,7 +116,7 @@ $(document).ready(function () {
 	                                      return localizationobj;
 	                                  }
 
-	        $("#personnels").jqxGrid(
+	        $("#business").jqxGrid(
 	        {
                 width: '100%',
 	            autorowheight:true,
@@ -174,14 +173,13 @@ $(document).ready(function () {
 	            },
 	         columns: [
 		         
-	             { text: '姓',   datafield: 'surname', width: '8%', },
-	             { text: '名字',   datafield: 'family_name', width: '8%', },
-	             { text: '生日',   datafield: 'birthday', cellsformat: 'yyyy-MM-dd', filtertype: 'date', width: '8%' },
-	             { text: '國籍',   datafield: 'country', width: '8%', },
+	             { text: '会社名',   datafield: 'company_name', width: '10%', },
+	             { text: '担当者氏名',   datafield: 'name', width: '10%', },
+	             { text: '本社所在地',   datafield: 'address', width: '15%', },
 	             { text: '電子信箱',   datafield: 'email', width: '15%', },
-	             { text: 'Line',   datafield: 'line_id', width: '10%', },
-	             { text: 'Skype',   datafield: 'skype_id', width: '10%', },
-	             { text: '連絡電話',   datafield: 'phone', width: '13%', },
+	             { text: '企業URL',   datafield: 'web_url', width: '10%', },
+	             { text: '資本金',   datafield: 'capital', width: '10%', },
+	             { text: '売上高',   datafield: 'amount_of_sales', width: '10%', },
 	             { text: '註冊時間', datafield: 'created_at', cellsformat: 'yyyy-MM-dd', filtertype: 'date', width: '9%' },
 	             { text: '更新時間', datafield: 'updated_at', cellsformat: 'yyyy-MM-dd', filtertype: 'date', width: '9%' }
 	                  ]
@@ -194,9 +192,9 @@ $(document).ready(function () {
 
 <div class="page page-table">
   <section class="panel panel-default table-dynamic">
-  	<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span>応募者管理</strong></div>
+  	<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span>企業管理</strong></div>
 		<div>
-			<div id="personnels" style="margin-top:10px;"></div>
+			<div id="business" style="margin-top:10px;"></div>
 		</div>
   </section>
 </div>

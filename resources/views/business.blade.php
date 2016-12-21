@@ -198,6 +198,30 @@
 		<div class="base"></div>
 		<div class="background8">
 			<img src="ahr/assets/img/bs_lp_bk8.png" height="180" style="margin-top:0px;">
+            <div class="form_wrapper" style="width: 400px; margin:auto; text-align: left; color: #FFF;">
+            <form action="{{url('/business/contact/us')}}" method="POST">
+             {{ csrf_field() }}
+              <div class="form-group">
+                <label>法人企業名</label>
+                <input type="text" name="name" class="form-control" id="text">
+              </div>
+              <div class="form-group">
+                <label >Email</label>
+                <input type="email" name="email" class="form-control">
+              </div>
+              <div class="form-group">
+                <label >電話番号</label>
+                <input type="phone" name="phone" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>お問合せ內容</label>
+                <textarea class="form-control" name="contact" rows="5"></textarea>
+              </div>
+              <div style="text-align: right; padding-bottom: 20px;">
+              <button type="submit" class="btn btn-default">送信する</button>
+              </div>
+            </form>
+            </div>
 		</div>
 		<div class="base"></div>
     </main>

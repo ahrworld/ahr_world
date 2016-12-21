@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Gate;
 use Auth;
 use App\User;
+use App\Contact;
 use App\Language;
 use App\Personnel;
 use App\Abroad_exp;
@@ -58,7 +59,7 @@ class AdminController extends Controller
         $exp_job_category = Exp_job_category::all();
         return response()->json($exp_job_category);
     }
-    public function exp_job(Request $request)
+    public function exp_job()
     {
         $exp_job = Exp_job_category::join('exp_job','exp_job.exp_job_category_id','=','exp_job_category.id')->get();
         return response()->json($exp_job);
@@ -71,7 +72,24 @@ class AdminController extends Controller
 
     public function personnels()
     {
-        $personnels = Personnel::join('users','personnels.user_id','=','users.id')->get();
+        $personnels = User::join('personnels','personnels.user_id','=','users.id')->get();
         return response()->json($personnels);
+    }
+    public function business()
+    {
+        $business = User::join('bsinformations','bsinformations.user_id','=','users.id')->get();
+        return response()->json($business);
+    }
+    public function contact()
+    {
+        $contact = Contact::all();
+        return response()->json($contact);
+    }
+    public function contact_delete(Request $request)
+    {
+        return $request->all();
+        return response()->json('ok');
+        $contact = Contact::all();
+        return response()->json($contact);
     }
 }
