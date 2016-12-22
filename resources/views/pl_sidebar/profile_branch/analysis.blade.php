@@ -132,15 +132,31 @@
                       -webkit-box-orient: vertical;
                       word-break: break-all;
                      }
+                     .analysis_ul li{
+                       list-style: none;
+                       margin-bottom: 10px;
+                       text-align: right;
+                     }
                    </style>
                    <div class="row">
                      <div class="col-xs-8">
                         <canvas id="analysis_view" width="400" height="400"></canvas>
                      </div>
                      <div class="col-xs-4">
-                        <h3 class="as_nice_title">特定專門</h3>
-                        <h6 class="as_nice_content">dsadwqdwqdwqdwqdwqdwqdwqdwqdwdsadsadsadsadsasdadsadsadsadsadsadsaqdwewqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrqrwqrwqrwqrwqrwqrwqrwqqdwqdwqdwqdsadwqdwqdwqdwqdwqdwqdwqdwqdwdsadsadsadsadsasdadsadsadsadsadsadsaqdwewqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrwqrqrwqrwqrwqrwqrwqrwqrwqqdwqdwqdwq</h6>
-                        <a class="btn btn-info" role="button" style="width:50%;" data-toggle="modal" data-target="#as_nice">詳細</a>
+
+                     <ul class="analysis_ul">
+                       <li style="list-style: none;">{{ trans('analysis.an_1') }}&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" role="button" style="width:50%;" data-toggle="modal" data-target="#as_nice">詳細</a></li>
+                       <li style="list-style: none;">{{ trans('analysis.an_2') }}&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" role="button" style="width:50%;" data-toggle="modal" data-target="#as_nice">詳細</a></li>
+                       <li style="list-style: none;">{{ trans('analysis.an_3') }}&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" role="button" style="width:50%;" data-toggle="modal" data-target="#as_nice">詳細</a></li>
+                       <li style="list-style: none;">{{ trans('analysis.an_4') }}&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" role="button" style="width:50%;" data-toggle="modal" data-target="#as_nice">詳細</a></li>
+                       <li style="list-style: none;">{{ trans('analysis.an_5') }}&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" role="button" style="width:50%;" data-toggle="modal" data-target="#as_nice">詳細</a></li>
+                       <li style="list-style: none;">{{ trans('analysis.an_6') }}&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" role="button" style="width:50%;" data-toggle="modal" data-target="#as_nice">詳細</a></li>
+                       <li style="list-style: none;">{{ trans('analysis.an_7') }}&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" role="button" style="width:50%;" data-toggle="modal" data-target="#as_nice">詳細</a></li>
+                       <li style="list-style: none;">{{ trans('analysis.an_8') }}&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" role="button" style="width:50%;" data-toggle="modal" data-target="#as_nice">詳細</a></li>
+
+                     </ul>
+                       
+                       
                      </div>
                    </div>
                     <div class="panel-footer">
@@ -188,6 +204,24 @@
                             </div>
                          </div>
                          @endforeach
+                         <!-- <div class="tab-content">
+                          <div class="tab-pane" id="tab1">
+                            <div class="panel panel-warning">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;&nbsp;dsa</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="dl-horizontal">
+                                                        <label class="ui-radio"><input class="as_v" status="1" name="as_radio1" type="radio" value="1"><span>Option 1</span></label>
+                                                        <label class="ui-radio"><input class="as_v" status="1" name="as_radio1" type="radio" value="2"><span>Option 2</span></label>
+                                                        <label class="ui-radio"><input class="as_v" status="1" name="as_radio1" type="radio" value="3"><span>Option 3</span></label>
+                                                        <label class="ui-radio"><input class="as_v" status="1" name="as_radio1" type="radio" value="4"><span>Option 4</span></label>
+                                                        <label class="ui-radio"><input class="as_v" status="1" name="as_radio1" type="radio" value="5"><span>Option 5</span></label>
+                                                        <label class="ui-radio"><input class="as_v" status="1" name="as_radio1" type="radio" value="7"><span>Option 6</span></label>
+                                                </div>
+                                            </div>
+                             </div>
+                          </div> -->
                               <ul class="pager wizard">
                                   <li class="previous first" style="display:none;"><a href="javascript:;">第一題</a></li>
                                   <li class="previous"><a href="javascript:;"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
