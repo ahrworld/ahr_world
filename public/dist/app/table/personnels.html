@@ -25,6 +25,7 @@ $(document).ready(function () {
 	                 { name:'created_at', type: 'date'},
 	                 { name:'updated_at', type: 'date'},
 	                 { name:'school', type: 'string'},
+	                 { name:'status', type: 'string'},
 	                 { name:'school_country', type: 'string'}
 	            ],
 	          id: 'id',
@@ -53,7 +54,7 @@ $(document).ready(function () {
                     var description =
                     "<div style='float:left; width:40%; white-space: normal; margin: 10px; font-size:14px;'>"
                     +
-                   
+
                     "<p>現住所："+ datarecord.post + "&nbsp;" +datarecord.city +  "&nbsp;" + datarecord.address +" </p>"+
 					"<p>性格："+ datarecord.character +" </p>"
                     +
@@ -62,7 +63,7 @@ $(document).ready(function () {
                     +
                     "<p>学歴："+ datarecord.school +" </p>"+
                     "<p>学歴囯名："+ datarecord.school_country +" </p>"+
-                   
+
                     "</div>";
 
                     $(tab1).append(description);
@@ -143,37 +144,90 @@ $(document).ready(function () {
 	            rendertoolbar: function (element) {
 	                var container = $("<div style='margin:0px;'></div>");
 	                element.append(container);
-	                container.append('<button  type="button" style=" min-width: 80px; margin: 3px -1px 2px;" class="btn btn-primary pay_ok"><i class="fa fa-check" aria-hidden="true" style="margin-right:20px;"></i>已收款</button>');
-
+	                container.append('<button  type="button" style="background:#5a5859; border-color:#5a5859;min-width: 80px; margin: 3px -1px 2px;" class="btn btn-danger block"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;ブロック</button>');
+	                container.append('<button  type="button" style="background:#a06382; border-color:#a06382;min-width: 80px; margin: 3px -1px 2px;" class="btn btn-danger unblock"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;ブロック解除</button>');
+	                container.append('<button  type="button" style=" min-width: 80px; margin: 3px -1px 2px;" class="btn btn-danger delete"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;削除</button>');
 	                //取消選擇
 	                $(".unselect").on('click', function () {
 	                    $('#jqxgrid').jqxGrid('clearselection');
 	                });
-        			$("#pdfExport").click(function () {
-                        $("#jqxgrid").jqxGrid('exportdata', 'pdf', 'jqxGrid', true, null, true, 'http://localhost:8000/save-file.php');
-                    });
-                    $("#excelExport").click(function () {
-                        $("#jqxgrid").jqxGrid('exportdata', 'xls', 'jqxGrid', true, null, true, 'http://localhost:8000/save-file.php');
-                    });
-	                //OK
-	                $(".pay_ok").click(function () {
-	                	 var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
-	                	 var row = $("#jqxgrid").jqxGrid('getrowdata', selectedrowindex);
-	                	 alert(row.id);
+	                //block
+	                $(".block").click(function () {
+	                	swal({
+	                	  title: "ブロックしますか?",
+	                	  type: "warning",
+	                	  showCancelButton: true,
+	                	  confirmButtonColor: "#DD6B55",
+	                	  confirmButtonText: "はい",
+	                	  cancelButtonText: "いいえ",
+	                	},
+	                	function(){
+	                	 var selectedrowindex = $("#personnels").jqxGrid('getselectedrowindex');
+	                	 var row = $("#personnels").jqxGrid('getrowdata', selectedrowindex);
 	                	 $.ajax({
 	                	         dataType: 'json',
-	                	         url: 'backends',
-	                	         type: 'GET',
+	                	         url: 'admin/personnels/block',
+	                	         type: 'POST',
 	                	         data: 'id='+row.id,
 	                	         cache: false,
 	                	         async: false,
 
 	                	     });
-	                	 $('#jqxgrid').jqxGrid('updatebounddata');
+	                	 $('#personnels').jqxGrid('updatebounddata');
+	                	 });
+	                });
+	                //unblock
+	                $(".unblock").click(function () {
+	                	swal({
+	                	  title: "ブロック解除しますか?",
+	                	  type: "warning",
+	                	  showCancelButton: true,
+	                	  confirmButtonColor: "#DD6B55",
+	                	  confirmButtonText: "はい",
+	                	  cancelButtonText: "いいえ",
+	                	},
+	                	function(){
+	                	 var selectedrowindex = $("#personnels").jqxGrid('getselectedrowindex');
+	                	 var row = $("#personnels").jqxGrid('getrowdata', selectedrowindex);
+	                	 $.ajax({
+	                	         dataType: 'json',
+	                	         url: 'admin/personnels/unblock',
+	                	         type: 'POST',
+	                	         data: 'id='+row.id,
+	                	         cache: false,
+	                	         async: false,
+
+	                	     });
+	                	 $('#personnels').jqxGrid('updatebounddata');
+	                	 });
+	                });
+	                //delete
+	                $(".delete").click(function () {
+	                	swal({
+	                	  title: "削除しますか?",
+	                	  type: "warning",
+	                	  showCancelButton: true,
+	                	  confirmButtonColor: "#DD6B55",
+	                	  confirmButtonText: "はい",
+	                	  cancelButtonText: "いいえ",
+	                	},
+	                	function(){
+	                	 var selectedrowindex = $("#personnels").jqxGrid('getselectedrowindex');
+	                	 var row = $("#personnels").jqxGrid('getrowdata', selectedrowindex);
+	                	 $.ajax({
+	                	         dataType: 'json',
+	                	         url: 'admin/personnels/delete',
+	                	         type: 'POST',
+	                	         data: 'id='+row.id,
+	                	         cache: false,
+	                	         async: false,
+
+	                	     });
+	                	 $('#personnels').jqxGrid('updatebounddata');
+	                	 });
 	                });
 	            },
 	         columns: [
-		         
 	             { text: '姓',   datafield: 'surname', width: '8%', },
 	             { text: '名字',   datafield: 'family_name', width: '8%', },
 	             { text: '生日',   datafield: 'birthday', cellsformat: 'yyyy-MM-dd', filtertype: 'date', width: '8%' },
@@ -183,7 +237,15 @@ $(document).ready(function () {
 	             { text: 'Skype',   datafield: 'skype_id', width: '10%', },
 	             { text: '連絡電話',   datafield: 'phone', width: '13%', },
 	             { text: '註冊時間', datafield: 'created_at', cellsformat: 'yyyy-MM-dd', filtertype: 'date', width: '9%' },
-	             { text: '更新時間', datafield: 'updated_at', cellsformat: 'yyyy-MM-dd', filtertype: 'date', width: '9%' }
+	             { text: '狀態',   datafield: 'status', width: '8%', cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+				                if (value == 1) {
+				                    return '<span>正常</span>';
+				                }
+				                else {
+				                    return '<span>ブロック</span>';
+				                }
+				            }
+	             }
 	                  ]
 	        });
 

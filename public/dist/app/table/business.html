@@ -24,8 +24,9 @@ $(document).ready(function () {
 	                 { name:'email', type: 'string'},
 	                 { name:'member_count', type: 'string'},
 	                 { name:'created_at', type: 'date'},
+	                 { name:'status', type: 'string'},
 	                 { name:'updated_at', type: 'date'}
-	                
+
 	            ],
 	          id: 'id',
 	          url: '/ahr/admin/business',
@@ -53,7 +54,7 @@ $(document).ready(function () {
                     var description =
                     "<div style='float:left; width:40%; white-space: normal; margin: 10px; font-size:14px;'>"
                     +
-                   
+
                     "<p>創業・設立："+ datarecord.set_up +" </p>"+
 					"<p>社員国籍："+ datarecord.nationality_members +" </p>"
                     +
@@ -61,7 +62,7 @@ $(document).ready(function () {
                     "<div style='float:left; white-space: normal; margin: 10px; font-size:14px;'>"
                     +
                     "<p>総従業員数："+ datarecord.member_count +" </p>"
-                   
+
                     "</div>";
 
                     $(tab1).append(description);
@@ -142,37 +143,91 @@ $(document).ready(function () {
 	            rendertoolbar: function (element) {
 	                var container = $("<div style='margin:0px;'></div>");
 	                element.append(container);
-	                container.append('<button  type="button" style=" min-width: 80px; margin: 3px -1px 2px;" class="btn btn-primary pay_ok"><i class="fa fa-check" aria-hidden="true" style="margin-right:20px;"></i>已收款</button>');
-
+	                container.append('<button  type="button" style="background:#5a5859; border-color:#5a5859;min-width: 80px; margin: 3px -1px 2px;" class="btn btn-danger block"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;ブロック</button>');
+	                container.append('<button  type="button" style="background:#a06382; border-color:#a06382;min-width: 80px; margin: 3px -1px 2px;" class="btn btn-danger unblock"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;ブロック解除</button>');
+	                container.append('<button  type="button" style=" min-width: 80px; margin: 3px -1px 2px;" class="btn btn-danger delete"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;削除</button>');
 	                //取消選擇
 	                $(".unselect").on('click', function () {
-	                    $('#jqxgrid').jqxGrid('clearselection');
+	                    $('#business').jqxGrid('clearselection');
 	                });
-        			$("#pdfExport").click(function () {
-                        $("#jqxgrid").jqxGrid('exportdata', 'pdf', 'jqxGrid', true, null, true, 'http://localhost:8000/save-file.php');
-                    });
-                    $("#excelExport").click(function () {
-                        $("#jqxgrid").jqxGrid('exportdata', 'xls', 'jqxGrid', true, null, true, 'http://localhost:8000/save-file.php');
-                    });
-	                //OK
-	                $(".pay_ok").click(function () {
-	                	 var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
-	                	 var row = $("#jqxgrid").jqxGrid('getrowdata', selectedrowindex);
-	                	 alert(row.id);
+	                //block
+	                $(".block").click(function () {
+	                	swal({
+	                	  title: "ブロックしますか?",
+	                	  type: "warning",
+	                	  showCancelButton: true,
+	                	  confirmButtonColor: "#DD6B55",
+	                	  confirmButtonText: "はい",
+	                	  cancelButtonText: "いいえ",
+	                	},
+	                	function(){
+	                	 var selectedrowindex = $("#business").jqxGrid('getselectedrowindex');
+	                	 var row = $("#business").jqxGrid('getrowdata', selectedrowindex);
 	                	 $.ajax({
 	                	         dataType: 'json',
-	                	         url: 'backends',
-	                	         type: 'GET',
+	                	         url: 'admin/business/block',
+	                	         type: 'POST',
 	                	         data: 'id='+row.id,
 	                	         cache: false,
 	                	         async: false,
 
 	                	     });
-	                	 $('#jqxgrid').jqxGrid('updatebounddata');
+	                	 $('#business').jqxGrid('updatebounddata');
+	                	 });
+	                });
+	                //unblock
+	                $(".unblock").click(function () {
+	                	swal({
+	                	  title: "ブロック解除しますか?",
+	                	  type: "warning",
+	                	  showCancelButton: true,
+	                	  confirmButtonColor: "#DD6B55",
+	                	  confirmButtonText: "はい",
+	                	  cancelButtonText: "いいえ",
+	                	},
+	                	function(){
+	                	 var selectedrowindex = $("#business").jqxGrid('getselectedrowindex');
+	                	 var row = $("#business").jqxGrid('getrowdata', selectedrowindex);
+	                	 $.ajax({
+	                	         dataType: 'json',
+	                	         url: 'admin/business/unblock',
+	                	         type: 'POST',
+	                	         data: 'id='+row.id,
+	                	         cache: false,
+	                	         async: false,
+
+	                	     });
+	                	 $('#business').jqxGrid('updatebounddata');
+	                	 });
+	                });
+	                //delete
+	                $(".delete").click(function () {
+	                	swal({
+	                	  title: "削除しますか?",
+	                	  type: "warning",
+	                	  showCancelButton: true,
+	                	  confirmButtonColor: "#DD6B55",
+	                	  confirmButtonText: "はい",
+	                	  cancelButtonText: "いいえ",
+	                	},
+	                	function(){
+	                	 var selectedrowindex = $("#business").jqxGrid('getselectedrowindex');
+	                	 var row = $("#business").jqxGrid('getrowdata', selectedrowindex);
+	                	 $.ajax({
+	                	         dataType: 'json',
+	                	         url: 'admin/business/delete',
+	                	         type: 'POST',
+	                	         data: 'id='+row.id,
+	                	         cache: false,
+	                	         async: false,
+
+	                	     });
+	                	 $('#business').jqxGrid('updatebounddata');
+	                	 });
 	                });
 	            },
 	         columns: [
-		         
+
 	             { text: '会社名',   datafield: 'company_name', width: '10%', },
 	             { text: '担当者氏名',   datafield: 'name', width: '10%', },
 	             { text: '本社所在地',   datafield: 'address', width: '15%', },
@@ -181,7 +236,15 @@ $(document).ready(function () {
 	             { text: '資本金',   datafield: 'capital', width: '10%', },
 	             { text: '売上高',   datafield: 'amount_of_sales', width: '10%', },
 	             { text: '註冊時間', datafield: 'created_at', cellsformat: 'yyyy-MM-dd', filtertype: 'date', width: '9%' },
-	             { text: '更新時間', datafield: 'updated_at', cellsformat: 'yyyy-MM-dd', filtertype: 'date', width: '9%' }
+	             { text: '狀態',   datafield: 'status', width: '8%', cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+				                if (value == 1) {
+				                    return '<span>正常</span>';
+				                }
+				                else {
+				                    return '<span>ブロック</span>';
+				                }
+				            }
+	             }
 	                  ]
 	        });
 

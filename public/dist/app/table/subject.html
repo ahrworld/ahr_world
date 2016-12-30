@@ -20,7 +20,7 @@ $(document).ready(function () {
 	            }
 	        }
 	        );
-	    
+
 	                            var getLocalization = function () {
 	                                      var localizationobj = {};
 	                                      localizationobj.pagergotopagestring = "當前頁數";
@@ -91,30 +91,39 @@ $(document).ready(function () {
 	            rendertoolbar: function (element) {
 	                var container = $("<div style='margin:0px;'></div>");
 	                element.append(container);
-	                container.append('<button  type="button" style=" min-width: 80px; margin: 3px -1px 2px;" class="btn btn-primary pay_ok"><i class="fa fa-check" aria-hidden="true" style="margin-right:20px;"></i>已收款</button>');
+	                container.append('<button  type="button" style=" min-width: 80px; margin: 3px -1px 2px;" class="btn btn-danger delete"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;削除</button>');
 
-	               
-	                //OK
-	                $(".pay_ok").click(function () {
-	                	 var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
-	                	 var row = $("#jqxgrid").jqxGrid('getrowdata', selectedrowindex);
-	                	 alert(row.id);
+
+	                //delete
+	                $(".delete").click(function () {
+	                	swal({
+	                	  title: "削除しますか?",
+	                	  type: "warning",
+	                	  showCancelButton: true,
+	                	  confirmButtonColor: "#DD6B55",
+	                	  confirmButtonText: "はい",
+	                	  cancelButtonText: "いいえ",
+	                	},
+	                	function(){
+	                	 var selectedrowindex = $("#subject").jqxGrid('getselectedrowindex');
+	                	 var row = $("#subject").jqxGrid('getrowdata', selectedrowindex);
 	                	 $.ajax({
 	                	         dataType: 'json',
-	                	         url: 'backends',
-	                	         type: 'GET',
+	                	         url: 'admin/subject/delete',
+	                	         type: 'POST',
 	                	         data: 'id='+row.id,
 	                	         cache: false,
 	                	         async: false,
 
 	                	     });
-	                	 $('#jqxgrid').jqxGrid('updatebounddata');
+	                	 $('#subject').jqxGrid('updatebounddata');
+	                	 });
 	                });
 	            },
 	         columns: [
-		         
+
 	             { text: '学科',  datafield: 'subject', width: '99%'},
-	            
+
 	                  ]
 	        });
 
@@ -138,5 +147,5 @@ $(document).ready(function () {
 	.jqx-clear{
 		z-index: 0;
 	}
-	
+
 </style>

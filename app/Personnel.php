@@ -13,7 +13,7 @@ class Personnel extends Model
         'birthday', 'post','city','address','phone','line_id',
         'country','want_country','sex','military','military_end_year',
         'military_end_month','character','educational_status','educational','school',
-        'school_country','subject_id','start_year','start_month','end_year','end_month','skype_id',
+        'school_country','subject_id','start_year','start_month','end_year','end_month','skype_id','status'
 
     ];
 }

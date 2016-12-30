@@ -22,7 +22,7 @@ $( document ).ready(function() {
             },
             error: function(data) {
                 console.log('Error:', data);
-               
+
             }
 
         });
@@ -36,48 +36,14 @@ $( document ).ready(function() {
 <div class="page"  data-ng-controller="mainController">
 
     <div class="row">
-        <div class="col-sm-3">
-            <section class="panel panel-default mail-categories">
-                <div class="panel-heading">
-                    <a href="#/mail/compose" class="btn btn-block btn-lg btn-primary">Compose</a>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item active"><a href="javascript:;">
-                        <i class="fa fa-inbox"></i>Inbox
-                        <span class="badge badge-info pull-right">6</span>
-                    </a></li>
-                    <li class="list-group-item"><a href="javascript:;">
-                        <i class="fa fa-envelope-o"></i>Send mail
-                    </a></li>
-                    <li class="list-group-item"><a href="javascript:;">
-                        <i class="fa fa-star"></i>Starred
-                        <span class="badge badge-danger pull-right">3</span>
-                    </a></li>
-                    <li class="list-group-item"><a href="javascript:;">
-                        <i class="fa fa-comment-o"></i>Chat
-                        <span class="badge badge-success pull-right">9</span>
-                    </a></li>
-                    <li class="list-group-item"><a href="javascript:;">
-                        <i class="fa fa-pencil"></i>Draft
-                        <span class="badge badge-warning pull-right">1</span>
-                    </a></li>
-                    <li class="list-group-item delete_notice">
-                            <a href="javascript:;">
-                        <i class="fa fa-trash-o"></i>Spam
-                        </a>
-                    </li>
-                </ul>
-            </section>
 
-            
-        </div>
-        <div class="col-sm-9">
+        <div class="col-sm-12">
             <form>
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-addon"><i class="fa fa-search"></i></div>
                   <input type="text" class="form-control" placeholder="Search da Fish" ng-model="searchFish">
-                </div>      
+                </div>
               </div>
             </form>
             <section class="panel panel-default mail-container">
@@ -86,7 +52,7 @@ $( document ).ready(function() {
                     <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option1" ><span>すべて選択</span></label>
                 </div>
                 <table class="table table-hover">
-                   
+
                     <tr class="mail-unread" mail="{{roll.id}}" ng-repeat="roll in banner | orderBy:sortType:sortReverse | filter:searchFish">
                         <td><label class="ui-checkbox"><input class="checkbox"  type="checkbox" value="option1" ><span></span></label></td>
                         <td>{{ roll.name }}</td>

@@ -12,7 +12,7 @@ class BSinformations extends Model
     protected $fillable = [
         'company_name', 'name', 'user_language_id', 'web_url',
         'address', 'interview','test_process1','test_process2','test_process3',
-        'set_up','nationality_members','member_count','capital','amount_of_sales',
+        'set_up','nationality_members','member_count','capital','amount_of_sales','status'
     ];
     /* usertest功用不明
     */

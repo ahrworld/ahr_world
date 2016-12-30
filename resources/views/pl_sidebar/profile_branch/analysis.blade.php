@@ -49,7 +49,7 @@
             $('.as_view').addClass('none').removeClass('animated flash');
             $('.as_v').attr('checked',false);
           });
-            
+
         });
   @endif
       // analysis_wizard
@@ -155,8 +155,8 @@
                        <li style="list-style: none;">{{ trans('analysis.an_8') }}&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" role="button" style="width:50%;" data-toggle="modal" data-target="#as_nice">詳細</a></li>
 
                      </ul>
-                       
-                       
+
+
                      </div>
                    </div>
                     <div class="panel-footer">

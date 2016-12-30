@@ -81,7 +81,15 @@ Route::get('ahr/admin/personnels','AdminController@personnels');
 Route::get('ahr/admin/business','AdminController@business');
 Route::get('ahr/admin/contact','AdminController@contact');
 Route::post('ahr/admin/contact/delete','AdminController@contact_delete');
-
+Route::post('ahr/admin/personnels/delete','AdminController@personnels_delete');
+Route::post('ahr/admin/personnels/block','AdminController@personnels_block');
+Route::post('ahr/admin/personnels/unblock','AdminController@personnels_unblock');
+Route::post('ahr/admin/business/delete','AdminController@business_delete');
+Route::post('ahr/admin/business/block','AdminController@business_block');
+Route::post('ahr/admin/business/unblock','AdminController@business_unblock');
+Route::post('ahr/admin/exp_job/delete','AdminController@exp_job_delete');
+Route::post('ahr/admin/exp_category/delete','AdminController@exp_category_delete');
+Route::post('ahr/admin/subject/delete','AdminController@subject_delete');
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', function () {

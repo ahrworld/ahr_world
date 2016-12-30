@@ -103,6 +103,7 @@ class UserController extends Controller
             'start_month' => $request->start_month,
             'end_year' => $request->end_year,
             'end_month' => $request->end_month,
+            'status' => 1,
         ]);
 		$languagelv = new Languagelv;
         foreach ($request->language as $key => $value) {
@@ -278,7 +279,7 @@ class UserController extends Controller
                                    'personnels_id' => $P_id->id
                            ]);
                }
-              
+
             }
             //delete
             if (isset($request->delete_language)) {
@@ -317,7 +318,7 @@ class UserController extends Controller
                     }
                     return $P_skill;
                 }
-                 
+
              }
              return redirect('/profile');
          }elseif (isset($request->experience)) {
@@ -374,7 +375,7 @@ class UserController extends Controller
                             'license' => $value,
                             'user_id' => $request->user()->id,
                  ]);
-               
+
              };
              return redirect('/profile');
          }
@@ -387,7 +388,7 @@ class UserController extends Controller
 
         //応募default
         $Recruitment = Recruitment::select('recruitments.id as r_id','recruitments.created_at','exp_job.name',
-            'bsinformations.company_name','recruitments.user_id','bsinformations.user_id as b_user_id',
+            'bsinformations.company_name','recruitments.user_id','bsinformations.status','bsinformations.user_id as b_user_id',
             'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
                         ->whereNotIn('recruitments.id', function($q){
                         $q->select('recruitments_id')
@@ -395,14 +396,16 @@ class UserController extends Controller
                       })->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                         ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
+                        ->where('bsinformations.status',1)
                         ->get();
                    //orWhere作法不好，只有或，沒有和的條件，所以user id一旦錯了就全錯了
 
         // 応募した
         $Recruitment_ofa = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
-            'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name')
+            'content','need_skill','annual_income','monthly_income','bsinformations.status','work_site','bsinformations.company_name','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',1)
+                            ->where('bsinformations.status',1)
                             ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
@@ -410,14 +413,15 @@ class UserController extends Controller
                             ->get();
         // 檢索履歷
         $history = Recruitment::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
-            'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
+            'content','need_skill','annual_income','monthly_income','bsinformations.status','work_site','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
                             ->join('pl_history', 'recruitments.id', '=', 'pl_history.recruitments_id')
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->orderBy('pl_history.updated_at','desc')
+                            ->where('bsinformations.status',1)
                             ->get();
-        $history_ofa =  Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
+        $history_ofa =  Recruitments_status::select('recruitments.id as r_id','bsinformations.status','recruitments.created_at','exp_job.name','recruitments.user_id',
             'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',1)
@@ -427,8 +431,9 @@ class UserController extends Controller
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->orderBy('pl_history.updated_at','desc')
+                            ->where('bsinformations.status',1)
                             ->get();
-        $history_like = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
+        $history_like = Recruitments_status::select('recruitments.id as r_id','bsinformations.status','recruitments.created_at','exp_job.name','recruitments.user_id',
             'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name','pl_history.updated_at')
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',2)
@@ -438,9 +443,10 @@ class UserController extends Controller
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->orderBy('pl_history.updated_at','desc')
+                            ->where('bsinformations.status',1)
                             ->get();
         // お気に入り
-        $Recruitment_like = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name','recruitments.user_id',
+        $Recruitment_like = Recruitments_status::select('recruitments.id as r_id','bsinformations.status','recruitments.created_at','exp_job.name','recruitments.user_id',
             'content','need_skill','annual_income','monthly_income','work_site','bsinformations.company_name','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',2)
@@ -448,9 +454,10 @@ class UserController extends Controller
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
+                            ->where('bsinformations.status',1)
                             ->get();
         // 面接調整
-        $Recruitment_a = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name',
+        $Recruitment_a = Recruitments_status::select('recruitments.id as r_id','bsinformations.status','recruitments.created_at','exp_job.name',
             'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.user_id as b_user_id',
             'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
@@ -460,10 +467,11 @@ class UserController extends Controller
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
+                            ->where('bsinformations.status',1)
                             ->get();
         // 選考進行
         $Recruitment_check = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name',
-            'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.user_id as b_user_id',
+            'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.status','bsinformations.user_id as b_user_id',
             'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',9)
@@ -471,10 +479,11 @@ class UserController extends Controller
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
+                            ->where('bsinformations.status',1)
                             ->get();
         // 內定
         $Recruitment_ok = Recruitments_status::select('recruitments.id as r_id','recruitments.created_at','exp_job.name',
-            'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.user_id as b_user_id',
+            'bsinformations.company_name','need_skill','recruitments.user_id','bsinformations.status','bsinformations.user_id as b_user_id',
             'content','need_skill','annual_income','monthly_income','work_site','languagelvs.languagelv_name')
                             ->where('recruitments_status.user_id', $request->user()->id)
                             ->where('recruitments_status.status',10)
@@ -482,8 +491,9 @@ class UserController extends Controller
                             ->join('bsinformations', 'recruitments.user_id', '=', 'bsinformations.user_id')
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
+                            ->where('bsinformations.status',1)
                             ->get();
-     
+
 
         return view('pl_sidebar/news',[
           'bs_image' => $bs_image,
@@ -591,7 +601,7 @@ class UserController extends Controller
                             ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                             ->join('languagelvs', 'languagelvs.recruitments_id', '=', 'recruitments.id')
                             ->first();
-       
+
         $r_id = Recruitment::select('recruitments.id as r_id')
                             ->where('recruitments.id', $id)
                             ->first();
@@ -601,11 +611,11 @@ class UserController extends Controller
         // tab1
         $bs_summary_A = Bs_summary::where('user_id', $bs_id)
         ->join('bs_summary_image', 'bs_summary.id', '=', 'bs_summary_image.bs_summary_id')
-        ->get();                 
+        ->get();
         $recruitments = Recruitment::where('recruitments.id', $id)
         ->join('subject', 'recruitments.subject_id', '=', 'subject.id')
         ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
-        ->get();   
+        ->get();
         $employments = Recruitment::where('recruitments.id', $id)
         ->join('employments', 'recruitments.id', '=', 'employments.recruitments_id')
         ->get();

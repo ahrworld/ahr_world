@@ -1265,8 +1265,8 @@ angular.module('app.ui.form').controller('DatepickerDemoCtrl', function ($scope)
       $http.get('/ahr/admin/contact').success(function (data, status) {
          $scope.banner = data;
       });
-      // create the list of sushi rolls 
-     
+      // create the list of sushi rolls
+
       $(".table-hover").on("click", ".checkbox", function() {
             $(this).parents('tr').toggleClass('mail-hightlight');
       });

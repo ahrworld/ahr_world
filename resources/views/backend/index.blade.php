@@ -3,14 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Web Application</title>
+        <title>AHR ADMIN</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
         <!-- needs images, font... therefore can not be part of ui.css -->
-        <link rel="stylesheet" href="{{ asset('dist/bower_components/font-awesome/css/font-awesome.min.css')}}">
-        <link rel="stylesheet" href="{{ asset('dist/bower_components/weather-icons/css/weather-icons.min.css')}}">
-        <link rel="stylesheet" href="{{ asset('assets/bower_components/sweetalert/dist/sweetalert.css')}}">
-        <script src="{{ asset('assets/bower_components/sweetalert/dist/sweetalert.min.js')}}"></script>
+        <link rel="stylesheet" href="{{ asset('fily/bower_components/font-awesome/css/font-awesome.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('fily/bower_components/weather-icons/css/weather-icons.min.css')}}">
+        <script src="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js')}}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('ahr/bower_components/bootstrap-sweetalert/lib/sweet-alert.css')}}">
         <!-- end needs images -->
         <link rel="stylesheet" href="{{ asset('dist/styles/main.css')}}">
 

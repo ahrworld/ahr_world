@@ -47,6 +47,9 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
+        // data_status 0 = 未填
+        // data_status 1 = 已填
+        // data_status 2 = 封鎖
         if (Auth::attempt([
             'email' => $request['email'],
             'password' => $request['password'],

@@ -92,4 +92,77 @@ class AdminController extends Controller
         $contact = Contact::all();
         return response()->json($contact);
     }
+    public function personnels_block(Request $request)
+    {
+        $per = Personnel::where('id',$request->id)->first();
+        Personnel::where('id',$request->id)->update([
+                    'status' =>  2,
+                ]);
+        User::where('id',$per->user_id)->update([
+                    'data_status' =>  2,
+                ]);
+        return response()->json('ok');
+    }
+    public function personnels_unblock(Request $request)
+    {
+        $per = Personnel::where('id',$request->id)->first();
+        Personnel::where('id',$request->id)->update([
+                    'status' =>  1,
+                ]);
+        User::where('id',$per->user_id)->update([
+                    'data_status' =>  1,
+                ]);
+        return response()->json('ok');
+    }
+    public function personnels_delete(Request $request)
+    {
+        $per = Personnel::where('id',$request->id)->first();
+        Personnel::where('id',$request->id)->delete();
+        User::where('id',$per->user_id)->delete();
+        return response()->json('ok');
+    }
+    public function business_block(Request $request)
+    {
+        $per = BSinformations::where('id',$request->id)->first();
+        BSinformations::where('id',$request->id)->update([
+                    'status' =>  2,
+                ]);
+        User::where('id',$per->user_id)->update([
+                    'data_status' =>  2,
+                ]);
+        return response()->json('ok');
+    }
+    public function business_unblock(Request $request)
+    {
+        $per = BSinformations::where('id',$request->id)->first();
+        BSinformations::where('id',$request->id)->update([
+                    'status' =>  1,
+                ]);
+        User::where('id',$per->user_id)->update([
+                    'data_status' =>  1,
+                ]);
+        return response()->json('ok');
+    }
+    public function business_delete(Request $request)
+    {
+        $per = BSinformations::where('id',$request->id)->first();
+        BSinformations::where('id',$request->id)->delete();
+        User::where('id',$per->user_id)->delete();
+        return response()->json('ok');
+    }
+    public function exp_job_delete(Request $request)
+    {
+        Exp_job::where('id',$request->id)->delete();
+        return response()->json('ok');
+    }
+    public function exp_category_delete(Request $request)
+    {
+        Exp_job_category::where('id',$request->id)->delete();
+        return response()->json('ok');
+    }
+    public function subject_delete(Request $request)
+    {
+        Subject::where('id',$request->id)->delete();
+        return response()->json('ok');
+    }
 }

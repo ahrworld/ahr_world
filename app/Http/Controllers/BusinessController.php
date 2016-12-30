@@ -94,6 +94,7 @@ class BusinessController extends Controller
             'test_process1' => $request->test_process1,
             'test_process2' => $request->test_process2,
             'test_process3' => $request->test_process3,
+            'status' => 1,
         ]);
 
         // create employ
@@ -469,41 +470,45 @@ class BusinessController extends Controller
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                                     ->where('recruitments.user_id', $request->user()->id);
         // 新応募
-        $Recruitment = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
+        $Recruitment = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.status','personnels.country',
                                     'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                                     ->where('recruitments_status.status', 1)
+                                    ->where('personnels.status', 1)
                                     ->where('recruitments.user_id', $request->user()->id)
                                     ->get();
         // お気に入り登錄者
-        $Recruitment_like = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
+        $Recruitment_like = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.status','personnels.country',
                                     'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                                     ->where('recruitments.user_id', $request->user()->id)
                                     ->where('recruitments_status.status', 2)
+                                    ->where('personnels.status', 1)
                                     ->get();
         // 面接調整中
-        $Recruitment_a = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
+        $Recruitment_a = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.status','personnels.country',
                                     'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                                     ->where('recruitments.user_id', $request->user()->id)
                                     ->where('recruitments_status.status', 3)
+                                    ->where('personnels.status', 1)
                                     ->get();
-        $Recruitment_b = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
+        $Recruitment_b = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.status','personnels.country',
                                     'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                                     ->where('recruitments.user_id', $request->user()->id)
                                     ->where('recruitments_status.status', 4)
+                                    ->where('personnels.status', 1)
                                     ->get();
-        $Recruitment_c = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
+        $Recruitment_c = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.status','personnels.country',
                                     'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
@@ -511,43 +516,48 @@ class BusinessController extends Controller
                                     ->where('recruitments.user_id', $request->user()->id)
                                     ->where('recruitments_status.status', 5)
                                     ->get();
-        $Recruitment_d = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
+        $Recruitment_d = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.status','personnels.country',
                                     'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                                     ->where('recruitments.user_id', $request->user()->id)
                                     ->where('recruitments_status.status', 6)
+                                    ->where('personnels.status', 1)
                                     ->get();
         // 面接調整中完了
-        $Recruitment_f = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
+        $Recruitment_f = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.status','personnels.country',
                                     'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                                     ->where('recruitments.user_id', $request->user()->id)
                                     ->where('recruitments_status.status', 8)
+                                    ->where('personnels.status', 1)
                                     ->get();
-        $Recruitment_h = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
+        $Recruitment_h = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.status','personnels.country',
                                     'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                                     ->where('recruitments.user_id', $request->user()->id)
                                     ->where('recruitments_status.status', 9)
+                                    ->where('personnels.status', 1)
                                     ->get();
-        $Recruitment_i = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.country',
+        $Recruitment_i = Recruitments_status::select('recruitments_status.id as rs_id','personnels.surname','personnels.status','personnels.country',
                                     'exp_job.name as job_name','personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','personnels.birthday','recruitments_status.user_id')
                                     ->join('recruitments', 'recruitments_status.recruitments_id', '=', 'recruitments.id')
                                     ->join('personnels','recruitments_status.user_id', '=', 'personnels.user_id')
                                     ->join('exp_job', 'recruitments.job_id', '=', 'exp_job.id')
                                     ->where('recruitments.user_id', $request->user()->id)
                                     ->where('recruitments_status.status', 10)
+                                    ->where('personnels.status', 1)
                                     ->get();
         $history = Pl_history::select('personnels.surname','personnels.country',
-                                    'personnels.family_name','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','pl_history.updated_at','pl_history.user_id')
+                                    'personnels.family_name','personnels.status','personnels.school','personnels.sex','personnels.school_country','personnels.language_lv','pl_history.updated_at','pl_history.user_id')
                                ->join('personnels','pl_history.user_id', '=', 'personnels.user_id')
                                ->where('pl_history.bs_user_id', $request->user()->id)
+                               ->where('personnels.status', 1)
                                ->orderBy('pl_history.updated_at','desc')
                                ->groupBy('pl_history.user_id')
                                ->get();
